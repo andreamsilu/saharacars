@@ -6,7 +6,7 @@
             --theme-primary-container: {{ $themeColors['primary_container'] ?? '#5C4320' }};
         }
     </style>
-    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]">
         <div class="md:col-span-2 space-y-5">
             <a href="{{ route('home') }}" class="inline-block rounded-xl bg-white/95 p-2.5 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
                 <img
@@ -57,7 +57,7 @@
     </div>
 
     <div>
-        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
             <p>© {{ now()->year }} Sahara Cars Tanzania</p>
             <p>All rights reserved.</p>
         </div>

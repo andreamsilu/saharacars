@@ -1,34 +1,41 @@
 @php
-    /** @var string $active */
+    /**
+     * Bottom navigation for small screens (md:hidden in component).
+     * $active: home | inventory | about | contact
+     */
     $active = $active ?? '';
-    /** @var string $detailsHref */
-    $detailsHref = $detailsHref ?? '#';
+    $linkClass = function (string $key) use ($active): string {
+        $isActive = $active === $key;
+        $base = 'flex flex-col items-center justify-center gap-1 flex-1 min-h-[52px] min-w-0 px-1 py-2 rounded-2xl transition-colors touch-manipulation tap-highlight-transparent active:scale-95';
+
+        return $isActive
+            ? $base.' bg-primary/12 text-primary font-semibold'
+            : $base.' text-slate-500 hover:text-slate-800';
+    };
 @endphp
 
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 md:hidden bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-    <a class="{{ $active === 'home' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-900 dark:text-blue-300 rounded-2xl' : 'text-slate-400 dark:text-slate-500' }} flex flex-col items-center justify-center px-5 py-2 tap-highlight-transparent transition-transform active:scale-90" href="{{ route('home') }}">
-        <span class="material-symbols-outlined" style="{{ $active === 'home' ? "font-variation-settings: 'FILL' 1;" : '' }}">home</span>
-        <span class="font-inter text-[10px] font-semibold uppercase tracking-widest mt-1">Home</span>
+<nav
+    class="fixed bottom-0 left-0 right-0 z-50 md:hidden flex justify-between items-stretch px-2 pt-2 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-4px_24px_rgba(15,23,42,0.08)]"
+    style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));"
+    aria-label="Quick navigation"
+>
+    <a class="{{ $linkClass('home') }}" href="{{ route('home') }}">
+        <span class="material-symbols-outlined text-[24px]" style="{{ $active === 'home' ? "font-variation-settings: 'FILL' 1;" : '' }}">home</span>
+        <span class="text-[10px] font-semibold uppercase tracking-wide leading-tight text-center">Home</span>
     </a>
 
-    <a class="{{ $active === 'search' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-900 dark:text-blue-300 rounded-2xl' : 'text-slate-400 dark:text-slate-500' }} flex flex-col items-center justify-center px-5 py-2 transition-transform active:scale-90" href="{{ route('cars.index') }}">
-        <span class="material-symbols-outlined">search</span>
-        <span class="font-inter text-[10px] font-semibold uppercase tracking-widest mt-1">Search</span>
+    <a class="{{ $linkClass('inventory') }}" href="{{ route('cars.index') }}">
+        <span class="material-symbols-outlined text-[24px]" style="{{ $active === 'inventory' ? "font-variation-settings: 'FILL' 1;" : '' }}">directions_car</span>
+        <span class="text-[10px] font-semibold uppercase tracking-wide leading-tight text-center">Cars</span>
     </a>
 
-    <a class="{{ $active === 'details' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-900 dark:text-blue-300 rounded-2xl' : 'text-slate-400 dark:text-slate-500' }} flex flex-col items-center justify-center px-5 py-2 transition-transform active:scale-90" href="{{ $detailsHref }}">
-        <span class="material-symbols-outlined" style="{{ $active === 'details' ? "font-variation-settings: 'FILL' 1;" : '' }}">directions_car</span>
-        <span class="font-inter text-[10px] font-semibold uppercase tracking-widest mt-1">Details</span>
+    <a class="{{ $linkClass('about') }}" href="{{ route('about') }}">
+        <span class="material-symbols-outlined text-[24px]" style="{{ $active === 'about' ? "font-variation-settings: 'FILL' 1;" : '' }}">info</span>
+        <span class="text-[10px] font-semibold uppercase tracking-wide leading-tight text-center">About</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 transition-transform active:scale-90" href="#">
-        <span class="material-symbols-outlined">favorite</span>
-        <span class="font-inter text-[10px] font-semibold uppercase tracking-widest mt-1">Saved</span>
-    </a>
-
-    <a class="{{ $active === 'menu' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-900 dark:text-blue-300 rounded-2xl' : 'text-slate-400 dark:text-slate-500' }} flex flex-col items-center justify-center px-5 py-2 transition-transform active:scale-90" href="#">
-        <span class="material-symbols-outlined" style="{{ $active === 'menu' ? "font-variation-settings: 'FILL' 1;" : '' }}">menu</span>
-        <span class="font-inter text-[10px] font-semibold uppercase tracking-widest mt-1">Menu</span>
+    <a class="{{ $linkClass('contact') }}" href="{{ route('contact') }}">
+        <span class="material-symbols-outlined text-[24px]" style="{{ $active === 'contact' ? "font-variation-settings: 'FILL' 1;" : '' }}">chat</span>
+        <span class="text-[10px] font-semibold uppercase tracking-wide leading-tight text-center">Contact</span>
     </a>
 </nav>
-

@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "cv11", "ss01";
+  overflow-wrap: anywhere;
 }
 h1, h2, h3, .font-headline {
   letter-spacing: -0.015em;

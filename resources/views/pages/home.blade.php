@@ -2,7 +2,7 @@
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -113,11 +113,11 @@
     </style>
 
 </head>
-<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden attention-mesh">
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden attention-mesh pb-mobile-nav md:pb-0">
 <!-- TopNavBar -->
 <x-navbar />
 <!-- Hero Section -->
-<section class="relative min-h-[560px] md:min-h-[620px] flex flex-col items-center justify-center px-6 pt-20 pb-14 md:pt-24 md:pb-16 overflow-hidden hero-mesh">
+<section class="relative min-h-[min(100svh,720px)] md:min-h-[620px] flex flex-col items-center justify-center px-4 sm:px-6 pt-16 pb-12 sm:pt-20 sm:pb-14 md:pt-24 md:pb-16 overflow-hidden hero-mesh">
 <div class="absolute inset-0 -z-10">
 <img class="w-full h-full object-cover" data-alt="Sahara Cars premium hero visual" src="{{ asset('images/hero-home.svg') }}"/>
 <div class="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/35 to-surface"></div>
@@ -129,20 +129,20 @@
 <span class="pulse-chip bg-white/15 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase">Limited Premium Units</span>
 <span class="bg-secondary-container/90 text-on-secondary-container px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase">Verified Inventory</span>
 </div>
-<h1 class="font-headline text-5xl md:text-7xl font-black text-white tracking-tighter leading-tight hero-glow">
+<h1 class="font-headline text-[clamp(1.75rem,6.5vw,3.75rem)] md:text-7xl font-black text-white tracking-tighter leading-[1.1] hero-glow px-1">
                 Own Tanzania's Most <span class="text-secondary-container">Wanted Cars</span>
 </h1>
-<p class="text-white text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow">
+<p class="text-white text-base sm:text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow px-1">
                 High-demand luxury and rugged vehicles, curated and verified for serious buyers.
             </p>
-<div class="flex items-center justify-center gap-3 pt-1">
-<a href="{{ route('cars.index') }}" class="cta-gradient text-white px-8 py-3 rounded-full text-sm font-extrabold shadow-lg shadow-primary/25">View Hot Inventory</a>
-<a href="{{ route('contact') }}" class="bg-white/20 backdrop-blur-md text-white px-8 py-3 rounded-full text-sm font-bold ghost-border">Book a Quick Call</a>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-md sm:max-w-none mx-auto">
+<a href="{{ route('cars.index') }}" class="cta-gradient text-white px-8 py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-primary/25 text-center touch-manipulation">View Hot Inventory</a>
+<a href="{{ route('contact') }}" class="bg-white/20 backdrop-blur-md text-white px-8 py-3.5 min-h-[48px] rounded-full text-sm font-bold ghost-border text-center touch-manipulation">Book a Quick Call</a>
 </div>
 </div>
 </section>
-<section class="px-6 -mt-6 md:-mt-8 relative z-20">
-<div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-3xl p-4 md:p-6 shadow-[0_20px_36px_rgba(92,67,32,0.14)]">
+<section class="px-4 sm:px-6 -mt-6 md:-mt-8 relative z-20">
+<div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 shadow-[0_20px_36px_rgba(92,67,32,0.14)]">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
 <div class="bg-surface-container-low rounded-2xl p-4 graphic-panel">
 <span class="material-symbols-outlined text-primary text-[20px]">verified</span>
@@ -174,13 +174,13 @@
     $valuePicks = $featuredCollection->sortBy('price_tzs')->take(3);
 @endphp
 <!-- Content: Featured Cars Section -->
-<main class="max-w-7xl mx-auto px-6 section-editorial section-wash-soft rounded-[2rem]">
-<div class="flex justify-between items-end mb-8">
-<div class="space-y-2">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]">
+<div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
+<div class="space-y-2 min-w-0">
 <span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">Showroom Preview</span>
-<h2 class="font-headline text-4xl font-black text-primary">Premium Inventory Highlights</h2>
+<h2 class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">Premium Inventory Highlights</h2>
 </div>
-<a class="hidden md:flex items-center gap-2 text-primary font-bold underline decoration-primary/20 hover:decoration-primary transition-all pb-1" href="{{ route('cars.index') }}">
+<a class="inline-flex sm:ml-auto items-center justify-center gap-2 text-primary font-bold underline decoration-primary/20 hover:decoration-primary transition-all py-2 min-h-[44px] touch-manipulation shrink-0" href="{{ route('cars.index') }}">
                 View All Inventory
                 <span class="material-symbols-outlined">arrow_forward</span>
 </a>
@@ -223,7 +223,7 @@
 </main>
 <section class="section-editorial px-6 section-wash">
 <div class="max-w-7xl mx-auto">
-<div class="max-w-3xl flex items-start gap-4">
+<div class="max-w-3xl flex flex-col sm:flex-row items-start gap-4">
 <div class="h-14 w-14 rounded-2xl bg-primary-container text-white flex items-center justify-center shadow-lg shadow-primary/20">
 <span class="material-symbols-outlined text-[28px]">timeline</span>
 </div>

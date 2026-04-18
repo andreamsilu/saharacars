@@ -2,7 +2,7 @@
 
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Contact Us | Sahara Cars Tanzania</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -78,13 +78,13 @@
       @include('components.public-design-tokens')
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface attention-mesh">
+<body class="bg-surface font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
 <!-- Top Navigation Bar -->
 <x-navbar />
-<main class="max-w-7xl mx-auto px-6 section-editorial-compact">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial-compact">
 <!-- Hero Header -->
 <header class="mb-14 md:mb-16">
-<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-primary tracking-tighter mb-4">Connect with <br/> Excellence.</h1>
+<h1 class="font-headline text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-extrabold text-primary tracking-tighter mb-4 leading-[1.1] text-balance">Connect with Excellence.</h1>
 <p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or listing your premium vehicle, our editorial team is ready to assist you in the heart of Dar es Salaam.</p>
 </header>
 <!-- Bento Grid Layout -->
@@ -245,7 +245,7 @@
 </main>
 <!-- Footer -->
 <x-footer class="mt-20" />
-<x-mobile-nav active="menu" />
+<x-mobile-nav active="contact" />
 <x-whatsapp-float />
 </body></html>
 

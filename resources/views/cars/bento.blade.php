@@ -2,7 +2,7 @@
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -77,125 +77,38 @@
         @include('components.public-design-tokens')
     </style>
 </head>
-<body class="bg-background font-body text-on-surface attention-mesh">
+<body class="bg-background font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
 <!-- TopNavBar -->
 <x-navbar />
-<main class="max-w-7xl mx-auto px-6 py-8 flex gap-8">
-<!-- Left Sidebar Filter -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
+<details class="lg:hidden group rounded-2xl bg-surface-container-low border border-slate-200/80 attention-panel overflow-hidden">
+    <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation">
+        <span class="inline-flex items-center gap-2">
+            <span class="material-symbols-outlined text-[22px]">tune</span>
+            Refine selection
+        </span>
+        <span class="material-symbols-outlined text-slate-500 group-open:rotate-180 transition-transform">expand_more</span>
+    </summary>
+    <div class="px-4 pb-4 pt-0 border-t border-slate-200/60">
+        @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento')])
+    </div>
+</details>
 <aside class="hidden lg:block w-72 flex-shrink-0">
-<div class="sticky top-24 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel">
-<form action="{{ route('cars.bento') }}" method="GET">
-@if (request()->filled('q'))
-    <input type="hidden" name="q" value="{{ request('q') }}" />
-@endif
-<div>
-<h3 class="font-headline font-bold text-lg mb-6 text-primary">Refine Selection</h3>
-<div class="space-y-6">
-<!-- Brand -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Brand</label>
-<select name="brand" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/10 ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
-<option value="">All Manufacturers</option>
-<option value="Toyota" {{ request('brand') === 'Toyota' ? 'selected' : '' }}>Toyota</option>
-<option value="Land Rover" {{ request('brand') === 'Land Rover' ? 'selected' : '' }}>Land Rover</option>
-<option value="Mercedes" {{ request('brand') === 'Mercedes' ? 'selected' : '' }}>Mercedes</option>
-<option value="Nissan" {{ request('brand') === 'Nissan' ? 'selected' : '' }}>Nissan</option>
-</select>
-</div>
-<!-- Price Range -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Price Range (TZS)</label>
-<div class="grid grid-cols-2 gap-2">
-<input name="price_min" value="{{ request('price_min') }}" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]" placeholder="Min" type="number"/>
-<input name="price_max" value="{{ request('price_max') }}" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]" placeholder="Max" type="number"/>
-</div>
-</div>
-<!-- Location -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Location</label>
-<div class="space-y-2">
-@php
-    $selectedLocations = request()->input('location', []);
-    if (!is_array($selectedLocations)) {
-        $selectedLocations = $selectedLocations !== '' ? [$selectedLocations] : [];
-    }
-@endphp
-<label class="flex items-center space-x-3 cursor-pointer group">
-<input name="location[]" value="Dar es Salaam" {{ in_array('Dar es Salaam', $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
-<span class="text-sm font-medium group-hover:text-primary transition-colors">Dar es Salaam</span>
-</label>
-<label class="flex items-center space-x-3 cursor-pointer group">
-<input name="location[]" value="Arusha" {{ in_array('Arusha', $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
-<span class="text-sm font-medium group-hover:text-primary transition-colors">Arusha</span>
-</label>
-<label class="flex items-center space-x-3 cursor-pointer group">
-<input name="location[]" value="Zanzibar" {{ in_array('Zanzibar', $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
-<span class="text-sm font-medium group-hover:text-primary transition-colors">Zanzibar</span>
-</label>
-</div>
-</div>
-<!-- Transmission -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Transmission</label>
-<div class="flex gap-2 p-1 bg-surface-container-low rounded-full text-xs">
-<label class="flex-1">
-<input type="radio" name="transmission" value="Automatic" class="sr-only peer" {{ request('transmission') === 'Automatic' ? 'checked' : '' }}>
-<span class="block text-center py-2 rounded-full font-bold peer-checked:bg-primary peer-checked:text-on-primary text-on-surface-variant hover:bg-surface-container-highest transition-colors">Automatic</span>
-</label>
-<label class="flex-1">
-<input type="radio" name="transmission" value="Manual" class="sr-only peer" {{ request('transmission') === 'Manual' ? 'checked' : '' }}>
-<span class="block text-center py-2 rounded-full font-bold peer-checked:bg-primary peer-checked:text-on-primary text-on-surface-variant hover:bg-surface-container-highest transition-colors">Manual</span>
-</label>
-<label class="flex-1">
-<input type="radio" name="transmission" value="" class="sr-only peer" {{ request('transmission') === null || request('transmission') === '' ? 'checked' : '' }}>
-<span class="block text-center py-2 rounded-full font-bold peer-checked:bg-primary peer-checked:text-on-primary text-on-surface-variant hover:bg-surface-container-highest transition-colors">Any</span>
-</label>
-</div>
-</div>
-<!-- Fuel -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Fuel</label>
-<div class="grid grid-cols-1 gap-2">
-<select name="fuel" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/10 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
-<option value="">Any fuel</option>
-<option value="Petrol" {{ request('fuel') === 'Petrol' ? 'selected' : '' }}>Petrol</option>
-<option value="Diesel" {{ request('fuel') === 'Diesel' ? 'selected' : '' }}>Diesel</option>
-<option value="Hybrid" {{ request('fuel') === 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
-<option value="Electric" {{ request('fuel') === 'Electric' ? 'selected' : '' }}>Electric</option>
-</select>
-</div>
-</div>
-<!-- Category -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Category</label>
-<div class="grid grid-cols-1 gap-2">
-<select name="category" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/10 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
-<option value="">Any category</option>
-<option value="brand_new" {{ request('category', request('condition')) === 'brand_new' ? 'selected' : '' }}>Brand New</option>
-<option value="foreign_used" {{ request('category', request('condition')) === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
-<option value="local_used" {{ request('category', request('condition')) === 'local_used' ? 'selected' : '' }}>Locally Used</option>
-</select>
-</div>
-</div>
-</div>
-<button class="w-full mt-8 py-4 cta-gradient text-on-primary font-headline font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
-                        Apply Filters
-                    </button>
-</div>
-</form>
-</div>
+    <div class="sticky top-24 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel">
+        @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento')])
+    </div>
 </aside>
 <!-- Main Content -->
-<section class="flex-1">
-<div class="flex justify-between items-end mb-8">
-<div>
-<h1 class="font-headline font-extrabold text-3xl text-primary tracking-tight">Premium Inventory</h1>
+<section class="flex-1 min-w-0">
+<div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-end mb-6 sm:mb-8 gap-4">
+<div class="min-w-0">
+<h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-primary tracking-tight">Premium Inventory</h1>
 <p class="text-on-surface-variant font-body mt-1">
 Found {{ $cars->total() }} curated vehicle{{ $cars->total() === 1 ? '' : 's' }}
 </p>
 </div>
-<div class="flex items-center space-x-2 text-sm font-medium text-on-surface-variant">
-<span>Sort by:</span>
+<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:space-x-2 text-sm font-medium text-on-surface-variant w-full sm:w-auto min-w-0">
+<span class="shrink-0">Sort by:</span>
 <form action="{{ route('cars.bento') }}" method="GET" class="flex items-center gap-2">
 @foreach (request()->except(['sort', 'page']) as $param => $value)
     @if (is_array($value))
@@ -265,7 +178,7 @@ Search premium inventory
 </main>
 <!-- Footer -->
 <x-footer class="mt-20" />
-<x-mobile-nav active="search" />
+<x-mobile-nav active="inventory" />
 <x-whatsapp-float />
 <script>
     (() => {

@@ -2,7 +2,7 @@
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -80,10 +80,10 @@
       @include('components.public-design-tokens')
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed attention-mesh">
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed attention-mesh pb-mobile-nav md:pb-0">
 <!-- TopNavBar -->
 <x-navbar />
-<main class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 <!-- Breadcrumbs -->
 <nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6">
 <a class="hover:text-primary transition-colors" href="{{ route('cars.index') }}">Inventory</a>
@@ -345,7 +345,7 @@
 </main>
 <!-- Footer -->
 <x-footer class="mt-20" />
-<x-mobile-nav active="details" :details-href="route('cars.show', ['slug' => $car->slug])" />
+<x-mobile-nav active="inventory" />
 <x-whatsapp-float />
 <div id="gallery-lightbox" class="fixed inset-0 z-[70] hidden bg-black/85 p-4 md:p-8" aria-hidden="true">
   <div class="w-full h-full flex flex-col">

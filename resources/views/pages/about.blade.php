@@ -2,7 +2,7 @@
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -77,20 +77,20 @@
       @include('components.public-design-tokens')
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed attention-mesh">
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed attention-mesh pb-mobile-nav md:pb-0">
 <!-- TopNavBar -->
 <x-navbar />
 <main>
 <!-- Hero Section -->
-<section class="relative h-[819px] flex items-center overflow-hidden">
+<section class="relative min-h-[min(90svh,819px)] md:h-[819px] flex items-center overflow-hidden py-16 md:py-0">
 <div class="absolute inset-0 z-0">
 <img class="w-full h-full object-cover" data-alt="luxury off-road vehicle driving through the vast golden Serengeti plains at sunset, high-end editorial automotive photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdoekZbNAVkxYdV5iREnckqm2Ql0A-u0qL3xf21tljGkOjG1o_L0BkRS7mFzlWe8q3p9H7GSUhqCs4vJVTnTw2NZSWUSt8pSKuZS9Wr9KJ-CQwbRvioDCN4qEUDsxsP4xsve93_xVv55Xg3f4KYsLP4mhobNfA7K8shqLRYq1WPDvb8HySLWrbZvitps3LtFYIMAoJ-bygyNo68jwAPUQlJP0CwEgbVJY_lj2ryEUTFUjQ7jzmkzNig-WjE_ZhO7ietypjMyZ4IKA"/>
 <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/40 to-transparent"></div>
 </div>
-<div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
 <div class="max-w-2xl">
 <span class="inline-block px-4 py-1.5 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-xs font-bold tracking-widest uppercase mb-6 font-label">The Sahara Legacy</span>
-<h1 class="text-5xl md:text-7xl font-headline font-extrabold text-white tracking-tighter leading-[1.1] mb-6">
+<h1 class="text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-headline font-extrabold text-white tracking-tighter leading-[1.1] mb-6">
                         The Editorial Curator of <span class="text-secondary-fixed">Automotive Excellence.</span>
 </h1>
 <p class="text-lg text-white/80 font-body leading-relaxed mb-8 max-w-lg">
@@ -222,7 +222,7 @@
 </main>
 <!-- Footer -->
 <x-footer />
-<x-mobile-nav active="menu" />
+<x-mobile-nav active="about" />
 <x-whatsapp-float />
 </body></html>
 

@@ -45,7 +45,7 @@
             <div class="partner-track flex items-center gap-4 md:gap-6">
                 @foreach (array_merge($partners, $partners) as $index => $partner)
                     <div
-                        class="bg-surface-container-lowest rounded-2xl px-5 py-4 min-w-[220px] ghost-border shadow-[0_12px_20px_rgba(25,28,30,0.04)] {{ $index >= count($partners) ? 'opacity-90' : '' }}"
+                        class="bg-surface-container-lowest rounded-2xl px-4 sm:px-5 py-4 min-w-[min(100%,200px)] sm:min-w-[220px] max-w-[85vw] sm:max-w-none ghost-border shadow-[0_12px_20px_rgba(25,28,30,0.04)] {{ $index >= count($partners) ? 'opacity-90' : '' }}"
                         @if ($index >= count($partners)) aria-hidden="true" @endif
                     >
                         <div class="flex items-center gap-3">

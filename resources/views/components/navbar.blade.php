@@ -16,13 +16,13 @@
             background-image: linear-gradient(135deg, var(--theme-primary-container), var(--theme-primary));
         }
     </style>
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-3" aria-label="Main">
         {{-- Brand: logo from public/images (see asset path) --}}
-        <a class="inline-flex items-center gap-2 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg" href="{{ route('home') }}">
+        <a class="inline-flex items-center gap-2 shrink-0 min-w-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg" href="{{ route('home') }}">
             <img
                 src="{{ asset('images/logo.png') }}"
                 alt="Sahara Cars"
-                class="h-9 w-auto sm:h-10 object-contain object-left max-w-[200px] sm:max-w-[240px]"
+                class="h-8 w-auto sm:h-10 object-contain object-left max-w-[min(200px,52vw)] sm:max-w-[240px]"
                 width="240"
                 height="40"
                 decoding="async"
@@ -36,11 +36,11 @@
             <a class="{{ request()->routeIs('contact') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm" href="{{ route('contact') }}">Contact</a>
         </div>
 
-        <div class="flex items-center gap-2 sm:gap-3">
-            <form action="{{ route('cars.index') }}" method="GET" class="hidden lg:flex items-center gap-2 rounded-full bg-slate-100 border border-slate-200 px-3 py-1.5">
-                <span class="material-symbols-outlined text-slate-500 text-[18px]">search</span>
+        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            <form action="{{ route('cars.index') }}" method="GET" class="hidden lg:flex items-center gap-2 rounded-full bg-slate-100 border border-slate-200 px-3 py-1.5 min-w-0">
+                <span class="material-symbols-outlined text-slate-500 text-[18px] shrink-0">search</span>
                 <input
-                    class="bg-transparent border-none focus:ring-0 text-sm w-44 text-slate-800 placeholder:text-slate-500"
+                    class="bg-transparent border-none focus:ring-0 text-sm w-44 text-slate-800 placeholder:text-slate-500 min-w-0"
                     placeholder="Search cars..."
                     type="search"
                     name="q"
@@ -49,11 +49,97 @@
                 />
             </form>
 
-            <a href="{{ route('contact') }}" class="inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-bold hover:opacity-95 active:scale-95 transition-transform shadow-[0_10px_24px_rgba(92,67,32,0.2)]">
-                <span class="material-symbols-outlined text-[18px]">support_agent</span>
-                Contact Sales
+            <a href="{{ route('contact') }}" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold hover:opacity-95 active:scale-95 transition-transform shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation">
+                <span class="material-symbols-outlined text-[18px] shrink-0">support_agent</span>
+                <span class="whitespace-nowrap">Contact Sales</span>
             </a>
+
+            {{-- Mobile: open full navigation (primary links hidden on small screens) --}}
+            <button
+                type="button"
+                id="public-nav-toggle"
+                class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary touch-manipulation"
+                aria-expanded="false"
+                aria-controls="public-nav-panel"
+                aria-label="Open menu"
+            >
+                <span class="material-symbols-outlined text-[26px]" data-nav-icon="menu">menu</span>
+            </button>
         </div>
     </nav>
+
+    {{-- Mobile menu panel --}}
+    <div
+        id="public-nav-panel"
+        class="hidden md:hidden border-t border-slate-200/90 bg-white/95 backdrop-blur-md shadow-[0_12px_24px_rgba(15,23,42,0.08)]"
+        hidden
+    >
+        <div class="max-w-7xl mx-auto px-4 py-4 space-y-4">
+            <form action="{{ route('cars.index') }}" method="GET" class="flex items-center gap-2 rounded-2xl bg-slate-100 border border-slate-200 px-3 py-2">
+                <span class="material-symbols-outlined text-slate-500 text-[20px] shrink-0">search</span>
+                <input
+                    class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-base text-slate-800 placeholder:text-slate-500 py-2"
+                    placeholder="Search inventory..."
+                    type="search"
+                    name="q"
+                    value="{{ request('q') }}"
+                    aria-label="Search inventory"
+                />
+                <button type="submit" class="shrink-0 text-sm font-bold text-primary px-2 py-2 touch-manipulation">Go</button>
+            </form>
+            <ul class="flex flex-col gap-1">
+                <li>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('home') }}">Home</a>
+                </li>
+                <li>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('cars.*') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('cars.index') }}">Inventory</a>
+                </li>
+                <li>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('about') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('about') }}">About</a>
+                </li>
+                <li>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">Contact</a>
+                </li>
+            </ul>
+            <a href="{{ route('contact') }}" class="flex md:hidden items-center justify-center gap-2 w-full cta-gradient text-white py-3.5 min-h-[48px] rounded-2xl text-sm font-bold shadow-md touch-manipulation">
+                <span class="material-symbols-outlined text-[20px]">support_agent</span>
+                Contact sales
+            </a>
+        </div>
+    </div>
 </header>
 
+<script>
+(function () {
+    var btn = document.getElementById('public-nav-toggle');
+    var panel = document.getElementById('public-nav-panel');
+    if (!btn || !panel) return;
+
+    function setOpen(open) {
+        panel.hidden = !open;
+        panel.classList.toggle('hidden', !open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        var icon = btn.querySelector('[data-nav-icon]');
+        if (icon) {
+            icon.textContent = open ? 'close' : 'menu';
+        }
+    }
+
+    btn.addEventListener('click', function () {
+        setOpen(panel.hidden);
+    });
+
+    panel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            setOpen(false);
+        });
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !panel.hidden) {
+            setOpen(false);
+        }
+    });
+})();
+</script>
