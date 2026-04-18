@@ -32,17 +32,17 @@
               "on-secondary-fixed-variant": "#4a3d30",
               "tertiary-container": "#592300",
               "on-tertiary": "#ffffff",
-              "background": "#f8f9fb",
+              "background": "#f3f3f3",
               "inverse-on-surface": "#eff1f3",
               "surface-tint": "#a67c40",
               "secondary": "#7a6046",
               "surface-container": "#eceef0",
-              "surface": "#f8f9fb",
+              "surface": "#f3f3f3",
               "tertiary": "#381300",
               "primary-fixed": "#f0dfc4",
               "on-tertiary-container": "#d8885c",
               "inverse-surface": "#2d3133",
-              "surface-bright": "#f8f9fb",
+              "surface-bright": "#f3f3f3",
               "outline": "#737780",
               "error-container": "#ffdad6",
               "tertiary-fixed-dim": "#ffb690",
@@ -81,11 +81,11 @@
       }
       .section-wash {
         background:
-          linear-gradient(180deg, rgba(236, 238, 240, 0.9), rgba(248, 249, 251, 1));
+          linear-gradient(180deg, rgba(235, 235, 235, 0.95), rgba(243, 243, 243, 1));
       }
       .section-wash-soft {
         background:
-          linear-gradient(180deg, rgba(248, 249, 251, 1), rgba(236, 238, 240, 0.55));
+          linear-gradient(180deg, rgba(243, 243, 243, 1), rgba(235, 235, 235, 0.6));
       }
       .graphic-panel {
         background:

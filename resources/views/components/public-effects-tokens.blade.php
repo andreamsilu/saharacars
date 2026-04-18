@@ -5,8 +5,9 @@
 .tap-highlight-transparent {
   -webkit-tap-highlight-color: transparent;
 }
+/* Base canvas aligns with logo neutral #f3f3f3 (set in Tailwind background/surface); primary is for emphasis only */
 .tonal-shift-layering {
-  background: linear-gradient(to top, rgba(248, 249, 251, 1), rgba(255, 255, 255, 0));
+  background: linear-gradient(to top, rgba(243, 243, 243, 1), rgba(255, 255, 255, 0));
 }
 /* Page wash: warm gold/cream only (no blue/green tints) */
 .attention-mesh {

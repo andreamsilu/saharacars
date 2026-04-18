@@ -31,7 +31,7 @@
               "surface-tint": "#a67c40",
               "on-error-container": "#93000a",
               "tertiary-fixed-dim": "#ffb690",
-              "surface-bright": "#f8f9fb",
+              "surface-bright": "#f3f3f3",
               "on-tertiary-fixed-variant": "#723610",
               "error": "#ba1a1a",
               "on-primary": "#1a1208",
@@ -45,7 +45,7 @@
               "on-primary-container": "#f4e4c4",
               "on-tertiary-fixed": "#341100",
               "on-error": "#ffffff",
-              "surface": "#f8f9fb",
+              "surface": "#f3f3f3",
               "secondary-fixed-dim": "#3de273",
               "surface-container-low": "#f2f4f6",
               "tertiary": "#381300",
@@ -58,7 +58,7 @@
               "surface-dim": "#d8dadc",
               "primary": "#b48a40",
               "surface-container": "#eceef0",
-              "background": "#f8f9fb",
+              "background": "#f3f3f3",
               "surface-container-lowest": "#ffffff",
               "surface-container-high": "#e6e8ea"
             },
@@ -77,7 +77,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         .editorial-gradient {
-            background: linear-gradient(135deg, #f8f9fb 0%, #eceef0 100%);
+            background: linear-gradient(135deg, #f3f3f3 0%, #eceef0 100%);
         }
         .car-overlay {
             background: linear-gradient(to bottom right, rgba(92, 67, 32, 0.92), rgba(92, 67, 32, 0.75));
