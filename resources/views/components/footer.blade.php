@@ -1,7 +1,7 @@
 <footer {{ $attributes->merge(['class' => 'w-full mt-auto bg-slate-950 text-slate-200']) }}>
     <style>
         :root {
-            --theme-primary: {{ $themeColors['primary'] ?? '#B48A40' }};
+            --theme-primary: {{ $themeColors['primary'] ?? '#8A6528' }};
             --theme-secondary: {{ $themeColors['secondary'] ?? '#0B6B3A' }};
             --theme-primary-container: {{ $themeColors['primary_container'] ?? '#5C4320' }};
         }

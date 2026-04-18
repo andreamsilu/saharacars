@@ -7,11 +7,11 @@
   </defs>
   <rect width="1200" height="600" rx="32" fill="url(#bg3)"/>
   <circle cx="210" cy="130" r="90" fill="#f0dfc4" fill-opacity="0.18"/>
-  <circle cx="1020" cy="120" r="80" fill="#b48a40" fill-opacity="0.2"/>
+  <circle cx="1020" cy="120" r="80" fill="#8a6528" fill-opacity="0.2"/>
   <rect x="150" y="150" width="900" height="300" rx="24" fill="#FFFFFF" fill-opacity="0.1"/>
   <rect x="230" y="220" width="300" height="170" rx="18" fill="#F5EFE6"/>
   <rect x="670" y="220" width="300" height="170" rx="18" fill="#F5EFE6"/>
-  <circle cx="600" cy="300" r="84" fill="#b48a40"/>
+  <circle cx="600" cy="300" r="84" fill="#8a6528"/>
   <path d="M558 298C574 274 606 274 622 298" stroke="#2a1f14" stroke-width="14" stroke-linecap="round"/>
   <path d="M578 328L622 284" stroke="#2a1f14" stroke-width="14" stroke-linecap="round"/>
   <path d="M622 328L578 284" stroke="#2a1f14" stroke-width="14" stroke-linecap="round"/>

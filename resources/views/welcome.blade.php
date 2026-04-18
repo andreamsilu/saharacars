@@ -13,9 +13,9 @@
         theme: {
           extend: {
             colors: {
-              "on-primary": "#1a1208",
+              "on-primary": "#ffffff",
               "on-background": "#191c1e",
-              "primary": "#b48a40",
+              "primary": "#8a6528",
               "surface-container-lowest": "#ffffff",
               "surface-container-high": "#e6e8ea",
               "on-error-container": "#93000a",
@@ -35,7 +35,7 @@
               "on-tertiary": "#ffffff",
               "background": "#f3f3f3",
               "inverse-on-surface": "#eff1f3",
-              "surface-tint": "#a67c40",
+              "surface-tint": "#8a6528",
               "secondary": "#006d2f",
               "surface-container": "#eceef0",
               "surface": "#f3f3f3",

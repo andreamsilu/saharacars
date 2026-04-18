@@ -1,7 +1,7 @@
 <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-[20px] shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
     <style>
         :root {
-            --theme-primary: {{ $themeColors['primary'] ?? '#B48A40' }};
+            --theme-primary: {{ $themeColors['primary'] ?? '#8A6528' }};
             --theme-secondary: {{ $themeColors['secondary'] ?? '#0B6B3A' }};
             --theme-primary-container: {{ $themeColors['primary_container'] ?? '#5C4320' }};
         }

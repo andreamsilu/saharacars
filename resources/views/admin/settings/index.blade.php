@@ -52,7 +52,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="theme_primary">Primary</label>
-                        <input id="theme_primary" name="theme_primary" type="color" value="{{ old('theme_primary', $settings['theme_primary'] ?? '#B48A40') }}" class="w-full h-12 rounded-xl border border-slate-200/80 bg-white p-1" />
+                        <input id="theme_primary" name="theme_primary" type="color" value="{{ old('theme_primary', $settings['theme_primary'] ?? '#8A6528') }}" class="w-full h-12 rounded-xl border border-slate-200/80 bg-white p-1" />
                     </div>
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="theme_secondary">Secondary</label>
@@ -100,7 +100,7 @@
         (() => {
             const resetBtn = document.getElementById('theme-reset-defaults');
             const defaults = {
-                theme_primary: '#B48A40',
+                theme_primary: '#8A6528',
                 theme_secondary: '#0B6B3A',
                 theme_primary_container: '#5C4320',
             };

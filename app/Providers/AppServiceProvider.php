@@ -22,8 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view): void {
+            // UI primary meets WCAG 2.1 AA vs canvas #f3f3f3 (text) and vs white (filled controls).
             $themeColors = [
-                'primary' => '#B48A40',
+                'primary' => '#8A6528',
                 'secondary' => '#0B6B3A',
                 'primary_container' => '#5C4320',
             ];

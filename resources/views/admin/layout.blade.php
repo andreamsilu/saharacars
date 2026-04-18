@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: "#b48a40",
+                        primary: "#8a6528",
                         secondary: "#0b6b3a",
                         "secondary-container": "#5dfd8a",
                         "on-secondary-container": "#007232",
@@ -34,7 +34,7 @@
                         "tertiary-container": "#592300",
                         "on-tertiary-container": "#d8885c",
                         "primary-container": "#5c4320",
-                        "on-primary": "#1a1208",
+                        "on-primary": "#ffffff",
                         "on-primary-container": "#f4e4c4",
                         "tertiary-fixed": "#ffdbca",
                         "surface-container": "#eceef0",
@@ -50,7 +50,7 @@
     </script>
     <style>
         :root {
-            --theme-primary: {{ $themeColors['primary'] ?? '#B48A40' }};
+            --theme-primary: {{ $themeColors['primary'] ?? '#8A6528' }};
             --theme-secondary: {{ $themeColors['secondary'] ?? '#0B6B3A' }};
             --theme-primary-container: {{ $themeColors['primary_container'] ?? '#5C4320' }};
         }
@@ -88,10 +88,10 @@
             font-family: 'Inter', sans-serif;
             font-weight: 500;
         }
-        :focus-visible { outline: 3px solid #b48a40; outline-offset: 2px; }
+        :focus-visible { outline: 3px solid #8a6528; outline-offset: 2px; }
         .admin-link:hover { text-decoration: none; }
 
-        .icon-info { color: #b48a40; }
+        .icon-info { color: #8a6528; }
         .icon-success { color: #0b6b3a; }
         .icon-warning { color: #a16207; }
         .icon-danger { color: #ba1a1a; }

@@ -46,7 +46,7 @@ class AdminSettingsController extends Controller
             'marketplace_name' => (string) config('marketplace.name'),
             'support_email' => (string) config('marketplace.support_email'),
             'tagline' => (string) config('marketplace.tagline'),
-            'theme_primary' => '#B48A40',
+            'theme_primary' => '#8A6528',
             'theme_secondary' => '#0B6B3A',
             'theme_primary_container' => '#5C4320',
         ];

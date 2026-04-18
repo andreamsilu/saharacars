@@ -12,9 +12,9 @@
         theme: {
           extend: {
             colors: {
-              "on-primary": "#1a1208",
+              "on-primary": "#ffffff",
               "on-background": "#191c1e",
-              "primary": "#b48a40",
+              "primary": "#8a6528",
               "surface-container-lowest": "#ffffff",
               "surface-container-high": "#e6e8ea",
               "on-error-container": "#93000a",
@@ -34,7 +34,7 @@
               "on-tertiary": "#ffffff",
               "background": "#f3f3f3",
               "inverse-on-surface": "#eff1f3",
-              "surface-tint": "#a67c40",
+              "surface-tint": "#8a6528",
               "secondary": "#7a6046",
               "surface-container": "#eceef0",
               "surface": "#f3f3f3",
@@ -76,7 +76,7 @@
       @include('components.public-design-tokens')
       .hero-mesh {
         background:
-          radial-gradient(1200px 500px at 10% 0%, rgba(180, 138, 64, 0.14), transparent 60%),
+          radial-gradient(1200px 500px at 10% 0%, rgba(138, 101, 40, 0.14), transparent 60%),
           radial-gradient(900px 420px at 90% 20%, rgba(240, 223, 196, 0.28), transparent 62%);
       }
       .section-wash {
@@ -89,7 +89,7 @@
       }
       .graphic-panel {
         background:
-          radial-gradient(220px 120px at 85% 10%, rgba(180, 138, 64, 0.2), transparent 65%),
+          radial-gradient(220px 120px at 85% 10%, rgba(138, 101, 40, 0.2), transparent 65%),
           radial-gradient(180px 120px at 15% 100%, rgba(232, 200, 137, 0.22), transparent 70%),
           #ffffff;
       }

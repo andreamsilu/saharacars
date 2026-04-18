@@ -39,9 +39,9 @@
 
         #admin-cars-table_wrapper .dt-paging .dt-paging-button.current,
         #admin-cars-table_wrapper .dt-paging .dt-paging-button:hover {
-            background: #b48a40 !important;
-            color: #1a1208 !important;
-            border-color: #b48a40 !important;
+            background: #8a6528 !important;
+            color: #ffffff !important;
+            border-color: #8a6528 !important;
         }
 
         #admin-cars-table tbody tr {
