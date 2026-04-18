@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1200" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2a1f14"/>
+      <stop offset="1" stop-color="#4a3614"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" rx="32" fill="url(#bg2)"/>
+  <circle cx="140" cy="140" r="90" fill="#b48a40" fill-opacity="0.16"/>
+  <circle cx="1030" cy="480" r="120" fill="#f0dfc4" fill-opacity="0.18"/>
+  <rect x="170" y="120" width="430" height="340" rx="26" fill="#FFFFFF" fill-opacity="0.12"/>
+  <rect x="210" y="170" width="230" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.6"/>
+  <rect x="210" y="210" width="350" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.5"/>
+  <rect x="210" y="238" width="320" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.42"/>
+  <rect x="210" y="266" width="280" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.35"/>
+  <circle cx="250" cy="330" r="30" fill="#b48a40"/>
+  <path d="M236 330L247 341L266 320" stroke="#2a1f14" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="640" y="150" width="390" height="300" rx="30" fill="#F5EFE6"/>
+  <circle cx="820" cy="300" r="120" fill="#5c4320"/>
+  <circle cx="820" cy="300" r="68" fill="#d4b57a"/>
+  <rect x="892" y="372" width="120" height="26" rx="13" transform="rotate(-40 892 372)" fill="#b48a40"/>
+  <text x="170" y="85" fill="#faf6ef" font-size="42" font-family="Inter, Arial, sans-serif" font-weight="700">Inspect &amp; Verify</text>
+</svg>

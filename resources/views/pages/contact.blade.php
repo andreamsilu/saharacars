@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us | Sahara Cars Tanzania</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#f0dfc4",
+              "primary-container": "#5c4320",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#66ff8e",
+              "on-tertiary-container": "#d8885c",
+              "error": "#ba1a1a",
+              "surface-container-highest": "#e0e3e5",
+              "surface-tint": "#a67c40",
+              "on-secondary-container": "#007232",
+              "surface-container-lowest": "#ffffff",
+              "on-background": "#191c1e",
+              "inverse-primary": "#e8c889",
+              "on-surface": "#191c1e",
+              "surface-container-high": "#e6e8ea",
+              "inverse-on-surface": "#eff1f3",
+              "surface-container-low": "#f2f4f6",
+              "surface-bright": "#f8f9fb",
+              "primary-fixed-dim": "#d4b57a",
+              "on-tertiary-fixed": "#341100",
+              "tertiary-fixed": "#ffdbca",
+              "tertiary-fixed-dim": "#ffb690",
+              "on-surface-variant": "#43474f",
+              "on-primary-fixed": "#2a1d09",
+              "background": "#f8f9fb",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface": "#f8f9fb",
+              "tertiary-container": "#592300",
+              "tertiary": "#381300",
+              "on-secondary-fixed": "#002109",
+              "outline": "#737780",
+              "secondary": "#006d2f",
+              "secondary-fixed-dim": "#3de273",
+              "on-tertiary-fixed-variant": "#723610",
+              "on-primary-fixed-variant": "#4a3614",
+              "surface-dim": "#d8dadc",
+              "on-primary": "#1a1208",
+              "outline-variant": "#c3c6d1",
+              "surface-container": "#eceef0",
+              "secondary-container": "#5dfd8a",
+              "surface-variant": "#e0e3e5",
+              "inverse-surface": "#2d3133",
+              "on-primary-container": "#f4e4c4",
+              "primary": "#b48a40",
+              "on-secondary-fixed-variant": "#005322"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      @include('components.public-typography-tokens')
+      @include('components.public-effects-tokens')
+      @include('components.public-design-tokens')
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface attention-mesh">
+<!-- Top Navigation Bar -->
+<x-navbar />
+<main class="max-w-7xl mx-auto px-6 section-editorial-compact">
+<!-- Hero Header -->
+<header class="mb-14 md:mb-16">
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-primary tracking-tighter mb-4">Connect with <br/> Excellence.</h1>
+<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or listing your premium vehicle, our editorial team is ready to assist you in the heart of Dar es Salaam.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Contact Form Card -->
+<section class="md:col-span-7 bg-surface-container-lowest rounded-xl p-8 shadow-sm attention-panel">
+<h2 class="font-headline text-2xl font-bold text-primary mb-8">Send a Message</h2>
+@if (session('status'))
+<div class="mb-6 rounded-xl bg-green-500/10 p-4 text-sm text-green-900 ghost-border">
+{{ session('status') }}
+</div>
+@endif
+@if ($errors->any())
+<div class="mb-6 rounded-xl bg-red-500/10 p-4 text-sm text-red-900 ghost-border">
+<ul class="list-disc pl-5 space-y-1">
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+</ul>
+</div>
+@endif
+<form class="space-y-6" method="POST" action="{{ route('contact.store') }}">
+@csrf
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Full Name</label>
+<input class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="E.g. Juma Said" type="text" name="full_name" value="{{ old('full_name') }}" required/>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Email Address</label>
+<input class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="juma@example.tz" type="email" name="email" value="{{ old('email') }}" required/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Subject</label>
+<select class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all ghost-border" name="subject">
+<option>Inquiry about a car</option>
+<option>Selling my vehicle</option>
+<option>Partnership/Corporate</option>
+<option>General support</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Message</label>
+<textarea class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="Tell us more about your automotive needs..." rows="5" name="message" required>{{ old('message') }}</textarea>
+</div>
+<button class="w-full cta-gradient text-on-primary py-4 rounded-full font-headline font-bold text-lg hover:opacity-95 transition-colors shadow-lg shadow-primary/10 active:scale-95 duration-150" type="submit">
+                        Send Inquiry
+                    </button>
+</form>
+</section>
+<!-- Location & Hours Side Cards -->
+<div class="md:col-span-5 space-y-6">
+<!-- Quick Contact Card -->
+<div class="bg-primary text-on-primary rounded-xl p-8 relative overflow-hidden group attention-panel">
+<div class="relative z-10">
+<h3 class="font-headline text-xl font-bold mb-6">Immediate Support</h3>
+<div class="space-y-6">
+<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all" href="https://wa.me/255000000000">
+<div class="w-12 h-12 bg-secondary flex items-center justify-center rounded-full">
+<svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-current text-white">
+<path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>
+<path d="M16.02 3.2c-7.05 0-12.77 5.72-12.77 12.77 0 2.25.59 4.45 1.71 6.39L3.2 28.8l6.6-1.73c1.86 1.01 3.95 1.54 6.09 1.54h.01c7.05 0 12.77-5.72 12.77-12.77 0-3.42-1.33-6.63-3.76-9.05A12.67 12.67 0 0 0 16.02 3.2zm-.12 23.3h-.01c-1.91 0-3.78-.51-5.41-1.48l-.39-.23-3.92 1.03 1.05-3.82-.25-.39a10.58 10.58 0 0 1-1.62-5.65c0-5.86 4.77-10.62 10.63-10.62 2.84 0 5.51 1.1 7.51 3.11a10.54 10.54 0 0 1 3.1 7.51c0 5.86-4.77 10.62-10.62 10.62z"/>
+</svg>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest opacity-70">WhatsApp</p>
+<p class="font-headline font-bold">+255 7XX XXX XXX</p>
+</div>
+</a>
+<div class="flex items-center gap-4 p-3 -m-3">
+<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-white">mail</span>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest opacity-70">Email</p>
+<p class="font-headline font-bold">concierge@saharacars.co.tz</p>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-10 -right-10 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[180px]" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+</div>
+</div>
+<!-- Office Hours Card -->
+<div class="bg-surface-container-low rounded-xl p-8 attention-panel">
+<h3 class="font-headline text-xl font-bold text-primary mb-6">Showroom Hours</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant font-medium">Monday - Friday</span>
+<span class="text-primary font-bold">08:00 - 18:00</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant font-medium">Saturday</span>
+<span class="text-primary font-bold">09:00 - 16:00</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant font-medium">Sunday</span>
+<span class="text-secondary font-bold">Closed</span>
+</div>
+</div>
+</div>
+<!-- Social Links -->
+<div class="flex gap-4">
+<a class="flex-1 bg-surface-container-highest h-14 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">public</span>
+</a>
+<a class="flex-1 bg-surface-container-highest h-14 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">share</span>
+</a>
+<a class="flex-1 bg-surface-container-highest h-14 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">camera_enhance</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Location Section (Asymmetric) -->
+<section class="mt-20 md:mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-4">
+<div class="inline-block px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-full font-label text-[10px] uppercase font-bold tracking-widest mb-6">Primary Showroom</div>
+<h2 class="font-headline text-4xl font-extrabold text-primary mb-6">Dar es Salaam Sales Center</h2>
+<p class="text-on-surface-variant mb-8 text-lg leading-relaxed">All sales support is handled from our single Dar es Salaam center. Visit us for test drives, inquiries, and listing support.</p>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-3xl">location_on</span>
+<div>
+<p class="font-bold text-primary">Sahara Cars Tanzania</p>
+<p class="text-sm text-on-surface-variant">Primary Sales Center</p>
+<p class="text-sm text-on-surface-variant">Dar es Salaam, Tanzania</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 h-[500px] rounded-3xl overflow-hidden shadow-2xl relative group">
+<div class="absolute inset-0 bg-slate-200">
+<img class="w-full h-full object-cover filter grayscale opacity-50" data-alt="overhead architectural view of a clean modern industrial map pattern with soft neutral tones and blue highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKYzZAK-IBPjQzuXvjJzKuS_JJp5ykWbJnY2R04K1oTm-y6Lq1_yovkgUG3xBXCTVUbkqtJwmKwIzD6N9MxxddOcCLJLub74lb7NuLomwhDOF5DGo5g9L2CsFFTIbY0xLvWvkj0B4MxD1r7jqgZ2ku28jJ6E0wV_-REwbKAgKNuPzUk-kKfVKaSIuLlYLuLMnZEgWjVJ8M0GtpjciYvaTKZv1jUmRfQ2EnC_HShtEpupQgjIGX49Wf7mfuKAoJFJzpyf3FanV03pM"/>
+</div>
+<!-- Interactive Marker Placeholder -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative">
+<div class="absolute inset-0 bg-primary/20 rounded-full animate-ping scale-150"></div>
+<div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center relative z-10 shadow-xl">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+</div>
+</div>
+<!-- Map Overlay Control -->
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-center">
+<div class="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg flex items-center gap-3 text-sm font-bold text-primary">
+<span class="material-symbols-outlined text-secondary">explore</span>
+                        Dar es Salaam, Tanzania
+                    </div>
+<button class="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg active:scale-95 transition-all" type="button">
+                        Get Directions
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<x-footer class="mt-20" />
+<x-mobile-nav active="menu" />
+<x-whatsapp-float />
+</body></html>
+
