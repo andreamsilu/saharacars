@@ -14,7 +14,9 @@ class CarController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        return view('cars.index', compact('cars'));
+        [$brandOptions, $locationOptions] = $this->getFilterOptions();
+
+        return view('cars.index', compact('cars', 'brandOptions', 'locationOptions'));
     }
 
     public function bento(): View
@@ -23,7 +25,9 @@ class CarController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        return view('cars.bento', compact('cars'));
+        [$brandOptions, $locationOptions] = $this->getFilterOptions();
+
+        return view('cars.bento', compact('cars', 'brandOptions', 'locationOptions'));
     }
 
     public function show(string $slug): View
@@ -162,6 +166,32 @@ class CarController extends Controller
         };
 
         return $query;
+    }
+
+    /**
+     * @return array{0: \Illuminate\Support\Collection<int, string>, 1: \Illuminate\Support\Collection<int, string>}
+     */
+    private function getFilterOptions(): array
+    {
+        $brandOptions = Car::query()
+            ->where('is_published', true)
+            ->whereNotNull('brand')
+            ->where('brand', '!=', '')
+            ->select('brand')
+            ->distinct()
+            ->orderBy('brand')
+            ->pluck('brand');
+
+        $locationOptions = Car::query()
+            ->where('is_published', true)
+            ->whereNotNull('location')
+            ->where('location', '!=', '')
+            ->select('location')
+            ->distinct()
+            ->orderBy('location')
+            ->pluck('location');
+
+        return [$brandOptions, $locationOptions];
     }
 }
 

@@ -1,6 +1,8 @@
 {{-- Shared GET filter form for inventory listing views (desktop sidebar + mobile disclosure). Expects $action URL. Optional $filterFormIdPrefix for unique ids when two instances load (WCAG 4.1.1). --}}
 @php
     $filterFormIdPrefix = isset($filterFormIdPrefix) && $filterFormIdPrefix !== '' ? preg_replace('/[^a-zA-Z0-9_-]/', '', (string) $filterFormIdPrefix) : 'filters';
+    $brandOptions = isset($brandOptions) && is_iterable($brandOptions) ? collect($brandOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Toyota', 'Land Rover', 'Mercedes', 'Nissan']);
+    $locationOptions = isset($locationOptions) && is_iterable($locationOptions) ? collect($locationOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Dar es Salaam', 'Arusha', 'Zanzibar']);
 @endphp
 <form action="{{ $action }}" method="GET">
     @if (request()->filled('q'))
@@ -13,10 +15,9 @@
                 <label for="filter-brand-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Brand</label>
                 <select id="filter-brand-{{ $filterFormIdPrefix }}" name="brand" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
                     <option value="">All Manufacturers</option>
-                    <option value="Toyota" {{ request('brand') === 'Toyota' ? 'selected' : '' }}>Toyota</option>
-                    <option value="Land Rover" {{ request('brand') === 'Land Rover' ? 'selected' : '' }}>Land Rover</option>
-                    <option value="Mercedes" {{ request('brand') === 'Mercedes' ? 'selected' : '' }}>Mercedes</option>
-                    <option value="Nissan" {{ request('brand') === 'Nissan' ? 'selected' : '' }}>Nissan</option>
+                    @foreach ($brandOptions as $brandOption)
+                        <option value="{{ $brandOption }}" {{ request('brand') === $brandOption ? 'selected' : '' }}>{{ $brandOption }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="space-y-3">
@@ -35,18 +36,12 @@
                             $selectedLocations = $selectedLocations !== '' ? [$selectedLocations] : [];
                         }
                     @endphp
-                    <label class="flex items-center space-x-3 cursor-pointer group min-h-[44px]">
-                        <input name="location[]" value="Dar es Salaam" {{ in_array('Dar es Salaam', $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
-                        <span class="text-sm font-medium group-hover:text-primary transition-colors">Dar es Salaam</span>
-                    </label>
-                    <label class="flex items-center space-x-3 cursor-pointer group min-h-[44px]">
-                        <input name="location[]" value="Arusha" {{ in_array('Arusha', $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
-                        <span class="text-sm font-medium group-hover:text-primary transition-colors">Arusha</span>
-                    </label>
-                    <label class="flex items-center space-x-3 cursor-pointer group min-h-[44px]">
-                        <input name="location[]" value="Zanzibar" {{ in_array('Zanzibar', $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
-                        <span class="text-sm font-medium group-hover:text-primary transition-colors">Zanzibar</span>
-                    </label>
+                    @foreach ($locationOptions as $locationOption)
+                        <label class="flex items-center space-x-3 cursor-pointer group min-h-[44px]">
+                            <input name="location[]" value="{{ $locationOption }}" {{ in_array($locationOption, $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
+                            <span class="text-sm font-medium group-hover:text-primary transition-colors">{{ $locationOption }}</span>
+                        </label>
+                    @endforeach
                 </div>
             </div>
             <div class="space-y-3">

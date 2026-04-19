@@ -293,8 +293,6 @@
 @php
     $listingWaHref = 'https://wa.me/'.$waPhone.'?text='.rawurlencode($waListingMessage);
     $listingTelHref = $waPhone !== '' ? 'tel:+'.$waPhone : 'tel:';
-    $reportSubject = 'Report listing: '.$car->title;
-    $reportBody = "Please review this listing for policy or fraud concerns.\n\nURL: ".route('cars.show', ['slug' => $car->slug]);
 @endphp
 <!-- Right Column: Sticky Pricing & Action -->
 <div class="lg:col-span-4">
@@ -349,24 +347,6 @@
 </div>
 </div>
 </div>
-<section class="mt-14 md:mt-16 max-w-3xl" aria-labelledby="listing-trust-heading">
-<h2 id="listing-trust-heading" class="font-headline text-xl font-bold text-primary mb-4">Trust &amp; safety</h2>
-<div class="rounded-2xl border border-outline-variant/60 bg-surface-container-lowest p-6 md:p-8 shadow-sm space-y-4 text-sm text-on-surface-variant leading-relaxed">
-<p class="flex items-start gap-2">
-<span class="material-symbols-outlined text-secondary shrink-0" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span>
-<span><strong class="text-on-surface">Verified phone line.</strong> Business WhatsApp and voice route through our Dar es Salaam team — always confirm viewing details in chat before you travel.</span>
-</p>
-<ul class="list-disc pl-5 space-y-1">
-<li>Meet the seller or our staff in person when viewing the car.</li>
-<li>Avoid large advance payments to people you have not met.</li>
-<li>If a deal feels rushed or “too good”, pause and ask us to double-check.</li>
-</ul>
-<p>
-<a class="font-bold text-error underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-error rounded-sm" href="mailto:{{ config('sahara.support_email', 'concierge@saharacars.co.tz') }}?subject={{ rawurlencode($reportSubject) }}&body={{ rawurlencode($reportBody) }}">Report this listing</a>
-<span class="text-on-surface-variant"> — include what looks wrong. We review reports during business hours.</span>
-</p>
-</div>
-</section>
 <!-- Related Vehicles Section -->
 <section class="mt-20">
 <div class="flex justify-between items-end mb-8">

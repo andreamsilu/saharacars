@@ -43,18 +43,6 @@
         </div>
 
         <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
-            <form action="{{ route('cars.index') }}" method="GET" class="hidden lg:flex items-center gap-2 rounded-full bg-slate-100 border border-slate-200 px-3 py-1.5 min-w-0">
-                <span class="material-symbols-outlined text-slate-500 text-[18px] shrink-0" aria-hidden="true">search</span>
-                <input
-                    class="bg-transparent border-none focus:ring-2 focus:ring-primary/30 text-sm w-44 text-slate-800 placeholder:text-slate-500 min-w-0 rounded-md"
-                    placeholder="Search cars..."
-                    type="search"
-                    name="q"
-                    value="{{ request('q') }}"
-                    aria-label="Search cars"
-                />
-            </form>
-
             <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation focus-ring-on-dark focus-visible:outline-offset-2 [&_.material-symbols-outlined]:text-white">
                 <span class="material-symbols-outlined text-[18px] shrink-0 text-white" aria-hidden="true">support_agent</span>
                 <span class="whitespace-nowrap">WhatsApp Sales</span>
@@ -81,18 +69,6 @@
         hidden
     >
         <div class="max-w-7xl mx-auto px-4 py-4 space-y-4">
-            <form action="{{ route('cars.index') }}" method="GET" class="flex items-center gap-2 rounded-2xl bg-slate-100 border border-slate-200 px-3 py-2">
-                <span class="material-symbols-outlined text-slate-500 text-[20px] shrink-0" aria-hidden="true">search</span>
-                <input
-                    class="flex-1 min-w-0 bg-transparent border-none focus:ring-2 focus:ring-primary/30 text-base text-slate-800 placeholder:text-slate-500 py-2 rounded-md"
-                    placeholder="Search inventory..."
-                    type="search"
-                    name="q"
-                    value="{{ request('q') }}"
-                    aria-label="Search inventory"
-                />
-                <button type="submit" class="shrink-0 text-sm font-bold text-primary px-3 py-2 min-h-[44px] min-w-[44px] touch-manipulation rounded-lg">Go</button>
-            </form>
             <ul class="flex flex-col gap-1">
                 <li>
                     <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('home') }}">Home</a>
