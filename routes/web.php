@@ -18,6 +18,7 @@ Route::get('/cars/{slug}', [CarController::class, 'show'])->name('cars.show');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('contact.store');
+Route::get('/saved', [PageController::class, 'saved'])->name('saved');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'create'])->name('login');

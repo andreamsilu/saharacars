@@ -16,7 +16,7 @@
     ];
 @endphp
 
-<section class="section-editorial px-6 bg-surface-container-low overflow-hidden">
+<section class="section-editorial px-6 bg-surface-container-low overflow-hidden" aria-labelledby="partner-logos-heading">
     <style>
         .partner-marquee {
             mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
@@ -37,7 +37,7 @@
 
     <div class="max-w-7xl mx-auto space-y-8">
         <div class="text-center space-y-3">
-            <h3 class="font-headline text-3xl md:text-4xl font-extrabold text-primary">{{ $title }}</h3>
+            <h3 id="partner-logos-heading" class="font-headline text-3xl md:text-4xl font-extrabold text-primary">{{ $title }}</h3>
             <p class="text-on-surface-variant max-w-2xl mx-auto">{{ $subtitle }}</p>
         </div>
 

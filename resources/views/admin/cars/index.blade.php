@@ -91,7 +91,7 @@
                             />
                         </form>
                         <div class="flex items-center justify-end gap-2 shrink-0">
-                            <a href="{{ route('admin.cars.create') }}" class="h-11 bg-primary text-on-primary font-bold rounded-full text-sm shadow-lg shadow-primary/30 inline-flex items-center gap-1.5 px-4 justify-center hover:opacity-95 transition-opacity border border-primary/20" title="Add New Car" aria-label="Add New Car">
+                            <a href="{{ route('admin.cars.create') }}" class="h-11 bg-primary text-on-primary font-bold rounded-full text-sm shadow-lg shadow-primary/30 inline-flex items-center gap-1.5 px-4 justify-center transition-[filter] hover:brightness-110 border border-primary/20 [&_.material-symbols-outlined]:text-on-primary" title="Add New Car" aria-label="Add New Car">
                                 <span class="material-symbols-outlined text-lg">add</span>
                                 <span>Add New Car</span>
                             </a>
@@ -314,7 +314,7 @@
                             return `
                                 <div class="px-6 py-5 text-right">
                                     <div class="flex items-center justify-end gap-2 flex-wrap">
-                                        <a href="${row.show_url}" class="inline-flex items-center justify-center w-9 h-9 text-primary hover:bg-primary/10 rounded-full smooth border border-primary/30 bg-white" title="View details" aria-label="View details">
+                                        <a href="${row.show_url}" class="inline-flex items-center justify-center w-9 h-9 text-primary hover:bg-slate-100 hover:text-primary rounded-full smooth border border-primary/30 bg-white" title="View details" aria-label="View details">
                                             <span class="material-symbols-outlined text-[20px] icon-info">visibility</span>
                                             <span class="sr-only">View</span>
                                         </a>

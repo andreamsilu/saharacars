@@ -29,18 +29,19 @@
             />
         </a>
 
-        <div class="hidden md:flex items-center gap-6">
-            <a class="{{ request()->routeIs('home') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm" href="{{ route('home') }}">Home</a>
-            <a class="{{ request()->routeIs('cars.*') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm" href="{{ route('cars.index') }}">Inventory</a>
-            <a class="{{ request()->routeIs('about') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm" href="{{ route('about') }}">About</a>
-            <a class="{{ request()->routeIs('contact') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm" href="{{ route('contact') }}">Contact</a>
+        <div class="hidden md:flex items-center gap-4 lg:gap-6">
+            <a class="{{ request()->routeIs('home') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('home') }}">Home</a>
+            <a class="{{ request()->routeIs('cars.*') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('cars.index') }}">Inventory</a>
+            <a class="{{ request()->routeIs('saved') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('saved') }}">Saved</a>
+            <a class="{{ request()->routeIs('about') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('about') }}">About</a>
+            <a class="{{ request()->routeIs('contact') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('contact') }}">Contact</a>
         </div>
 
         <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <form action="{{ route('cars.index') }}" method="GET" class="hidden lg:flex items-center gap-2 rounded-full bg-slate-100 border border-slate-200 px-3 py-1.5 min-w-0">
-                <span class="material-symbols-outlined text-slate-500 text-[18px] shrink-0">search</span>
+                <span class="material-symbols-outlined text-slate-500 text-[18px] shrink-0" aria-hidden="true">search</span>
                 <input
-                    class="bg-transparent border-none focus:ring-0 text-sm w-44 text-slate-800 placeholder:text-slate-500 min-w-0"
+                    class="bg-transparent border-none focus:ring-2 focus:ring-primary/30 text-sm w-44 text-slate-800 placeholder:text-slate-500 min-w-0 rounded-md"
                     placeholder="Search cars..."
                     type="search"
                     name="q"
@@ -49,8 +50,8 @@
                 />
             </form>
 
-            <a href="{{ route('contact') }}" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold hover:opacity-95 active:scale-95 transition-transform shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation">
-                <span class="material-symbols-outlined text-[18px] shrink-0">support_agent</span>
+            <a href="{{ route('contact') }}" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation focus-ring-on-dark focus-visible:outline-offset-2 [&_.material-symbols-outlined]:text-white">
+                <span class="material-symbols-outlined text-[18px] shrink-0 text-white" aria-hidden="true">support_agent</span>
                 <span class="whitespace-nowrap">Contact Sales</span>
             </a>
 
@@ -58,7 +59,7 @@
             <button
                 type="button"
                 id="public-nav-toggle"
-                class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary touch-manipulation"
+                class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-manipulation"
                 aria-expanded="false"
                 aria-controls="public-nav-panel"
                 aria-label="Open menu"
@@ -76,33 +77,36 @@
     >
         <div class="max-w-7xl mx-auto px-4 py-4 space-y-4">
             <form action="{{ route('cars.index') }}" method="GET" class="flex items-center gap-2 rounded-2xl bg-slate-100 border border-slate-200 px-3 py-2">
-                <span class="material-symbols-outlined text-slate-500 text-[20px] shrink-0">search</span>
+                <span class="material-symbols-outlined text-slate-500 text-[20px] shrink-0" aria-hidden="true">search</span>
                 <input
-                    class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-base text-slate-800 placeholder:text-slate-500 py-2"
+                    class="flex-1 min-w-0 bg-transparent border-none focus:ring-2 focus:ring-primary/30 text-base text-slate-800 placeholder:text-slate-500 py-2 rounded-md"
                     placeholder="Search inventory..."
                     type="search"
                     name="q"
                     value="{{ request('q') }}"
                     aria-label="Search inventory"
                 />
-                <button type="submit" class="shrink-0 text-sm font-bold text-primary px-2 py-2 touch-manipulation">Go</button>
+                <button type="submit" class="shrink-0 text-sm font-bold text-primary px-3 py-2 min-h-[44px] min-w-[44px] touch-manipulation rounded-lg">Go</button>
             </form>
             <ul class="flex flex-col gap-1">
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('home') }}">Home</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('cars.*') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('cars.index') }}">Inventory</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('cars.*') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('cars.index') }}">Inventory</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('about') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('about') }}">About</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('saved') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('saved') }}">Saved cars</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">Contact</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('about') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('about') }}">About</a>
+                </li>
+                <li>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">Contact</a>
                 </li>
             </ul>
-            <a href="{{ route('contact') }}" class="flex md:hidden items-center justify-center gap-2 w-full cta-gradient text-white py-3.5 min-h-[48px] rounded-2xl text-sm font-bold shadow-md touch-manipulation">
-                <span class="material-symbols-outlined text-[20px]">support_agent</span>
+            <a href="{{ route('contact') }}" class="flex md:hidden items-center justify-center gap-2 w-full cta-gradient text-white py-3.5 min-h-[48px] rounded-2xl text-sm font-bold shadow-md touch-manipulation focus-ring-on-dark transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-white">
+                <span class="material-symbols-outlined text-[20px] text-white" aria-hidden="true">support_agent</span>
                 Contact sales
             </a>
         </div>

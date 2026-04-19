@@ -74,15 +74,19 @@
 <style>
       @include('components.public-typography-tokens')
       @include('components.public-effects-tokens')
+      @include('components.public-design-tokens')
+      @include('components.public-a11y-tokens')
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden attention-mesh pb-mobile-nav md:pb-0">
+<x-skip-to-main />
 <!-- TopNavBar -->
 <x-navbar />
+<main id="main-content" tabindex="-1" class="outline-none">
 <!-- Hero Section -->
 <section class="relative min-h-[870px] flex flex-col items-center justify-center px-6 overflow-hidden">
 <div class="absolute inset-0 -z-10">
-<img class="w-full h-full object-cover" data-alt="Luxurious silver SUV parked on a high cliff overlooking the Tanzanian savannah at golden hour with soft warm cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcLzDyWFTrb_mlvvRDjD6O6TXBwgMidDKlVC2iLF6Nn9HEu6IZlh0mKX-9KzISNLSsM3ehX7ecqfkZArD_muxt4lWX4L6TNXYFeEDoZQSdXI2ii4QM_usRKJMoS1tmTI05i1aM0v2omzUpW-1aU_R0S9kCvuNMJdMpjbcK1lBc253kHSwAKVtOF1vTgySgsdS9XTxkBcU58WT5AU4TmJXz4wHKicICEUbjOeVC1EgHg-9rQKJnl727mLPPHqder-uWzeej4sl-nbc"/>
+<img class="w-full h-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcLzDyWFTrb_mlvvRDjD6O6TXBwgMidDKlVC2iLF6Nn9HEu6IZlh0mKX-9KzISNLSsM3ehX7ecqfkZArD_muxt4lWX4L6TNXYFeEDoZQSdXI2ii4QM_usRKJMoS1tmTI05i1aM0v2omzUpW-1aU_R0S9kCvuNMJdMpjbcK1lBc253kHSwAKVtOF1vTgySgsdS9XTxkBcU58WT5AU4TmJXz4wHKicICEUbjOeVC1EgHg-9rQKJnl727mLPPHqder-uWzeej4sl-nbc"/>
 <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/20 to-surface"></div>
 </div>
 <div class="max-w-4xl w-full text-center space-y-8">
@@ -129,7 +133,7 @@
 </div>
 </section>
 <!-- Content: Featured Cars Section -->
-<main class="max-w-7xl mx-auto px-6 py-24">
+<div class="max-w-7xl mx-auto px-6 py-24">
 <div class="flex justify-between items-end mb-12">
 <div class="space-y-2">
 <span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">Our Collection</span>
@@ -150,8 +154,8 @@
 <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">verified</span> Verified
                         </span>
 </div>
-<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white hover:text-red-500 transition-all">
-<span class="material-symbols-outlined">favorite</span>
+<button type="button" class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 min-h-[44px] min-w-[44px] rounded-full text-white transition-colors hover:bg-red-600 hover:text-white">
+<span class="material-symbols-outlined text-white" aria-hidden="true">favorite</span>
 </button>
 </div>
 <div class="p-6 space-y-4">
@@ -247,6 +251,7 @@
 <div class="pt-4 flex items-center justify-between border-t border-slate-50">
 <div class="font-headline text-2xl font-black text-primary">TZS 245M</div>
 <button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
+</div>
 </div>
 </div>
 </div>

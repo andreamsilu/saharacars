@@ -100,7 +100,7 @@
                 <span class="material-symbols-outlined icon-info">history</span>
                 Recent listings
             </h2>
-            <a href="{{ route('admin.cars.index') }}" class="inline-flex items-center justify-center w-9 h-9 rounded-full text-primary hover:bg-primary/10 smooth border border-primary/30 bg-white" title="View all listings" aria-label="View all listings">
+            <a href="{{ route('admin.cars.index') }}" class="inline-flex items-center justify-center w-9 h-9 rounded-full text-primary hover:bg-slate-100 hover:text-primary smooth border border-primary/30 bg-white" title="View all listings" aria-label="View all listings">
                 <span class="material-symbols-outlined text-[20px]">list</span>
                 <span class="sr-only">View all</span>
             </a>
@@ -142,7 +142,7 @@
                             </td>
                             <td class="px-6 py-4 text-sm text-on-surface-variant">{{ $car->updated_at?->format('M d, Y') }}</td>
                             <td class="px-6 py-4 text-right">
-                                <a href="{{ route('admin.cars.edit', $car) }}" class="inline-flex items-center justify-center w-9 h-9 text-primary hover:bg-primary/10 rounded-full smooth border border-primary/30 bg-white" title="Edit listing" aria-label="Edit listing">
+                                <a href="{{ route('admin.cars.edit', $car) }}" class="inline-flex items-center justify-center w-9 h-9 text-primary hover:bg-slate-100 hover:text-primary rounded-full smooth border border-primary/30 bg-white" title="Edit listing" aria-label="Edit listing">
                                     <span class="material-symbols-outlined text-[20px]">edit</span>
                                     <span class="sr-only">Edit</span>
                                 </a>

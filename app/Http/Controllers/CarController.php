@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 
 class CarController extends Controller
 {
@@ -39,7 +40,19 @@ class CarController extends Controller
             ->limit(3)
             ->get();
 
-        return view('cars.show', compact('car', 'related'));
+        $waPhone = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+        $waListingMessage = 'Hi, I saw this car on the Sahara Cars website and would like more details.'
+            ."\n\n".'Vehicle: '.$car->title
+            .($car->year ? ' ('.$car->year.')' : '')
+            ."\n".'Link: '.route('cars.show', ['slug' => $car->slug]);
+
+        $pageTitle = $car->title.' for sale'
+            .($car->location ? ' in '.$car->location : ' in Tanzania')
+            .' | Sahara Cars';
+        $pageDescription = Str::limit(strip_tags((string) ($car->description ?? '')), 155)
+            ?: 'View photos, specs, and price. Contact Sahara Cars on WhatsApp or by phone.';
+
+        return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
     }
 
     private function buildFilteredQuery()

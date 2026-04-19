@@ -14,7 +14,7 @@
                 <span class="material-symbols-outlined text-[18px]">arrow_back</span>
                 <span class="sr-only">Back</span>
             </a>
-            <a href="{{ route('admin.cars.edit', $car) }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary hover:opacity-95 text-on-primary border border-primary/20" title="Edit listing" aria-label="Edit listing">
+            <a href="{{ route('admin.cars.edit', $car) }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-on-primary border border-primary/20 transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-on-primary" title="Edit listing" aria-label="Edit listing">
                 <span class="material-symbols-outlined text-[18px]">edit</span>
                 <span class="sr-only">Edit</span>
             </a>

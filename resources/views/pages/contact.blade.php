@@ -7,7 +7,6 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -76,16 +75,22 @@
       @include('components.public-typography-tokens')
       @include('components.public-effects-tokens')
       @include('components.public-design-tokens')
+      @include('components.public-a11y-tokens')
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
+<x-skip-to-main />
+@php
+    $contactWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    $contactSupportEmail = (string) config('sahara.support_email', 'concierge@saharacars.co.tz');
+@endphp
 <!-- Top Navigation Bar -->
 <x-navbar />
-<main class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial-compact">
+<main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 section-editorial-compact">
 <!-- Hero Header -->
 <header class="mb-14 md:mb-16">
 <h1 class="font-headline text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-extrabold text-primary tracking-tighter mb-4 leading-[1.1] text-balance">Connect with Excellence.</h1>
-<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or listing your premium vehicle, our editorial team is ready to assist you in the heart of Dar es Salaam.</p>
+<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or need help with a vehicle you bought from us, our editorial team is ready to assist you in the heart of Dar es Salaam.</p>
 </header>
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -110,17 +115,17 @@
 @csrf
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="space-y-2">
-<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Full Name</label>
-<input class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="E.g. Juma Said" type="text" name="full_name" value="{{ old('full_name') }}" required/>
+<label for="contact-full-name" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Full Name</label>
+<input id="contact-full-name" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="E.g. Juma Said" type="text" name="full_name" value="{{ old('full_name') }}" required autocomplete="name"/>
 </div>
 <div class="space-y-2">
-<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Email Address</label>
-<input class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="juma@example.tz" type="email" name="email" value="{{ old('email') }}" required/>
+<label for="contact-email" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Email Address</label>
+<input id="contact-email" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="juma@example.tz" type="email" name="email" value="{{ old('email') }}" required autocomplete="email"/>
 </div>
 </div>
 <div class="space-y-2">
-<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Subject</label>
-<select class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all ghost-border" name="subject">
+<label for="contact-subject" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Subject</label>
+<select id="contact-subject" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all ghost-border" name="subject">
 <option>Inquiry about a car</option>
 <option>Selling my vehicle</option>
 <option>Partnership/Corporate</option>
@@ -128,10 +133,10 @@
 </select>
 </div>
 <div class="space-y-2">
-<label class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Message</label>
-<textarea class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="Tell us more about your automotive needs..." rows="5" name="message" required>{{ old('message') }}</textarea>
+<label for="contact-message" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Message</label>
+<textarea id="contact-message" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="Tell us more about your automotive needs..." rows="5" name="message" required>{{ old('message') }}</textarea>
 </div>
-<button class="w-full cta-gradient text-on-primary py-4 rounded-full font-headline font-bold text-lg hover:opacity-95 transition-colors shadow-lg shadow-primary/10 active:scale-95 duration-150" type="submit">
+<button class="w-full cta-gradient text-on-primary py-4 min-h-[52px] rounded-full font-headline font-bold text-lg transition-[filter,transform] hover:brightness-110 shadow-lg shadow-primary/10 active:scale-95 duration-150 focus-ring-on-dark" type="submit">
                         Send Inquiry
                     </button>
 </form>
@@ -143,7 +148,7 @@
 <div class="relative z-10">
 <h3 class="font-headline text-xl font-bold mb-6">Immediate Support</h3>
 <div class="space-y-6">
-<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all" href="https://wa.me/255000000000">
+<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="https://wa.me/{{ $contactWaDigits }}" aria-label="Open WhatsApp chat with Sahara Cars">
 <div class="w-12 h-12 bg-secondary flex items-center justify-center rounded-full">
 <svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-current text-white">
 <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>
@@ -152,21 +157,21 @@
 </div>
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest opacity-70">WhatsApp</p>
-<p class="font-headline font-bold">+255 7XX XXX XXX</p>
+<p class="font-headline font-bold">+{{ $contactWaDigits }}</p>
 </div>
 </a>
 <div class="flex items-center gap-4 p-3 -m-3">
-<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full">
+<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full" aria-hidden="true">
 <span class="material-symbols-outlined text-white">mail</span>
 </div>
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest opacity-70">Email</p>
-<p class="font-headline font-bold">concierge@saharacars.co.tz</p>
+<p class="font-headline font-bold">{{ $contactSupportEmail }}</p>
 </div>
 </div>
 </div>
 </div>
-<div class="absolute -bottom-10 -right-10 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
+<div class="absolute -bottom-10 -right-10 opacity-10 transform group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
 <span class="material-symbols-outlined text-[180px]" style="font-variation-settings: 'FILL' 1;">directions_car</span>
 </div>
 </div>
@@ -188,17 +193,20 @@
 </div>
 </div>
 </div>
-<!-- Social Links -->
-<div class="flex gap-4">
-<a class="flex-1 bg-surface-container-highest h-14 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all group" href="#">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">public</span>
-</a>
-<a class="flex-1 bg-surface-container-highest h-14 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all group" href="#">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">share</span>
-</a>
-<a class="flex-1 bg-surface-container-highest h-14 rounded-xl flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all group" href="#">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">camera_enhance</span>
-</a>
+{{-- Social placeholders: non-interactive tiles so hover never washes out icons (replace with real <a> when URLs exist). --}}
+<div class="flex gap-4" role="list" aria-label="Social media links coming soon">
+<div class="flex-1 flex min-h-[56px] items-center justify-center rounded-xl border border-outline-variant/40 bg-surface-container-low text-primary-container" role="listitem">
+    <span class="material-symbols-outlined text-[26px]" aria-hidden="true">public</span>
+    <span class="sr-only">Website link coming soon</span>
+</div>
+<div class="flex-1 flex min-h-[56px] items-center justify-center rounded-xl border border-outline-variant/40 bg-surface-container-low text-primary-container" role="listitem">
+    <span class="material-symbols-outlined text-[26px]" aria-hidden="true">share</span>
+    <span class="sr-only">Social links coming soon</span>
+</div>
+<div class="flex-1 flex min-h-[56px] items-center justify-center rounded-xl border border-outline-variant/40 bg-surface-container-low text-primary-container" role="listitem">
+    <span class="material-symbols-outlined text-[26px]" aria-hidden="true">camera_enhance</span>
+    <span class="sr-only">Instagram coming soon</span>
+</div>
 </div>
 </div>
 </div>
@@ -219,7 +227,7 @@
 </div>
 <div class="lg:col-span-8 h-[500px] rounded-3xl overflow-hidden shadow-2xl relative group">
 <div class="absolute inset-0 bg-slate-200">
-<img class="w-full h-full object-cover filter grayscale opacity-50" data-alt="overhead architectural view of a clean modern industrial map pattern with soft neutral tones and blue highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKYzZAK-IBPjQzuXvjJzKuS_JJp5ykWbJnY2R04K1oTm-y6Lq1_yovkgUG3xBXCTVUbkqtJwmKwIzD6N9MxxddOcCLJLub74lb7NuLomwhDOF5DGo5g9L2CsFFTIbY0xLvWvkj0B4MxD1r7jqgZ2ku28jJ6E0wV_-REwbKAgKNuPzUk-kKfVKaSIuLlYLuLMnZEgWjVJ8M0GtpjciYvaTKZv1jUmRfQ2EnC_HShtEpupQgjIGX49Wf7mfuKAoJFJzpyf3FanV03pM"/>
+<img class="w-full h-full object-cover filter grayscale opacity-50" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKYzZAK-IBPjQzuXvjJzKuS_JJp5ykWbJnY2R04K1oTm-y6Lq1_yovkgUG3xBXCTVUbkqtJwmKwIzD6N9MxxddOcCLJLub74lb7NuLomwhDOF5DGo5g9L2CsFFTIbY0xLvWvkj0B4MxD1r7jqgZ2ku28jJ6E0wV_-REwbKAgKNuPzUk-kKfVKaSIuLlYLuLMnZEgWjVJ8M0GtpjciYvaTKZv1jUmRfQ2EnC_HShtEpupQgjIGX49Wf7mfuKAoJFJzpyf3FanV03pM"/>
 </div>
 <!-- Interactive Marker Placeholder -->
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -236,7 +244,7 @@
 <span class="material-symbols-outlined text-secondary">explore</span>
                         Dar es Salaam, Tanzania
                     </div>
-<button class="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg active:scale-95 transition-all" type="button">
+<button class="bg-primary text-white px-6 py-2 min-h-[44px] rounded-full font-bold text-sm shadow-lg active:scale-95 transition-all focus-ring-on-dark" type="button" aria-label="Get directions (link your map provider when ready)">
                         Get Directions
                     </button>
 </div>

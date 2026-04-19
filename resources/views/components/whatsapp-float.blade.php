@@ -1,7 +1,10 @@
+@props([
+    'phone' => null,
+    'text' => null,
+])
+
 @php
-    /** @var string $phone */
-    $phone = $phone ?? '255000000000';
-    /** @var string $text */
+    $phone = $phone ?? (string) config('sahara.whatsapp_phone', '255000000000');
     $text = $text ?? 'Hi Sahara Cars, I need help.';
 
     $waUrl = 'https://wa.me/' . preg_replace('/\D+/', '', $phone) . '?text=' . urlencode($text);
@@ -12,7 +15,7 @@
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Chat with Sahara Cars on WhatsApp"
-    class="fixed z-50 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] right-4 sm:right-5 md:bottom-8 md:right-8 w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 flex items-center justify-center hover:opacity-95 active:scale-95 transition-transform touch-manipulation"
+    class="fixed z-50 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] right-4 sm:right-5 md:bottom-8 md:right-8 w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 flex items-center justify-center transition-[filter,transform] hover:brightness-110 active:scale-95 touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 [&_svg]:text-white"
 >
     <svg viewBox="0 0 32 32" aria-hidden="true" class="w-7 h-7 fill-current">
         <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>

@@ -11,19 +11,36 @@
         'local_used' => 'Locally Used',
     ];
     $categoryText = $categoryLabels[$car->condition] ?? null;
+    $waDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    $waCardMessage = 'Hi, I saw this car on the Sahara Cars website and would like more details.'
+        ."\n\n".'Vehicle: '.$car->title
+        .($car->year ? ' ('.$car->year.')' : '')
+        ."\n".'Link: '.route('cars.show', ['slug' => $car->slug]);
+    $waCardUrl = 'https://wa.me/'.$waDigits.'?text='.rawurlencode($waCardMessage);
 @endphp
 
 <div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
     <div class="relative h-72 overflow-hidden">
         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="{{ $car->title }}" src="{{ $img }}"/>
+        <button
+            type="button"
+            class="absolute top-4 right-4 z-10 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            data-saved-car-toggle
+            data-slug="{{ $car->slug }}"
+            data-title="{{ $car->title }}"
+            aria-pressed="false"
+            aria-label="Save {{ $car->title }} to your list"
+        >
+            <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
+        </button>
         <div class="absolute top-4 left-4 flex flex-wrap gap-2">
             @if ($car->is_featured)
                 <span class="bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
-                    <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;">local_fire_department</span> Featured
+                    <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">local_fire_department</span> Featured
                 </span>
             @endif
             <span class="bg-white/90 backdrop-blur-md text-primary px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
-                <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;">verified</span> Verified
+                <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span> Verified
             </span>
         </div>
     </div>
@@ -33,7 +50,7 @@
             <div>
                 <h3 class="font-headline font-bold text-xl text-primary leading-tight">{{ $car->title }}</h3>
                 <div class="flex items-center text-on-surface-variant mt-1.5 text-xs font-semibold">
-                    <span class="material-symbols-outlined text-sm mr-1">location_on</span>
+                    <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
                     {{ $car->location ?: 'Tanzania' }}
                 </div>
                 @if ($categoryText)
@@ -52,31 +69,31 @@
 
         <div class="grid grid-cols-3 gap-3 mb-6">
             <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
-                <span class="material-symbols-outlined text-primary text-xl mb-1">speed</span>
+                <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">speed</span>
                 <span class="text-[10px] font-bold text-on-surface-variant uppercase">
                     {{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : '—' }}
                 </span>
             </div>
             <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
-                <span class="material-symbols-outlined text-primary text-xl mb-1">local_gas_station</span>
+                <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">local_gas_station</span>
                 <span class="text-[10px] font-bold text-on-surface-variant uppercase">{{ $car->fuel ?: '—' }}</span>
             </div>
             <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
-                <span class="material-symbols-outlined text-primary text-xl mb-1">calendar_today</span>
+                <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">calendar_today</span>
                 <span class="text-[10px] font-bold text-on-surface-variant uppercase">{{ $car->year ?: '—' }}</span>
             </div>
         </div>
 
         <div class="mt-auto flex gap-3">
-            <a class="flex-[2] bg-primary text-on-primary py-3.5 rounded-full font-bold text-sm hover:opacity-90 transition-all active:scale-[0.98] text-center" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
+            <a class="flex-[2] bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-bold text-sm transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
                 View Details
             </a>
             <a
-                class="flex-1 bg-[#25D366] text-white flex items-center justify-center rounded-full hover:opacity-90 transition-all active:scale-[0.98] shadow-md shadow-green-200"
-                href="{{ 'https://wa.me/255000000000?text=' . urlencode('Hi Sahara Cars, I am interested in: ' . $car->title) }}"
+                class="flex-1 bg-[#25D366] text-white flex min-h-[48px] min-w-[48px] items-center justify-center rounded-full transition-[filter,transform] hover:brightness-110 active:scale-[0.98] shadow-md shadow-green-200 focus-ring-on-dark [&_svg]:text-white"
+                href="{{ $waCardUrl }}"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Speak to Sales Center"
+                aria-label="Chat on WhatsApp about {{ e($car->title) }}"
             >
                 <svg viewBox="0 0 32 32" aria-hidden="true" class="w-5 h-5 fill-current">
                     <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>

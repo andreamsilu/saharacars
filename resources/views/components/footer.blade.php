@@ -22,11 +22,11 @@
                 Trusted vehicle marketplace operated from our Dar es Salaam sales center. We help buyers discover verified cars with confidence.
             </p>
             <div class="flex items-center gap-3">
-                <a href="{{ route('contact') }}" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold transition-colors">
-                    <span class="material-symbols-outlined text-[16px]">mail</span>
+                <a href="{{ route('contact') }}" class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded-full bg-white/10 text-slate-100 hover:bg-white/25 hover:text-white text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&_.material-symbols-outlined]:text-inherit">
+                    <span class="material-symbols-outlined text-[16px]" aria-hidden="true">mail</span>
                     Contact
                 </a>
-                <a href="https://wa.me/255000000000" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#25D366] text-white text-xs font-semibold hover:opacity-95 transition-opacity">
+                <a href="https://wa.me/{{ preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000')) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded-full bg-[#25D366] text-white text-xs font-semibold transition-[filter] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&_svg]:text-white">
                     <svg viewBox="0 0 32 32" aria-hidden="true" class="w-4 h-4 fill-current">
                         <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>
                         <path d="M16.02 3.2c-7.05 0-12.77 5.72-12.77 12.77 0 2.25.59 4.45 1.71 6.39L3.2 28.8l6.6-1.73c1.86 1.01 3.95 1.54 6.09 1.54h.01c7.05 0 12.77-5.72 12.77-12.77 0-3.42-1.33-6.63-3.76-9.05A12.67 12.67 0 0 0 16.02 3.2zm-.12 23.3h-.01c-1.91 0-3.78-.51-5.41-1.48l-.39-.23-3.92 1.03 1.05-3.82-.25-.39a10.58 10.58 0 0 1-1.62-5.65c0-5.86 4.77-10.62 10.63-10.62 2.84 0 5.51 1.1 7.51 3.11a10.54 10.54 0 0 1 3.1 7.51c0 5.86-4.77 10.62-10.62 10.62z"/>
@@ -39,19 +39,20 @@
         <div>
             <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Navigation</h4>
             <ul class="space-y-2 text-sm">
-                <li><a class="text-slate-300 hover:text-white transition-colors" href="{{ route('home') }}">Home</a></li>
-                <li><a class="text-slate-300 hover:text-white transition-colors" href="{{ route('cars.index') }}">Inventory</a></li>
-                <li><a class="text-slate-300 hover:text-white transition-colors" href="{{ route('about') }}">About</a></li>
-                <li><a class="text-slate-300 hover:text-white transition-colors" href="{{ route('contact') }}">Contact</a></li>
+                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('home') }}">Home</a></li>
+                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('cars.index') }}">Inventory</a></li>
+                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('about') }}">About</a></li>
+                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('contact') }}">Contact</a></li>
+                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('saved') }}">Saved cars</a></li>
             </ul>
         </div>
 
         <div>
             <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Sales Center</h4>
             <ul class="space-y-2 text-sm text-slate-300">
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">location_on</span>Dar es Salaam</li>
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">schedule</span>Mon-Sat, 08:00-18:00</li>
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">call</span>+255 7XX XXX XXX</li>
+                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">location_on</span>Dar es Salaam</li>
+                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">schedule</span>Mon-Sat, 08:00-18:00</li>
+                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>+255 7XX XXX XXX</li>
             </ul>
         </div>
     </div>
@@ -62,5 +63,7 @@
             <p>All rights reserved.</p>
         </div>
     </div>
+    <x-scroll-to-top />
+    <script src="{{ asset('js/sahara-saved-cars.js') }}" defer></script>
 </footer>
 

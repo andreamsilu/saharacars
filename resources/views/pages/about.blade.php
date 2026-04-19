@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
       tailwind.config = {
@@ -75,16 +74,18 @@
       @include('components.public-typography-tokens')
       @include('components.public-effects-tokens')
       @include('components.public-design-tokens')
+      @include('components.public-a11y-tokens')
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed attention-mesh pb-mobile-nav md:pb-0">
+<x-skip-to-main />
 <!-- TopNavBar -->
 <x-navbar />
-<main>
+<main id="main-content" tabindex="-1" class="outline-none">
 <!-- Hero Section -->
 <section class="relative min-h-[min(90svh,819px)] md:h-[819px] flex items-center overflow-hidden py-16 md:py-0">
 <div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover" data-alt="luxury off-road vehicle driving through the vast golden Serengeti plains at sunset, high-end editorial automotive photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdoekZbNAVkxYdV5iREnckqm2Ql0A-u0qL3xf21tljGkOjG1o_L0BkRS7mFzlWe8q3p9H7GSUhqCs4vJVTnTw2NZSWUSt8pSKuZS9Wr9KJ-CQwbRvioDCN4qEUDsxsP4xsve93_xVv55Xg3f4KYsLP4mhobNfA7K8shqLRYq1WPDvb8HySLWrbZvitps3LtFYIMAoJ-bygyNo68jwAPUQlJP0CwEgbVJY_lj2ryEUTFUjQ7jzmkzNig-WjE_ZhO7ietypjMyZ4IKA"/>
+<img class="w-full h-full object-cover" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdoekZbNAVkxYdV5iREnckqm2Ql0A-u0qL3xf21tljGkOjG1o_L0BkRS7mFzlWe8q3p9H7GSUhqCs4vJVTnTw2NZSWUSt8pSKuZS9Wr9KJ-CQwbRvioDCN4qEUDsxsP4xsve93_xVv55Xg3f4KYsLP4mhobNfA7K8shqLRYq1WPDvb8HySLWrbZvitps3LtFYIMAoJ-bygyNo68jwAPUQlJP0CwEgbVJY_lj2ryEUTFUjQ7jzmkzNig-WjE_ZhO7ietypjMyZ4IKA"/>
 <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/40 to-transparent"></div>
 </div>
 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
@@ -179,7 +180,7 @@
 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/15 glass-effect flex items-center justify-center font-headline font-bold">01</div>
 <div>
 <h5 class="text-lg font-headline font-bold mb-2">Legal Compliance</h5>
-<p class="text-white/70 text-sm">We verify seller identity and required compliance details before listings go live.</p>
+<p class="text-white/70 text-sm">Listings are created and published by our admin team after documentation and compliance checks — the public cannot self-post inventory.</p>
 </div>
 </div>
 <div class="flex gap-6">
@@ -209,20 +210,20 @@
 <h3 class="text-4xl font-headline font-extrabold text-primary mb-6">Ready to find your perfect drive?</h3>
 <p class="text-on-surface-variant mb-10 text-lg max-w-2xl mx-auto">Explore Tanzania's most exclusive collection of verified vehicles, from rugged 4x4s to luxury urban cruisers.</p>
 <div class="flex flex-col sm:flex-row justify-center gap-4">
-<a class="cta-gradient text-white px-10 py-4 rounded-full font-headline font-extrabold text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95" href="{{ route('cars.index') }}">
+<a class="cta-gradient text-white px-10 py-4 min-h-[52px] rounded-full font-headline font-extrabold text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95 inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.index') }}">
                         Browse Our Inventory
                     </a>
-<button class="bg-secondary text-white px-10 py-4 rounded-full font-headline font-extrabold text-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-secondary/20 transition-all active:scale-95" type="button">
-<span class="material-symbols-outlined">chat</span>
+<a class="bg-secondary text-white px-10 py-4 min-h-[52px] rounded-full font-headline font-extrabold text-lg flex items-center justify-center gap-2 shadow-lg transition-[filter,transform] hover:brightness-110 hover:shadow-secondary/20 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ route('contact') }}">
+<span class="material-symbols-outlined text-white" aria-hidden="true">chat</span>
                         Speak to Sales Team
-                    </button>
+                    </a>
 </div>
 </div>
 </section>
 </main>
 <!-- Footer -->
 <x-footer />
-<x-mobile-nav active="about" />
+<x-mobile-nav active="" />
 <x-whatsapp-float />
 </body></html>
 

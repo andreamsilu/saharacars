@@ -1,0 +1,74 @@
+{{--
+  WCAG-oriented baseline: visible focus, reduced motion, skip-link companion styles.
+  Include inside a <style> block after public-design-tokens (do not nest <style> tags).
+--}}
+  /* Visible focus fallback where components omit Tailwind focus rings (2.4.7). */
+  :where(a, button, input, select, textarea, summary):focus {
+    outline: none;
+  }
+  :where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 2px solid #5c4320;
+    outline-offset: 2px;
+  }
+  /* High-contrast focus on dark / filled buttons (keep offset readable on gold). */
+  .focus-ring-on-dark:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+  .focus-ring-inset:focus-visible {
+    outline: 2px solid #5c4320;
+    outline-offset: -2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .partner-track {
+      animation: none !important;
+    }
+    .pulse-chip,
+    .float-orb {
+      animation: none !important;
+    }
+    .animate-ping {
+      animation: none !important;
+    }
+  }
+
+  /* 2.4.1 Skip link (after global focus rules so visible styles win). */
+  .skip-to-main {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-to-main:focus,
+  .skip-to-main:focus-visible {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 99999;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+    clip: auto;
+    overflow: visible;
+    white-space: normal;
+    border-radius: 0.5rem;
+    background: #ffffff;
+    color: #5c4320;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    box-shadow: 0 10px 25px rgba(25, 28, 30, 0.15);
+    text-decoration: none;
+    outline: 3px solid #5c4320;
+    outline-offset: 2px;
+  }

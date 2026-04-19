@@ -47,5 +47,13 @@ class PageController extends Controller
     {
         return view('pages.contact');
     }
+
+    /**
+     * Saved cars (titles + slugs stored in localStorage; rendered client-side).
+     */
+    public function saved(): View
+    {
+        return view('pages.saved');
+    }
 }
 

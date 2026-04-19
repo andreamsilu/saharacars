@@ -75,27 +75,29 @@
         @include('components.public-typography-tokens')
         @include('components.public-effects-tokens')
         @include('components.public-design-tokens')
+        @include('components.public-a11y-tokens')
     </style>
 </head>
 <body class="bg-background font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
+<x-skip-to-main />
 <!-- TopNavBar -->
 <x-navbar />
-<main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
+<main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
 <details class="lg:hidden group rounded-2xl bg-surface-container-low border border-slate-200/80 attention-panel overflow-hidden">
-    <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation">
+    <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
         <span class="inline-flex items-center gap-2">
-            <span class="material-symbols-outlined text-[22px]">tune</span>
+            <span class="material-symbols-outlined text-[22px]" aria-hidden="true">tune</span>
             Refine selection
         </span>
-        <span class="material-symbols-outlined text-slate-500 group-open:rotate-180 transition-transform">expand_more</span>
+        <span class="material-symbols-outlined text-slate-500 group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
     </summary>
     <div class="px-4 pb-4 pt-0 border-t border-slate-200/60">
-        @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento')])
+        @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento'), 'filterFormIdPrefix' => 'bento-mobile'])
     </div>
 </details>
 <aside class="hidden lg:block w-72 flex-shrink-0">
     <div class="sticky top-24 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel">
-        @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento')])
+        @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento'), 'filterFormIdPrefix' => 'bento-sidebar'])
     </div>
 </aside>
 <!-- Main Content -->

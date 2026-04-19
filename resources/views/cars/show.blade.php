@@ -3,8 +3,9 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>{{ e($pageTitle) }}</title>
+<meta name="description" content="{{ e($pageDescription) }}"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -78,16 +79,18 @@
       }
       @include('components.public-effects-tokens')
       @include('components.public-design-tokens')
+      @include('components.public-a11y-tokens')
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed attention-mesh pb-mobile-nav md:pb-0">
+<x-skip-to-main />
 <!-- TopNavBar -->
 <x-navbar />
-<main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+<main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 <!-- Breadcrumbs -->
-<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6">
-<a class="hover:text-primary transition-colors" href="{{ route('cars.index') }}">Inventory</a>
-<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6" aria-label="Breadcrumb">
+<a class="hover:text-primary transition-colors rounded-sm focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('cars.index') }}">Inventory</a>
+<span class="material-symbols-outlined text-[12px]" aria-hidden="true">chevron_right</span>
 <span class="text-on-surface font-bold">{{ $car->title }}</span>
 </nav>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -160,8 +163,8 @@
 
   <div class="relative overflow-hidden rounded-xl bg-surface-dim aspect-[16/10]">
     <img id="gallery-main-image" src="{{ $allImages[0]['src'] }}" alt="{{ $car->title }}" class="w-full h-full object-cover" />
-    <button type="button" id="gallery-open-lightbox" class="absolute right-3 bottom-3 glass-effect bg-surface-container-lowest/70 rounded-full px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:bg-surface-container-lowest">
-      <span class="material-symbols-outlined text-sm">fullscreen</span>
+    <button type="button" id="gallery-open-lightbox" class="absolute right-3 bottom-3 glass-effect bg-surface-container-lowest/70 rounded-full px-3 py-2 min-h-[44px] text-xs font-bold flex items-center gap-1.5 hover:bg-surface-container-lowest focus-visible:ring-2 focus-visible:ring-primary" aria-label="Open vehicle images in fullscreen gallery">
+      <span class="material-symbols-outlined text-sm" aria-hidden="true">fullscreen</span>
       Fullscreen
     </button>
   </div>
@@ -261,6 +264,12 @@
 </div>
 </section>
 </div>
+@php
+    $listingWaHref = 'https://wa.me/'.$waPhone.'?text='.rawurlencode($waListingMessage);
+    $listingTelHref = $waPhone !== '' ? 'tel:+'.$waPhone : 'tel:';
+    $reportSubject = 'Report listing: '.$car->title;
+    $reportBody = "Please review this listing for policy or fraud concerns.\n\nURL: ".route('cars.show', ['slug' => $car->slug]);
+@endphp
 <!-- Right Column: Sticky Pricing & Action -->
 <div class="lg:col-span-4">
 <div class="sticky top-24 space-y-6">
@@ -273,8 +282,16 @@
 </h1>
 <p class="text-sm text-outline mt-1">{{ $car->price_tzs ? 'Negotiable price' : 'Our team will share pricing details.' }}</p>
 </div>
-<button class="bg-surface-container-high p-2 rounded-full hover:bg-error-container hover:text-error transition-colors">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<button
+    type="button"
+    class="bg-surface-container-high p-2 min-h-[44px] min-w-[44px] rounded-full hover:bg-error-container/30 hover:text-error transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+    data-saved-car-toggle
+    data-slug="{{ $car->slug }}"
+    data-title="{{ $car->title }}"
+    aria-pressed="false"
+    aria-label="Save {{ $car->title }} to your list on this device"
+>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
 </button>
 </div>
 <div class="flex items-center gap-3 py-4 my-6 bg-surface-container-low rounded-xl px-4">
@@ -285,25 +302,45 @@
 </div>
 </div>
 <div class="space-y-3">
-<a class="w-full bg-secondary text-white font-bold py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-lg shadow-secondary/20"
-   href="{{ 'https://wa.me/255000000000?text=' . urlencode('Hi Sahara Cars, I am interested in: ' . $car->title) }}"
+<a class="w-full bg-secondary text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-lg shadow-secondary/20 focus-ring-on-dark [&_svg]:text-white"
+   href="{{ $listingWaHref }}"
    target="_blank"
-   rel="noopener noreferrer">
+   rel="noopener noreferrer"
+   aria-label="Chat on WhatsApp about this vehicle">
 <svg viewBox="0 0 32 32" aria-hidden="true" class="w-5 h-5 fill-current">
 <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>
 <path d="M16.02 3.2c-7.05 0-12.77 5.72-12.77 12.77 0 2.25.59 4.45 1.71 6.39L3.2 28.8l6.6-1.73c1.86 1.01 3.95 1.54 6.09 1.54h.01c7.05 0 12.77-5.72 12.77-12.77 0-3.42-1.33-6.63-3.76-9.05A12.67 12.67 0 0 0 16.02 3.2zm-.12 23.3h-.01c-1.91 0-3.78-.51-5.41-1.48l-.39-.23-3.92 1.03 1.05-3.82-.25-.39a10.58 10.58 0 0 1-1.62-5.65c0-5.86 4.77-10.62 10.63-10.62 2.84 0 5.51 1.1 7.51 3.11a10.54 10.54 0 0 1 3.1 7.51c0 5.86-4.77 10.62-10.62 10.62z"/>
 </svg>
-                                WhatsApp Sales
+                                Chat on WhatsApp
                             </a>
-<button class="w-full cta-gradient text-white font-bold py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all">
-<span class="material-symbols-outlined">call</span>
-                                Call Sales Center
-                            </button>
+<a class="w-full cta-gradient text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ $listingTelHref }}" aria-label="Call Sahara Cars sales on the phone">
+<span class="material-symbols-outlined" aria-hidden="true">call</span>
+                                Call now
+                            </a>
+<a class="w-full text-center text-sm font-semibold text-primary underline underline-offset-2 py-2 min-h-[44px] rounded-lg focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('contact') }}">Prefer email or a form?</a>
 </div>
 </div>
 </div>
 </div>
 </div>
+<section class="mt-14 md:mt-16 max-w-3xl" aria-labelledby="listing-trust-heading">
+<h2 id="listing-trust-heading" class="font-headline text-xl font-bold text-primary mb-4">Trust &amp; safety</h2>
+<div class="rounded-2xl border border-outline-variant/60 bg-surface-container-lowest p-6 md:p-8 shadow-sm space-y-4 text-sm text-on-surface-variant leading-relaxed">
+<p class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary shrink-0" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span>
+<span><strong class="text-on-surface">Verified phone line.</strong> Business WhatsApp and voice route through our Dar es Salaam team — always confirm viewing details in chat before you travel.</span>
+</p>
+<ul class="list-disc pl-5 space-y-1">
+<li>Meet the seller or our staff in person when viewing the car.</li>
+<li>Avoid large advance payments to people you have not met.</li>
+<li>If a deal feels rushed or “too good”, pause and ask us to double-check.</li>
+</ul>
+<p>
+<a class="font-bold text-error underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-error rounded-sm" href="mailto:{{ config('sahara.support_email', 'concierge@saharacars.co.tz') }}?subject={{ rawurlencode($reportSubject) }}&body={{ rawurlencode($reportBody) }}">Report this listing</a>
+<span class="text-on-surface-variant"> — include what looks wrong. We review reports during business hours.</span>
+</p>
+</div>
+</section>
 <!-- Related Vehicles Section -->
 <section class="mt-20">
 <div class="flex justify-between items-end mb-8">
@@ -346,11 +383,11 @@
 <!-- Footer -->
 <x-footer class="mt-20" />
 <x-mobile-nav active="inventory" />
-<x-whatsapp-float />
-<div id="gallery-lightbox" class="fixed inset-0 z-[70] hidden bg-black/85 p-4 md:p-8" aria-hidden="true">
+<x-whatsapp-float :text="$waListingMessage" />
+<div id="gallery-lightbox" class="fixed inset-0 z-[70] hidden bg-black/85 p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="gallery-lightbox-title" aria-hidden="true">
   <div class="w-full h-full flex flex-col">
     <div class="flex items-center justify-between text-white mb-4">
-      <p class="text-sm font-bold">Image <span id="lightbox-current">1</span> / <span id="lightbox-total">{{ count($allImages) }}</span></p>
+      <p id="gallery-lightbox-title" class="text-sm font-bold">Image <span id="lightbox-current">1</span> / <span id="lightbox-total">{{ count($allImages) }}</span></p>
       <button type="button" id="gallery-close-lightbox" class="rounded-full p-2 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="Close gallery">
         <span class="material-symbols-outlined">close</span>
       </button>

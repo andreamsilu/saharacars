@@ -88,7 +88,7 @@
             font-family: 'Inter', sans-serif;
             font-weight: 500;
         }
-        :focus-visible { outline: 3px solid #8a6528; outline-offset: 2px; }
+        @include('components.public-a11y-tokens')
         .admin-link:hover { text-decoration: none; }
 
         .icon-info { color: #8a6528; }
@@ -100,7 +100,7 @@
     @yield('styles')
 </head>
 <body class="min-h-screen bg-gradient-to-br from-surface via-slate-50 to-slate-100 text-on-surface font-body antialiased">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
+    <x-skip-to-main />
     <div class="min-h-screen">
         <aside class="hidden lg:flex fixed top-0 left-0 z-50 w-[280px] h-screen flex-col border-r border-slate-200/90 bg-gradient-to-b from-slate-50 to-slate-100">
             <div class="px-6 py-8 border-b border-slate-200/80">
@@ -194,7 +194,7 @@
                 </div>
             </header>
 
-            <main id="main-content" class="flex-1 max-w-7xl w-full mx-auto px-5 sm:px-8 py-10">
+            <main id="main-content" tabindex="-1" class="flex-1 max-w-7xl w-full mx-auto px-5 sm:px-8 py-10 outline-none">
                 @if (session('status'))
                     <div class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900 inline-flex items-start gap-2">
                         <span class="material-symbols-outlined icon-success text-base">check_circle</span>
