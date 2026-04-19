@@ -23,4 +23,16 @@ return [
     | or https://player.vimeo.com/video/VIDEO_ID — not a watch-page link.
     */
     'about_owner_video_embed_url' => env('SAHARA_ABOUT_OWNER_VIDEO_EMBED', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Why choose us page: optional founder message (iframe embed URL only)
+    |--------------------------------------------------------------------------
+    | Same rules as about_owner_video_embed_url. Falls back to the About embed
+    | if unset so one video can serve both pages when desired.
+    */
+    'why_choose_us_owner_video_embed_url' => env(
+        'SAHARA_WHY_CHOOSE_US_VIDEO_EMBED',
+        env('SAHARA_ABOUT_OWNER_VIDEO_EMBED', '')
+    ),
 ];

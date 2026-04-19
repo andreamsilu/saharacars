@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\CarController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +16,7 @@ Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
 Route::get('/cars/{slug}', [CarController::class, 'show'])->name('cars.show');
 
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('contact.store');
 Route::get('/saved', [PageController::class, 'saved'])->name('saved');

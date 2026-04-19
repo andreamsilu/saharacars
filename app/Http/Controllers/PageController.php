@@ -43,6 +43,14 @@ class PageController extends Controller
         return view('pages.about');
     }
 
+    /**
+     * Public “Why choose us” page — trust, process, and local support.
+     */
+    public function whyChooseUs(): View
+    {
+        return view('pages.why-choose-us');
+    }
+
     public function contact(): View
     {
         return view('pages.contact');
@@ -56,4 +64,3 @@ class PageController extends Controller
         return view('pages.saved');
     }
 }
-
