@@ -1,5 +1,5 @@
 /* CTA: both stops dark enough for white label text (WCAG AA ≥4.5:1) */
-.cta-gradient { background-image: linear-gradient(135deg, #5c4320, #8a6528); }
+.cta-gradient { background-color: #8a6528; }
 .section-editorial { padding-top: 7rem; padding-bottom: 5rem; }
 .section-editorial-compact { padding-top: 4rem; padding-bottom: 3rem; }
 @media (min-width: 768px) {

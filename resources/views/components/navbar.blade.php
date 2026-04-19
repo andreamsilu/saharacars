@@ -13,7 +13,7 @@
         .bg-secondary { background-color: var(--theme-secondary) !important; }
         .bg-primary-container { background-color: var(--theme-primary-container) !important; }
         .cta-gradient {
-            background-image: linear-gradient(135deg, var(--theme-primary-container), var(--theme-primary));
+            background-color: var(--theme-primary);
         }
     </style>
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-3" aria-label="Main">
