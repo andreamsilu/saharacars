@@ -42,20 +42,20 @@
     <div class="p-6 flex-1 flex flex-col">
         <div class="flex justify-between items-start mb-4">
             <div>
-                <h3 class="font-headline font-bold text-xl text-primary leading-tight">{{ $car->title }}</h3>
-                <div class="flex items-center text-on-surface-variant mt-1.5 text-xs font-semibold">
+                <h3 class="font-headline font-extrabold text-[1.28rem] text-primary leading-tight tracking-tight">{{ $car->title }}</h3>
+                <div class="flex items-center text-on-surface-variant mt-1.5 text-sm font-medium">
                     <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
                     {{ $car->location ?: 'Tanzania' }}
                 </div>
                 @if ($conditionText)
-                    <div class="mt-1.5 text-xs font-semibold text-on-surface-variant">Condition: {{ $conditionText }}</div>
+                    <div class="mt-1.5 text-xs font-label font-bold uppercase tracking-wide text-on-surface-variant">Condition: {{ $conditionText }}</div>
                 @endif
             </div>
             <div class="text-right">
-                <p class="font-headline font-extrabold text-2xl text-primary">
+                <p class="font-headline font-black text-[1.65rem] text-primary leading-none tracking-tight">
                     {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact' }}
                 </p>
-                <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest font-label">
+                <p class="text-[10px] font-label font-extrabold text-on-surface-variant uppercase tracking-[0.16em] mt-1">
                     {{ $car->price_tzs ? 'Negotiable' : 'Request price' }}
                 </p>
             </div>
@@ -64,22 +64,22 @@
         <div class="grid grid-cols-3 gap-3 mb-6">
             <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">speed</span>
-                <span class="text-[10px] font-bold text-on-surface-variant uppercase">
+                <span class="text-[10px] font-label font-extrabold text-on-surface-variant uppercase tracking-wide">
                     {{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : '—' }}
                 </span>
             </div>
             <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">local_gas_station</span>
-                <span class="text-[10px] font-bold text-on-surface-variant uppercase">{{ $car->fuel ?: '—' }}</span>
+                <span class="text-[10px] font-label font-extrabold text-on-surface-variant uppercase tracking-wide">{{ $car->fuel ?: '—' }}</span>
             </div>
             <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">calendar_today</span>
-                <span class="text-[10px] font-bold text-on-surface-variant uppercase">{{ $car->year ?: '—' }}</span>
+                <span class="text-[10px] font-label font-extrabold text-on-surface-variant uppercase tracking-wide">{{ $car->year ?: '—' }}</span>
             </div>
         </div>
 
         <div class="mt-auto">
-            <a class="w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-bold text-sm transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
+            <a class="w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-extrabold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
                 View Details
             </a>
         </div>
