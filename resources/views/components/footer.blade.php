@@ -41,8 +41,7 @@
             <ul class="space-y-2 text-sm">
                 <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('home') }}">Home</a></li>
                 <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('cars.index') }}">Inventory</a></li>
-                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('about') }}">About</a></li>
-                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('why.choose.us') }}">Why choose us</a></li>
+                <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('why.choose.us') }}">Why Sahara</a></li>
                 <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('contact') }}">Contact</a></li>
                 <li><a class="text-slate-200 hover:text-white transition-colors rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ route('saved') }}">Saved cars</a></li>
             </ul>

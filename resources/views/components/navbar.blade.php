@@ -33,8 +33,7 @@
             <a class="{{ request()->routeIs('home') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('home') }}">Home</a>
             <a class="{{ request()->routeIs('cars.*') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('cars.index') }}">Inventory</a>
             <a class="{{ request()->routeIs('saved') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('saved') }}">Saved</a>
-            <a class="{{ request()->routeIs('about') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('about') }}">About</a>
-            <a class="{{ request()->routeIs('why.choose.us') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('why.choose.us') }}">Why choose us</a>
+            <a class="{{ request()->routeIs('why.choose.us') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('why.choose.us') }}">Why Sahara</a>
             <a class="{{ request()->routeIs('contact') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('contact') }}">Contact</a>
         </div>
 
@@ -100,10 +99,7 @@
                     <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('saved') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('saved') }}">Saved cars</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('about') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('about') }}">About</a>
-                </li>
-                <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('why.choose.us') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('why.choose.us') }}">Why choose us</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('why.choose.us') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('why.choose.us') }}">Why Sahara</a>
                 </li>
                 <li>
                     <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">Contact</a>

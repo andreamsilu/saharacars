@@ -4,6 +4,19 @@
 @section('breadcrumb', 'Dashboard')
 
 @section('content')
+    @php
+        $trendUi = static function (array $trend): array {
+            if (($trend['direction'] ?? 'flat') === 'up') {
+                return ['icon' => 'trending_up', 'class' => 'text-emerald-700 bg-emerald-100 border-emerald-200'];
+            }
+            if (($trend['direction'] ?? 'flat') === 'down') {
+                return ['icon' => 'trending_down', 'class' => 'text-rose-700 bg-rose-100 border-rose-200'];
+            }
+
+            return ['icon' => 'trending_flat', 'class' => 'text-slate-700 bg-slate-100 border-slate-200'];
+        };
+    @endphp
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 mb-12">
         <a href="{{ route('admin.cars.index') }}" class="block bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden hover:bg-surface-container-low smooth" aria-label="Open inventory listings">
             <div class="absolute top-0 right-0 p-4 text-primary/20">
@@ -39,6 +52,92 @@
             <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Featured</p>
             <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($featuredTotal) }}</h3>
             <p class="text-sm text-on-surface-variant">Highlighted on the homepage</p>
+        </div>
+    </div>
+
+    <div class="mb-3 flex items-start gap-2 text-xs text-on-surface-variant">
+        <span class="material-symbols-outlined text-base text-primary" aria-hidden="true">insights</span>
+        <p>Visitor trend % compares each period against the previous equivalent period (for example, last 7 days vs the 7 days before that).</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-12">
+        <div class="bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden">
+            @php $trend = $trendUi($visitorsTodayTrend); @endphp
+            <div class="absolute top-0 right-0 p-4 text-indigo-600/25">
+                <span class="material-symbols-outlined text-6xl">calendar_view_day</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Visitors (Day)</p>
+            <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($visitorsToday) }}</h3>
+            <p class="text-sm text-on-surface-variant">Unique visitors today</p>
+            <p class="mt-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $trend['class'] }}">
+                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">{{ $trend['icon'] }}</span>
+                {{ $visitorsTodayTrend['percent'] > 0 ? '+' : '' }}{{ number_format($visitorsTodayTrend['percent'], 1) }}%
+                ({{ $visitorsTodayTrend['delta'] > 0 ? '+' : '' }}{{ number_format($visitorsTodayTrend['delta']) }})
+            </p>
+        </div>
+        <div class="bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden">
+            @php $trend = $trendUi($visitors7DaysTrend); @endphp
+            <div class="absolute top-0 right-0 p-4 text-cyan-600/25">
+                <span class="material-symbols-outlined text-6xl">view_week</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Visitors (7 Days)</p>
+            <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($visitors7Days) }}</h3>
+            <p class="text-sm text-on-surface-variant">Unique visitors in last 7 days</p>
+            <p class="mt-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $trend['class'] }}">
+                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">{{ $trend['icon'] }}</span>
+                {{ $visitors7DaysTrend['percent'] > 0 ? '+' : '' }}{{ number_format($visitors7DaysTrend['percent'], 1) }}%
+                ({{ $visitors7DaysTrend['delta'] > 0 ? '+' : '' }}{{ number_format($visitors7DaysTrend['delta']) }})
+            </p>
+        </div>
+        <div class="bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden">
+            @php $trend = $trendUi($visitorsMonthTrend); @endphp
+            <div class="absolute top-0 right-0 p-4 text-sky-600/25">
+                <span class="material-symbols-outlined text-6xl">groups</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Visitors (Month)</p>
+            <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($visitorsMonth) }}</h3>
+            <p class="text-sm text-on-surface-variant">Unique visitors in last month</p>
+            <p class="mt-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $trend['class'] }}">
+                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">{{ $trend['icon'] }}</span>
+                {{ $visitorsMonthTrend['percent'] > 0 ? '+' : '' }}{{ number_format($visitorsMonthTrend['percent'], 1) }}%
+                ({{ $visitorsMonthTrend['delta'] > 0 ? '+' : '' }}{{ number_format($visitorsMonthTrend['delta']) }})
+            </p>
+        </div>
+        <div class="bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden">
+            @php $trend = $trendUi($visitors6MonthsTrend); @endphp
+            <div class="absolute top-0 right-0 p-4 text-violet-600/25">
+                <span class="material-symbols-outlined text-6xl">calendar_month</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Visitors (6 Months)</p>
+            <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($visitors6Months) }}</h3>
+            <p class="text-sm text-on-surface-variant">Unique visitors in last 6 months</p>
+            <p class="mt-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $trend['class'] }}">
+                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">{{ $trend['icon'] }}</span>
+                {{ $visitors6MonthsTrend['percent'] > 0 ? '+' : '' }}{{ number_format($visitors6MonthsTrend['percent'], 1) }}%
+                ({{ $visitors6MonthsTrend['delta'] > 0 ? '+' : '' }}{{ number_format($visitors6MonthsTrend['delta']) }})
+            </p>
+        </div>
+        <div class="bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden">
+            @php $trend = $trendUi($visitorsYearTrend); @endphp
+            <div class="absolute top-0 right-0 p-4 text-emerald-600/25">
+                <span class="material-symbols-outlined text-6xl">calendar_clock</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Visitors (Year)</p>
+            <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($visitorsYear) }}</h3>
+            <p class="text-sm text-on-surface-variant">Unique visitors in last year</p>
+            <p class="mt-3 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $trend['class'] }}">
+                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">{{ $trend['icon'] }}</span>
+                {{ $visitorsYearTrend['percent'] > 0 ? '+' : '' }}{{ number_format($visitorsYearTrend['percent'], 1) }}%
+                ({{ $visitorsYearTrend['delta'] > 0 ? '+' : '' }}{{ number_format($visitorsYearTrend['delta']) }})
+            </p>
+        </div>
+        <div class="bg-surface-container-lowest p-7 rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 text-rose-600/25">
+                <span class="material-symbols-outlined text-6xl">language</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Visitors (All Time)</p>
+            <h3 class="text-4xl font-extrabold text-primary mb-1">{{ number_format($totalVisitors) }}</h3>
+            <p class="text-sm text-on-surface-variant">Total unique visitors tracked</p>
         </div>
     </div>
 

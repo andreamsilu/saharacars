@@ -15,7 +15,7 @@ Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
 Route::get('/cars/{slug}', [CarController::class, 'show'])->name('cars.show');
 
-Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::redirect('/about', '/why-choose-us', 301);
 Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('contact.store');

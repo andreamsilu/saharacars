@@ -38,11 +38,6 @@ class PageController extends Controller
         return view('pages.home', compact('featuredCars', 'brandOptions', 'locationOptions'));
     }
 
-    public function about(): View
-    {
-        return view('pages.about');
-    }
-
     /**
      * Public “Why choose us” page — trust, process, and local support.
      */
