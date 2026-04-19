@@ -63,6 +63,7 @@
             <p>All rights reserved.</p>
         </div>
     </div>
+    <x-page-load-progress />
     <x-scroll-to-top />
     <script src="{{ asset('js/sahara-saved-cars.js') }}" defer></script>
 </footer>

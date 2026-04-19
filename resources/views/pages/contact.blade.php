@@ -193,21 +193,6 @@
 </div>
 </div>
 </div>
-{{-- Social placeholders: non-interactive tiles so hover never washes out icons (replace with real <a> when URLs exist). --}}
-<div class="flex gap-4" role="list" aria-label="Social media links coming soon">
-<div class="flex-1 flex min-h-[56px] items-center justify-center rounded-xl border border-outline-variant/40 bg-surface-container-low text-primary-container" role="listitem">
-    <span class="material-symbols-outlined text-[26px]" aria-hidden="true">public</span>
-    <span class="sr-only">Website link coming soon</span>
-</div>
-<div class="flex-1 flex min-h-[56px] items-center justify-center rounded-xl border border-outline-variant/40 bg-surface-container-low text-primary-container" role="listitem">
-    <span class="material-symbols-outlined text-[26px]" aria-hidden="true">share</span>
-    <span class="sr-only">Social links coming soon</span>
-</div>
-<div class="flex-1 flex min-h-[56px] items-center justify-center rounded-xl border border-outline-variant/40 bg-surface-container-low text-primary-container" role="listitem">
-    <span class="material-symbols-outlined text-[26px]" aria-hidden="true">camera_enhance</span>
-    <span class="sr-only">Instagram coming soon</span>
-</div>
-</div>
 </div>
 </div>
 <!-- Location Section (Asymmetric) -->
