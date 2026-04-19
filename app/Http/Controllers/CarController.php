@@ -71,7 +71,8 @@ class CarController extends Controller
         $priceMax = request()->integer('price_max');
         $transmission = trim((string) request('transmission', ''));
         $fuel = trim((string) request('fuel', ''));
-        $category = trim((string) request('category', request('condition', '')));
+        // `condition` is canonical; `category` kept for legacy query strings only.
+        $condition = trim((string) request('condition', request('category', '')));
         $sort = (string) request('sort', 'newest');
 
         if ($q !== '') {
@@ -105,8 +106,8 @@ class CarController extends Controller
             $query->where('fuel', 'like', '%'.$fuel.'%');
         }
 
-        if (in_array($category, ['brand_new', 'foreign_used', 'local_used'], true)) {
-            $query->where('condition', $category);
+        if (in_array($condition, ['brand_new', 'foreign_used', 'local_used'], true)) {
+            $query->where('condition', $condition);
         }
 
         if (is_int($priceMin) && $priceMin > 0) {

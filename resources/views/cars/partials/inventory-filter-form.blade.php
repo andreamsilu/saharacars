@@ -77,12 +77,12 @@
                 </select>
             </div>
             <div class="space-y-3">
-                <label for="filter-category-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Category</label>
-                <select id="filter-category-{{ $filterFormIdPrefix }}" name="category" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
-                    <option value="">Any category</option>
-                    <option value="brand_new" {{ request('category', request('condition')) === 'brand_new' ? 'selected' : '' }}>Brand New</option>
-                    <option value="foreign_used" {{ request('category', request('condition')) === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
-                    <option value="local_used" {{ request('category', request('condition')) === 'local_used' ? 'selected' : '' }}>Locally Used</option>
+                <label for="filter-condition-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Condition</label>
+                <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                    <option value="">Any condition</option>
+                    <option value="brand_new" {{ request('condition', request('category')) === 'brand_new' ? 'selected' : '' }}>Brand New</option>
+                    <option value="foreign_used" {{ request('condition', request('category')) === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
+                    <option value="local_used" {{ request('condition', request('category')) === 'local_used' ? 'selected' : '' }}>Locally Used</option>
                 </select>
             </div>
         </div>

@@ -98,12 +98,12 @@
 <div class="lg:col-span-8 space-y-8">
 <!-- Interactive vehicle gallery -->
 @php
-  $categoryLabels = [
+  $conditionLabels = [
     'brand_new' => 'Brand New',
     'foreign_used' => 'Foreign Used',
     'local_used' => 'Locally Used',
   ];
-  $categoryText = $categoryLabels[$car->condition] ?? '—';
+  $conditionText = $conditionLabels[$car->condition] ?? '—';
   $hero = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : 'https://placehold.co/1400x900?text=Sahara+Cars';
 
   $frontImages = is_array($car->front_image_paths) ? $car->front_image_paths : array_filter([$car->front_image_path]);
@@ -208,9 +208,9 @@
 <span class="font-headline font-bold text-lg">{{ $car->fuel ?: '—' }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
-<span class="material-symbols-outlined text-primary">category</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Category</span>
-<span class="font-headline font-bold text-lg">{{ $categoryText }}</span>
+<span class="material-symbols-outlined text-primary">checklist</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">Condition</span>
+<span class="font-headline font-bold text-lg">{{ $conditionText }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">precision_manufacturing</span>
@@ -257,8 +257,8 @@
 <span class="font-bold">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : '—' }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Category</span>
-<span class="font-bold">{{ $categoryText }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Condition</span>
+<span class="font-bold">{{ $conditionText }}</span>
 </div>
 </div>
 </div>

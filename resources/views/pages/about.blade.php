@@ -129,6 +129,64 @@
 </div>
 </div>
 </section>
+@php
+    $ownerVideoRaw = trim((string) config('sahara.about_owner_video_embed_url', ''));
+    $ownerVideoEmbed = null;
+    if ($ownerVideoRaw !== '') {
+        $parts = parse_url($ownerVideoRaw);
+        $scheme = strtolower((string) ($parts['scheme'] ?? ''));
+        $host = strtolower((string) ($parts['host'] ?? ''));
+        $path = (string) ($parts['path'] ?? '');
+        if ($scheme === 'https' && (($host === 'www.youtube.com' || $host === 'youtube.com') && str_starts_with($path, '/embed/'))
+            || ($host === 'player.vimeo.com' && str_starts_with($path, '/video/'))) {
+            $ownerVideoEmbed = $ownerVideoRaw;
+        }
+    }
+@endphp
+<!-- Owner welcome video -->
+<section class="section-editorial px-6 bg-surface border-y border-outline-variant/30" aria-labelledby="about-owner-video-heading">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+<div class="lg:col-span-5">
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">From our leadership</p>
+<h2 id="about-owner-video-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight leading-tight mb-5">
+                    Why Sahara Cars exists — in our own words
+                </h2>
+<p class="text-on-surface-variant leading-relaxed">
+                    Our founder walks you through what Sahara stands for in Tanzania: trust on the road, honest listings, and a Dar es Salaam team you can reach when it matters.
+                </p>
+<p class="mt-5 text-sm text-on-surface-variant">
+                    Prefer to talk instead? <a class="font-bold text-primary underline underline-offset-2" href="{{ route('contact') }}">Contact the showroom</a> or WhatsApp us from any listing page.
+                </p>
+</div>
+<div class="lg:col-span-7">
+@if ($ownerVideoEmbed)
+<div class="relative aspect-video w-full overflow-hidden rounded-2xl shadow-[0_24px_48px_rgba(92,67,32,0.15)] border border-outline-variant/30 bg-surface-container-highest attention-panel">
+<iframe
+                        class="absolute inset-0 h-full w-full"
+                        src="{{ $ownerVideoEmbed }}"
+                        title="Sahara Cars — message from our founder"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                        loading="lazy"
+                    ></iframe>
+</div>
+<p class="mt-3 text-xs text-on-surface-variant">Having trouble playing the video? Try opening it on YouTube or Vimeo in a new tab from the player menu.</p>
+@else
+{{-- Dev: set SAHARA_ABOUT_OWNER_VIDEO_EMBED in .env (see config/sahara.php + .env.example). --}}
+<div class="relative flex aspect-video w-full flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-dashed border-outline-variant/60 bg-surface-container-low px-6 text-center shadow-inner">
+<span class="material-symbols-outlined text-5xl text-primary/50" aria-hidden="true">smart_display</span>
+<div>
+<p class="font-headline text-lg font-bold text-primary">Founder’s welcome — coming soon</p>
+<p class="mt-2 max-w-md text-sm text-on-surface-variant">We’re finishing a short film with our founder on what Sahara Cars means for drivers in Tanzania. Until then, browse inventory or reach the Dar team on the contact page.</p>
+</div>
+</div>
+@endif
+</div>
+</div>
+</div>
+</section>
 <!-- Mission & Values: Tonal Layering -->
 <section class="section-editorial px-6 bg-surface attention-mesh">
 <div class="max-w-7xl mx-auto text-center mb-16">

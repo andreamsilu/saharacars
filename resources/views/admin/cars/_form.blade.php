@@ -59,9 +59,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="condition">Category</label>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="condition">Condition</label>
                     <select id="condition" name="condition" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
-                        <option value="">Select category</option>
+                        <option value="">Select condition</option>
                         <option value="brand_new" {{ old('condition', $car->condition ?? '') === 'brand_new' ? 'selected' : '' }}>Brand New</option>
                         <option value="foreign_used" {{ old('condition', $car->condition ?? '') === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
                         <option value="local_used" {{ old('condition', $car->condition ?? '') === 'local_used' ? 'selected' : '' }}>Locally Used</option>

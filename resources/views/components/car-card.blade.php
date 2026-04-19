@@ -5,12 +5,12 @@
 @php
     /** @var \App\Models\Car $car */
     $img = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : 'https://placehold.co/1200x800?text=Sahara+Cars';
-    $categoryLabels = [
+    $conditionLabels = [
         'brand_new' => 'Brand New',
         'foreign_used' => 'Foreign Used',
         'local_used' => 'Locally Used',
     ];
-    $categoryText = $categoryLabels[$car->condition] ?? null;
+    $conditionText = $conditionLabels[$car->condition] ?? null;
     $waDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
     $waCardMessage = 'Hi, I saw this car on the Sahara Cars website and would like more details.'
         ."\n\n".'Vehicle: '.$car->title
@@ -53,8 +53,8 @@
                     <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
                     {{ $car->location ?: 'Tanzania' }}
                 </div>
-                @if ($categoryText)
-                    <div class="mt-1.5 text-xs font-semibold text-on-surface-variant">Category: {{ $categoryText }}</div>
+                @if ($conditionText)
+                    <div class="mt-1.5 text-xs font-semibold text-on-surface-variant">Condition: {{ $conditionText }}</div>
                 @endif
             </div>
             <div class="text-right">
