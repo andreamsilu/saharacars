@@ -94,10 +94,10 @@
 <div class="max-w-2xl">
 <span class="inline-block px-4 py-1.5 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-xs font-bold tracking-widest uppercase mb-6 font-label">Why Sahara</span>
 <h1 class="text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-headline font-extrabold text-white tracking-tighter leading-[1.1] mb-6">
-                        A calmer way to buy a serious car in <span class="text-secondary-fixed">Tanzania.</span>
+                        Trusted by serious buyers and business fleets across <span class="text-secondary-fixed">Tanzania.</span>
 </h1>
 <p class="text-lg text-white/90 font-body leading-relaxed mb-8 max-w-xl">
-                        Sahara Cars is built for buyers who want curated inventory from Dar es Salaam, listings shaped by our admin team (not random sellers), clear specs and pricing in TZS, and real humans on WhatsApp when you need answers before you travel.
+                        Sahara Cars combines business-grade listing control, transparent pricing in TZS, and advisor-led support from Dar es Salaam so every purchase decision is faster, safer, and easier to defend.
                     </p>
 </div>
 </div>
@@ -108,23 +108,23 @@
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
 <div class="rounded-2xl bg-surface-container-low p-4">
 <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Listing control</p>
-<p class="font-headline text-xl font-black text-primary mt-1">Admin-only</p>
-<p class="text-xs text-on-surface-variant mt-1">No anonymous self-posting.</p>
+<p class="font-headline text-xl font-black text-primary mt-1">Admin-verified</p>
+<p class="text-xs text-on-surface-variant mt-1">No anonymous self-posting risk.</p>
 </div>
 <div class="rounded-2xl bg-surface-container-low p-4">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Primary support</p>
-<p class="font-headline text-xl font-black text-primary mt-1">WhatsApp + Call</p>
-<p class="text-xs text-on-surface-variant mt-1">Fast responses from sales.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Response standard</p>
+<p class="font-headline text-xl font-black text-primary mt-1">Advisor-led support</p>
+<p class="text-xs text-on-surface-variant mt-1">WhatsApp and phone from one team.</p>
 </div>
 <div class="rounded-2xl bg-surface-container-low p-4">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Critical specs</p>
-<p class="font-headline text-xl font-black text-primary mt-1">Structured</p>
-<p class="text-xs text-on-surface-variant mt-1">Make/model/body/doors/seats.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Listing clarity</p>
+<p class="font-headline text-xl font-black text-primary mt-1">Structured specs</p>
+<p class="text-xs text-on-surface-variant mt-1">Make/model/body/doors/seats present.</p>
 </div>
 <div class="rounded-2xl bg-surface-container-low p-4">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Showroom base</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Business base</p>
 <p class="font-headline text-xl font-black text-primary mt-1">Dar es Salaam</p>
-<p class="text-xs text-on-surface-variant mt-1">Physical team and handover point.</p>
+<p class="text-xs text-on-surface-variant mt-1">Physical team, viewing and handover.</p>
 </div>
 </div>
 </div>
@@ -133,8 +133,8 @@
 <section class="section-editorial px-6 bg-surface-container-low py-16 md:py-20" aria-labelledby="why-six-reasons-heading">
 <div class="max-w-7xl mx-auto">
 <p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">What you actually get</p>
-<h2 id="why-six-reasons-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Six reasons buyers shortlist Sahara Cars</h2>
-<p class="text-on-surface-variant max-w-3xl leading-relaxed mb-12">Buying a car is a high-stakes decision: cash, safety, and family mobility. These are the pillars we invest in so you can compare listings with confidence—not guesswork.</p>
+<h2 id="why-six-reasons-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Attractive reasons businesses and families choose Sahara</h2>
+<p class="text-on-surface-variant max-w-3xl leading-relaxed mb-12">From first inquiry to handover, our process is built for trust, speed, and commercial confidence so your purchase decision stands up to scrutiny.</p>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 <div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
 <span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">admin_panel_settings</span>
@@ -175,7 +175,7 @@
 <div class="max-w-3xl">
 <p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Critical information</p>
 <h2 id="critical-info-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Everything important, before you book a visit</h2>
-<p class="text-on-surface-variant leading-relaxed">This is the shortlist of facts most buyers ask for first. We keep it visible so your decision is based on process, not pressure.</p>
+<p class="text-on-surface-variant leading-relaxed">This is the shortlist most serious buyers, procurement teams, and decision-makers ask first. We keep it transparent so trust comes from evidence, not pressure.</p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
 <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
