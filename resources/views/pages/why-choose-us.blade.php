@@ -88,7 +88,7 @@
 <section class="relative min-h-[min(90svh,819px)] md:h-[819px] flex items-center overflow-hidden py-16 md:py-0">
 <div class="absolute inset-0 z-0">
 <img class="w-full h-full object-cover" alt="Premium vehicles at a modern sales environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdoekZbNAVkxYdV5iREnckqm2Ql0A-u0qL3xf21tljGkOjG1o_L0BkRS7mFzlWe8q3p9H7GSUhqCs4vJVTnTw2NZSWUSt8pSKuZS9Wr9KJ-CQwbRvioDCN4qEUDsxsP4xsve93_xVv55Xg3f4KYsLP4mhobNfA7K8shqLRYq1WPDvb8HySLWrbZvitps3LtFYIMAoJ-bygyNo68jwAPUQlJP0CwEgbVJY_lj2ryEUTFUjQ7jzmkzNig-WjE_ZhO7ietypjMyZ4IKA"/>
-<div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/40 to-transparent"></div>
+<div class="absolute inset-0 bg-primary/65"></div>
 </div>
 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
 <div class="max-w-2xl">

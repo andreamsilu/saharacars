@@ -123,7 +123,7 @@
 <section class="relative min-h-[min(100svh,720px)] md:min-h-[620px] flex flex-col items-center justify-center px-4 sm:px-6 pt-16 pb-12 sm:pt-20 sm:pb-14 md:pt-24 md:pb-16 overflow-hidden hero-mesh" aria-labelledby="home-hero-heading">
 <div class="absolute inset-0 -z-10">
 <img class="w-full h-full object-cover" alt="" src="{{ asset('images/hero-home.svg') }}" width="1920" height="1080" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/35 to-surface"></div>
+<div class="absolute inset-0 bg-primary/65"></div>
 <div class="absolute -top-12 left-[10%] w-28 h-28 md:w-36 md:h-36 rounded-full bg-primary-fixed/40 blur-2xl float-orb"></div>
 <div class="absolute top-24 right-[8%] w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary-fixed/35 blur-2xl float-orb" style="animation-delay: 1.4s;"></div>
 </div>
