@@ -18,6 +18,11 @@ class StoreCarRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:160'],
             'brand' => ['nullable', 'string', 'max:80'],
+            'model' => ['nullable', 'string', 'max:120'],
+            'body_color' => ['nullable', 'string', 'max:120'],
+            'body_type' => ['nullable', 'string', 'max:80'],
+            'doors' => ['nullable', 'integer', 'between:1,9'],
+            'seats' => ['nullable', 'integer', 'between:1,20'],
             'slug' => ['nullable', 'string', 'max:190', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/', Rule::unique('cars', 'slug')],
             'year' => ['nullable', 'integer', 'between:1950,'.(int) date('Y') + 1],
             'location' => ['nullable', 'string', 'max:120'],
@@ -54,4 +59,3 @@ class StoreCarRequest extends FormRequest
         ];
     }
 }
-

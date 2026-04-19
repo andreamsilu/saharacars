@@ -24,7 +24,7 @@ class CarFactory extends Factory
             'Porsche',
             'Land Rover',
         ]);
-        $model = $this->faker->randomElement([
+        $modelName = $this->faker->randomElement([
             'Land Cruiser 300',
             'Patrol LE',
             'GLE 450',
@@ -34,10 +34,15 @@ class CarFactory extends Factory
             'Range Rover Sport',
         ]);
         $year = $this->faker->numberBetween(2017, (int) date('Y') + 1);
-        $title = $year.' '.$brand.' '.$model;
+        $title = $year.' '.$brand.' '.$modelName;
 
         return [
             'brand' => $brand,
+            'model' => $this->faker->optional(0.65)->regexify('[A-Z]{3}-[A-Z0-9]{4}'),
+            'body_color' => $this->faker->optional(0.7)->randomElement(['WHITE(P)', 'BLACK(M)', 'BLUE(D)', 'SILVER', 'RED']),
+            'body_type' => $this->faker->optional(0.75)->randomElement(['SUV', 'Sedan', 'Pickup', 'Coupe', 'Wagon']),
+            'doors' => $this->faker->optional(0.8)->numberBetween(2, 5),
+            'seats' => $this->faker->optional(0.8)->numberBetween(2, 8),
             'title' => $title,
             'slug' => Str::slug($title).'-'.$this->faker->unique()->numberBetween(1000, 9999),
             'year' => $year,

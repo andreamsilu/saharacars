@@ -12,6 +12,11 @@ class Car extends Model
     protected $fillable = [
         'title',
         'brand',
+        'model',
+        'body_color',
+        'body_type',
+        'doors',
+        'seats',
         'slug',
         'year',
         'location',
@@ -43,6 +48,8 @@ class Car extends Model
             'year' => 'integer',
             'mileage_km' => 'integer',
             'engine_capacity_cc' => 'integer',
+            'doors' => 'integer',
+            'seats' => 'integer',
             'price_tzs' => 'integer',
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
@@ -54,4 +61,3 @@ class Car extends Model
         ];
     }
 }
-

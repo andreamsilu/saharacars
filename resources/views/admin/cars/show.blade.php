@@ -41,7 +41,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
             <div><span class="text-on-surface-variant">Title:</span> <span class="font-semibold text-on-surface">{{ $car->title }}</span></div>
             <div><span class="text-on-surface-variant">Slug:</span> <span class="font-semibold text-on-surface">{{ $car->slug }}</span></div>
-            <div><span class="text-on-surface-variant">Brand:</span> <span class="font-semibold text-on-surface">{{ $car->brand ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Make (brand):</span> <span class="font-semibold text-on-surface">{{ $car->brand ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Model:</span> <span class="font-semibold text-on-surface">{{ $car->model ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Body color:</span> <span class="font-semibold text-on-surface">{{ $car->body_color ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Body type:</span> <span class="font-semibold text-on-surface">{{ $car->body_type ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Doors:</span> <span class="font-semibold text-on-surface">{{ $car->doors !== null ? $car->doors : '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Seats:</span> <span class="font-semibold text-on-surface">{{ $car->seats !== null ? $car->seats : '—' }}</span></div>
             <div><span class="text-on-surface-variant">Year:</span> <span class="font-semibold text-on-surface">{{ $car->year ?: '—' }}</span></div>
             <div><span class="text-on-surface-variant">Price (TZS):</span> <span class="font-semibold text-on-surface">{{ $car->price_tzs ? number_format($car->price_tzs) : '—' }}</span></div>
             <div><span class="text-on-surface-variant">Condition:</span> <span class="font-semibold text-on-surface">{{ $car->condition ?: '—' }}</span></div>

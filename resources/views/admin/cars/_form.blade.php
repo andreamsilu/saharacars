@@ -22,10 +22,41 @@
                     </div>
                 @endif
 
+                {{-- Vehicle details: shown on the public car page; Make maps to brand. --}}
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="brand">Brand</label>
-                    <input id="brand" name="brand" value="{{ old('brand', $car->brand ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Toyota" />
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="brand">Make (brand)</label>
+                    <input id="brand" name="brand" value="{{ old('brand', $car->brand ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="MAZDA" />
                     @error('brand')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="model">Model</label>
+                    <input id="model" name="model" value="{{ old('model', $car->model ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="DBA-KF5P" />
+                    @error('model')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="body_color">Body color</label>
+                    <input id="body_color" name="body_color" value="{{ old('body_color', $car->body_color ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="BLUE(D)" />
+                    @error('body_color')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="body_type">Body type</label>
+                    <input id="body_type" name="body_type" value="{{ old('body_type', $car->body_type ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="SUV" />
+                    @error('body_type')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="doors">Doors</label>
+                    <input id="doors" name="doors" type="number" min="1" max="9" value="{{ old('doors', $car->doors ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="5" />
+                    @error('doors')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="seats">Seats</label>
+                    <input id="seats" name="seats" type="number" min="1" max="20" value="{{ old('seats', $car->seats ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="5" />
+                    @error('seats')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
                 </div>
 
                 <div>

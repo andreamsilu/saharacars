@@ -20,6 +20,11 @@ class UpdateCarRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:160'],
             'brand' => ['nullable', 'string', 'max:80'],
+            'model' => ['nullable', 'string', 'max:120'],
+            'body_color' => ['nullable', 'string', 'max:120'],
+            'body_type' => ['nullable', 'string', 'max:80'],
+            'doors' => ['nullable', 'integer', 'between:1,9'],
+            'seats' => ['nullable', 'integer', 'between:1,20'],
             'slug' => [
                 'nullable',
                 'string',
@@ -69,4 +74,3 @@ class UpdateCarRequest extends FormRequest
         ];
     }
 }
-
