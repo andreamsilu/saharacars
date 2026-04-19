@@ -82,24 +82,34 @@
 <body class="bg-surface font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
 <x-skip-to-main />
 <x-navbar />
-<main id="main-content" tabindex="-1" class="outline-none max-w-3xl mx-auto px-4 sm:px-6 section-editorial-compact">
-<header class="mb-8">
+<main id="main-content" tabindex="-1" class="outline-none max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 section-editorial-compact">
+<header class="mb-8 md:mb-10 text-center lg:text-left">
 <p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-2">Your shortlist</p>
-<h1 class="font-headline text-[clamp(1.75rem,5vw,2.5rem)] font-black text-primary tracking-tight">Saved cars</h1>
-<p class="text-on-surface-variant mt-3 leading-relaxed">Listings you heart while browsing stay here on <strong>this device only</strong>. Clearing browser data removes them — optional accounts can come later.</p>
+<h1 class="font-headline text-[clamp(1.85rem,5vw,2.75rem)] font-black text-primary tracking-tight">Saved cars</h1>
+<p class="text-on-surface-variant mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0">Tap the heart on any listing to add it here. Everything stays on <strong>this device</strong> — no account — until you clear browser data.</p>
 </header>
-<div class="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-sm attention-panel">
-<h2 class="font-headline text-lg font-bold text-primary mb-4">Your picks</h2>
+<div class="bg-surface-container-lowest rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_16px_40px_rgba(25,28,30,0.06)] attention-panel border border-outline-variant/20">
+<div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 md:mb-8">
+<div>
+<h2 class="font-headline text-xl md:text-2xl font-bold text-primary tracking-tight">Your picks</h2>
+<p class="text-sm text-on-surface-variant mt-1">Open a car to see photos, price, and WhatsApp.</p>
+</div>
+<a class="inline-flex items-center justify-center gap-2 self-start sm:self-auto rounded-full bg-primary text-on-primary px-5 py-2.5 min-h-[44px] text-sm font-bold shadow-md shadow-primary/15 transition-[filter,transform] hover:brightness-110 focus-ring-on-dark" href="{{ route('cars.index') }}">
+<span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>
+                Browse inventory
+            </a>
+</div>
 <ul
     id="saved-cars-render-list"
-    class="list-none m-0 p-0"
+    class="list-none m-0 p-0 grid gap-3 sm:gap-4"
     data-cars-base-url="{{ rtrim(url('/cars'), '/') }}/"
+    data-browse-url="{{ route('cars.index') }}"
+    aria-live="polite"
+    aria-relevant="additions removals"
 ></ul>
-<p class="text-sm text-on-surface-variant mt-6">
-<a class="text-primary font-bold underline" href="{{ route('cars.index') }}">Browse inventory</a>
-            ·
-            <a class="text-primary font-bold underline" href="{{ route('contact') }}">Contact us</a>
-</p>
+<p class="text-sm text-on-surface-variant mt-8 pt-6 border-t border-outline-variant/40 text-center sm:text-left">
+            Need help choosing? <a class="text-primary font-bold underline underline-offset-2" href="{{ route('contact') }}">Contact us</a> or WhatsApp from any listing.
+        </p>
 </div>
 </main>
 <x-footer class="mt-16"/>
