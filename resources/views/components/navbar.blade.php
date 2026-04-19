@@ -1,3 +1,8 @@
+@php
+    $salesWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    $salesWaIntro = 'Hi Sahara Cars sales, I need help choosing a car.';
+    $salesWaHref = 'https://wa.me/' . $salesWaDigits . '?text=' . rawurlencode($salesWaIntro);
+@endphp
 <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-[20px] shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
     <style>
         :root {
@@ -50,9 +55,9 @@
                 />
             </form>
 
-            <a href="{{ route('contact') }}" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation focus-ring-on-dark focus-visible:outline-offset-2 [&_.material-symbols-outlined]:text-white">
+            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation focus-ring-on-dark focus-visible:outline-offset-2 [&_.material-symbols-outlined]:text-white">
                 <span class="material-symbols-outlined text-[18px] shrink-0 text-white" aria-hidden="true">support_agent</span>
-                <span class="whitespace-nowrap">Contact Sales</span>
+                <span class="whitespace-nowrap">WhatsApp Sales</span>
             </a>
 
             {{-- Mobile: open full navigation (primary links hidden on small screens) --}}
@@ -105,9 +110,9 @@
                     <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">Contact</a>
                 </li>
             </ul>
-            <a href="{{ route('contact') }}" class="flex md:hidden items-center justify-center gap-2 w-full cta-gradient text-white py-3.5 min-h-[48px] rounded-2xl text-sm font-bold shadow-md touch-manipulation focus-ring-on-dark transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-white">
+            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="flex md:hidden items-center justify-center gap-2 w-full cta-gradient text-white py-3.5 min-h-[48px] rounded-2xl text-sm font-bold shadow-md touch-manipulation focus-ring-on-dark transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-white">
                 <span class="material-symbols-outlined text-[20px] text-white" aria-hidden="true">support_agent</span>
-                Contact sales
+                WhatsApp sales
             </a>
         </div>
     </div>

@@ -118,6 +118,12 @@
 <x-skip-to-main />
 <!-- TopNavBar -->
 <x-navbar />
+@php
+    $salesDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    $salesTelHref = 'tel:+' . $salesDigits;
+    $salesWaMessage = 'Hi Sahara Cars sales, I am interested in buying a car. Please assist.';
+    $salesWaHref = 'https://wa.me/' . $salesDigits . '?text=' . rawurlencode($salesWaMessage);
+@endphp
 <main id="main-content" tabindex="-1" class="outline-none">
 <!-- Hero Section -->
 <section class="relative min-h-[min(100svh,720px)] md:min-h-[620px] flex flex-col items-center justify-center px-4 sm:px-6 pt-16 pb-12 sm:pt-20 sm:pb-14 md:pt-24 md:pb-16 overflow-hidden hero-mesh" aria-labelledby="home-hero-heading">
@@ -138,10 +144,13 @@
 <p class="text-white text-base sm:text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow px-1">
                 Premium and rugged vehicles chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
             </p>
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-md sm:max-w-none mx-auto">
-<a href="{{ route('cars.index') }}" class="cta-gradient text-white px-8 py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-primary/25 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4">Browse Verified Stock</a>
-<a href="{{ route('contact') }}" class="bg-white/25 backdrop-blur-md text-white px-8 py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/50 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4">Request a Quick Callback</a>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
+<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-7 py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Talk to Sales (WhatsApp)
+</a>
+<a href="{{ route('cars.index') }}" class="bg-white text-primary px-7 py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
 </div>
+<p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: message Sales first, then we guide you to the best matching units.</p>
 </div>
 </section>
 <section class="px-4 sm:px-6 -mt-6 md:-mt-8 relative z-20">
@@ -376,7 +385,9 @@ Next <span class="material-symbols-outlined text-[16px] text-white" aria-hidden=
 </div>
 <div class="mt-8 flex flex-col sm:flex-row gap-3">
 <a href="{{ route('cars.index') }}" class="cta-gradient text-white rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-center inline-flex items-center justify-center focus-ring-on-dark">Explore Inventory</a>
-<a href="{{ route('contact') }}" class="bg-surface-container-low rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-primary text-center ghost-border inline-flex items-center justify-center">Talk to Our Dar Team</a>
+<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-surface-container-low rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-primary text-center ghost-border inline-flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span> Talk to Sales
+</a>
 </div>
 </div>
 </div>
