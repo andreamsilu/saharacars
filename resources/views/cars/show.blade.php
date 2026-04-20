@@ -222,7 +222,7 @@
 </section>
 @php
     $detail = static fn ($v): string => ($v === null || $v === '') ? '—' : (string) $v;
-    $vehicleDetails = [
+    $carDetails = [
         ['label' => 'Make', 'value' => $car->brand],
         ['label' => 'Model', 'value' => $car->model],
         ['label' => 'Body color', 'value' => $car->body_color],
@@ -230,14 +230,14 @@
         ['label' => 'Doors', 'value' => $car->doors],
         ['label' => 'Seats', 'value' => $car->seats],
     ];
-    $hasVehicleDetails = collect($vehicleDetails)->contains(fn ($row) => $row['value'] !== null && $row['value'] !== '');
+    $hasCarDetails = collect($carDetails)->contains(fn ($row) => $row['value'] !== null && $row['value'] !== '');
 @endphp
-@if ($hasVehicleDetails)
-<section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel" aria-labelledby="vehicle-details-heading">
-<h2 id="vehicle-details-heading" class="font-headline text-2xl font-extrabold mb-2 tracking-tight text-primary">Car details</h2>
+@if ($hasCarDetails)
+<section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel" aria-labelledby="car-details-heading">
+<h2 id="car-details-heading" class="font-headline text-2xl font-extrabold mb-2 tracking-tight text-primary">Car details</h2>
 <p class="text-sm text-on-surface-variant mb-6">As provided by our listing team from import and inspection records.</p>
 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-@foreach ($vehicleDetails as $row)
+@foreach ($carDetails as $row)
 <div class="flex flex-col gap-1 border-b border-outline-variant/20 pb-3 sm:border-0 sm:pb-0">
 <dt class="font-label text-[10px] font-bold uppercase tracking-widest text-outline">{{ $row['label'] }}</dt>
 <dd class="font-headline text-lg font-bold text-on-surface">{{ $detail($row['value']) }}</dd>

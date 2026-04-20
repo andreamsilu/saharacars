@@ -186,11 +186,11 @@
     $valuePicks = $featuredCollection->sortBy('price_tzs')->take(3);
 @endphp
 <!-- Content: Featured Cars Section -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-inventory-heading">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
 <div class="space-y-2 min-w-0">
 <span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">Showroom Preview</span>
-<h2 id="home-inventory-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">Featured Cars</h2>
+<h2 id="home-featured-cars-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">Featured Cars</h2>
 </div>
 <a class="inline-flex sm:ml-auto items-center justify-center gap-2 text-primary font-bold underline decoration-primary/20 hover:decoration-primary transition-all py-2 min-h-[44px] touch-manipulation shrink-0 rounded-md" href="{{ route('cars.index') }}">
                 View All Inventory
