@@ -146,11 +146,11 @@
             </p>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
 <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Talk to Sales (WhatsApp)
+<span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Chat on WhatsApp
 </a>
 <a href="{{ route('cars.index') }}" class="bg-white text-primary px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
 </div>
-<p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: message Sales first, then we guide you to the best matching units.</p>
+<p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: start on WhatsApp, then we guide you to the best matching units.</p>
 </div>
 </section>
 <section class="px-4 sm:px-6 -mt-6 md:-mt-8 relative z-20">
@@ -386,7 +386,7 @@ Next <span class="material-symbols-outlined text-[16px] text-white" aria-hidden=
 <div class="mt-8 flex flex-col sm:flex-row gap-3">
 <a href="{{ route('cars.index') }}" class="cta-gradient text-white rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-center inline-flex items-center justify-center focus-ring-on-dark">Explore Inventory</a>
 <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-surface-container-low rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-primary text-center ghost-border inline-flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span> Talk to Sales
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span> Chat on WhatsApp
 </a>
 </div>
 </div>
