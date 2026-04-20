@@ -13,7 +13,7 @@ class Brand extends Model
     protected $fillable = [
         'name',
         'slug',
-        'logo_url',
+        'logo_path',
         'is_featured',
         'sort_order',
     ];

@@ -7,7 +7,9 @@ use App\Models\Brand;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\File;
 
 class AdminBrandController extends Controller
 {
@@ -26,7 +28,7 @@ class AdminBrandController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80', 'unique:brands,name'],
-            'logo_url' => ['required', 'url', 'max:500'],
+            'logo' => ['required', File::types(['jpg', 'jpeg', 'png', 'webp', 'avif'])->max(5120)],
             'is_featured' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
         ]);
@@ -34,6 +36,10 @@ class AdminBrandController extends Controller
         $data['slug'] = $this->uniqueSlug((string) $data['name']);
         $data['is_featured'] = (bool) ($data['is_featured'] ?? true);
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
+
+        $data['logo_path'] = $request->file('logo')->store('brands', 'public');
+        unset($data['logo']);
+        unset($data['logo_url']);
 
         Brand::query()->create($data);
 
@@ -44,10 +50,16 @@ class AdminBrandController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80', 'unique:brands,name,'.$brand->id],
-            'logo_url' => ['required', 'url', 'max:500'],
+            'logo' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'webp', 'avif'])->max(5120)],
             'is_featured' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
         ]);
+
+        if (! $brand->logo_path && ! $request->hasFile('logo')) {
+            return back()
+                ->withErrors(['logo' => 'Brand logo is required.'])
+                ->withInput();
+        }
 
         $nameChanged = trim((string) $brand->name) !== trim((string) $data['name']);
         $data['is_featured'] = (bool) ($data['is_featured'] ?? false);
@@ -58,6 +70,15 @@ class AdminBrandController extends Controller
             $brand->cars()->update(['brand' => $data['name']]);
         }
 
+        if ($request->hasFile('logo')) {
+            if ($brand->logo_path) {
+                Storage::disk('public')->delete($brand->logo_path);
+            }
+            $data['logo_path'] = $request->file('logo')->store('brands', 'public');
+        }
+        unset($data['logo']);
+        unset($data['logo_url']);
+
         $brand->update($data);
 
         return redirect()->route('admin.brands.index')->with('status', 'Brand updated.');
@@ -65,6 +86,10 @@ class AdminBrandController extends Controller
 
     public function destroy(Brand $brand): RedirectResponse
     {
+        if ($brand->logo_path) {
+            Storage::disk('public')->delete($brand->logo_path);
+        }
+
         $brand->delete();
 
         return redirect()->route('admin.brands.index')->with('status', 'Brand deleted.');

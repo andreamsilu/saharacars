@@ -22,16 +22,16 @@ class PageController extends Controller
 
         $homeBrands = Brand::query()
             ->where('is_featured', true)
-            ->whereNotNull('logo_url')
-            ->where('logo_url', '!=', '')
+            ->whereNotNull('logo_path')
+            ->where('logo_path', '!=', '')
             ->withCount(['cars as published_cars_count' => fn ($q) => $q->where('is_published', true)])
             ->having('published_cars_count', '>', 0)
             ->orderBy('sort_order')
             ->orderBy('name')
-            ->get(['name', 'logo_url'])
+            ->get(['name', 'logo_path'])
             ->map(fn (Brand $brand): array => [
                 'name' => $brand->name,
-                'logo' => (string) ($brand->logo_url ?? ''),
+                'logo' => asset('storage/'.$brand->logo_path),
             ])
             ->values()
             ->take(20)
