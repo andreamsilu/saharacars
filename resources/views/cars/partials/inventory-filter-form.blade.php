@@ -9,7 +9,7 @@
         <input type="hidden" name="q" value="{{ request('q') }}" />
     @endif
     <div>
-        <h3 class="font-headline font-bold text-lg mb-6 text-primary">Refine Selection</h3>
+        <h3 class="font-headline font-bold text-lg mb-6 text-primary">Filter Cars</h3>
         <div class="space-y-6">
             <div class="space-y-3">
                 <label for="filter-brand-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Brand</label>
@@ -27,20 +27,31 @@
                     <input id="filter-price-max-{{ $filterFormIdPrefix }}" name="price_max" value="{{ request('price_max') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="Max" type="number" inputmode="numeric" aria-label="Maximum price in TZS" />
                 </div>
             </div>
-            <div class="space-y-3">
-                @php
-                    $locationRequest = request()->input('location', '');
-                    $selectedLocation = is_array($locationRequest)
-                        ? trim((string) ($locationRequest[0] ?? ''))
-                        : trim((string) $locationRequest);
-                @endphp
-                <label for="filter-location-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Location</label>
-                <select id="filter-location-{{ $filterFormIdPrefix }}" name="location" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
-                    <option value="">All locations</option>
-                    @foreach ($locationOptions as $locationOption)
-                        <option value="{{ $locationOption }}" {{ $selectedLocation === $locationOption ? 'selected' : '' }}>{{ $locationOption }}</option>
-                    @endforeach
-                </select>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="space-y-3">
+                    @php
+                        $locationRequest = request()->input('location', '');
+                        $selectedLocation = is_array($locationRequest)
+                            ? trim((string) ($locationRequest[0] ?? ''))
+                            : trim((string) $locationRequest);
+                    @endphp
+                    <label for="filter-location-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Location</label>
+                    <select id="filter-location-{{ $filterFormIdPrefix }}" name="location" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                        <option value="">All locations</option>
+                        @foreach ($locationOptions as $locationOption)
+                            <option value="{{ $locationOption }}" {{ $selectedLocation === $locationOption ? 'selected' : '' }}>{{ $locationOption }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="space-y-3">
+                    <label for="filter-condition-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Condition</label>
+                    <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                        <option value="">Any condition</option>
+                        <option value="brand_new" {{ request('condition', request('category')) === 'brand_new' ? 'selected' : '' }}>Brand New</option>
+                        <option value="foreign_used" {{ request('condition', request('category')) === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
+                        <option value="local_used" {{ request('condition', request('category')) === 'local_used' ? 'selected' : '' }}>Locally Used</option>
+                    </select>
+                </div>
             </div>
             <div class="space-y-3">
                 <span id="filter-transmission-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">Transmission</span>
@@ -67,15 +78,6 @@
                     <option value="Diesel" {{ request('fuel') === 'Diesel' ? 'selected' : '' }}>Diesel</option>
                     <option value="Hybrid" {{ request('fuel') === 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                     <option value="Electric" {{ request('fuel') === 'Electric' ? 'selected' : '' }}>Electric</option>
-                </select>
-            </div>
-            <div class="space-y-3">
-                <label for="filter-condition-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Condition</label>
-                <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
-                    <option value="">Any condition</option>
-                    <option value="brand_new" {{ request('condition', request('category')) === 'brand_new' ? 'selected' : '' }}>Brand New</option>
-                    <option value="foreign_used" {{ request('condition', request('category')) === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
-                    <option value="local_used" {{ request('condition', request('category')) === 'local_used' ? 'selected' : '' }}>Locally Used</option>
                 </select>
             </div>
         </div>

@@ -19,3 +19,17 @@
     padding-bottom: 0;
   }
 }
+
+/*
+ * Shared subtle border utility used by inputs, selects, chips, and pills.
+ * Explicitly themed to avoid browser/Tailwind default blue focus styling.
+ */
+.ghost-border {
+  border: 1px solid rgba(195, 198, 209, 0.9);
+}
+
+:is(input, select, textarea).ghost-border:focus,
+:is(input, select, textarea).ghost-border:focus-visible {
+  border-color: rgba(138, 101, 40, 0.55);
+  box-shadow: 0 0 0 2px rgba(138, 101, 40, 0.14);
+}
