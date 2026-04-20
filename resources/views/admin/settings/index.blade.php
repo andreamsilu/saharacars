@@ -104,7 +104,6 @@
                 theme_secondary: '#0B6B3A',
                 theme_primary_container: '#5C4320',
             };
-
             resetBtn?.addEventListener('click', () => {
                 Object.entries(defaults).forEach(([id, value]) => {
                     const el = document.getElementById(id);

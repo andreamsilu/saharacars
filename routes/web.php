@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminSettingsController;
@@ -39,6 +40,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/cars/{car}/edit', [AdminCarController::class, 'edit'])->name('cars.edit');
         Route::put('/cars/{car}', [AdminCarController::class, 'update'])->name('cars.update');
         Route::delete('/cars/{car}', [AdminCarController::class, 'destroy'])->name('cars.destroy');
+
+        Route::get('/brands', [AdminBrandController::class, 'index'])->name('brands.index');
+        Route::post('/brands', [AdminBrandController::class, 'store'])->name('brands.store');
+        Route::put('/brands/{brand}', [AdminBrandController::class, 'update'])->name('brands.update');
+        Route::delete('/brands/{brand}', [AdminBrandController::class, 'destroy'])->name('brands.destroy');
 
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings.index');
         Route::put('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');

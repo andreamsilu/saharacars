@@ -130,6 +130,7 @@
                     $items = [
                         $link('admin.dashboard', 'admin.dashboard', 'Overview', 'dashboard'),
                         $link('admin.cars.index', 'admin.cars.*', 'Inventory', 'directions_car'),
+                        $link('admin.brands.index', 'admin.brands.*', 'Brands', 'branding_watermark'),
                         $link('admin.settings.index', 'admin.settings.*', 'Settings', 'settings'),
                     ];
                 @endphp

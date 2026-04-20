@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCarRequest;
 use App\Http\Requests\Admin\UpdateCarRequest;
+use App\Models\Brand;
 use App\Models\Car;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -106,7 +107,9 @@ class AdminCarController extends Controller
 
     public function create(): View
     {
-        return view('admin.cars.create');
+        $brands = Brand::query()->orderBy('name')->get(['id', 'name']);
+
+        return view('admin.cars.create', compact('brands'));
     }
 
     public function show(Car $car): View
@@ -122,6 +125,12 @@ class AdminCarController extends Controller
         $data['is_featured'] = (bool) ($data['is_featured'] ?? false);
         $data['is_published'] = (bool) ($data['is_published'] ?? false);
         $data['price_is_negotiable'] = (bool) ($data['price_is_negotiable'] ?? true);
+        if (! empty($data['brand_id'])) {
+            $brandName = Brand::query()->whereKey($data['brand_id'])->value('name');
+            $data['brand'] = is_string($brandName) ? $brandName : ($data['brand'] ?? null);
+        } elseif (array_key_exists('brand_id', $data)) {
+            $data['brand_id'] = null;
+        }
 
         if ($request->hasFile('hero_image')) {
             $data['hero_image_path'] = $request->file('hero_image')->store('cars', 'public');
@@ -144,7 +153,9 @@ class AdminCarController extends Controller
 
     public function edit(Car $car): View
     {
-        return view('admin.cars.edit', compact('car'));
+        $brands = Brand::query()->orderBy('name')->get(['id', 'name']);
+
+        return view('admin.cars.edit', compact('car', 'brands'));
     }
 
     public function update(UpdateCarRequest $request, Car $car): RedirectResponse
@@ -155,6 +166,12 @@ class AdminCarController extends Controller
         $data['is_featured'] = (bool) ($data['is_featured'] ?? false);
         $data['is_published'] = (bool) ($data['is_published'] ?? false);
         $data['price_is_negotiable'] = (bool) ($data['price_is_negotiable'] ?? true);
+        if (! empty($data['brand_id'])) {
+            $brandName = Brand::query()->whereKey($data['brand_id'])->value('name');
+            $data['brand'] = is_string($brandName) ? $brandName : ($data['brand'] ?? null);
+        } elseif (array_key_exists('brand_id', $data)) {
+            $data['brand_id'] = null;
+        }
 
         if (($data['remove_hero_image'] ?? false) && $car->hero_image_path) {
             Storage::disk('public')->delete($car->hero_image_path);

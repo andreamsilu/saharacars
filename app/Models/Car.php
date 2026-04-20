@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Car extends Model
 {
@@ -12,6 +13,7 @@ class Car extends Model
     protected $fillable = [
         'title',
         'brand',
+        'brand_id',
         'model',
         'body_color',
         'body_type',
@@ -47,6 +49,7 @@ class Car extends Model
     {
         return [
             'year' => 'integer',
+            'brand_id' => 'integer',
             'mileage_km' => 'integer',
             'engine_capacity_cc' => 'integer',
             'doors' => 'integer',
@@ -61,5 +64,10 @@ class Car extends Model
             'interior_image_paths' => 'array',
             'gallery_image_paths' => 'array',
         ];
+    }
+
+    public function brandEntity(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 }

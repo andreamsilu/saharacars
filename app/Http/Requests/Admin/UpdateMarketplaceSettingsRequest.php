@@ -27,7 +27,7 @@ class UpdateMarketplaceSettingsRequest extends FormRequest
     }
 
     /**
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function marketplacePayload(): array
     {

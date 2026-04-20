@@ -179,6 +179,32 @@
 </div>
 </div>
 </section>
+@if (!empty($homeBrands ?? []))
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
+<div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+<h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">Most searched brands</h2>
+<p class="text-xs sm:text-sm text-on-surface-variant">Tap a brand to view matching cars</p>
+</div>
+<div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+@foreach (($homeBrands ?? []) as $brand)
+<a
+href="{{ route('cars.index', ['brand' => $brand['name']]) }}"
+class="group rounded-2xl bg-surface-container-low px-3 py-3 ghost-border hover:bg-surface-container-high transition-colors flex flex-col items-center justify-center text-center min-h-[92px]"
+aria-label="View {{ $brand['name'] }} cars"
+>
+@if (!empty($brand['logo']))
+<img src="{{ $brand['logo'] }}" alt="{{ $brand['name'] }} logo" class="h-8 w-auto object-contain mb-2" loading="lazy" decoding="async" />
+@endif
+<span class="text-[11px] font-label font-semibold uppercase tracking-wide text-on-surface-variant group-hover:text-primary">
+{{ $brand['name'] }}
+</span>
+</a>
+@endforeach
+</div>
+</div>
+</section>
+@endif
 @php
     $featuredCollection = collect($featuredCars ?? []);
     $newArrivals = $featuredCollection->take(3);

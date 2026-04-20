@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Brand;
 use Illuminate\Contracts\View\View;
 
 class PageController extends Controller
@@ -18,6 +19,33 @@ class PageController extends Controller
             ->orderBy('brand')
             ->limit(30)
             ->pluck('brand');
+
+        $homeBrands = Brand::query()
+            ->where('is_featured', true)
+            ->withCount(['cars as published_cars_count' => fn ($q) => $q->where('is_published', true)])
+            ->having('published_cars_count', '>', 0)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get(['name', 'logo_url'])
+            ->map(fn (Brand $brand): array => [
+                'name' => $brand->name,
+                'logo' => (string) ($brand->logo_url ?? ''),
+            ])
+            ->values()
+            ->take(20)
+            ->all();
+
+        if ($homeBrands === []) {
+            $homeBrands = $brandOptions
+                ->take(12)
+                ->map(fn ($brand): array => [
+                    'name' => trim((string) $brand),
+                    'logo' => '',
+                ])
+                ->filter(fn (array $brand): bool => $brand['name'] !== '')
+                ->values()
+                ->all();
+        }
 
         $locationOptions = Car::query()
             ->where('is_published', true)
@@ -35,7 +63,7 @@ class PageController extends Controller
             ->limit(6)
             ->get();
 
-        return view('pages.home', compact('featuredCars', 'brandOptions', 'locationOptions'));
+        return view('pages.home', compact('featuredCars', 'brandOptions', 'locationOptions', 'homeBrands'));
     }
 
     /**
@@ -58,4 +86,5 @@ class PageController extends Controller
     {
         return view('pages.saved');
     }
+
 }

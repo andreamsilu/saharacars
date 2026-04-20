@@ -22,11 +22,18 @@
                     </div>
                 @endif
 
-                {{-- Vehicle details: shown on the public car page; Make maps to brand. --}}
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="brand">Make (brand)</label>
-                    <input id="brand" name="brand" value="{{ old('brand', $car->brand ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="MAZDA" />
-                    @error('brand')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="brand_id">Brand</label>
+                    <select id="brand_id" name="brand_id" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                        <option value="">Select brand</option>
+                        @foreach (($brands ?? collect()) as $brandOption)
+                            <option value="{{ $brandOption->id }}" {{ (string) old('brand_id', $car->brand_id ?? '') === (string) $brandOption->id ? 'selected' : '' }}>
+                                {{ $brandOption->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <p class="mt-2 text-xs text-on-surface-variant">Manage brands from Admin -> Brands.</p>
+                    @error('brand_id')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
