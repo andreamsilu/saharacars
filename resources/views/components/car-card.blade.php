@@ -50,14 +50,14 @@
                     {{ $makeModel }}
                 </p>
             @endif
-            <div class="mt-3 border-t border-outline-variant/25 pt-3">
-                <div class="flex items-center text-on-surface-variant text-sm sm:text-base font-medium">
-                    <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
+            <div class="mt-3 border-t border-outline-variant/25 pt-3 flex items-center justify-between gap-2">
+                <div class="flex items-center text-on-surface-variant text-sm sm:text-base font-medium min-w-0">
+                    <span class="material-symbols-outlined text-sm mr-1 shrink-0" aria-hidden="true">location_on</span>
                     <span class="truncate">{{ $car->location ?: 'Tanzania' }}</span>
                 </div>
                 @if ($conditionText)
-                    <div class="mt-1 text-xs font-label font-semibold uppercase tracking-wide text-on-surface-variant">
-                        Condition: {{ $conditionText }}
+                    <div class="text-[11px] font-label font-semibold uppercase tracking-wide text-on-surface-variant shrink-0 whitespace-nowrap">
+                        {{ $conditionText }}
                     </div>
                 @endif
             </div>
