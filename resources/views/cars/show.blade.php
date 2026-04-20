@@ -88,10 +88,10 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 <!-- Breadcrumbs -->
-<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6" aria-label="Breadcrumb">
+<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6 min-w-0" aria-label="Breadcrumb">
 <a class="hover:text-primary transition-colors rounded-sm focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('cars.index') }}">Inventory</a>
 <span class="material-symbols-outlined text-[12px]" aria-hidden="true">chevron_right</span>
-<span class="text-on-surface font-bold">{{ $car->title }}</span>
+<span class="text-on-surface font-bold truncate">{{ $car->title }}</span>
 </nav>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 <!-- Left Column: Gallery & Details -->
@@ -233,7 +233,7 @@
     $hasVehicleDetails = collect($vehicleDetails)->contains(fn ($row) => $row['value'] !== null && $row['value'] !== '');
 @endphp
 @if ($hasVehicleDetails)
-<section class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel" aria-labelledby="vehicle-details-heading">
+<section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel" aria-labelledby="vehicle-details-heading">
 <h2 id="vehicle-details-heading" class="font-headline text-2xl font-extrabold mb-2 tracking-tight text-primary">Vehicle details</h2>
 <p class="text-sm text-on-surface-variant mb-6">As provided by our listing team from import and inspection records.</p>
 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
@@ -247,7 +247,7 @@
 </section>
 @endif
 <!-- Vehicle Description -->
-<section class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
+<section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
 <h2 class="font-headline text-2xl font-extrabold mb-6 tracking-tight">Vehicle Description</h2>
 <div class="space-y-4 text-on-surface-variant leading-relaxed font-body">
 @if (!empty($car->description))
@@ -298,7 +298,7 @@
 <div class="lg:col-span-4">
 <div class="sticky top-24 space-y-6">
 <!-- Pricing Card -->
-<div class="bg-white p-8 rounded-2xl shadow-[0_20px_40px_rgba(92,67,32,0.08)] attention-panel">
+<div class="bg-white p-5 sm:p-6 md:p-8 rounded-2xl shadow-[0_20px_40px_rgba(92,67,32,0.08)] attention-panel">
 <div class="flex justify-between items-start mb-4">
 <div>
 <h1 class="font-headline text-3xl font-black text-primary tracking-tight">
@@ -351,7 +351,7 @@
 </div>
 <!-- Related Vehicles Section -->
 <section class="mt-20">
-<div class="flex justify-between items-end mb-8">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
 <div>
 <h3 class="font-headline text-2xl font-black text-primary tracking-tight">Similar Premium SUVs</h3>
 <p class="text-on-surface-variant">Recommended for you based on this unit</p>

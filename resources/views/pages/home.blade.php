@@ -145,10 +145,10 @@
                 Premium and rugged vehicles chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
             </p>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
-<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-7 py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
+<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Talk to Sales (WhatsApp)
 </a>
-<a href="{{ route('cars.index') }}" class="bg-white text-primary px-7 py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
+<a href="{{ route('cars.index') }}" class="bg-white text-primary px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
 </div>
 <p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: message Sales first, then we guide you to the best matching units.</p>
 </div>
@@ -202,7 +202,7 @@
 <button type="button" role="tab" id="home-tab-editor-picks" class="home-tab bg-surface-container-low text-on-surface px-4 py-2 rounded-full text-xs font-bold ghost-border min-h-[44px]" data-target="editor-picks" aria-selected="false" aria-controls="home-panel-editor-picks">Editor Picks</button>
 <button type="button" role="tab" id="home-tab-value-picks" class="home-tab bg-surface-container-low text-on-surface px-4 py-2 rounded-full text-xs font-bold ghost-border min-h-[44px]" data-target="value-picks" aria-selected="false" aria-controls="home-panel-value-picks">Value Picks</button>
 </div>
-<div id="home-panel-new-arrivals" role="tabpanel" aria-labelledby="home-tab-new-arrivals" class="home-tab-panel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-panel="new-arrivals">
+<div id="home-panel-new-arrivals" role="tabpanel" aria-labelledby="home-tab-new-arrivals" class="home-tab-panel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" data-panel="new-arrivals">
 @forelse ($newArrivals as $car)
     <x-car-card :car="$car" />
 @empty
@@ -212,7 +212,7 @@
     </div>
 @endforelse
 </div>
-<div id="home-panel-editor-picks" role="tabpanel" aria-labelledby="home-tab-editor-picks" class="home-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-panel="editor-picks">
+<div id="home-panel-editor-picks" role="tabpanel" aria-labelledby="home-tab-editor-picks" class="home-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" data-panel="editor-picks">
 @forelse ($editorPicks as $car)
     <x-car-card :car="$car" />
 @empty
@@ -222,7 +222,7 @@
     </div>
 @endforelse
 </div>
-<div id="home-panel-value-picks" role="tabpanel" aria-labelledby="home-tab-value-picks" class="home-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-panel="value-picks">
+<div id="home-panel-value-picks" role="tabpanel" aria-labelledby="home-tab-value-picks" class="home-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" data-panel="value-picks">
 @forelse ($valuePicks as $car)
     <x-car-card :car="$car" />
 @empty
@@ -233,7 +233,7 @@
 @endforelse
 </div>
 </section>
-<section class="section-editorial px-6 section-wash">
+<section class="section-editorial px-4 sm:px-6 section-wash">
 <div class="max-w-7xl mx-auto">
 <div class="max-w-3xl flex flex-col sm:flex-row items-start gap-4">
 <div class="h-14 w-14 rounded-2xl bg-primary-container text-white flex items-center justify-center shadow-lg shadow-primary/20">
@@ -241,7 +241,7 @@
 </div>
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Buyer Journey</p>
-<h3 class="font-headline text-4xl font-extrabold text-primary mt-2">How Buying Works</h3>
+<h3 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary mt-2">How Buying Works</h3>
 <p class="text-on-surface-variant mt-3">A clear 3-step path from browsing to handover—built for buyers who want straight answers, fair paperwork, and support right here in Tanzania.</p>
 </div>
 </div>
@@ -313,7 +313,7 @@ Next <span class="material-symbols-outlined text-[16px] text-white" aria-hidden=
     title="Trusted Companies in Our Network"
     subtitle="Working with banking, insurance, logistics, and compliance partners so your purchase stays transparent and on track from quote to keys in Tanzania."
 />
-<section class="section-editorial px-6 section-wash-soft">
+<section class="section-editorial px-4 sm:px-6 section-wash-soft">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 <div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">

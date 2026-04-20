@@ -95,7 +95,7 @@
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 <!-- Contact Form Card -->
-<section class="md:col-span-7 bg-surface-container-lowest rounded-xl p-8 shadow-sm attention-panel">
+<section class="md:col-span-7 bg-surface-container-lowest rounded-xl p-5 sm:p-6 md:p-8 shadow-sm attention-panel">
 <h2 class="font-headline text-2xl font-bold text-primary mb-8">Send a Message</h2>
 @if (session('status'))
 <div class="mb-6 rounded-xl bg-green-500/10 p-4 text-sm text-green-900 ghost-border">
@@ -144,7 +144,7 @@
 <!-- Location & Hours Side Cards -->
 <div class="md:col-span-5 space-y-6">
 <!-- Quick Contact Card -->
-<div class="bg-primary text-on-primary rounded-xl p-8 relative overflow-hidden group attention-panel">
+<div class="bg-primary text-on-primary rounded-xl p-5 sm:p-6 md:p-8 relative overflow-hidden group attention-panel">
 <div class="relative z-10">
 <h3 class="font-headline text-xl font-bold mb-6">Immediate Support</h3>
 <div class="space-y-6">
@@ -176,7 +176,7 @@
 </div>
 </div>
 <!-- Office Hours Card -->
-<div class="bg-surface-container-low rounded-xl p-8 attention-panel">
+<div class="bg-surface-container-low rounded-xl p-5 sm:p-6 md:p-8 attention-panel">
 <h3 class="font-headline text-xl font-bold text-primary mb-6">Showroom Hours</h3>
 <div class="space-y-4">
 <div class="flex justify-between items-center py-2">
@@ -199,7 +199,7 @@
 <section class="mt-20 md:mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 <div class="lg:col-span-4">
 <div class="inline-block px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-full font-label text-[10px] uppercase font-bold tracking-widest mb-6">Primary Showroom</div>
-<h2 class="font-headline text-4xl font-extrabold text-primary mb-6">Dar es Salaam Sales Center</h2>
+<h2 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary mb-6">Dar es Salaam Sales Center</h2>
 <p class="text-on-surface-variant mb-8 text-lg leading-relaxed">All sales support is handled from our single Dar es Salaam center. Visit us for test drives, inquiries, and listing support.</p>
 <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary text-3xl">location_on</span>
@@ -210,7 +210,7 @@
 </div>
 </div>
 </div>
-<div class="lg:col-span-8 h-[500px] rounded-3xl overflow-hidden shadow-2xl relative group">
+<div class="lg:col-span-8 h-[320px] sm:h-[420px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl relative group">
 <div class="absolute inset-0 bg-slate-200">
 <img class="w-full h-full object-cover filter grayscale opacity-50" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKYzZAK-IBPjQzuXvjJzKuS_JJp5ykWbJnY2R04K1oTm-y6Lq1_yovkgUG3xBXCTVUbkqtJwmKwIzD6N9MxxddOcCLJLub74lb7NuLomwhDOF5DGo5g9L2CsFFTIbY0xLvWvkj0B4MxD1r7jqgZ2ku28jJ6E0wV_-REwbKAgKNuPzUk-kKfVKaSIuLlYLuLMnZEgWjVJ8M0GtpjciYvaTKZv1jUmRfQ2EnC_HShtEpupQgjIGX49Wf7mfuKAoJFJzpyf3FanV03pM"/>
 </div>

@@ -15,7 +15,7 @@
 @endphp
 
 <div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
-    <div class="relative h-72 overflow-hidden">
+    <div class="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="{{ $car->title }}" src="{{ $img }}"/>
         <button
             type="button"
@@ -28,30 +28,30 @@
         >
             <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
         </button>
-        <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+        <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-1.5 sm:gap-2 max-w-[calc(100%-5.5rem)]">
             @if ($car->is_featured)
-                <span class="bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
+                <span class="bg-secondary-container text-on-secondary-container px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
                     <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">local_fire_department</span> Featured
                 </span>
             @endif
-            <span class="bg-white/90 backdrop-blur-md text-primary px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
+            <span class="bg-white/90 backdrop-blur-md text-primary px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
                 <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span> Verified
             </span>
         </div>
     </div>
 
-    <div class="p-6 flex-1 flex flex-col">
+    <div class="p-5 sm:p-6 flex-1 flex flex-col">
         <div class="mb-4">
-            <h3 class="font-headline font-bold text-xl text-primary leading-snug tracking-tight line-clamp-2 min-h-[3.1rem]">
+            <h3 class="font-headline font-bold text-lg sm:text-xl text-primary leading-snug tracking-tight line-clamp-2 min-h-[2.8rem] sm:min-h-[3.1rem]">
                 {{ $car->title }}
             </h3>
             @if ($makeModel !== '')
-                <p class="mt-1 text-sm font-label font-semibold uppercase tracking-wide text-on-surface-variant line-clamp-1">
+                <p class="mt-1 text-xs sm:text-sm font-label font-semibold uppercase tracking-wide text-on-surface-variant line-clamp-1">
                     {{ $makeModel }}
                 </p>
             @endif
             <div class="mt-3 border-t border-outline-variant/25 pt-3">
-                <div class="flex items-center text-on-surface-variant text-base font-medium">
+                <div class="flex items-center text-on-surface-variant text-sm sm:text-base font-medium">
                     <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
                     <span class="truncate">{{ $car->location ?: 'Tanzania' }}</span>
                 </div>
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-3 mb-6">
+        <div class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-6">
             <div class="bg-surface-container-low px-3 py-2.5 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">speed</span>
                 <span class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide tabular-nums">

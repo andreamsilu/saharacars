@@ -96,14 +96,14 @@
 <h1 class="text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-headline font-extrabold text-white tracking-tighter leading-[1.1] mb-6">
                         Trusted by serious buyers and business fleets across <span class="text-secondary-fixed">Tanzania.</span>
 </h1>
-<p class="text-lg text-white/90 font-body leading-relaxed mb-8 max-w-xl">
+<p class="text-base sm:text-lg text-white/90 font-body leading-relaxed mb-8 max-w-xl">
                         Sahara Cars combines business-grade listing control, transparent pricing in TZS, and advisor-led support from Dar es Salaam so every purchase decision is faster, safer, and easier to defend.
                     </p>
 </div>
 </div>
 </section>
 <!-- Quick trust stats -->
-<section class="px-6 -mt-10 relative z-20">
+<section class="px-4 sm:px-6 -mt-10 relative z-20">
 <div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-3xl p-4 sm:p-6 shadow-[0_18px_38px_rgba(92,67,32,0.14)] border border-outline-variant/30">
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
 <div class="rounded-2xl bg-surface-container-low p-4">
@@ -130,7 +130,7 @@
 </div>
 </section>
 <!-- Six reasons: decision-critical value props -->
-<section class="section-editorial px-6 bg-surface-container-low py-16 md:py-20" aria-labelledby="why-six-reasons-heading">
+<section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20" aria-labelledby="why-six-reasons-heading">
 <div class="max-w-7xl mx-auto">
 <p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">What you actually get</p>
 <h2 id="why-six-reasons-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Attractive reasons businesses and families choose Sahara</h2>
@@ -170,7 +170,7 @@
 </div>
 </section>
 <!-- Critical info block -->
-<section class="section-editorial px-6 bg-surface py-16 md:py-20 border-y border-outline-variant/30" aria-labelledby="critical-info-heading">
+<section class="section-editorial px-4 sm:px-6 bg-surface py-16 md:py-20 border-y border-outline-variant/30" aria-labelledby="critical-info-heading">
 <div class="max-w-7xl mx-auto">
 <div class="max-w-3xl">
 <p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Critical information</p>
@@ -217,13 +217,13 @@ Start with Sales Team
 </div>
 </section>
 <!-- Our story: asymmetric bento (trust narrative) -->
-<section class="section-editorial px-6 bg-surface-container-low py-16 md:py-20">
+<section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
 <div class="md:col-span-5 space-y-8">
 <div>
 <h2 class="text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4 font-label">Our journey</h2>
-<h3 class="text-4xl font-headline font-extrabold text-on-surface tracking-tight mb-6">Local roots, national ambition.</h3>
+<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-surface tracking-tight mb-6">Local roots, national ambition.</h3>
 <p class="text-on-surface-variant leading-relaxed">
                                 Sahara Cars started from a simple frustration: too many automotive listings in Tanzania asked buyers to “trust the process” without showing the process. We set out to build a sales-led platform where transparency is the default—curated inventory, accountable publishing, and a team you can reach when it matters.
                             </p>
@@ -246,7 +246,7 @@ Start with Sales Team
 </div>
 </section>
 <!-- Buying journey -->
-<section class="section-editorial px-6 bg-surface attention-mesh py-16 md:py-20" aria-labelledby="why-journey-heading">
+<section class="section-editorial px-4 sm:px-6 bg-surface attention-mesh py-16 md:py-20" aria-labelledby="why-journey-heading">
 <div class="max-w-7xl mx-auto">
 <h2 id="why-journey-heading" class="text-center text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4 font-label">Your buying journey</h2>
 <p class="text-center text-2xl md:text-3xl font-headline font-extrabold text-on-surface tracking-tight mb-12 max-w-3xl mx-auto">From first scroll to keys in hand—designed to be predictable.</p>
@@ -289,7 +289,7 @@ Start with Sales Team
     }
 @endphp
 <!-- Owner welcome video -->
-<section class="section-editorial px-6 bg-surface border-y border-outline-variant/30" aria-labelledby="why-choose-owner-video-heading">
+<section class="section-editorial px-4 sm:px-6 bg-surface border-y border-outline-variant/30" aria-labelledby="why-choose-owner-video-heading">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 <div class="lg:col-span-5">
@@ -333,7 +333,7 @@ Start with Sales Team
 </div>
 </section>
 <!-- Brand values (merged from former About page) -->
-<section class="section-editorial px-6 bg-surface attention-mesh py-16 md:py-20" aria-labelledby="sahara-values-heading">
+<section class="section-editorial px-4 sm:px-6 bg-surface attention-mesh py-16 md:py-20" aria-labelledby="sahara-values-heading">
 <div class="max-w-7xl mx-auto text-center mb-14">
 <p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">The Sahara way</p>
 <h2 id="sahara-values-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">What defines our standard</h2>
@@ -368,14 +368,14 @@ Start with Sales Team
     subtitle="Our ecosystem includes trusted institutions supporting finance, verification, transport, and post-sale confidence."
 />
 <!-- Verification Process: Editorial Layout -->
-<section class="section-editorial px-6 bg-primary text-white overflow-hidden relative">
+<section class="section-editorial px-4 sm:px-6 bg-primary text-white overflow-hidden relative">
 <div class="absolute right-0 top-0 w-1/2 h-full opacity-20 hidden lg:block">
 <img class="w-full h-full object-cover" alt="Professional mechanic inspecting a modern luxury engine with high-tech diagnostic equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUzqmb7H2OOJ7YBEcHZjwhaSBvJ61So5O52b0AqsBEJL9-_qYVFwckQ56iLPBnLmRjgZVoqCPJ2mPCQNSYpzwRhBiW-dhb9NlyVYDgQFpwyH_umLqlUceoCDKtGg7rktA_OCrMUbH0WI4jYi6m3pMUMdwVZaPendoIouloqM7hMe_Xf3630UW_YpB9ubx4GA8hFl4ivIUrM80fG2z2TlZNrvopaCBLspcyy9rlZu9kLoa-AjdsGTCT34TtCVpmsvn-Iw9pyxuQJIY"/>
 </div>
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="max-w-xl">
 <h2 class="text-secondary-fixed text-sm font-bold tracking-[0.2em] uppercase mb-4 font-label">Listing Verification</h2>
-<h3 class="text-4xl font-headline font-extrabold mb-8">Not Just Anyone Can List on Sahara.</h3>
+<h3 class="text-3xl sm:text-4xl font-headline font-extrabold mb-8">Not Just Anyone Can List on Sahara.</h3>
 <div class="space-y-8">
 <div class="flex gap-6">
 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/15 glass-effect flex items-center justify-center font-headline font-bold">01</div>
@@ -403,18 +403,18 @@ Start with Sales Team
 </div>
 </section>
 <!-- Call to Action -->
-<section class="section-editorial px-6 text-center">
-<div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-3xl p-12 shadow-xl relative overflow-hidden attention-panel">
+<section class="section-editorial px-4 sm:px-6 text-center">
+<div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl relative overflow-hidden attention-panel">
 <div class="absolute top-0 right-0 p-4 opacity-5">
 <span class="material-symbols-outlined text-9xl">directions_car</span>
 </div>
-<h3 class="text-4xl font-headline font-extrabold text-primary mb-6">Ready to find your perfect drive?</h3>
-<p class="text-on-surface-variant mb-10 text-lg max-w-2xl mx-auto">Explore Tanzania's most exclusive collection of verified vehicles, from rugged 4x4s to luxury urban cruisers.</p>
+<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary mb-6">Ready to find your perfect drive?</h3>
+<p class="text-on-surface-variant mb-8 sm:mb-10 text-base sm:text-lg max-w-2xl mx-auto">Explore Tanzania's most exclusive collection of verified vehicles, from rugged 4x4s to luxury urban cruisers.</p>
 <div class="flex flex-col sm:flex-row justify-center gap-4">
-<a class="cta-gradient text-white px-10 py-4 min-h-[52px] rounded-full font-headline font-extrabold text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95 inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.index') }}">
+<a class="cta-gradient text-white px-6 sm:px-10 py-3 sm:py-4 min-h-[48px] sm:min-h-[52px] rounded-full font-headline font-extrabold text-base sm:text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95 inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.index') }}">
                         Browse Our Inventory
                     </a>
-<a class="bg-secondary text-white px-10 py-4 min-h-[52px] rounded-full font-headline font-extrabold text-lg flex items-center justify-center gap-2 shadow-lg transition-[filter,transform] hover:brightness-110 hover:shadow-secondary/20 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ route('contact') }}">
+<a class="bg-secondary text-white px-6 sm:px-10 py-3 sm:py-4 min-h-[48px] sm:min-h-[52px] rounded-full font-headline font-extrabold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg transition-[filter,transform] hover:brightness-110 hover:shadow-secondary/20 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ route('contact') }}">
 <span class="material-symbols-outlined text-white" aria-hidden="true">chat</span>
                         Speak to Sales Team
                     </a>

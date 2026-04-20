@@ -96,7 +96,7 @@
     </div>
 </details>
 <aside class="hidden lg:block w-72 flex-shrink-0">
-    <div class="sticky top-24 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel">
+    <div class="sticky top-24 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain">
         @include('cars.partials.inventory-filter-form', ['action' => route('cars.bento'), 'filterFormIdPrefix' => 'bento-sidebar'])
     </div>
 </aside>
@@ -121,7 +121,7 @@ Found {{ $cars->total() }} curated vehicle{{ $cars->total() === 1 ? '' : 's' }}
         <input type="hidden" name="{{ $param }}" value="{{ $value }}" />
     @endif
 @endforeach
-<select name="sort" onchange="this.form.submit()" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/20 ghost-border">
+<select name="sort" onchange="this.form.submit()" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/20 ghost-border min-h-[44px]">
     @php $activeSort = request('sort', 'newest'); @endphp
     <option value="newest" {{ $activeSort === 'newest' ? 'selected' : '' }}>Newest</option>
     <option value="price_low_high" {{ $activeSort === 'price_low_high' ? 'selected' : '' }}>Price: Low to High</option>
@@ -162,7 +162,7 @@ Search premium inventory
 <p class="mt-2 text-xs text-on-surface-variant">Auto-search runs while typing.</p>
 </form>
 <!-- Bento/Grid Car Cards -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
 @forelse ($cars as $car)
 <x-car-card :car="$car" />
 @empty

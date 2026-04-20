@@ -28,21 +28,19 @@
                 </div>
             </div>
             <div class="space-y-3">
-                <span id="filter-location-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">Location</span>
-                <div class="space-y-2" role="group" aria-labelledby="filter-location-label-{{ $filterFormIdPrefix }}">
-                    @php
-                        $selectedLocations = request()->input('location', []);
-                        if (! is_array($selectedLocations)) {
-                            $selectedLocations = $selectedLocations !== '' ? [$selectedLocations] : [];
-                        }
-                    @endphp
+                @php
+                    $locationRequest = request()->input('location', '');
+                    $selectedLocation = is_array($locationRequest)
+                        ? trim((string) ($locationRequest[0] ?? ''))
+                        : trim((string) $locationRequest);
+                @endphp
+                <label for="filter-location-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Location</label>
+                <select id="filter-location-{{ $filterFormIdPrefix }}" name="location" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                    <option value="">All locations</option>
                     @foreach ($locationOptions as $locationOption)
-                        <label class="flex items-center space-x-3 cursor-pointer group min-h-[44px]">
-                            <input name="location[]" value="{{ $locationOption }}" {{ in_array($locationOption, $selectedLocations, true) ? 'checked' : '' }} data-filter-auto-submit-trigger class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
-                            <span class="text-sm font-medium group-hover:text-primary transition-colors">{{ $locationOption }}</span>
-                        </label>
+                        <option value="{{ $locationOption }}" {{ $selectedLocation === $locationOption ? 'selected' : '' }}>{{ $locationOption }}</option>
                     @endforeach
-                </div>
+                </select>
             </div>
             <div class="space-y-3">
                 <span id="filter-transmission-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">Transmission</span>
