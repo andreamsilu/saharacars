@@ -26,7 +26,7 @@ class AdminBrandController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80', 'unique:brands,name'],
-            'logo_url' => ['nullable', 'url', 'max:500'],
+            'logo_url' => ['required', 'url', 'max:500'],
             'is_featured' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
         ]);
@@ -44,7 +44,7 @@ class AdminBrandController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:80', 'unique:brands,name,'.$brand->id],
-            'logo_url' => ['nullable', 'url', 'max:500'],
+            'logo_url' => ['required', 'url', 'max:500'],
             'is_featured' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
         ]);

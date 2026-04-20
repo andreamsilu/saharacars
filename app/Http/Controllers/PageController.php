@@ -22,6 +22,8 @@ class PageController extends Controller
 
         $homeBrands = Brand::query()
             ->where('is_featured', true)
+            ->whereNotNull('logo_url')
+            ->where('logo_url', '!=', '')
             ->withCount(['cars as published_cars_count' => fn ($q) => $q->where('is_published', true)])
             ->having('published_cars_count', '>', 0)
             ->orderBy('sort_order')
@@ -34,18 +36,6 @@ class PageController extends Controller
             ->values()
             ->take(20)
             ->all();
-
-        if ($homeBrands === []) {
-            $homeBrands = $brandOptions
-                ->take(12)
-                ->map(fn ($brand): array => [
-                    'name' => trim((string) $brand),
-                    'logo' => '',
-                ])
-                ->filter(fn (array $brand): bool => $brand['name'] !== '')
-                ->values()
-                ->all();
-        }
 
         $locationOptions = Car::query()
             ->where('is_published', true)
