@@ -87,7 +87,7 @@
     <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
         <span class="inline-flex items-center gap-2">
             <span class="material-symbols-outlined text-[22px]" aria-hidden="true">tune</span>
-            Refine selection
+            Filter cars
         </span>
         <span class="material-symbols-outlined text-slate-500 group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
     </summary>
