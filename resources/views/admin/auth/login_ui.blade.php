@@ -86,45 +86,20 @@
 </head>
 <body class="bg-surface font-body text-on-surface antialiased">
 <!-- Main Auth Canvas -->
-<main class="min-h-screen flex items-center justify-center p-6 editorial-gradient relative overflow-hidden">
+<main class="min-h-screen flex flex-col items-center justify-center p-6 editorial-gradient relative overflow-hidden">
 <!-- Subtle Background Decorative Element -->
 <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
 <img alt="Premium automotive silhouette" class="w-full h-full object-cover grayscale" data-alt="Blurred silhouette of a high-end luxury sedan in a dark studio with dramatic rim lighting and shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ3abMBQnHm9DstkPSqGmOlM7uZr89KCexgRNF6mrGRw7FdZ6OnQStTBm_Z8kS_O3pHALjb4r1jQgKyUpjbP8WyaPVUalXCR5gzLJrwrVE8R0JDucoKIqrkQxBJTqeLropzVujwsgZru-zq3fOYYJmwLEmcbHQS1-ftJqxffq4uM0KnUfpsCuRIuSUxxAVX8LeUy_QatBOJpTIIxKFIzprng10Y8lIad4wEZQFKG0MPlacddGjAqL0xX7lU-CS3MvlN4Rg4LqagAU"/>
 </div>
-<!-- Login Container (Bento Style Layout) -->
-<div class="relative z-10 w-full max-w-5xl grid grid-cols-1 md:grid-cols-12 bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden min-h-[600px]">
-<!-- Left Panel: Brand Editorial -->
-<div class="md:col-span-5 relative hidden md:block">
-<div class="absolute inset-0 car-overlay z-10"></div>
-<img alt="Desert landscape with premium vehicle" class="absolute inset-0 w-full h-full object-cover z-0" data-alt="A sleek black high-end SUV parked on a dusty road during golden hour with vast savannah plains in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1QU26O0wYhUE7ALkH_LnArRYGJHiEJNvLC_0HqjpH8EgrMPASxELCvGBlNcOwItb_XD4aMLSGvcjPI1bb-_31mlYtW5HHRDFHgeEXqvC122rhT8JcDugW9cNcacwAsbBr8RI8JmbzuC-ml2e7MlZlKzlCzppV5gehrr77tJp9TpJtcN4w2SgYbeLwaaByXL_z0QBet8DnrrO6gM86_igHUscjg51Ekq6jFxh53r3sjDv02h9TT7T87I2DdvpZIbhxZalgGMsNCek"/>
-<div class="relative z-20 h-full flex flex-col justify-between p-12 text-white">
-<div>
-<div class="flex items-center gap-3 mb-8">
-<span class="material-symbols-outlined text-4xl text-secondary-container" data-icon="shield_person">shield_person</span>
-<span class="font-headline font-extrabold text-2xl tracking-tight">Sahara Cars</span>
-</div>
-<h1 class="font-headline text-4xl font-extrabold leading-tight mb-4">The Editorial Curator Console</h1>
-<p class="text-on-primary-container font-medium opacity-90 leading-relaxed">Secure access to Tanzania's premium automotive marketplace management system.</p>
-</div>
-<div class="space-y-6">
-<div class="flex items-center gap-4 bg-white/10 backdrop-blur-md p-4 rounded-xl">
-<span class="material-symbols-outlined text-secondary-fixed" data-icon="verified_user">verified_user</span>
-<div class="text-sm">
-<p class="font-bold">Enterprise Security</p>
-<p class="opacity-70">256-bit encrypted session</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Panel: Login Form -->
-<div class="md:col-span-7 p-8 md:p-16 flex flex-col justify-center bg-surface-container-lowest">
-<div class="md:hidden flex items-center gap-2 mb-10">
+<!-- Login Container -->
+<div class="relative z-10 w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-2xl overflow-hidden">
+<div class="p-6 md:p-8 flex flex-col justify-center bg-surface-container-lowest">
+<div class="flex items-center gap-2 mb-8">
 <span class="material-symbols-outlined text-3xl text-primary" data-icon="shield_person">shield_person</span>
 <span class="font-headline font-extrabold text-xl text-primary tracking-tight">Sahara Cars</span>
 </div>
-<div class="mb-10">
-<h2 class="font-headline text-3xl font-extrabold text-primary mb-2">Welcome Back</h2>
+<div class="mb-8">
+<h2 class="font-headline text-2xl font-extrabold text-primary mb-2">Welcome Back</h2>
 <p class="text-on-surface-variant font-medium">Please enter your credentials to access the admin panel.</p>
 </div>
 
@@ -182,7 +157,7 @@
 </button>
 </form>
 <!-- Footer Trust Labels -->
-<div class="mt-12 pt-8 border-t border-surface-container flex flex-wrap gap-6 items-center justify-center md:justify-start opacity-60">
+<div class="mt-10 pt-6 border-t border-surface-container flex flex-wrap gap-6 items-center justify-center opacity-60">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-lg" data-icon="security">security</span>
 <span class="text-xs font-bold tracking-widest">ENCRYPTED</span>
@@ -198,8 +173,7 @@
 </div>
 </div>
 </div>
-<!-- System Footer -->
-<div class="absolute bottom-6 left-0 w-full text-center z-10">
+<div class="relative z-10 mt-6 text-center">
 <p class="text-xs font-medium text-outline-variant">
                 © 2024 Sahara Cars Automotive Marketplace. Internal Admin Use Only.
             </p>

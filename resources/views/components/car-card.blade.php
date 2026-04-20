@@ -57,7 +57,7 @@
                     @endif
                 </div>
                 <div class="text-right shrink-0">
-                    <p class="font-headline font-extrabold text-2xl text-primary leading-none tracking-tight">
+                    <p class="font-headline font-bold text-xl text-primary leading-tight tracking-tight">
                         {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact' }}
                     </p>
                     <p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide mt-1">
