@@ -96,7 +96,7 @@
 </div>
 <a class="inline-flex items-center justify-center gap-2 self-start sm:self-auto rounded-full bg-primary text-on-primary px-5 py-2.5 min-h-[44px] text-sm font-bold shadow-md shadow-primary/15 transition-[filter,transform] hover:brightness-110 focus-ring-on-dark" href="{{ route('cars.index') }}">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>
-                Browse inventory
+                Browse cars
             </a>
 </div>
 <ul

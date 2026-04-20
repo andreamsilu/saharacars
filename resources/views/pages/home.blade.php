@@ -142,7 +142,7 @@
                 Own Tanzania's Most <span class="text-secondary-container">Wanted Cars</span>
 </h1>
 <p class="text-white text-base sm:text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow px-1">
-                Premium and rugged vehicles chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
+                Premium and rugged cars chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
             </p>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
 <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
@@ -190,7 +190,7 @@
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
 <div class="space-y-2 min-w-0">
 <span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">Showroom Preview</span>
-<h2 id="home-inventory-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">Premium Inventory Highlights</h2>
+<h2 id="home-inventory-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">Featured Cars</h2>
 </div>
 <a class="inline-flex sm:ml-auto items-center justify-center gap-2 text-primary font-bold underline decoration-primary/20 hover:decoration-primary transition-all py-2 min-h-[44px] touch-manipulation shrink-0 rounded-md" href="{{ route('cars.index') }}">
                 View All Inventory
@@ -207,8 +207,8 @@
     <x-car-card :car="$car" />
 @empty
     <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
-        <div class="font-headline font-black text-2xl text-primary">No vehicles yet</div>
-        <p class="text-on-surface-variant mt-2">Inventory previews will appear once listings are published.</p>
+        <div class="font-headline font-black text-2xl text-primary">No cars yet</div>
+        <p class="text-on-surface-variant mt-2">Car highlights will appear here as soon as new cars are added.</p>
     </div>
 @endforelse
 </div>
@@ -242,7 +242,7 @@
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Buyer Journey</p>
 <h3 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary mt-2">How Buying Works</h3>
-<p class="text-on-surface-variant mt-3">A clear 3-step path from browsing to handover—built for buyers who want straight answers, fair paperwork, and support right here in Tanzania.</p>
+<p class="text-on-surface-variant mt-3">A clear 3-step path from browsing to handover—made for buyers who want straight answers, fair paperwork, and local support in Tanzania.</p>
 </div>
 </div>
 <div class="mt-10">
@@ -259,7 +259,7 @@ Step 01
 </span>
 </div>
 <h4 class="font-headline text-2xl font-extrabold text-primary mt-4">Browse & Shortlist</h4>
-<p class="text-sm md:text-base text-on-surface-variant mt-2">Filter by budget in Tanzanian Shillings, brand, and body style, then shortlist vehicles that suit Dar traffic, family use, or upcountry trips.</p>
+<p class="text-sm md:text-base text-on-surface-variant mt-2">Filter by budget in Tanzanian Shillings, brand, and body style, then shortlist cars that suit Dar traffic, family use, or upcountry trips.</p>
 <img src="{{ asset('images/step-browse.svg') }}" alt="Browse and shortlist visual" class="mt-5 h-40 w-full object-cover rounded-2xl"/>
 </article>
 <article class="w-full shrink-0 bg-surface-container-lowest rounded-3xl p-6 md:p-8 shadow-[0_14px_24px_rgba(25,28,30,0.05)] graphic-panel">

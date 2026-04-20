@@ -1,6 +1,6 @@
 @php
     $waDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
-    $waIntro = 'Hi Sahara Cars — I have a question about your inventory.';
+    $waIntro = 'Hi Sahara Cars — I have a question about your cars.';
     $waHref = 'https://wa.me/'.$waDigits.'?text='.rawurlencode($waIntro);
 @endphp
 <div
@@ -35,7 +35,7 @@
                 Ready to find your next car?
             </h2>
             <p class="mt-3 text-sm leading-relaxed text-on-surface-variant">
-                Start in <strong class="text-on-surface">inventory</strong> to see verified stock from Dar es Salaam. Prefer to talk first? We are one tap away on WhatsApp.
+                Start with <strong class="text-on-surface">cars</strong> to see verified options from Dar es Salaam. Prefer to talk first? We are one tap away on WhatsApp.
             </p>
             <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
@@ -44,7 +44,7 @@
                     class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-sm font-bold text-on-primary shadow-md shadow-primary/20 transition-[filter,transform] hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transform-none"
                 >
                     <span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>
-                    Browse inventory
+                    Browse cars
                 </a>
                 <a
                     href="{{ $waHref }}"

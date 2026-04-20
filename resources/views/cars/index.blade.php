@@ -106,7 +106,7 @@
 <div class="min-w-0">
 <h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-primary tracking-tight">Premium Inventory</h1>
 <p class="text-on-surface-variant font-body mt-1">
-Found {{ $cars->total() }} curated vehicle{{ $cars->total() === 1 ? '' : 's' }}
+Found {{ $cars->total() }} car{{ $cars->total() === 1 ? '' : 's' }}
 </p>
 </div>
 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:space-x-2 text-sm font-medium text-on-surface-variant w-full sm:w-auto min-w-0">
@@ -121,7 +121,7 @@ Found {{ $cars->total() }} curated vehicle{{ $cars->total() === 1 ? '' : 's' }}
         <input type="hidden" name="{{ $param }}" value="{{ $value }}" />
     @endif
 @endforeach
-<select name="sort" onchange="this.form.submit()" aria-label="Sort inventory" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/30 ghost-border min-h-[44px]">
+<select name="sort" onchange="this.form.submit()" aria-label="Sort cars" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/30 ghost-border min-h-[44px]">
     @php $activeSort = request('sort', 'newest'); @endphp
     <option value="newest" {{ $activeSort === 'newest' ? 'selected' : '' }}>Newest</option>
     <option value="price_low_high" {{ $activeSort === 'price_low_high' ? 'selected' : '' }}>Price: Low to High</option>
@@ -145,7 +145,7 @@ Found {{ $cars->total() }} curated vehicle{{ $cars->total() === 1 ? '' : 's' }}
     @endif
 @endforeach
 <label for="premium-autosearch" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-Search premium inventory
+Search cars
 </label>
 <div class="relative max-w-xl attention-panel rounded-2xl p-3">
     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
@@ -168,7 +168,7 @@ Search premium inventory
 @empty
 <div class="md:col-span-2 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
 <div class="font-headline font-black text-2xl text-primary">No cars yet</div>
-<p class="text-on-surface-variant mt-2">No vehicles are available yet. Please check back soon.</p>
+<p class="text-on-surface-variant mt-2">No cars are available yet. Please check back soon.</p>
 </div>
 @endforelse
 </div>

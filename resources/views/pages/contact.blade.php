@@ -90,7 +90,7 @@
 <!-- Hero Header -->
 <header class="mb-14 md:mb-16">
 <h1 class="font-headline text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-extrabold text-primary tracking-tighter mb-4 leading-[1.1] text-balance">Connect with Excellence.</h1>
-<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or need help with a vehicle you bought from us, our editorial team is ready to assist you in the heart of Dar es Salaam.</p>
+<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or need help with a car you bought from us, our team is ready to assist you in Dar es Salaam.</p>
 </header>
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -127,7 +127,7 @@
 <label for="contact-subject" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Subject</label>
 <select id="contact-subject" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all ghost-border" name="subject">
 <option>Inquiry about a car</option>
-<option>Selling my vehicle</option>
+<option>Selling my car</option>
 <option>Partnership/Corporate</option>
 <option>General support</option>
 </select>
@@ -200,7 +200,7 @@
 <div class="lg:col-span-4">
 <div class="inline-block px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-full font-label text-[10px] uppercase font-bold tracking-widest mb-6">Primary Showroom</div>
 <h2 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary mb-6">Dar es Salaam Sales Center</h2>
-<p class="text-on-surface-variant mb-8 text-lg leading-relaxed">All sales support is handled from our single Dar es Salaam center. Visit us for test drives, inquiries, and listing support.</p>
+<p class="text-on-surface-variant mb-8 text-lg leading-relaxed">Our Dar es Salaam team is here to help you choose the right car. Visit us for test drives and friendly support.</p>
 <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary text-3xl">location_on</span>
 <div>

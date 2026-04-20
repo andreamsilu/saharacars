@@ -19,7 +19,7 @@
                 />
             </a>
             <p class="text-sm text-slate-300 max-w-md leading-relaxed">
-                Trusted vehicle marketplace operated from our Dar es Salaam sales center. We help buyers discover verified cars with confidence.
+                Trusted car marketplace run by our Dar es Salaam team. We help you find verified cars with confidence.
             </p>
             <div class="flex items-center gap-3">
                 <a href="{{ route('contact') }}" class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded-full bg-white/10 text-slate-100 hover:bg-white/25 hover:text-white text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&_.material-symbols-outlined]:text-inherit">
@@ -48,7 +48,7 @@
         </div>
 
         <div>
-            <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Sales Center</h4>
+            <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Dar Team</h4>
             <ul class="space-y-2 text-sm text-slate-300">
                 <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">location_on</span>Dar es Salaam</li>
                 <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">schedule</span>Mon-Sat, 08:00-18:00</li>
