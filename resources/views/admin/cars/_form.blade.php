@@ -72,6 +72,15 @@
                 </div>
 
                 <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="price_is_negotiable">Price policy</label>
+                    <select id="price_is_negotiable" name="price_is_negotiable" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                        <option value="1" {{ (string) old('price_is_negotiable', ($car->price_is_negotiable ?? true) ? '1' : '0') === '1' ? 'selected' : '' }}>Negotiable</option>
+                        <option value="0" {{ (string) old('price_is_negotiable', ($car->price_is_negotiable ?? true) ? '1' : '0') === '0' ? 'selected' : '' }}>Not Negotiable</option>
+                    </select>
+                    @error('price_is_negotiable')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
                     <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="location">Location</label>
                     <input id="location" name="location" value="{{ old('location', $car->location ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Dar es Salaam" />
                     @error('location')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror

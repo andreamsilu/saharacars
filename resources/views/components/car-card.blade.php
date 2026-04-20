@@ -11,6 +11,7 @@
         'local_used' => 'Locally Used',
     ];
     $conditionText = $conditionLabels[$car->condition] ?? null;
+    $makeModel = trim(collect([$car->brand, $car->model])->filter()->implode(' · '));
 @endphp
 
 <div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
@@ -44,44 +45,48 @@
             <h3 class="font-headline font-bold text-xl text-primary leading-snug tracking-tight line-clamp-2 min-h-[3.1rem]">
                 {{ $car->title }}
             </h3>
-            <div class="mt-3 flex items-end justify-between gap-3 border-t border-outline-variant/25 pt-3">
-                <div class="min-w-0">
-                    <div class="flex items-center text-on-surface-variant text-sm font-medium">
-                        <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
-                        <span class="truncate">{{ $car->location ?: 'Tanzania' }}</span>
+            @if ($makeModel !== '')
+                <p class="mt-1 text-sm font-label font-semibold uppercase tracking-wide text-on-surface-variant line-clamp-1">
+                    {{ $makeModel }}
+                </p>
+            @endif
+            <div class="mt-3 border-t border-outline-variant/25 pt-3">
+                <div class="flex items-center text-on-surface-variant text-base font-medium">
+                    <span class="material-symbols-outlined text-sm mr-1" aria-hidden="true">location_on</span>
+                    <span class="truncate">{{ $car->location ?: 'Tanzania' }}</span>
+                </div>
+                @if ($conditionText)
+                    <div class="mt-1 text-xs font-label font-semibold uppercase tracking-wide text-on-surface-variant">
+                        Condition: {{ $conditionText }}
                     </div>
-                    @if ($conditionText)
-                        <div class="mt-1 text-xs font-label font-semibold uppercase tracking-wide text-on-surface-variant">
-                            Condition: {{ $conditionText }}
-                        </div>
-                    @endif
-                </div>
-                <div class="text-right shrink-0">
-                    <p class="font-headline font-bold text-xl text-primary leading-tight tracking-tight">
-                        {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact' }}
-                    </p>
-                    <p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide mt-1">
-                        {{ $car->price_tzs ? 'Negotiable' : 'Request price' }}
-                    </p>
-                </div>
+                @endif
             </div>
         </div>
 
         <div class="grid grid-cols-3 gap-3 mb-6">
-            <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
+            <div class="bg-surface-container-low px-3 py-2.5 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">speed</span>
-                <span class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide">
+                <span class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide tabular-nums">
                     {{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : '—' }}
                 </span>
             </div>
-            <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
+            <div class="bg-surface-container-low px-3 py-2.5 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">local_gas_station</span>
                 <span class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide">{{ $car->fuel ?: '—' }}</span>
             </div>
-            <div class="bg-surface-container-low p-3 rounded-2xl flex flex-col items-center text-center">
+            <div class="bg-surface-container-low px-3 py-2.5 rounded-2xl flex flex-col items-center text-center">
                 <span class="material-symbols-outlined text-primary text-xl mb-1" aria-hidden="true">calendar_today</span>
-                <span class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide">{{ $car->year ?: '—' }}</span>
+                <span class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide tabular-nums">{{ $car->year ?: '—' }}</span>
             </div>
+        </div>
+
+        <div class="mb-5 border-t border-outline-variant/20 pt-3 text-center">
+            <p class="font-headline font-semibold text-lg text-on-surface leading-tight tracking-tight tabular-nums">
+                {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact' }}
+            </p>
+            <p class="text-[11px] font-label font-medium text-on-surface-variant uppercase tracking-wide mt-1">
+                {{ $car->price_tzs ? (($car->price_is_negotiable ?? true) ? 'Negotiable' : 'Not Negotiable') : 'Request price' }}
+            </p>
         </div>
 
         <div class="mt-auto">

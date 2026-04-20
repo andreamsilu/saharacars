@@ -121,6 +121,7 @@ class AdminCarController extends Controller
         $data['slug'] = $this->uniqueSlug($data['slug'] ?? null, $data['title']);
         $data['is_featured'] = (bool) ($data['is_featured'] ?? false);
         $data['is_published'] = (bool) ($data['is_published'] ?? false);
+        $data['price_is_negotiable'] = (bool) ($data['price_is_negotiable'] ?? true);
 
         if ($request->hasFile('hero_image')) {
             $data['hero_image_path'] = $request->file('hero_image')->store('cars', 'public');
@@ -153,6 +154,7 @@ class AdminCarController extends Controller
         $data['slug'] = $this->uniqueSlug($data['slug'] ?? null, $data['title'], $car->id);
         $data['is_featured'] = (bool) ($data['is_featured'] ?? false);
         $data['is_published'] = (bool) ($data['is_published'] ?? false);
+        $data['price_is_negotiable'] = (bool) ($data['price_is_negotiable'] ?? true);
 
         if (($data['remove_hero_image'] ?? false) && $car->hero_image_path) {
             Storage::disk('public')->delete($car->hero_image_path);

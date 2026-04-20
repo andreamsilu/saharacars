@@ -304,7 +304,9 @@
 <h1 class="font-headline text-3xl font-black text-primary tracking-tight">
 {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact for price' }}
 </h1>
-<p class="text-sm text-outline mt-1">{{ $car->price_tzs ? 'Negotiable price' : 'Our team will share pricing details.' }}</p>
+<p class="text-sm text-outline mt-1">
+{{ $car->price_tzs ? (($car->price_is_negotiable ?? true) ? 'Negotiable price' : 'Fixed price') : 'Our team will share pricing details.' }}
+</p>
 </div>
 <button
     type="button"

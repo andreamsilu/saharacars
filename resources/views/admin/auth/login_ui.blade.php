@@ -92,15 +92,17 @@
 <img alt="Premium automotive silhouette" class="w-full h-full object-cover grayscale" data-alt="Blurred silhouette of a high-end luxury sedan in a dark studio with dramatic rim lighting and shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ3abMBQnHm9DstkPSqGmOlM7uZr89KCexgRNF6mrGRw7FdZ6OnQStTBm_Z8kS_O3pHALjb4r1jQgKyUpjbP8WyaPVUalXCR5gzLJrwrVE8R0JDucoKIqrkQxBJTqeLropzVujwsgZru-zq3fOYYJmwLEmcbHQS1-ftJqxffq4uM0KnUfpsCuRIuSUxxAVX8LeUy_QatBOJpTIIxKFIzprng10Y8lIad4wEZQFKG0MPlacddGjAqL0xX7lU-CS3MvlN4Rg4LqagAU"/>
 </div>
 <!-- Login Container -->
-<div class="relative z-10 w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-2xl overflow-hidden">
-<div class="p-6 md:p-8 flex flex-col justify-center bg-surface-container-lowest">
-<div class="flex items-center gap-2 mb-8">
-<span class="material-symbols-outlined text-3xl text-primary" data-icon="shield_person">shield_person</span>
-<span class="font-headline font-extrabold text-xl text-primary tracking-tight">Sahara Cars</span>
-</div>
-<div class="mb-8">
-<h2 class="font-headline text-2xl font-extrabold text-primary mb-2">Welcome Back</h2>
-<p class="text-on-surface-variant font-medium">Please enter your credentials to access the admin panel.</p>
+<div class="relative z-10 w-full max-w-sm bg-surface-container-lowest rounded-2xl shadow-2xl overflow-hidden">
+<div class="p-5 md:p-6 flex flex-col justify-center bg-surface-container-lowest">
+<div class="mb-5 flex justify-center">
+<img
+    src="{{ asset('images/logo.png') }}"
+    alt="Sahara Cars"
+    class="h-10 w-auto object-contain"
+    width="180"
+    height="40"
+    decoding="async"
+/>
 </div>
 
 @if ($errors->any())
@@ -111,7 +113,7 @@
     </div>
 @endif
 
-<form class="space-y-6" method="POST" action="{{ route('admin.login.store') }}">
+<form class="space-y-4" method="POST" action="{{ route('admin.login.store') }}">
 @csrf
 <!-- Email Field -->
 <div class="space-y-2">
@@ -120,7 +122,7 @@
 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline">
 <span class="material-symbols-outlined text-xl" data-icon="mail">mail</span>
 </div>
-<input class="w-full pl-11 pr-4 py-4 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-200 outline-none text-on-surface font-medium" id="email" name="email" placeholder="admin@saharacars.co.tz" required="" type="email"/>
+<input class="w-full pl-11 pr-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-200 outline-none text-on-surface font-medium" id="email" name="email" placeholder="admin@saharacars.co.tz" required="" type="email"/>
 </div>
 </div>
 <!-- Password Field -->
@@ -133,44 +135,18 @@
 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline">
 <span class="material-symbols-outlined text-xl" data-icon="lock">lock</span>
 </div>
-<input class="w-full pl-11 pr-12 py-4 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-200 outline-none text-on-surface font-medium" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
-<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-outline hover:text-primary transition-colors" type="button">
-<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+<input class="w-full pl-11 pr-12 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-200 outline-none text-on-surface font-medium" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-outline hover:text-primary transition-colors" type="button" data-password-toggle aria-label="Show password" aria-pressed="false" aria-controls="password">
+<span class="material-symbols-outlined text-xl" data-password-toggle-icon data-icon="visibility">visibility</span>
 </button>
 </div>
 </div>
-<!-- Actions Row -->
-<div class="flex items-center">
-<label class="flex items-center cursor-pointer group">
-<div class="relative">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-5 h-5 bg-surface-container-highest rounded border border-outline-variant peer-checked:bg-secondary peer-checked:border-secondary transition-all"></div>
-<span class="material-symbols-outlined absolute inset-0 text-white text-base opacity-0 peer-checked:opacity-100 flex items-center justify-center pointer-events-none" data-icon="check">check</span>
-</div>
-<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Remember this device</span>
-</label>
-</div>
 <!-- Submit Button -->
-<button class="w-full py-4 bg-secondary text-on-secondary font-headline font-bold text-lg rounded-full shadow-lg shadow-secondary/20 hover:bg-on-secondary-fixed-variant active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+<button class="w-full py-3 bg-secondary text-on-secondary font-headline font-bold text-base rounded-full shadow-lg shadow-secondary/20 hover:bg-on-secondary-fixed-variant active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" type="submit">
                         Sign In to Console
                         <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </form>
-<!-- Footer Trust Labels -->
-<div class="mt-10 pt-6 border-t border-surface-container flex flex-wrap gap-6 items-center justify-center opacity-60">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-lg" data-icon="security">security</span>
-<span class="text-xs font-bold tracking-widest">ENCRYPTED</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
-<span class="text-xs font-bold tracking-widest">IP LOGGED</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-lg" data-icon="language">language</span>
-<span class="text-xs font-bold tracking-widest">TZ DOMAIN</span>
-</div>
-</div>
 </div>
 </div>
 <div class="relative z-10 mt-6 text-center">
@@ -179,5 +155,24 @@
             </p>
 </div>
 </main>
+<script>
+    (() => {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.querySelector('[data-password-toggle]');
+        const toggleIcon = document.querySelector('[data-password-toggle-icon]');
+
+        if (!passwordInput || !toggleButton || !toggleIcon) {
+            return;
+        }
+
+        toggleButton.addEventListener('click', () => {
+            const isHidden = passwordInput.type === 'password';
+            passwordInput.type = isHidden ? 'text' : 'password';
+            toggleIcon.textContent = isHidden ? 'visibility_off' : 'visibility';
+            toggleButton.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+            toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        });
+    })();
+</script>
 </body></html>
 

@@ -4,7 +4,7 @@
     $brandOptions = isset($brandOptions) && is_iterable($brandOptions) ? collect($brandOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Toyota', 'Land Rover', 'Mercedes', 'Nissan']);
     $locationOptions = isset($locationOptions) && is_iterable($locationOptions) ? collect($locationOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Dar es Salaam', 'Arusha', 'Zanzibar']);
 @endphp
-<form action="{{ $action }}" method="GET">
+<form action="{{ $action }}" method="GET" data-filter-auto-submit>
     @if (request()->filled('q'))
         <input type="hidden" name="q" value="{{ request('q') }}" />
     @endif
@@ -13,7 +13,7 @@
         <div class="space-y-6">
             <div class="space-y-3">
                 <label for="filter-brand-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Brand</label>
-                <select id="filter-brand-{{ $filterFormIdPrefix }}" name="brand" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-brand-{{ $filterFormIdPrefix }}" name="brand" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
                     <option value="">All Manufacturers</option>
                     @foreach ($brandOptions as $brandOption)
                         <option value="{{ $brandOption }}" {{ request('brand') === $brandOption ? 'selected' : '' }}>{{ $brandOption }}</option>
@@ -23,8 +23,8 @@
             <div class="space-y-3">
                 <span id="filter-price-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">Price Range (TZS)</span>
                 <div class="grid grid-cols-2 gap-2" role="group" aria-labelledby="filter-price-label-{{ $filterFormIdPrefix }}">
-                    <input id="filter-price-min-{{ $filterFormIdPrefix }}" name="price_min" value="{{ request('price_min') }}" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="Min" type="number" inputmode="numeric" aria-label="Minimum price in TZS" />
-                    <input id="filter-price-max-{{ $filterFormIdPrefix }}" name="price_max" value="{{ request('price_max') }}" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="Max" type="number" inputmode="numeric" aria-label="Maximum price in TZS" />
+                    <input id="filter-price-min-{{ $filterFormIdPrefix }}" name="price_min" value="{{ request('price_min') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="Min" type="number" inputmode="numeric" aria-label="Minimum price in TZS" />
+                    <input id="filter-price-max-{{ $filterFormIdPrefix }}" name="price_max" value="{{ request('price_max') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="Max" type="number" inputmode="numeric" aria-label="Maximum price in TZS" />
                 </div>
             </div>
             <div class="space-y-3">
@@ -38,7 +38,7 @@
                     @endphp
                     @foreach ($locationOptions as $locationOption)
                         <label class="flex items-center space-x-3 cursor-pointer group min-h-[44px]">
-                            <input name="location[]" value="{{ $locationOption }}" {{ in_array($locationOption, $selectedLocations, true) ? 'checked' : '' }} class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
+                            <input name="location[]" value="{{ $locationOption }}" {{ in_array($locationOption, $selectedLocations, true) ? 'checked' : '' }} data-filter-auto-submit-trigger class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 shrink-0" type="checkbox" />
                             <span class="text-sm font-medium group-hover:text-primary transition-colors">{{ $locationOption }}</span>
                         </label>
                     @endforeach
@@ -48,22 +48,22 @@
                 <span id="filter-transmission-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">Transmission</span>
                 <div class="flex flex-wrap gap-2 p-1 bg-surface-container-low rounded-full text-xs" role="radiogroup" aria-labelledby="filter-transmission-label-{{ $filterFormIdPrefix }}">
                     <label class="flex-1 min-w-[5.5rem]">
-                        <input type="radio" name="transmission" value="Automatic" class="sr-only peer" {{ request('transmission') === 'Automatic' ? 'checked' : '' }} />
+                        <input type="radio" name="transmission" value="Automatic" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === 'Automatic' ? 'checked' : '' }} />
                         <span class="block text-center py-2.5 rounded-full font-bold text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">Automatic</span>
                     </label>
                     <label class="flex-1 min-w-[5.5rem]">
-                        <input type="radio" name="transmission" value="Manual" class="sr-only peer" {{ request('transmission') === 'Manual' ? 'checked' : '' }} />
+                        <input type="radio" name="transmission" value="Manual" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === 'Manual' ? 'checked' : '' }} />
                         <span class="block text-center py-2.5 rounded-full font-bold text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">Manual</span>
                     </label>
                     <label class="flex-1 min-w-[5.5rem]">
-                        <input type="radio" name="transmission" value="" class="sr-only peer" {{ request('transmission') === null || request('transmission') === '' ? 'checked' : '' }} />
+                        <input type="radio" name="transmission" value="" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === null || request('transmission') === '' ? 'checked' : '' }} />
                         <span class="block text-center py-2.5 rounded-full font-bold text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">Any</span>
                     </label>
                 </div>
             </div>
             <div class="space-y-3">
                 <label for="filter-fuel-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Fuel</label>
-                <select id="filter-fuel-{{ $filterFormIdPrefix }}" name="fuel" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-fuel-{{ $filterFormIdPrefix }}" name="fuel" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
                     <option value="">Any fuel</option>
                     <option value="Petrol" {{ request('fuel') === 'Petrol' ? 'selected' : '' }}>Petrol</option>
                     <option value="Diesel" {{ request('fuel') === 'Diesel' ? 'selected' : '' }}>Diesel</option>
@@ -73,7 +73,7 @@
             </div>
             <div class="space-y-3">
                 <label for="filter-condition-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Condition</label>
-                <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
                     <option value="">Any condition</option>
                     <option value="brand_new" {{ request('condition', request('category')) === 'brand_new' ? 'selected' : '' }}>Brand New</option>
                     <option value="foreign_used" {{ request('condition', request('category')) === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
@@ -86,3 +86,31 @@
         </button>
     </div>
 </form>
+<script>
+    (() => {
+        if (window.__inventoryFilterAutoSubmitBound) {
+            return;
+        }
+        window.__inventoryFilterAutoSubmitBound = true;
+
+        const forms = document.querySelectorAll('form[data-filter-auto-submit]');
+        forms.forEach((form) => {
+            const triggers = form.querySelectorAll('[data-filter-auto-submit-trigger]');
+            if (!triggers.length) {
+                return;
+            }
+
+            let timeoutId = null;
+            const submitForm = () => {
+                if (timeoutId !== null) {
+                    window.clearTimeout(timeoutId);
+                }
+                timeoutId = window.setTimeout(() => form.requestSubmit(), 150);
+            };
+
+            triggers.forEach((input) => {
+                input.addEventListener('change', submitForm);
+            });
+        });
+    })();
+</script>

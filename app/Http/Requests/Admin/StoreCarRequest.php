@@ -33,6 +33,7 @@ class StoreCarRequest extends FormRequest
             'engine' => ['nullable', 'string', 'max:60'],
             'engine_capacity_cc' => ['nullable', 'integer', 'min:100', 'max:20000'],
             'price_tzs' => ['nullable', 'integer', 'min:0', 'max:999999999999'],
+            'price_is_negotiable' => ['nullable', 'boolean'],
             'description' => ['nullable', 'string', 'max:5000'],
 
             'hero_image' => ['nullable', File::types(['jpg', 'jpeg', 'png', 'webp', 'avif', 'heic', 'heif'])->max(5120)],
