@@ -15,11 +15,16 @@
 @endphp
 
 <div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
+    <a
+        href="{{ route('cars.show', ['slug' => $car->slug]) }}"
+        class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        aria-label="Open details for {{ $car->title }}"
+    ></a>
     <div class="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="{{ $car->title }}" src="{{ $img }}"/>
         <button
             type="button"
-            class="absolute top-4 right-4 z-10 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            class="absolute top-4 right-4 z-20 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             data-saved-car-toggle
             data-slug="{{ $car->slug }}"
             data-title="{{ $car->title }}"
@@ -40,7 +45,7 @@
         </div>
     </div>
 
-    <div class="p-5 sm:p-6 flex-1 flex flex-col">
+    <div class="p-5 sm:p-6 flex-1 flex flex-col relative z-20">
         <div class="mb-4">
             <h3 class="font-headline font-bold text-lg sm:text-xl text-primary leading-snug tracking-tight line-clamp-2 min-h-[2.8rem] sm:min-h-[3.1rem]">
                 {{ $car->title }}
@@ -90,7 +95,7 @@
         </div>
 
         <div class="mt-auto">
-            <a class="w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-bold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
+            <a class="relative z-20 w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-bold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
                 View Details
             </a>
         </div>
