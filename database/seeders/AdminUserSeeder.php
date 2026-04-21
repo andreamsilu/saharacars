@@ -16,12 +16,12 @@ class AdminUserSeeder extends Seeder
         $adminUsers = [
             [
                 'name' => 'Super Admin',
-                'email' => 'admin@saharacars.test',
+                'email' => 'admin@saharaautolink.co.tz',
                 'password' => 'admin12345',
             ],
             [
                 'name' => 'Sales Admin',
-                'email' => 'sales.admin@saharacars.test',
+                'email' => 'sales.admin@saharaautolink.co.tz',
                 'password' => 'admin12345',
             ],
         ];
