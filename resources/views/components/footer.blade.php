@@ -1,4 +1,7 @@
 <footer {{ $attributes->merge(['class' => 'w-full mt-auto bg-slate-950 text-slate-200']) }}>
+    @php
+        $footerPhoneDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    @endphp
     <style>
         :root {
             --theme-primary: {{ $themeColors['primary'] ?? '#8A6528' }};
@@ -52,7 +55,7 @@
             <ul class="space-y-2 text-sm text-slate-300">
                 <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">location_on</span>Dar es Salaam</li>
                 <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">schedule</span>Mon-Sat, 08:00-18:00</li>
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>+255 7XX XXX XXX</li>
+                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>+{{ $footerPhoneDigits }}</li>
             </ul>
         </div>
     </div>
