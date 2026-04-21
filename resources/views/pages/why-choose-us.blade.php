@@ -3,8 +3,8 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Why Sahara | Sahara Cars Tanzania</title>
-<meta name="description" content="Why buyers choose Sahara Cars Tanzania: trusted cars in Dar es Salaam, clear car details, verified stock, and friendly support by phone or WhatsApp."/>
+<title>Why Sahara | SAHARA COMMISSION AGENTS LIMITED</title>
+<meta name="description" content="Why buyers choose SAHARA COMMISSION AGENTS LIMITED: trusted cars in Dar es Salaam, clear car details, verified stock, and friendly support by phone or WhatsApp."/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -129,279 +129,124 @@
 </div>
 </div>
 </section>
-<!-- Six reasons: decision-critical value props -->
-<section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20" aria-labelledby="why-six-reasons-heading">
+<!-- Why buyers choose Sahara -->
+<section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20" aria-labelledby="why-core-heading">
 <div class="max-w-7xl mx-auto">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">What you actually get</p>
-<h2 id="why-six-reasons-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Attractive reasons businesses and families choose Sahara</h2>
-<p class="text-on-surface-variant max-w-3xl leading-relaxed mb-12">From first message to handover, our process is built for trust and speed so you can buy with confidence.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">admin_panel_settings</span>
-<h3 class="font-headline text-lg font-bold text-on-surface mb-2">Carefully selected cars</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Listings are created and published by our team—not open classifieds. That means fewer duplicate posts, clearer ownership of information, and accountability when something needs correcting.</p>
-</div>
-<div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">description</span>
-<h3 class="font-headline text-lg font-bold text-on-surface mb-2">Clear car details</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Where available, we capture import-style fields—make, model code, body color, body type, doors, and seats—so you understand the unit before you message us, not only from marketing photos.</p>
-</div>
-<div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">payments</span>
-<h3 class="font-headline text-lg font-bold text-on-surface mb-2">Pricing in TZS, conditions you can compare</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Published prices are shown in Tanzanian shillings alongside condition labels (brand new, foreign used, locally used) so you can benchmark honestly across our stock.</p>
-</div>
-<div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">photo_library</span>
-<h3 class="font-headline text-lg font-bold text-on-surface mb-2">Rich imagery, real showroom context</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">We invest in hero, exterior, interior, and gallery photography where provided—because the small details (trim, wear, equipment) are what turn a maybe into a serious viewing.</p>
-</div>
-<div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">support_agent</span>
-<h3 class="font-headline text-lg font-bold text-on-surface mb-2">Human sales, WhatsApp-ready</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Every car is managed by our Dar es Salaam team. Reach us on the contact page or WhatsApp from any car you like—we are happy to answer questions before you travel.</p>
-</div>
-<div class="rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl mb-3" aria-hidden="true">fact_check</span>
-<h3 class="font-headline text-lg font-bold text-on-surface mb-2">Integrity rhythm, not one-off promises</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">We combine documentation checks, spot audits against physical stock, and regular car-page reviews so quality stays consistent as cars change.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Critical info block -->
-<section class="section-editorial px-4 sm:px-6 bg-surface py-16 md:py-20 border-y border-outline-variant/30" aria-labelledby="critical-info-heading">
-<div class="max-w-7xl mx-auto">
-<div class="max-w-3xl">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Critical information</p>
-<h2 id="critical-info-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Everything important, before you book a visit</h2>
-<p class="text-on-surface-variant leading-relaxed">These are the questions most buyers ask first. We keep everything clear so trust comes from facts, not pressure.</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
-<div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-<article class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-6 attention-panel">
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Why choose Sahara</p>
+<h2 id="why-core-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">A cleaner way to buy your next car</h2>
+<p class="text-on-surface-variant max-w-3xl leading-relaxed mb-10">Everything is arranged to help you decide quickly: verified listings, clear specs, and direct support from our Dar es Salaam team.</p>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-7 rounded-3xl border border-outline-variant/30 bg-surface-container-lowest p-6 sm:p-8">
+<div class="space-y-5">
+<article class="flex gap-4">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">verified_user</span>
-<h3 class="font-headline text-lg font-bold mt-3 mb-2">Who controls listings?</h3>
-<p class="text-sm text-on-surface-variant">Our in-house team. Cars are not posted by the public, which helps reduce fake ads and unclear ownership.</p>
+<div>
+<h3 class="font-headline text-lg font-bold">Verified listings only</h3>
+<p class="text-sm text-on-surface-variant mt-1">Our team manages listings for better trust and fewer surprises.</p>
+</div>
 </article>
-<article class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-6 attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">home_pin</span>
-<h3 class="font-headline text-lg font-bold mt-3 mb-2">Where do you operate?</h3>
-<p class="text-sm text-on-surface-variant">From our Dar es Salaam team. You can coordinate viewing and handover with the same local team.</p>
-</article>
-<article class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-6 attention-panel">
+<article class="flex gap-4">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">description</span>
-<h3 class="font-headline text-lg font-bold mt-3 mb-2">What details are shown?</h3>
-<p class="text-sm text-on-surface-variant">Core specs plus clear car details (make, model, body color/type, doors, seats) when available from records and checks.</p>
+<div>
+<h3 class="font-headline text-lg font-bold">Clear details before you visit</h3>
+<p class="text-sm text-on-surface-variant mt-1">You see specs and condition early, so shortlisting is faster.</p>
+</div>
 </article>
-<article class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-6 attention-panel">
-<span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">forum</span>
-<h3 class="font-headline text-lg font-bold mt-3 mb-2">How fast is support?</h3>
-<p class="text-sm text-on-surface-variant">Message us on WhatsApp or contact form. We prioritize pre-visit questions so you travel only when the fit is right.</p>
+<article class="flex gap-4">
+<span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">support_agent</span>
+<div>
+<h3 class="font-headline text-lg font-bold">Real human support</h3>
+<p class="text-sm text-on-surface-variant mt-1">Talk to our local team by WhatsApp or phone any time you need clarity.</p>
+</div>
 </article>
 </div>
-<aside class="rounded-2xl border border-outline-variant/30 bg-primary-container text-on-primary p-6">
-<h3 class="font-headline text-xl font-extrabold mb-4">Before you commit</h3>
-<ul class="space-y-3 text-sm text-white/90">
-<li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base" aria-hidden="true">check</span><span>Confirm availability on the same day.</span></li>
-<li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base" aria-hidden="true">check</span><span>Ask for any specific walkaround photos.</span></li>
-<li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base" aria-hidden="true">check</span><span>Review specs and condition label in listing.</span></li>
-<li class="flex gap-2"><span class="material-symbols-outlined text-secondary-fixed text-base" aria-hidden="true">check</span><span>Coordinate visit timing with sales.</span></li>
-</ul>
-<a href="{{ route('contact') }}" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white text-primary px-4 py-3 min-h-[46px] text-sm font-bold transition-[filter] hover:brightness-95">
-<span class="material-symbols-outlined text-[18px]" aria-hidden="true">support_agent</span>
-Chat on WhatsApp
-</a>
+</div>
+<aside class="lg:col-span-5 rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest">
+<div class="h-56 sm:h-64 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl" aria-hidden="true">directions_car</span>
+</div>
+<div class="p-6">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">Visual placeholder</p>
+<h3 class="font-headline text-xl font-bold mt-2">Showroom or customer image area</h3>
+<p class="text-sm text-on-surface-variant mt-2">Replace this block with your real image when ready. Layout stays consistent.</p>
+</div>
 </aside>
 </div>
 </div>
 </section>
-<!-- Our story: asymmetric bento (trust narrative) -->
-<section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20">
+<!-- By the numbers -->
+<section class="section-editorial px-4 sm:px-6 bg-surface py-16 md:py-20 border-y border-outline-variant/30" aria-labelledby="why-numbers-heading">
 <div class="max-w-7xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-<div class="md:col-span-5 space-y-8">
-<div>
-<h2 class="text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4 font-label">Our journey</h2>
-<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-on-surface tracking-tight mb-6">Local roots, national ambition.</h3>
-<p class="text-on-surface-variant leading-relaxed">
-                                Sahara Cars started from a simple frustration: too many car ads in Tanzania asked buyers to “trust the process” without showing the process. We set out to build a platform where transparency is the default—carefully selected cars, accountable publishing, and a team you can reach when it matters.
-                            </p>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<div class="lg:col-span-4 rounded-3xl bg-primary-container text-on-primary p-6 sm:p-8">
+<p class="text-xs uppercase tracking-widest text-white/80 font-label">Proof that matters</p>
+<h2 id="why-numbers-heading" class="text-3xl font-headline font-extrabold mt-3 leading-tight">Quick trust signals</h2>
+<p class="text-sm text-white/85 mt-3">Use these numbers to build confidence at a glance. Update anytime as your business grows.</p>
 </div>
-<div class="p-8 bg-surface-container-lowest rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<p class="italic text-lg font-headline text-primary font-medium">
-                                “We do not just move metal—we protect your time, your money, and your confidence on the road. If a car carries the Sahara name, it should earn that trust every kilometer.”
-                            </p>
+<div class="lg:col-span-8 grid grid-cols-2 gap-4">
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="font-headline text-3xl font-black text-primary">500+</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Cars listed</p>
 </div>
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="font-headline text-3xl font-black text-primary">10k+</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Buyer inquiries</p>
 </div>
-<div class="md:col-span-7 grid grid-cols-2 gap-4">
-<div class="pt-12">
-<img class="w-full h-[400px] object-cover rounded-xl shadow-lg" alt="Modern car showroom in Dar es Salaam with clean architecture and natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDqaAL1SlulmeJQN0Mf919wkx1qCkb-M6mRfMTZhJG9Zt4mo8IGJ_s8oJxu3r4MTMgswdtLDF70tspFDhE-nfA8WHqKSbU-NIjRZyc2u67B7IeUiew-ni8lFQAIFfWbQLs1dpAPaRLR9VeOaPYN3IGfAFaPUJ7f5wCFTd6kUrU97n7GpUH_nia40KL1GFuidVzB9aqZwivX31uPe1audfi98guiQD8VAebDHAii3wLwqhwA84IXryj_UMMjlCwRo3BQxa4IJy25Ww"/>
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="font-headline text-3xl font-black text-primary">&lt; 30 min</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Average response</p>
 </div>
-<div>
-<img class="w-full h-[500px] object-cover rounded-xl shadow-lg" alt="Premium vehicle interior and steering wheel detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpJMAk-bmiY8uhilYwsVJT4x0Ywk1qfmGKKPWwjtubthUrUkSvkgH1URMKOQZ9XpxDmtHCQi3an00jjKKa9raLEqwqOO6JCxoiiGUqABlz5QwzLqhILHNK1EI-2eYP2UTLe0oG_LBwAeyNbCEw-9Y0iqFHRw3TX_EObCMlUZPXk6AO1C3c9H7XYjcjq-5igsTnx4KxDL8oyDaHdB1UQj6ruKzMtZc6O1f9p9rXLzPl4FlJikONqKBUSg-IfJfyWxvFLmCZG4Ti6vg"/>
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="font-headline text-3xl font-black text-primary">4.8/5</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Buyer rating</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- Buying journey -->
-<section class="section-editorial px-4 sm:px-6 bg-surface attention-mesh py-16 md:py-20" aria-labelledby="why-journey-heading">
+<!-- Graphics placeholders -->
+<section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20" aria-labelledby="why-visuals-heading">
 <div class="max-w-7xl mx-auto">
-<h2 id="why-journey-heading" class="text-center text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4 font-label">Your buying journey</h2>
-<p class="text-center text-2xl md:text-3xl font-headline font-extrabold text-on-surface tracking-tight mb-12 max-w-3xl mx-auto">From first scroll to keys in hand—designed to be predictable.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="relative rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 text-center">
-<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-white font-headline font-bold text-sm mb-4">1</span>
-<h3 class="font-headline font-bold text-on-surface mb-2">Browse with filters</h3>
-<p class="text-xs text-on-surface-variant leading-relaxed">Search by brand, budget, condition, and location. Save cars to compare later.</p>
-</div>
-<div class="relative rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 text-center">
-<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-white font-headline font-bold text-sm mb-4">2</span>
-<h3 class="font-headline font-bold text-on-surface mb-2">Ask the hard questions</h3>
-<p class="text-xs text-on-surface-variant leading-relaxed">Use WhatsApp or the contact form—our team expects technical and paperwork questions.</p>
-</div>
-<div class="relative rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 text-center">
-<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-white font-headline font-bold text-sm mb-4">3</span>
-<h3 class="font-headline font-bold text-on-surface mb-2">Book a viewing</h3>
-<p class="text-xs text-on-surface-variant leading-relaxed">Confirm availability and walk the exact car with a specialist in Dar es Salaam.</p>
-</div>
-<div class="relative rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 text-center">
-<span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-white font-headline font-bold text-sm mb-4">4</span>
-<h3 class="font-headline font-bold text-on-surface mb-2">Close with confidence</h3>
-<p class="text-xs text-on-surface-variant leading-relaxed">Complete documentation and handover with the same team that published the listing.</p>
-</div>
-</div>
-</div>
-</section>
-@php
-    $ownerVideoRaw = trim((string) config('sahara.why_choose_us_owner_video_embed_url', ''));
-    $ownerVideoEmbed = null;
-    if ($ownerVideoRaw !== '') {
-        $parts = parse_url($ownerVideoRaw);
-        $scheme = strtolower((string) ($parts['scheme'] ?? ''));
-        $host = strtolower((string) ($parts['host'] ?? ''));
-        $path = (string) ($parts['path'] ?? '');
-        if ($scheme === 'https' && (($host === 'www.youtube.com' || $host === 'youtube.com') && str_starts_with($path, '/embed/'))
-            || ($host === 'player.vimeo.com' && str_starts_with($path, '/video/'))) {
-            $ownerVideoEmbed = $ownerVideoRaw;
-        }
-    }
-@endphp
-<!-- Owner welcome video -->
-<section class="section-editorial px-4 sm:px-6 bg-surface border-y border-outline-variant/30" aria-labelledby="why-choose-owner-video-heading">
-<div class="max-w-7xl mx-auto">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-<div class="lg:col-span-5">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">From our leadership</p>
-<h2 id="why-choose-owner-video-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight leading-tight mb-5">
-                    Why Sahara Cars exists — in our own words
-                </h2>
-<p class="text-on-surface-variant leading-relaxed">
-                    Our founder walks you through what Sahara stands for in Tanzania: trust on the road, honest listings, and a Dar es Salaam team you can reach when it matters.
-                </p>
-<p class="mt-5 text-sm text-on-surface-variant">
-                    Prefer to talk instead? <a class="font-bold text-primary underline underline-offset-2" href="{{ route('contact') }}">Contact the showroom</a> or WhatsApp us from any listing page.
-                </p>
-</div>
-<div class="lg:col-span-7">
-@if ($ownerVideoEmbed)
-<div class="relative aspect-video w-full overflow-hidden rounded-2xl shadow-[0_24px_48px_rgba(92,67,32,0.15)] border border-outline-variant/30 bg-surface-container-highest attention-panel">
-<iframe
-                        class="absolute inset-0 h-full w-full"
-                        src="{{ $ownerVideoEmbed }}"
-                        title="Sahara Cars — message from our founder"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
-                        loading="lazy"
-                    ></iframe>
-</div>
-<p class="mt-3 text-xs text-on-surface-variant">Having trouble playing the video? Try opening it on YouTube or Vimeo in a new tab from the player menu.</p>
-@else
-{{-- Dev: set SAHARA_WHY_CHOOSE_US_VIDEO_EMBED in .env (see config/sahara.php + .env.example). --}}
-<div class="relative flex aspect-video w-full flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border border-dashed border-outline-variant/60 bg-surface-container-low px-6 text-center shadow-inner">
-<span class="material-symbols-outlined text-5xl text-primary/50" aria-hidden="true">smart_display</span>
-<div>
-<p class="font-headline text-lg font-bold text-primary">Founder’s welcome — coming soon</p>
-<p class="mt-2 max-w-md text-sm text-on-surface-variant">We’re finishing a short film with our founder on what Sahara Cars means for drivers in Tanzania. Until then, browse cars or reach the Dar team on the contact page.</p>
-</div>
-</div>
-@endif
-</div>
-</div>
-</div>
-</section>
-<!-- Brand values (merged from former About page) -->
-<section class="section-editorial px-4 sm:px-6 bg-surface attention-mesh py-16 md:py-20" aria-labelledby="sahara-values-heading">
-<div class="max-w-7xl mx-auto text-center mb-14">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">The Sahara way</p>
-<h2 id="sahara-values-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">What defines our standard</h2>
-<p class="text-on-surface-variant max-w-3xl mx-auto leading-relaxed">This is the operating mindset we brought from our original About page and now keep here as part of one complete trust story.</p>
-</div>
-<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-7 text-center attention-panel">
-<div class="w-16 h-16 mx-auto bg-primary-container text-white rounded-2xl flex items-center justify-center mb-5">
-<span class="material-symbols-outlined text-3xl" aria-hidden="true">verified_user</span>
-</div>
-<h3 class="text-xl font-headline font-bold mb-3">Reliability</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Each car page follows a clear process so buyers get consistent, reliable information from first message to handover.</p>
+<h2 id="why-visuals-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Buying journey, step by step</h2>
+<p class="text-on-surface-variant max-w-3xl mb-10">A simple sequence that keeps you in control from shortlist to handover.</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">1</p>
+<h3 class="font-headline text-base font-bold mt-3">Shortlist cars</h3>
+<p class="text-sm text-on-surface-variant mt-1">Use filters to find the right match quickly.</p>
 </article>
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-7 text-center attention-panel">
-<div class="w-16 h-16 mx-auto bg-secondary text-white rounded-2xl flex items-center justify-center mb-5">
-<span class="material-symbols-outlined text-3xl" aria-hidden="true">workspace_premium</span>
-</div>
-<h3 class="text-xl font-headline font-bold mb-3">Quality</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">We prioritize high-integrity units and clear presentation so buyers evaluate real value, not inflated claims.</p>
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">2</p>
+<h3 class="font-headline text-base font-bold mt-3">Ask questions</h3>
+<p class="text-sm text-on-surface-variant mt-1">Message us on WhatsApp for quick clarifications.</p>
 </article>
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-7 text-center attention-panel">
-<div class="w-16 h-16 mx-auto bg-on-tertiary-container text-white rounded-2xl flex items-center justify-center mb-5">
-<span class="material-symbols-outlined text-3xl" aria-hidden="true">handshake</span>
-</div>
-<h3 class="text-xl font-headline font-bold mb-3">Customer care</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Our Dar es Salaam team stays easy to reach, especially when you need quick answers before visiting.</p>
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">3</p>
+<h3 class="font-headline text-base font-bold mt-3">Book a viewing</h3>
+<p class="text-sm text-on-surface-variant mt-1">Confirm availability and schedule your visit.</p>
 </article>
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5">
+<p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">4</p>
+<h3 class="font-headline text-base font-bold mt-3">Complete handover</h3>
+<p class="text-sm text-on-surface-variant mt-1">Finalize with the same team that helped you.</p>
+</article>
+</div>
+<div class="mt-6 rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest">
+<div class="h-48 sm:h-56 bg-gradient-to-r from-primary/15 via-surface-container-low to-secondary/15 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl" aria-hidden="true">image</span>
+</div>
+<div class="p-5 sm:p-6">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">Banner placeholder</p>
+<h3 class="font-headline text-lg font-bold mt-2">Customer delivery or showroom banner area</h3>
+<p class="text-sm text-on-surface-variant mt-1">Drop in one strong image here and this section stays balanced on all devices.</p>
+</div>
+</div>
 </div>
 </section>
 <x-partner-logos-slider
     title="Related Companies We Work With"
-    subtitle="Our ecosystem includes trusted institutions supporting finance, verification, transport, and post-sale confidence."
+    subtitle="Trusted partners across financing, logistics, and post-sale support."
 />
-<!-- Verification Process: Editorial Layout -->
-<section class="section-editorial px-4 sm:px-6 bg-primary text-white overflow-hidden relative">
-<div class="absolute right-0 top-0 w-1/2 h-full opacity-20 hidden lg:block">
-<img class="w-full h-full object-cover" alt="Professional mechanic inspecting a modern luxury engine with high-tech diagnostic equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUzqmb7H2OOJ7YBEcHZjwhaSBvJ61So5O52b0AqsBEJL9-_qYVFwckQ56iLPBnLmRjgZVoqCPJ2mPCQNSYpzwRhBiW-dhb9NlyVYDgQFpwyH_umLqlUceoCDKtGg7rktA_OCrMUbH0WI4jYi6m3pMUMdwVZaPendoIouloqM7hMe_Xf3630UW_YpB9ubx4GA8hFl4ivIUrM80fG2z2TlZNrvopaCBLspcyy9rlZu9kLoa-AjdsGTCT34TtCVpmsvn-Iw9pyxuQJIY"/>
-</div>
-<div class="max-w-7xl mx-auto relative z-10">
-<div class="max-w-xl">
-<h2 class="text-secondary-fixed text-sm font-bold tracking-[0.2em] uppercase mb-4 font-label">Listing Verification</h2>
-<h3 class="text-3xl sm:text-4xl font-headline font-extrabold mb-8">Not Just Anyone Can List on Sahara.</h3>
-<div class="space-y-8">
-<div class="flex gap-6">
-<div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/15 glass-effect flex items-center justify-center font-headline font-bold">01</div>
-<div>
-<h5 class="text-lg font-headline font-bold mb-2">Legal Compliance</h5>
-<p class="text-white/70 text-sm">Cars are published by our in-house team after documentation and safety checks — the public cannot post directly.</p>
-</div>
-</div>
-<div class="flex gap-6">
-<div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/15 glass-effect flex items-center justify-center font-headline font-bold">02</div>
-<div>
-<h5 class="text-lg font-headline font-bold mb-2">Inventory Audit</h5>
-<p class="text-white/70 text-sm">Our team performs random physical inspections so online details match what you see in person.</p>
-</div>
-</div>
-<div class="flex gap-6">
-<div class="flex-shrink-0 w-10 h-10 rounded-full bg-white/15 glass-effect flex items-center justify-center font-headline font-bold">03</div>
-<div>
-<h5 class="text-lg font-headline font-bold mb-2">Listing accuracy reviews</h5>
-<p class="text-white/70 text-sm">We regularly review live car pages so photos, specs, and availability stay accurate as stock changes.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
 <!-- Call to Action -->
 <section class="section-editorial px-4 sm:px-6 text-center">
 <div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl relative overflow-hidden attention-panel">

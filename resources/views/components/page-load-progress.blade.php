@@ -15,9 +15,9 @@
 <style>
     .sahara-pl-root {
         position: fixed;
-        top: max(12px, env(safe-area-inset-top, 0px));
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         width: 56px;
         height: 56px;
     }

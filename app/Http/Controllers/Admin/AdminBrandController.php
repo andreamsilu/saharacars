@@ -7,6 +7,7 @@ use App\Models\Brand;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\File;
@@ -37,7 +38,7 @@ class AdminBrandController extends Controller
         $data['is_featured'] = (bool) ($data['is_featured'] ?? true);
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
 
-        $data['logo_path'] = $request->file('logo')->store('brands', 'public');
+        $data['logo_path'] = $this->storeWithOriginalName($request->file('logo'), 'brands');
         unset($data['logo']);
         unset($data['logo_url']);
 
@@ -74,7 +75,7 @@ class AdminBrandController extends Controller
             if ($brand->logo_path) {
                 Storage::disk('public')->delete($brand->logo_path);
             }
-            $data['logo_path'] = $request->file('logo')->store('brands', 'public');
+            $data['logo_path'] = $this->storeWithOriginalName($request->file('logo'), 'brands');
         }
         unset($data['logo']);
         unset($data['logo_url']);
@@ -112,6 +113,11 @@ class AdminBrandController extends Controller
         }
 
         return $slug;
+    }
+
+    private function storeWithOriginalName(UploadedFile $file, string $directory): string
+    {
+        return $file->storeAs($directory, $file->getClientOriginalName(), 'public');
     }
 }
 

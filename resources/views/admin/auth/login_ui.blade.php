@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Login | Sahara Cars Admin Console</title>
+<title>Login | SAHARA COMMISSION AGENTS LIMITED Admin Console</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -151,7 +151,7 @@
 </div>
 <div class="relative z-10 mt-6 text-center">
 <p class="text-xs font-medium text-outline-variant">
-                © 2024 Sahara Cars Automotive Marketplace. Internal Admin Use Only.
+                © 2024 SAHARA COMMISSION AGENTS LIMITED Automotive Marketplace. Internal Admin Use Only.
             </p>
 </div>
 </main>

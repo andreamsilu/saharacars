@@ -52,9 +52,9 @@ class CarController extends Controller
 
         $pageTitle = $car->title.' for sale'
             .($car->location ? ' in '.$car->location : ' in Tanzania')
-            .' | Sahara Cars';
+            .' | SAHARA COMMISSION AGENTS LIMITED';
         $pageDescription = Str::limit(strip_tags((string) ($car->description ?? '')), 155)
-            ?: 'View photos, specs, and price. Contact Sahara Cars on WhatsApp or by phone.';
+            ?: 'View photos, specs, and price. Contact SAHARA COMMISSION AGENTS LIMITED on WhatsApp or by phone.';
 
         return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
     }

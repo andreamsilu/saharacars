@@ -3,7 +3,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Contact Us | Sahara Cars Tanzania</title>
+<title>Contact Us | SAHARA COMMISSION AGENTS LIMITED</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -204,7 +204,7 @@
 <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary text-3xl">location_on</span>
 <div>
-<p class="font-bold text-primary">Sahara Cars Tanzania</p>
+<p class="font-bold text-primary">Sahara Cars</p>
 <p class="text-sm text-on-surface-variant">Primary Sales Center</p>
 <p class="text-sm text-on-surface-variant">Dar es Salaam, Tanzania</p>
 </div>

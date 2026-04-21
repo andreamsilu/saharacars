@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -133,13 +134,13 @@ class AdminCarController extends Controller
         }
 
         if ($request->hasFile('hero_image')) {
-            $data['hero_image_path'] = $request->file('hero_image')->store('cars', 'public');
+            $data['hero_image_path'] = $this->storeWithOriginalName($request->file('hero_image'), 'cars');
         }
         $this->storeViewImages($request, $data);
 
         if ($request->hasFile('gallery_images')) {
             $data['gallery_image_paths'] = collect($request->file('gallery_images'))
-                ->map(fn ($file) => $file->store('cars/gallery', 'public'))
+                ->map(fn ($file) => $this->storeWithOriginalName($file, 'cars/gallery'))
                 ->values()
                 ->all();
         }
@@ -185,7 +186,7 @@ class AdminCarController extends Controller
             if ($car->hero_image_path) {
                 Storage::disk('public')->delete($car->hero_image_path);
             }
-            $data['hero_image_path'] = $request->file('hero_image')->store('cars', 'public');
+            $data['hero_image_path'] = $this->storeWithOriginalName($request->file('hero_image'), 'cars');
         }
         $this->storeViewImages($request, $data, $car);
 
@@ -197,7 +198,7 @@ class AdminCarController extends Controller
                 $existing = $car->gallery_image_paths;
             }
             $uploaded = collect($request->file('gallery_images'))
-                ->map(fn ($file) => $file->store('cars/gallery', 'public'))
+                ->map(fn ($file) => $this->storeWithOriginalName($file, 'cars/gallery'))
                 ->values()
                 ->all();
             $data['gallery_image_paths'] = array_values(array_merge($existing, $uploaded));
@@ -260,7 +261,7 @@ class AdminCarController extends Controller
             }
 
             $uploaded = collect($request->file($input))
-                ->map(fn ($file) => $file->store('cars/views', 'public'))
+                ->map(fn ($file) => $this->storeWithOriginalName($file, 'cars/views'))
                 ->values()
                 ->all();
 
@@ -400,6 +401,11 @@ class AdminCarController extends Controller
         }
 
         return $slug;
+    }
+
+    private function storeWithOriginalName(UploadedFile $file, string $directory): string
+    {
+        return $file->storeAs($directory, $file->getClientOriginalName(), 'public');
     }
 
     private function buildFilteredCarsQuery(Request $request)

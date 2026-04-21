@@ -128,15 +128,13 @@
 <!-- Hero Section -->
 <section class="relative min-h-[min(100svh,720px)] md:min-h-[620px] flex flex-col items-center justify-center px-4 sm:px-6 pt-16 pb-12 sm:pt-20 sm:pb-14 md:pt-24 md:pb-16 overflow-hidden hero-mesh" aria-labelledby="home-hero-heading">
 <div class="absolute inset-0 -z-10">
-<img class="w-full h-full object-cover" alt="" src="{{ asset('images/hero-home.svg') }}" width="1920" height="1080" decoding="async"/>
+<img class="w-full h-full object-cover" alt="Premium car at Sahara Cars showroom" src="{{ asset('images/bg.png') }}" width="1920" height="1080" decoding="async"/>
 <div class="absolute inset-0 bg-primary/65"></div>
 <div class="absolute -top-12 left-[10%] w-28 h-28 md:w-36 md:h-36 rounded-full bg-primary-fixed/40 blur-2xl float-orb"></div>
 <div class="absolute top-24 right-[8%] w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary-fixed/35 blur-2xl float-orb" style="animation-delay: 1.4s;"></div>
 </div>
 <div class="max-w-4xl w-full text-center space-y-6 md:space-y-7">
 <div class="flex flex-wrap justify-center gap-2">
-<span class="pulse-chip bg-white/25 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase">Dar Showroom Selection</span>
-<span class="bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase">Fully Verified Stock</span>
 </div>
 <h1 id="home-hero-heading" class="font-headline text-[clamp(1.75rem,6.5vw,3.75rem)] md:text-7xl font-black text-white tracking-tighter leading-[1.1] hero-glow px-1">
                 Own Tanzania's Most <span class="text-secondary-container">Wanted Cars</span>

@@ -59,7 +59,7 @@
 
     <div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
-            <p>© {{ now()->year }} Sahara Cars Tanzania</p>
+            <p>© {{ now()->year }} SAHARA COMMISSION AGENTS LIMITED</p>
             <p>All rights reserved.</p>
         </div>
     </div>

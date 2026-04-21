@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserSeeder extends Seeder
-{
+  {
     /**
      * Seed admin panel users.
      */
@@ -35,6 +35,6 @@ class AdminUserSeeder extends Seeder
                     'password' => Hash::make($adminUser['password']),
                 ]
             );
-        }
+        }                                                                                                                                                                                                                                                                                                                                                                                        
     }
 }
