@@ -49,7 +49,11 @@
             <div><span class="text-on-surface-variant">Seats:</span> <span class="font-semibold text-on-surface">{{ $car->seats !== null ? $car->seats : '—' }}</span></div>
             <div><span class="text-on-surface-variant">Year:</span> <span class="font-semibold text-on-surface">{{ $car->year ?: '—' }}</span></div>
             <div><span class="text-on-surface-variant">Price (TZS):</span> <span class="font-semibold text-on-surface">{{ $car->price_tzs ? number_format($car->price_tzs) : '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Estimated landed (TZS):</span> <span class="font-semibold text-on-surface">{{ $car->landed_cost_tzs ? number_format($car->landed_cost_tzs) : '—' }}</span></div>
             <div><span class="text-on-surface-variant">Condition:</span> <span class="font-semibold text-on-surface">{{ $car->condition ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Source country:</span> <span class="font-semibold text-on-surface">{{ $car->source_country ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">Import status:</span> <span class="font-semibold text-on-surface">{{ $car->import_status ?: '—' }}</span></div>
+            <div><span class="text-on-surface-variant">ETA:</span> <span class="font-semibold text-on-surface">{{ $car->eta_date?->format('M d, Y') ?: '—' }}</span></div>
             <div><span class="text-on-surface-variant">Transmission:</span> <span class="font-semibold text-on-surface">{{ $car->transmission ?: '—' }}</span></div>
             <div><span class="text-on-surface-variant">Fuel:</span> <span class="font-semibold text-on-surface">{{ $car->fuel ?: '—' }}</span></div>
             <div><span class="text-on-surface-variant">Mileage:</span> <span class="font-semibold text-on-surface">{{ $car->mileage_km ? number_format($car->mileage_km).' km' : '—' }}</span></div>

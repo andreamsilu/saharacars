@@ -79,6 +79,12 @@
                 </div>
 
                 <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="landed_cost_tzs">Estimated landed cost (TZS)</label>
+                    <input id="landed_cost_tzs" name="landed_cost_tzs" type="number" value="{{ old('landed_cost_tzs', $car->landed_cost_tzs ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="220000000" />
+                    @error('landed_cost_tzs')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
                     <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="price_is_negotiable">Price policy</label>
                     <select id="price_is_negotiable" name="price_is_negotiable" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
                         <option value="1" {{ (string) old('price_is_negotiable', ($car->price_is_negotiable ?? true) ? '1' : '0') === '1' ? 'selected' : '' }}>Negotiable</option>
@@ -91,6 +97,17 @@
                     <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="location">Location</label>
                     <input id="location" name="location" value="{{ old('location', $car->location ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Dar es Salaam" />
                     @error('location')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="source_country">Source country</label>
+                    <select id="source_country" name="source_country" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                        <option value="">Select source country</option>
+                        @foreach (['Japan', 'Germany', 'Thailand', 'United Kingdom', 'United Arab Emirates', 'South Korea', 'Tanzania'] as $sourceCountryOption)
+                            <option value="{{ $sourceCountryOption }}" {{ old('source_country', $car->source_country ?? '') === $sourceCountryOption ? 'selected' : '' }}>{{ $sourceCountryOption }}</option>
+                        @endforeach
+                    </select>
+                    @error('source_country')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
@@ -114,6 +131,24 @@
                         <option value="local_used" {{ old('condition', $car->condition ?? '') === 'local_used' ? 'selected' : '' }}>Locally Used</option>
                     </select>
                     @error('condition')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="import_status">Import status</label>
+                    <select id="import_status" name="import_status" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                        <option value="">Select status</option>
+                        <option value="in_tanzania" {{ old('import_status', $car->import_status ?? '') === 'in_tanzania' ? 'selected' : '' }}>In Tanzania</option>
+                        <option value="on_order" {{ old('import_status', $car->import_status ?? '') === 'on_order' ? 'selected' : '' }}>On Order</option>
+                        <option value="in_transit" {{ old('import_status', $car->import_status ?? '') === 'in_transit' ? 'selected' : '' }}>In Transit</option>
+                        <option value="ready_for_booking" {{ old('import_status', $car->import_status ?? '') === 'ready_for_booking' ? 'selected' : '' }}>Ready for Booking</option>
+                    </select>
+                    @error('import_status')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="eta_date">Expected arrival date (ETA)</label>
+                    <input id="eta_date" name="eta_date" type="date" value="{{ old('eta_date', isset($car?->eta_date) ? optional($car->eta_date)->format('Y-m-d') : '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15" />
+                    @error('eta_date')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
                 </div>
 
                 <div>

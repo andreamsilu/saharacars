@@ -12,6 +12,13 @@
     ];
     $conditionText = $conditionLabels[$car->condition] ?? null;
     $makeModel = trim(collect([$car->brand, $car->model])->filter()->implode(' · '));
+    $importStatusLabels = [
+        'in_tanzania' => 'In Tanzania',
+        'on_order' => 'On Order',
+        'in_transit' => 'In Transit',
+        'ready_for_booking' => 'Ready for Booking',
+    ];
+    $importStatusText = $importStatusLabels[$car->import_status] ?? null;
 @endphp
 
 <div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
@@ -42,6 +49,11 @@
             <span class="bg-white/90 backdrop-blur-md text-primary px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
                 <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">verified</span> Verified
             </span>
+            @if ($car->source_country)
+                <span class="bg-primary/90 text-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider font-label shadow-sm">
+                    {{ $car->source_country }}
+                </span>
+            @endif
         </div>
     </div>
 
@@ -66,6 +78,11 @@
                     </div>
                 @endif
             </div>
+            @if ($importStatusText)
+                <p class="mt-2 text-[11px] font-label font-semibold uppercase tracking-wide text-on-surface-variant">
+                    {{ $importStatusText }}@if($car->eta_date) · ETA {{ $car->eta_date->format('M Y') }}@endif
+                </p>
+            @endif
         </div>
 
         <div class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-6">
@@ -92,6 +109,11 @@
             <p class="text-[11px] font-label font-medium text-on-surface-variant uppercase tracking-wide mt-1">
                 {{ $car->price_tzs ? (($car->price_is_negotiable ?? true) ? 'Negotiable' : 'Not Negotiable') : 'Request price' }}
             </p>
+            @if ($car->landed_cost_tzs)
+                <p class="text-[11px] font-label font-medium text-on-surface-variant mt-1">
+                    Estimated landed: TZS {{ number_format($car->landed_cost_tzs) }}
+                </p>
+            @endif
         </div>
 
         <div class="mt-auto">

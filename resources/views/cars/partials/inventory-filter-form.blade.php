@@ -3,6 +3,14 @@
     $filterFormIdPrefix = isset($filterFormIdPrefix) && $filterFormIdPrefix !== '' ? preg_replace('/[^a-zA-Z0-9_-]/', '', (string) $filterFormIdPrefix) : 'filters';
     $brandOptions = isset($brandOptions) && is_iterable($brandOptions) ? collect($brandOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Toyota', 'Land Rover', 'Mercedes', 'Nissan']);
     $locationOptions = isset($locationOptions) && is_iterable($locationOptions) ? collect($locationOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Dar es Salaam', 'Arusha', 'Zanzibar']);
+    $sourceCountryOptions = isset($sourceCountryOptions) && is_iterable($sourceCountryOptions) ? collect($sourceCountryOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['Japan', 'Germany', 'Thailand']);
+    $importStatusOptions = isset($importStatusOptions) && is_iterable($importStatusOptions) ? collect($importStatusOptions)->filter(fn ($v) => is_string($v) && trim($v) !== '')->values() : collect(['in_tanzania', 'on_order', 'in_transit', 'ready_for_booking']);
+    $importStatusLabels = [
+        'in_tanzania' => 'In Tanzania',
+        'on_order' => 'On Order',
+        'in_transit' => 'In Transit',
+        'ready_for_booking' => 'Ready for Booking',
+    ];
 @endphp
 <form action="{{ $action }}" method="GET" data-filter-auto-submit>
     @if (request()->filled('q'))
@@ -78,6 +86,26 @@
                     <option value="Diesel" {{ request('fuel') === 'Diesel' ? 'selected' : '' }}>Diesel</option>
                     <option value="Hybrid" {{ request('fuel') === 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                     <option value="Electric" {{ request('fuel') === 'Electric' ? 'selected' : '' }}>Electric</option>
+                </select>
+            </div>
+            <div class="space-y-3">
+                <label for="filter-source-country-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Source Country</label>
+                <select id="filter-source-country-{{ $filterFormIdPrefix }}" name="source_country" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                    <option value="">Any source</option>
+                    @foreach ($sourceCountryOptions as $sourceCountryOption)
+                        <option value="{{ $sourceCountryOption }}" {{ request('source_country') === $sourceCountryOption ? 'selected' : '' }}>{{ $sourceCountryOption }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="space-y-3">
+                <label for="filter-import-status-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Import Status</label>
+                <select id="filter-import-status-{{ $filterFormIdPrefix }}" name="import_status" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                    <option value="">Any status</option>
+                    @foreach ($importStatusOptions as $importStatusOption)
+                        <option value="{{ $importStatusOption }}" {{ request('import_status') === $importStatusOption ? 'selected' : '' }}>
+                            {{ $importStatusLabels[$importStatusOption] ?? ucwords(str_replace('_', ' ', (string) $importStatusOption)) }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
         </div>

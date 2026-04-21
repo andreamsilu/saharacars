@@ -14,9 +14,9 @@ class CarController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        [$brandOptions, $locationOptions] = $this->getFilterOptions();
+        [$brandOptions, $locationOptions, $sourceCountryOptions, $importStatusOptions] = $this->getFilterOptions();
 
-        return view('cars.index', compact('cars', 'brandOptions', 'locationOptions'));
+        return view('cars.index', compact('cars', 'brandOptions', 'locationOptions', 'sourceCountryOptions', 'importStatusOptions'));
     }
 
     public function bento(): View
@@ -25,9 +25,9 @@ class CarController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        [$brandOptions, $locationOptions] = $this->getFilterOptions();
+        [$brandOptions, $locationOptions, $sourceCountryOptions, $importStatusOptions] = $this->getFilterOptions();
 
-        return view('cars.bento', compact('cars', 'brandOptions', 'locationOptions'));
+        return view('cars.bento', compact('cars', 'brandOptions', 'locationOptions', 'sourceCountryOptions', 'importStatusOptions'));
     }
 
     public function show(string $slug): View
@@ -75,6 +75,8 @@ class CarController extends Controller
         $priceMax = request()->integer('price_max');
         $transmission = trim((string) request('transmission', ''));
         $fuel = trim((string) request('fuel', ''));
+        $sourceCountry = trim((string) request('source_country', ''));
+        $importStatus = trim((string) request('import_status', ''));
         // `condition` is canonical; `category` kept for legacy query strings only.
         $condition = trim((string) request('condition', request('category', '')));
         $sort = (string) request('sort', 'newest');
@@ -108,6 +110,14 @@ class CarController extends Controller
 
         if ($fuel !== '') {
             $query->where('fuel', 'like', '%'.$fuel.'%');
+        }
+
+        if ($sourceCountry !== '') {
+            $query->where('source_country', $sourceCountry);
+        }
+
+        if (in_array($importStatus, ['in_tanzania', 'on_order', 'in_transit', 'ready_for_booking'], true)) {
+            $query->where('import_status', $importStatus);
         }
 
         if (in_array($condition, ['brand_new', 'foreign_used', 'local_used'], true)) {
@@ -169,7 +179,7 @@ class CarController extends Controller
     }
 
     /**
-     * @return array{0: \Illuminate\Support\Collection<int, string>, 1: \Illuminate\Support\Collection<int, string>}
+     * @return array{0: \Illuminate\Support\Collection<int, string>, 1: \Illuminate\Support\Collection<int, string>, 2: \Illuminate\Support\Collection<int, string>, 3: \Illuminate\Support\Collection<int, string>}
      */
     private function getFilterOptions(): array
     {
@@ -191,7 +201,25 @@ class CarController extends Controller
             ->orderBy('location')
             ->pluck('location');
 
-        return [$brandOptions, $locationOptions];
+        $sourceCountryOptions = Car::query()
+            ->where('is_published', true)
+            ->whereNotNull('source_country')
+            ->where('source_country', '!=', '')
+            ->select('source_country')
+            ->distinct()
+            ->orderBy('source_country')
+            ->pluck('source_country');
+
+        $importStatusOptions = Car::query()
+            ->where('is_published', true)
+            ->whereNotNull('import_status')
+            ->where('import_status', '!=', '')
+            ->select('import_status')
+            ->distinct()
+            ->orderBy('import_status')
+            ->pluck('import_status');
+
+        return [$brandOptions, $locationOptions, $sourceCountryOptions, $importStatusOptions];
     }
 }
 
