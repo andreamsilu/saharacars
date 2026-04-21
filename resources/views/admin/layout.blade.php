@@ -119,6 +119,10 @@
 
             <nav class="flex-1 p-4 space-y-1">
                 @php
+                    $unreadOrdersCount = \App\Models\Inquiry::query()
+                        ->where('inquiry_type', 'order_request')
+                        ->whereNull('read_at')
+                        ->count();
                     $link = function (string $route, string $pattern, string $label, string $icon) {
                         $active = request()->routeIs($pattern);
                         $base = 'flex items-center gap-3 py-3.5 pl-4 rounded-2xl mr-2 text-[15px] font-medium tracking-tight transition-colors';
@@ -130,6 +134,7 @@
                     $items = [
                         $link('admin.dashboard', 'admin.dashboard', 'Overview', 'dashboard'),
                         $link('admin.cars.index', 'admin.cars.*', 'Inventory', 'directions_car'),
+                        $link('admin.inquiries.index', 'admin.inquiries.*', 'Orders', 'inventory_2'),
                         $link('admin.brands.index', 'admin.brands.*', 'Brands', 'branding_watermark'),
                         $link('admin.settings.index', 'admin.settings.*', 'Settings', 'settings'),
                     ];
@@ -143,7 +148,14 @@
                         aria-current="{{ $item['active'] ? 'page' : 'false' }}"
                     >
                         <span class="material-symbols-outlined text-[22px]">{{ $item['icon'] }}</span>
-                        {{ $item['label'] }}
+                        <span class="inline-flex items-center gap-2">
+                            <span>{{ $item['label'] }}</span>
+                            @if ($item['route'] === 'admin.inquiries.index' && $unreadOrdersCount > 0)
+                                <span class="inline-flex min-w-[20px] h-5 items-center justify-center rounded-full bg-rose-500 text-white text-[10px] font-extrabold px-1.5" aria-label="{{ $unreadOrdersCount }} unread order requests">
+                                    {{ $unreadOrdersCount > 99 ? '99+' : $unreadOrdersCount }}
+                                </span>
+                            @endif
+                        </span>
                     </a>
                 @endforeach
             </nav>

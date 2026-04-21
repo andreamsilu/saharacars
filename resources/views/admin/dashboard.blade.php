@@ -193,6 +193,59 @@
         </div>
     </div>
 
+    <div class="bg-surface-container-lowest rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 overflow-hidden mb-12">
+        <div class="p-7 md:p-9 border-b border-slate-200/80 flex justify-between items-center flex-wrap gap-4">
+            <div>
+                <h2 class="text-2xl font-extrabold text-primary font-headline inline-flex items-center gap-2">
+                    <span class="material-symbols-outlined icon-info">inventory_2</span>
+                    Latest order requests
+                </h2>
+                <p class="text-sm text-on-surface-variant mt-1">
+                    Unread: <span class="font-bold text-primary">{{ number_format($unreadOrderRequestsCount) }}</span>
+                </p>
+            </div>
+            <a href="{{ route('admin.inquiries.index') }}" class="inline-flex items-center justify-center w-9 h-9 rounded-full text-primary hover:bg-slate-100 hover:text-primary smooth border border-primary/30 bg-white" title="View all order requests" aria-label="View all order requests">
+                <span class="material-symbols-outlined text-[20px]">list</span>
+                <span class="sr-only">View all</span>
+            </a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-surface-container-low">
+                        <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Customer</th>
+                        <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Request</th>
+                        <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Submitted</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200/80">
+                    @forelse ($latestOrderRequests as $order)
+                        <tr class="hover:bg-surface-container-low/80 smooth">
+                            <td class="px-6 py-4">
+                                <p class="text-sm font-bold text-on-surface">{{ $order->full_name }}</p>
+                                <p class="text-xs text-on-surface-variant">{{ $order->phone ?: $order->email }}</p>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-on-surface-variant">
+                                {{ $order->preferred_brand ?: 'Any brand' }}
+                                @if($order->preferred_model)
+                                    · {{ $order->preferred_model }}
+                                @endif
+                                @if($order->source_country)
+                                    · {{ $order->source_country }}
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 text-sm text-on-surface-variant">{{ $order->created_at?->format('M d, Y H:i') }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="px-6 py-8 text-center text-sm text-on-surface-variant">No order requests yet.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="bg-surface-container-lowest rounded-2xl card-lift ring-1 ring-slate-300/80 border border-slate-200/90 overflow-hidden">
         <div class="p-7 md:p-9 border-b border-slate-200/80 flex justify-between items-center flex-wrap gap-4">
             <h2 class="text-2xl font-extrabold text-primary font-headline inline-flex items-center gap-2">

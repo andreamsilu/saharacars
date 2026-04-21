@@ -343,6 +343,10 @@
 <span class="material-symbols-outlined" aria-hidden="true">call</span>
                                 Call now
                             </a>
+<a class="w-full bg-surface-container-low text-primary font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 border border-outline-variant/40 transition-[filter,transform] hover:brightness-95 active:scale-95 focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('order.request') }}">
+<span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
+                                Request Similar Import
+                            </a>
 <a class="w-full text-center text-sm font-semibold text-primary underline underline-offset-2 py-2 min-h-[44px] rounded-lg focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('contact') }}">Prefer email or a form?</a>
 </div>
 </div>

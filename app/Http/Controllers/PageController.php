@@ -69,6 +69,11 @@ class PageController extends Controller
         return view('pages.contact');
     }
 
+    public function orderRequest(): View
+    {
+        return view('pages.order-request');
+    }
+
     /**
      * Saved cars (titles + slugs stored in localStorage; rendered client-side).
      */

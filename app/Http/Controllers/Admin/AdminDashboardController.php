@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\Inquiry;
 use App\Models\SiteVisitor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
@@ -94,6 +95,15 @@ class AdminDashboardController extends Controller
         );
 
         $recentCars = Car::query()->latest()->limit(8)->get();
+        $unreadOrderRequestsCount = Inquiry::query()
+            ->where('inquiry_type', 'order_request')
+            ->whereNull('read_at')
+            ->count();
+        $latestOrderRequests = Inquiry::query()
+            ->where('inquiry_type', 'order_request')
+            ->latest()
+            ->limit(5)
+            ->get();
 
         return view('admin.dashboard', [
             'carsTotal' => $carsTotal,
@@ -113,6 +123,8 @@ class AdminDashboardController extends Controller
             'visitors6MonthsTrend' => $visitors6MonthsTrend,
             'visitorsYearTrend' => $visitorsYearTrend,
             'recentCars' => $recentCars,
+            'unreadOrderRequestsCount' => $unreadOrderRequestsCount,
+            'latestOrderRequests' => $latestOrderRequests,
         ]);
     }
 }

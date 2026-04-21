@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminInquiryController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\InquiryController;
@@ -20,6 +21,8 @@ Route::redirect('/about', '/why-choose-us', 301);
 Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('contact.store');
+Route::get('/order-request', [PageController::class, 'orderRequest'])->name('order.request');
+Route::post('/order-request', [InquiryController::class, 'storeOrderRequest'])->name('order.request.store');
 Route::get('/saved', [PageController::class, 'saved'])->name('saved');
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -48,5 +51,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings.index');
         Route::put('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');
+        Route::get('/order-requests', [AdminInquiryController::class, 'index'])->name('inquiries.index');
+        Route::patch('/order-requests/{inquiry}/read', [AdminInquiryController::class, 'markRead'])->name('inquiries.read');
     });
 });

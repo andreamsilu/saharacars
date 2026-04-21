@@ -12,8 +12,17 @@ class Inquiry extends Model
     protected $fillable = [
         'full_name',
         'email',
+        'phone',
         'subject',
         'message',
+        'inquiry_type',
+        'preferred_brand',
+        'preferred_model',
+        'year_min',
+        'year_max',
+        'budget_min_tzs',
+        'budget_max_tzs',
+        'source_country',
         'ip_address',
         'user_agent',
         'read_at',
@@ -23,6 +32,10 @@ class Inquiry extends Model
     {
         return [
             'read_at' => 'datetime',
+            'year_min' => 'integer',
+            'year_max' => 'integer',
+            'budget_min_tzs' => 'integer',
+            'budget_max_tzs' => 'integer',
         ];
     }
 }
