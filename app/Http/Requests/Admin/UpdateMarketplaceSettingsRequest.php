@@ -19,6 +19,7 @@ class UpdateMarketplaceSettingsRequest extends FormRequest
         return [
             'marketplace_name' => ['required', 'string', 'max:255'],
             'support_email' => ['required', 'email', 'max:255'],
+            'whatsapp_phone' => ['required', 'string', 'max:20', 'regex:/^\d{10,15}$/'],
             'tagline' => ['nullable', 'string', 'max:1000'],
             'theme_primary' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             'theme_secondary' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
@@ -36,6 +37,7 @@ class UpdateMarketplaceSettingsRequest extends FormRequest
         return [
             'marketplace_name' => $validated['marketplace_name'],
             'support_email' => $validated['support_email'],
+            'whatsapp_phone' => preg_replace('/\D+/', '', $validated['whatsapp_phone']) ?: $validated['whatsapp_phone'],
             'tagline' => $validated['tagline'] ?? '',
             'theme_primary' => strtoupper($validated['theme_primary']),
             'theme_secondary' => strtoupper($validated['theme_secondary']),

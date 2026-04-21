@@ -44,7 +44,8 @@ class AdminSettingsController extends Controller
     {
         $defaults = [
             'marketplace_name' => (string) config('marketplace.name'),
-            'support_email' => (string) config('marketplace.support_email'),
+            'support_email' => (string) config('sahara.support_email'),
+            'whatsapp_phone' => (string) config('sahara.whatsapp_phone'),
             'tagline' => (string) config('marketplace.tagline'),
             'theme_primary' => '#8A6528',
             'theme_secondary' => '#0B6B3A',

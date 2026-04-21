@@ -38,6 +38,20 @@ class AppServiceProvider extends ServiceProvider
                 }
 
                 if (is_array($stored)) {
+                    if (isset($stored['support_email']) && is_string($stored['support_email']) && filter_var($stored['support_email'], FILTER_VALIDATE_EMAIL)) {
+                        config([
+                            'sahara.support_email' => $stored['support_email'],
+                            'marketplace.support_email' => $stored['support_email'],
+                        ]);
+                    }
+
+                    if (isset($stored['whatsapp_phone']) && is_string($stored['whatsapp_phone'])) {
+                        $digits = preg_replace('/\D+/', '', $stored['whatsapp_phone']);
+                        if (is_string($digits) && preg_match('/^\d{10,15}$/', $digits)) {
+                            config(['sahara.whatsapp_phone' => $digits]);
+                        }
+                    }
+
                     foreach ([
                         'theme_primary' => 'primary',
                         'theme_secondary' => 'secondary',

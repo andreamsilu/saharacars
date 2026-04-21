@@ -37,6 +37,10 @@
                     <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="support_email"><span class="material-symbols-outlined text-base icon-neutral">mail</span>Support Email</label>
                     <input id="support_email" name="support_email" type="email" value="{{ old('support_email', $settings['support_email']) }}" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
                 </div>
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="whatsapp_phone"><span class="material-symbols-outlined text-base icon-neutral">chat</span>WhatsApp Phone (E.164 digits)</label>
+                    <input id="whatsapp_phone" name="whatsapp_phone" type="text" inputmode="numeric" pattern="[0-9]{10,15}" value="{{ old('whatsapp_phone', $settings['whatsapp_phone']) }}" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="255000000000" required />
+                </div>
             </div>
 
             <div class="space-y-2">
@@ -61,6 +65,14 @@
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="theme_primary_container">Primary Container</label>
                         <input id="theme_primary_container" name="theme_primary_container" type="color" value="{{ old('theme_primary_container', $settings['theme_primary_container'] ?? '#5C4320') }}" class="w-full h-12 rounded-xl border border-slate-200/80 bg-white p-1" />
+                    </div>
+                </div>
+                <div class="rounded-2xl border border-outline-variant/40 bg-white p-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-3">Live preview</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span id="preview-primary" class="inline-flex items-center rounded-full px-3 py-1.5 text-xs font-bold text-white" style="background-color: {{ old('theme_primary', $settings['theme_primary'] ?? '#8A6528') }};">Primary</span>
+                        <span id="preview-secondary" class="inline-flex items-center rounded-full px-3 py-1.5 text-xs font-bold text-white" style="background-color: {{ old('theme_secondary', $settings['theme_secondary'] ?? '#0B6B3A') }};">Secondary</span>
+                        <span id="preview-primary-container" class="inline-flex items-center rounded-full px-3 py-1.5 text-xs font-bold text-white" style="background-color: {{ old('theme_primary_container', $settings['theme_primary_container'] ?? '#5C4320') }};">Primary Container</span>
                     </div>
                 </div>
                 <div class="flex justify-end">
@@ -99,15 +111,35 @@
     <script>
         (() => {
             const resetBtn = document.getElementById('theme-reset-defaults');
+            const previewMap = {
+                theme_primary: document.getElementById('preview-primary'),
+                theme_secondary: document.getElementById('preview-secondary'),
+                theme_primary_container: document.getElementById('preview-primary-container'),
+            };
             const defaults = {
                 theme_primary: '#8A6528',
                 theme_secondary: '#0B6B3A',
                 theme_primary_container: '#5C4320',
             };
+
+            const bindPreview = (id) => {
+                const input = document.getElementById(id);
+                const preview = previewMap[id];
+                if (!input || !preview) return;
+                input.addEventListener('input', () => {
+                    preview.style.backgroundColor = input.value;
+                });
+            };
+
+            Object.keys(previewMap).forEach(bindPreview);
+
             resetBtn?.addEventListener('click', () => {
                 Object.entries(defaults).forEach(([id, value]) => {
                     const el = document.getElementById(id);
-                    if (el) el.value = value;
+                    if (el) {
+                        el.value = value;
+                        el.dispatchEvent(new Event('input'));
+                    }
                 });
             });
         })();
