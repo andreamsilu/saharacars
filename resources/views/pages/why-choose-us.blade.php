@@ -123,27 +123,39 @@
 <!-- Quick trust stats -->
 <section class="px-4 sm:px-6 relative z-20 why-fade-up why-delay-1">
 <div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-3xl p-4 sm:p-6 shadow-[0_18px_38px_rgba(92,67,32,0.14)] border border-outline-variant/30">
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-<div class="rounded-2xl bg-surface-container-low p-4 why-lift">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Listing control</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]" aria-hidden="true">verified</span>
+</div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Listing control</p>
 <p class="font-headline text-xl font-black text-primary mt-1">Admin-verified</p>
-<p class="text-xs text-on-surface-variant mt-1">No anonymous self-posting risk.</p>
+<p class="text-xs text-on-surface-variant mt-2">No anonymous self-posting risk.</p>
+</article>
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]" aria-hidden="true">bolt</span>
 </div>
-<div class="rounded-2xl bg-surface-container-low p-4 why-lift">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Response standard</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Response standard</p>
 <p class="font-headline text-xl font-black text-primary mt-1">Advisor-led support</p>
-<p class="text-xs text-on-surface-variant mt-1">WhatsApp and phone from one team.</p>
+<p class="text-xs text-on-surface-variant mt-2">WhatsApp and phone from one team.</p>
+</article>
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]" aria-hidden="true">description</span>
 </div>
-<div class="rounded-2xl bg-surface-container-low p-4 why-lift">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Listing clarity</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Listing clarity</p>
 <p class="font-headline text-xl font-black text-primary mt-1">Structured specs</p>
-<p class="text-xs text-on-surface-variant mt-1">Make/model/body/doors/seats present.</p>
+<p class="text-xs text-on-surface-variant mt-2">Make/model/body/doors/seats present.</p>
+</article>
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]" aria-hidden="true">location_city</span>
 </div>
-<div class="rounded-2xl bg-surface-container-low p-4 why-lift">
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Business base</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Business base</p>
 <p class="font-headline text-xl font-black text-primary mt-1">Dar es Salaam</p>
-<p class="text-xs text-on-surface-variant mt-1">Physical team, viewing and handover.</p>
-</div>
+<p class="text-xs text-on-surface-variant mt-2">Physical team, viewing and handover.</p>
+</article>
 </div>
 </div>
 </section>

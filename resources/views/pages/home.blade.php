@@ -184,32 +184,6 @@
     </div>
 </div>
 </section>
-<section class="px-4 sm:px-6 -mt-6 md:-mt-8 relative z-20">
-<div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 shadow-[0_20px_36px_rgba(92,67,32,0.14)]">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-<div class="bg-surface-container-low rounded-2xl p-4 graphic-panel">
-<span class="material-symbols-outlined text-primary text-[20px]" aria-hidden="true">verified</span>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Verified Listings</p>
-<p class="font-headline text-lg font-extrabold text-primary mt-1">Inspected &amp; Documented</p>
-</div>
-<div class="bg-surface-container-low rounded-2xl p-4 graphic-panel">
-<span class="material-symbols-outlined text-primary text-[20px]" aria-hidden="true">bolt</span>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Fast Response</p>
-<p class="font-headline text-lg font-extrabold text-primary mt-1">Quick Replies</p>
-</div>
-<div class="bg-surface-container-low rounded-2xl p-4 graphic-panel">
-<span class="material-symbols-outlined text-primary text-[20px]" aria-hidden="true">account_balance</span>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Finance &amp; Cover</p>
-<p class="font-headline text-lg font-extrabold text-primary mt-1">Banks &amp; Insurance</p>
-</div>
-<div class="bg-surface-container-low rounded-2xl p-4 graphic-panel">
-<span class="material-symbols-outlined text-primary text-[20px]" aria-hidden="true">location_city</span>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Showroom</p>
-<p class="font-headline text-lg font-extrabold text-primary mt-1">Dar es Salaam</p>
-</div>
-</div>
-</div>
-</section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
