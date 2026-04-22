@@ -170,20 +170,6 @@
 <p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: start on WhatsApp, then we guide you to the best matching units.</p>
 </div>
 </section>
-<section class="px-4 sm:px-6 mt-4">
-<div class="max-w-7xl mx-auto rounded-2xl bg-surface-container-low p-4 sm:p-5 border border-outline-variant/30">
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-        <div>
-            <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Import support</p>
-            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">Need a specific car from Japan, Germany, or Thailand?</h2>
-        </div>
-        <a href="{{ route('order.request') }}" class="inline-flex items-center justify-center gap-2 rounded-full cta-gradient text-white px-5 py-2.5 min-h-[44px] font-bold focus-ring-on-dark">
-            <span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">inventory_2</span>
-            Request Import Order
-        </a>
-    </div>
-</div>
-</section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -197,32 +183,52 @@
     </div>
 </div>
 </section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="Showroom highlights">
+<div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-6 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+        <div>
+            <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Visual highlights</p>
+            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">See the Sahara buying experience</h2>
+        </div>
+        <a href="{{ route('order.request') }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">Request a matching car</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <div class="overflow-hidden">
+                <img src="{{ asset('images/home-showroom-premium.jpg') }}" alt="Premium vehicles displayed at a clean showroom" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+            </div>
+            <div class="p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Showroom quality</p>
+                <p class="font-headline font-extrabold text-primary mt-1">Curated premium units</p>
+            </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <div class="overflow-hidden">
+                <img src="{{ asset('images/home-driving-road.jpg') }}" alt="SUV driving on open road for Tanzania-ready mobility" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+            </div>
+            <div class="p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Road confidence</p>
+                <p class="font-headline font-extrabold text-primary mt-1">Built for daily + long routes</p>
+            </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <div class="overflow-hidden">
+                <img src="{{ asset('images/home-inspection-detail.jpg') }}" alt="Close-up car detail representing inspected condition" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+            </div>
+            <div class="p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Condition clarity</p>
+                <p class="font-headline font-extrabold text-primary mt-1">Visual inspection focus</p>
+            </div>
+        </article>
+    </div>
+</div>
+</section>
 @php
     $featuredCollection = collect($featuredCars ?? []);
     $newArrivals = $featuredCollection->take(3);
     $editorPicks = $featuredCollection->slice(3, 3);
     $valuePicks = $featuredCollection->sortBy('price_tzs')->take(3);
 @endphp
-<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="Import purchase flow">
-<div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-6 border border-outline-variant/30 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
-    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
-        <div>
-            <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">{{ $homeImportFlowSubtitle ?? 'Import purchase flow' }}</p>
-            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">{{ $homeImportFlowTitle ?? 'From request to delivery' }}</h2>
-        </div>
-        <a href="{{ route('order.request') }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">Start an order request</a>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        @foreach (($homeImportFlowSteps ?? []) as $idx => $step)
-            <div class="rounded-xl bg-surface-container-low p-4">
-                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Step {{ $idx + 1 }}</p>
-                <p class="font-headline font-extrabold text-primary mt-1">{{ $step['title'] }}</p>
-                <p class="text-xs text-on-surface-variant mt-1">{{ $step['description'] }}</p>
-            </div>
-        @endforeach
-    </div>
-</div>
-</section>
 <!-- Content: Featured Cars Section -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
@@ -295,82 +301,6 @@ aria-label="View {{ $brand['name'] }} cars"
 </div>
 </section>
 @endif
-<section class="section-editorial px-4 sm:px-6 section-wash">
-<div class="max-w-7xl mx-auto">
-<div class="max-w-3xl flex flex-col sm:flex-row items-start gap-4">
-<div class="h-14 w-14 rounded-2xl bg-primary-container text-white flex items-center justify-center shadow-lg shadow-primary/20">
-<span class="material-symbols-outlined text-[28px]">timeline</span>
-</div>
-<div>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Buyer Journey</p>
-<h3 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary mt-2">How Buying Works</h3>
-<p class="text-on-surface-variant mt-3">A clear 3-step path from browsing to handover—made for buyers who want straight answers, fair paperwork, and local support in Tanzania.</p>
-</div>
-</div>
-<div class="mt-10">
-<div class="relative overflow-hidden" id="journey-slider">
-<div class="flex transition-transform duration-500 ease-out" id="journey-track">
-<article class="w-full shrink-0 bg-surface-container-lowest rounded-3xl p-6 md:p-8 shadow-[0_14px_24px_rgba(25,28,30,0.05)] graphic-panel">
-<div class="flex items-center justify-between">
-<span class="inline-flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
-<span class="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">1</span>
-Step 01
-</span>
-<span class="h-10 w-10 rounded-full bg-primary-container text-white flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">search</span>
-</span>
-</div>
-<h4 class="font-headline text-2xl font-extrabold text-primary mt-4">Browse & Shortlist</h4>
-<p class="text-sm md:text-base text-on-surface-variant mt-2">Filter by budget in Tanzanian Shillings, brand, and body style, then shortlist cars that suit Dar traffic, family use, or upcountry trips.</p>
-<img src="{{ asset('images/step-browse.svg') }}" alt="Browse and shortlist visual" class="mt-5 h-40 w-full object-cover rounded-2xl"/>
-</article>
-<article class="w-full shrink-0 bg-surface-container-lowest rounded-3xl p-6 md:p-8 shadow-[0_14px_24px_rgba(25,28,30,0.05)] graphic-panel">
-<div class="flex items-center justify-between">
-<span class="inline-flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
-<span class="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">2</span>
-Step 02
-</span>
-<span class="h-10 w-10 rounded-full bg-primary-container text-white flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">fact_check</span>
-</span>
-</div>
-<h4 class="font-headline text-2xl font-extrabold text-primary mt-4">Inspect & Verify</h4>
-<p class="text-sm md:text-base text-on-surface-variant mt-2">Review condition and service clues, confirm ownership paperwork with our team, and book a guided inspection before you commit.</p>
-<img src="{{ asset('images/step-inspect.svg') }}" alt="Inspect and verify visual" class="mt-5 h-40 w-full object-cover rounded-2xl"/>
-</article>
-<article class="w-full shrink-0 bg-surface-container-lowest rounded-3xl p-6 md:p-8 shadow-[0_14px_24px_rgba(25,28,30,0.05)] graphic-panel">
-<div class="flex items-center justify-between">
-<span class="inline-flex items-center gap-2 font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
-<span class="h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">3</span>
-Step 03
-</span>
-<span class="h-10 w-10 rounded-full bg-primary-container text-white flex items-center justify-center">
-<span class="material-symbols-outlined text-[18px]">handshake</span>
-</span>
-</div>
-<h4 class="font-headline text-2xl font-extrabold text-primary mt-4">Close with Confidence</h4>
-<p class="text-sm md:text-base text-on-surface-variant mt-2">Finalize payment and pickup with help from trusted banking and insurance partners, and answers to common questions about transfer and registration next steps.</p>
-<img src="{{ asset('images/step-close.svg') }}" alt="Close with confidence visual" class="mt-5 h-40 w-full object-cover rounded-2xl"/>
-</article>
-</div>
-</div>
-<div class="mt-5 flex items-center justify-between">
-<button type="button" id="journey-prev" class="inline-flex items-center gap-1 rounded-full bg-surface-container-low px-4 py-2 min-h-[44px] text-xs font-bold text-primary ghost-border transition-colors hover:bg-white hover:text-primary" aria-label="Previous buying step">
-<span class="material-symbols-outlined text-[16px] text-inherit" aria-hidden="true">arrow_back</span> Prev
-</button>
-<div class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant" id="journey-counter">Step 1 of 3</div>
-<div class="flex items-center gap-2" id="journey-dots" role="group" aria-label="Buying journey steps">
-<button type="button" class="journey-dot inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-primary p-2" data-index="0" aria-label="Go to step 1"><span class="journey-dot-marker h-2.5 w-2.5 rounded-full bg-white" aria-hidden="true"></span></button>
-<button type="button" class="journey-dot inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-surface-container-high ghost-border p-2" data-index="1" aria-label="Go to step 2"><span class="journey-dot-marker h-2.5 w-2.5 rounded-full bg-on-surface-variant/50" aria-hidden="true"></span></button>
-<button type="button" class="journey-dot inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-surface-container-high ghost-border p-2" data-index="2" aria-label="Go to step 3"><span class="journey-dot-marker h-2.5 w-2.5 rounded-full bg-on-surface-variant/50" aria-hidden="true"></span></button>
-</div>
-<button type="button" id="journey-next" class="inline-flex items-center gap-1 rounded-full cta-gradient px-4 py-2 min-h-[44px] text-xs font-bold text-white focus-ring-on-dark transition-[filter] hover:brightness-110" aria-label="Next buying step">
-Next <span class="material-symbols-outlined text-[16px] text-white" aria-hidden="true">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-</section>
 <x-partner-logos-slider
     title="Trusted Companies in Our Network"
     subtitle="Working with banking, insurance, logistics, and compliance partners so your purchase stays transparent and on track from quote to keys in Tanzania."
@@ -478,67 +408,6 @@ Next <span class="material-symbols-outlined text-[16px] text-white" aria-hidden=
             panels.forEach((panel) => panel.classList.toggle('hidden', panel.dataset.panel !== target));
         });
     });
-})();
-
-(() => {
-    const track = document.getElementById('journey-track');
-    const slider = document.getElementById('journey-slider');
-    const prev = document.getElementById('journey-prev');
-    const next = document.getElementById('journey-next');
-    const counter = document.getElementById('journey-counter');
-    const dots = Array.from(document.querySelectorAll('.journey-dot'));
-    if (!track || !prev || !next || !dots.length || !slider || !counter) return;
-
-    let index = 0;
-    const max = dots.length - 1;
-    let autoId = null;
-
-    const render = () => {
-        track.style.transform = `translateX(-${index * 100}%)`;
-        counter.textContent = `Step ${index + 1} of ${max + 1}`;
-        dots.forEach((dot, i) => {
-            const active = i === index;
-            dot.classList.toggle('bg-primary', active);
-            dot.classList.toggle('bg-surface-container-high', !active);
-            dot.classList.toggle('ghost-border', !active);
-            dot.setAttribute('aria-current', active ? 'step' : 'false');
-            const inner = dot.querySelector('.journey-dot-marker');
-            if (inner) {
-                inner.classList.toggle('bg-white', active);
-                inner.classList.toggle('bg-on-surface-variant/50', !active);
-            }
-        });
-    };
-    const startAuto = () => {
-        if (autoId) return;
-        autoId = window.setInterval(() => {
-            index = index >= max ? 0 : index + 1;
-            render();
-        }, 4200);
-    };
-    const stopAuto = () => {
-        if (!autoId) return;
-        window.clearInterval(autoId);
-        autoId = null;
-    };
-
-    prev.addEventListener('click', () => {
-        index = index <= 0 ? max : index - 1;
-        render();
-    });
-    next.addEventListener('click', () => {
-        index = index >= max ? 0 : index + 1;
-        render();
-    });
-    dots.forEach((dot, i) => dot.addEventListener('click', () => {
-        index = i;
-        render();
-    }));
-    slider.addEventListener('mouseenter', stopAuto);
-    slider.addEventListener('mouseleave', startAuto);
-    slider.addEventListener('touchstart', stopAuto, { passive: true });
-    slider.addEventListener('touchend', startAuto, { passive: true });
-    startAuto();
 })();
 </script>
 </body></html>
