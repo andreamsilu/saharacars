@@ -142,6 +142,25 @@
 <p class="text-white text-base sm:text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow px-1">
                 Premium and rugged cars chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
             </p>
+<form action="{{ route('cars.index') }}" method="GET" class="max-w-5xl mx-auto bg-white/90 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/70 shadow-[0_16px_30px_rgba(25,28,30,0.16)]">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
+        <input name="q" type="search" placeholder="Brand, model, or keyword" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30" />
+        <select name="brand" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
+            <option value="">Any brand</option>
+            @foreach ($brandOptions as $brandOption)
+                <option value="{{ $brandOption }}">{{ $brandOption }}</option>
+            @endforeach
+        </select>
+        <select name="source_country" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
+            <option value="">Any source country</option>
+            @foreach (($sourceCountryOptions ?? collect()) as $sourceCountryOption)
+                <option value="{{ $sourceCountryOption }}">{{ $sourceCountryOption }}</option>
+            @endforeach
+        </select>
+        <input name="price_min" type="number" inputmode="numeric" placeholder="Min TZS" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30" />
+        <button type="submit" class="rounded-xl cta-gradient text-white font-bold px-4 py-2.5 min-h-[44px] focus-ring-on-dark">Search Cars</button>
+    </div>
+</form>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
 <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Chat on WhatsApp
@@ -149,6 +168,20 @@
 <a href="{{ route('cars.index') }}" class="bg-white text-primary px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
 </div>
 <p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: start on WhatsApp, then we guide you to the best matching units.</p>
+</div>
+</section>
+<section class="px-4 sm:px-6 mt-4">
+<div class="max-w-7xl mx-auto rounded-2xl bg-surface-container-low p-4 sm:p-5 border border-outline-variant/30">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+            <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Import support</p>
+            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">Need a specific car from Japan, Germany, or Thailand?</h2>
+        </div>
+        <a href="{{ route('order.request') }}" class="inline-flex items-center justify-center gap-2 rounded-full cta-gradient text-white px-5 py-2.5 min-h-[44px] font-bold focus-ring-on-dark">
+            <span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">inventory_2</span>
+            Request Import Order
+        </a>
+    </div>
 </div>
 </section>
 <section class="px-4 sm:px-6 -mt-6 md:-mt-8 relative z-20">
@@ -177,12 +210,45 @@
 </div>
 </div>
 </section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+<div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ $homeShortcutsTitle ?? 'Shop by shortcuts' }}</h2>
+        <p class="text-xs sm:text-sm text-on-surface-variant">{{ $homeShortcutsSubtitle ?? 'Fast paths for high-intent buyers' }}</p>
+    </div>
+    <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        @foreach (($homeShortcutChips ?? []) as $shortcut)
+            <a href="{{ $shortcut['url'] }}" class="rounded-2xl bg-surface-container-low px-3 py-3 ghost-border hover:bg-surface-container-high transition-colors text-center text-xs font-bold uppercase tracking-wide text-on-surface-variant">{{ $shortcut['label'] }}</a>
+        @endforeach
+    </div>
+</div>
+</section>
 @php
     $featuredCollection = collect($featuredCars ?? []);
     $newArrivals = $featuredCollection->take(3);
     $editorPicks = $featuredCollection->slice(3, 3);
     $valuePicks = $featuredCollection->sortBy('price_tzs')->take(3);
 @endphp
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="Import purchase flow">
+<div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-6 border border-outline-variant/30 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+        <div>
+            <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">{{ $homeImportFlowSubtitle ?? 'Import purchase flow' }}</p>
+            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">{{ $homeImportFlowTitle ?? 'From request to delivery' }}</h2>
+        </div>
+        <a href="{{ route('order.request') }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">Start an order request</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        @foreach (($homeImportFlowSteps ?? []) as $idx => $step)
+            <div class="rounded-xl bg-surface-container-low p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">Step {{ $idx + 1 }}</p>
+                <p class="font-headline font-extrabold text-primary mt-1">{{ $step['title'] }}</p>
+                <p class="text-xs text-on-surface-variant mt-1">{{ $step['description'] }}</p>
+            </div>
+        @endforeach
+    </div>
+</div>
+</section>
 <!-- Content: Featured Cars Section -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">

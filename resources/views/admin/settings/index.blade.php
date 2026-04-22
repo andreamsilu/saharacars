@@ -50,6 +50,46 @@
 
             <div class="rounded-2xl border border-slate-200/80 bg-surface-container-low p-5 space-y-4">
                 <h3 class="text-sm font-bold text-primary inline-flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base">home</span>
+                    Homepage Utility Modules
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="home_shortcuts_title">Shortcuts Title</label>
+                        <input id="home_shortcuts_title" name="home_shortcuts_title" type="text" value="{{ old('home_shortcuts_title', $settings['home_shortcuts_title'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="home_shortcuts_subtitle">Shortcuts Subtitle</label>
+                        <input id="home_shortcuts_subtitle" name="home_shortcuts_subtitle" type="text" value="{{ old('home_shortcuts_subtitle', $settings['home_shortcuts_subtitle'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" />
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="home_shortcuts_lines">Shortcut Chips (one per line: Label|URL)</label>
+                    <textarea id="home_shortcuts_lines" name="home_shortcuts_lines" rows="6" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface">{{ old('home_shortcuts_lines', $settings['home_shortcuts_lines'] ?? '') }}</textarea>
+                    <p class="text-[11px] text-on-surface-variant">Format example: <span class="font-mono">From Japan|/cars?source_country=Japan</span></p>
+                    <div id="home-shortcuts-warning" class="hidden rounded-xl border border-amber-300/70 bg-amber-50 px-3 py-2 text-xs text-amber-800" aria-live="polite"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="home_import_flow_subtitle">Import Flow Eyebrow</label>
+                        <input id="home_import_flow_subtitle" name="home_import_flow_subtitle" type="text" value="{{ old('home_import_flow_subtitle', $settings['home_import_flow_subtitle'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="home_import_flow_title">Import Flow Title</label>
+                        <input id="home_import_flow_title" name="home_import_flow_title" type="text" value="{{ old('home_import_flow_title', $settings['home_import_flow_title'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" />
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="home_import_flow_steps">Import Flow Steps (one per line: Step title|Step description)</label>
+                    <textarea id="home_import_flow_steps" name="home_import_flow_steps" rows="5" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface">{{ old('home_import_flow_steps', $settings['home_import_flow_steps'] ?? '') }}</textarea>
+                    <p class="text-[11px] text-on-surface-variant">Format example: <span class="font-mono">Quote|We share options, specs, and landed-cost estimates.</span></p>
+                    <div id="home-flow-warning" class="hidden rounded-xl border border-amber-300/70 bg-amber-50 px-3 py-2 text-xs text-amber-800" aria-live="polite"></div>
+                </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200/80 bg-surface-container-low p-5 space-y-4">
+                <h3 class="text-sm font-bold text-primary inline-flex items-center gap-2">
                     <span class="material-symbols-outlined text-base">palette</span>
                     Theme Colors
                 </h3>
@@ -121,6 +161,10 @@
                 theme_secondary: '#0B6B3A',
                 theme_primary_container: '#5C4320',
             };
+            const shortcutsInput = document.getElementById('home_shortcuts_lines');
+            const shortcutsWarning = document.getElementById('home-shortcuts-warning');
+            const flowInput = document.getElementById('home_import_flow_steps');
+            const flowWarning = document.getElementById('home-flow-warning');
 
             const bindPreview = (id) => {
                 const input = document.getElementById(id);
@@ -132,6 +176,37 @@
             };
 
             Object.keys(previewMap).forEach(bindPreview);
+
+            const validatePipedLines = (input, warningEl, valueName, minParts = 2) => {
+                if (!input || !warningEl) return;
+
+                const lines = input.value.split(/\r?\n/);
+                const invalidRows = [];
+
+                lines.forEach((rawLine, idx) => {
+                    const line = rawLine.trim();
+                    if (line === '') return;
+
+                    const parts = line.split('|').map((part) => part.trim()).filter(Boolean);
+                    if (parts.length < minParts) {
+                        invalidRows.push(idx + 1);
+                    }
+                });
+
+                if (invalidRows.length === 0) {
+                    warningEl.classList.add('hidden');
+                    warningEl.textContent = '';
+                    return;
+                }
+
+                warningEl.classList.remove('hidden');
+                warningEl.textContent = `Check ${valueName} format on line(s): ${invalidRows.join(', ')}. Use "left|right" format.`;
+            };
+
+            shortcutsInput?.addEventListener('input', () => validatePipedLines(shortcutsInput, shortcutsWarning, 'shortcut'));
+            flowInput?.addEventListener('input', () => validatePipedLines(flowInput, flowWarning, 'step'));
+            validatePipedLines(shortcutsInput, shortcutsWarning, 'shortcut');
+            validatePipedLines(flowInput, flowWarning, 'step');
 
             resetBtn?.addEventListener('click', () => {
                 Object.entries(defaults).forEach(([id, value]) => {
