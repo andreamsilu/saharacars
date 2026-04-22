@@ -161,13 +161,40 @@
         <button type="submit" class="rounded-xl cta-gradient text-white font-bold px-4 py-2.5 min-h-[44px] focus-ring-on-dark">Search Cars</button>
     </div>
 </form>
+<div class="flex flex-wrap justify-center gap-2 -mt-1">
+    @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
+        <a href="{{ $quickFilterChip['url'] }}" class="inline-flex items-center rounded-full bg-white/15 text-white px-4 py-2 text-xs font-bold uppercase tracking-wide border border-white/30 hover:bg-white/25 transition-colors">
+            {{ $quickFilterChip['label'] }}
+        </a>
+    @endforeach
+</div>
 <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
 <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Chat on WhatsApp
 </a>
 <a href="{{ route('cars.index') }}" class="bg-white text-primary px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
 </div>
+<button type="button" id="save-search-wa" class="inline-flex items-center justify-center gap-2 rounded-full bg-white/20 text-white border border-white/35 px-5 py-2.5 text-xs font-bold hover:bg-white/30 transition-colors min-h-[44px]">
+    <span class="material-symbols-outlined text-[16px]" aria-hidden="true">bookmark_add</span>
+    Save Search on WhatsApp
+</button>
 <p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: start on WhatsApp, then we guide you to the best matching units.</p>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6" aria-label="Live inventory stats">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+    <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Cars in stock</p>
+        <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($totalPublishedCars ?? 0)) }}</p>
+    </article>
+    <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Added this week</p>
+        <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($carsAddedThisWeek ?? 0)) }}</p>
+    </article>
+    <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
+        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Ready to view in Dar</p>
+        <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($darReadyCars ?? 0)) }}</p>
+    </article>
 </div>
 </section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
@@ -389,6 +416,36 @@ aria-label="View {{ $brand['name'] }} cars"
 <x-whatsapp-float />
 <x-footer />
 <script>
+(() => {
+    const saveSearchBtn = document.getElementById('save-search-wa');
+    const homeSearchForm = document.querySelector('form[action="{{ route('cars.index') }}"]');
+    if (saveSearchBtn && homeSearchForm) {
+        saveSearchBtn.addEventListener('click', () => {
+            const formData = new FormData(homeSearchForm);
+            const params = new URLSearchParams();
+            const summary = [];
+
+            for (const [key, rawValue] of formData.entries()) {
+                const value = String(rawValue).trim();
+                if (value === '') continue;
+                params.set(key, value);
+                summary.push(`${key}: ${value}`);
+            }
+
+            const inventoryUrl = `{{ route('cars.index') }}${params.toString() ? `?${params.toString()}` : ''}`;
+            const message = [
+                'Hi Sahara Cars team, please save this search for me and notify me on matching units.',
+                '',
+                summary.length ? `Filters: ${summary.join(', ')}` : 'Filters: none specified (general inventory)',
+                `Link: ${inventoryUrl}`,
+            ].join('\n');
+
+            const waUrl = `https://wa.me/{{ $salesDigits }}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+    }
+})();
+
 (() => {
     const tabs = Array.from(document.querySelectorAll('.home-tab'));
     const panels = Array.from(document.querySelectorAll('.home-tab-panel'));

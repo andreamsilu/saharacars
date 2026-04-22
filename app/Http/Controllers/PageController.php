@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Brand;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\File;
 
@@ -65,6 +66,16 @@ class PageController extends Controller
             ->limit(6)
             ->get();
 
+        $publishedCarsQuery = Car::query()->where('is_published', true);
+        $totalPublishedCars = (clone $publishedCarsQuery)->count();
+        $carsAddedThisWeek = (clone $publishedCarsQuery)
+            ->where('created_at', '>=', Carbon::now()->subDays(7))
+            ->count();
+        $darReadyCars = (clone $publishedCarsQuery)
+            ->where('location', 'like', '%Dar%')
+            ->whereIn('import_status', ['in_tanzania', 'ready_for_booking'])
+            ->count();
+
         $defaultShortcutChips = [
             ['label' => 'Foreign Used', 'url' => route('cars.index', ['condition' => 'foreign_used'])],
             ['label' => 'Brand New', 'url' => route('cars.index', ['condition' => 'brand_new'])],
@@ -86,6 +97,12 @@ class PageController extends Controller
         $homeShortcutsSubtitle = trim((string) ($settings['home_shortcuts_subtitle'] ?? '')) ?: 'Fast paths for high-intent buyers';
         $homeImportFlowTitle = trim((string) ($settings['home_import_flow_title'] ?? '')) ?: 'From request to delivery';
         $homeImportFlowSubtitle = trim((string) ($settings['home_import_flow_subtitle'] ?? '')) ?: 'Import purchase flow';
+        $homeQuickFilterChips = [
+            ['label' => 'Automatic', 'url' => route('cars.index', ['transmission' => 'automatic'])],
+            ['label' => 'Diesel', 'url' => route('cars.index', ['fuel' => 'diesel'])],
+            ['label' => 'Budget 20M-50M', 'url' => route('cars.index', ['price_range' => '20-50'])],
+            ['label' => 'Budget 50M-100M', 'url' => route('cars.index', ['price_range' => '50-100'])],
+        ];
 
         return view('pages.home', compact(
             'featuredCars',
@@ -98,7 +115,11 @@ class PageController extends Controller
             'homeShortcutsSubtitle',
             'homeImportFlowTitle',
             'homeImportFlowSubtitle',
-            'homeImportFlowSteps'
+            'homeImportFlowSteps',
+            'totalPublishedCars',
+            'carsAddedThisWeek',
+            'darReadyCars',
+            'homeQuickFilterChips'
         ));
     }
 
