@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminInquiryController;
+use App\Http\Controllers\Admin\AdminAnnouncementController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\InquiryController;
@@ -53,5 +54,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');
         Route::get('/order-requests', [AdminInquiryController::class, 'index'])->name('inquiries.index');
         Route::patch('/order-requests/{inquiry}/read', [AdminInquiryController::class, 'markRead'])->name('inquiries.read');
+
+        Route::get('/announcements', [AdminAnnouncementController::class, 'index'])->name('announcements.index');
+        Route::get('/announcements/create', [AdminAnnouncementController::class, 'create'])->name('announcements.create');
+        Route::post('/announcements', [AdminAnnouncementController::class, 'store'])->name('announcements.store');
+        Route::get('/announcements/{announcement}/edit', [AdminAnnouncementController::class, 'edit'])->name('announcements.edit');
+        Route::put('/announcements/{announcement}', [AdminAnnouncementController::class, 'update'])->name('announcements.update');
+        Route::delete('/announcements/{announcement}', [AdminAnnouncementController::class, 'destroy'])->name('announcements.destroy');
     });
 });

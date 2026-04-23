@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Car;
 use App\Models\Brand;
 use Carbon\Carbon;
@@ -146,6 +147,11 @@ class PageController extends Controller
             ['label' => 'Budget 50M-100M', 'url' => route('cars.index', ['price_range' => '50-100'])],
         ];
 
+        $homeAnnouncements = Announcement::query()
+            ->activeForHome()
+            ->limit(8)
+            ->get();
+
         return view('pages.home', compact(
             'featuredCars',
             'brandOptions',
@@ -166,7 +172,8 @@ class PageController extends Controller
             'homeQuickFilterChips',
             'carsNewTodayCount',
             'newTodayListings',
-            'homeNewListingsIsRecentFallback'
+            'homeNewListingsIsRecentFallback',
+            'homeAnnouncements'
         ));
     }
 

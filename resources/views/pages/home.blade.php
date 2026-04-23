@@ -199,6 +199,60 @@
 <p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: start on WhatsApp, then we guide you to the best matching units.</p>
 </div>
 </section>
+@if (($homeAnnouncements ?? collect())->isNotEmpty())
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-5" aria-labelledby="home-offers-heading">
+    <div class="rounded-2xl border border-primary/20 bg-surface-container-low/80 px-4 py-3 sm:px-5 sm:py-4 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <h2 id="home-offers-heading" class="font-headline text-sm sm:text-base font-extrabold text-primary inline-flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]" aria-hidden="true">notifications_active</span>
+                Offers, discounts &amp; news
+            </h2>
+            <p class="text-[10px] sm:text-xs text-on-surface-variant">Limited-time updates from our team.</p>
+        </div>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5" role="list">
+            @foreach ($homeAnnouncements as $ann)
+                @php
+                    $kindClass = match ($ann->kind) {
+                        \App\Models\Announcement::KIND_DISCOUNT => 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
+                        \App\Models\Announcement::KIND_OFFER => 'bg-amber-100 text-amber-950 border-amber-200/80',
+                        default => 'bg-surface-container-high text-on-surface border-outline-variant/40',
+                    };
+                    $kindLabel = match ($ann->kind) {
+                        \App\Models\Announcement::KIND_DISCOUNT => 'Discount',
+                        \App\Models\Announcement::KIND_OFFER => 'Offer',
+                        default => 'News',
+                    };
+                @endphp
+                <li class="min-w-0">
+                    @if ($ann->link_url)
+                        <a href="{{ $ann->link_url }}" target="_blank" rel="noopener noreferrer" class="group flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 hover:border-primary/30 hover:shadow-sm transition-all text-left h-full">
+                    @else
+                        <div class="flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 h-full">
+                    @endif
+                        <span class="shrink-0 inline-flex h-8 items-center rounded-lg border px-2 text-[9px] font-extrabold uppercase tracking-wider {{ $kindClass }}">{{ $kindLabel }}</span>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-sm font-bold text-primary leading-snug line-clamp-2 group-hover:underline">{{ $ann->title }}</p>
+                            @if ($ann->summary)
+                                <p class="text-xs text-on-surface-variant mt-0.5 line-clamp-2">{{ $ann->summary }}</p>
+                            @endif
+                            @if ($ann->link_url)
+                                <p class="text-[10px] font-bold text-primary mt-1 inline-flex items-center gap-0.5">
+                                    <span>View</span>
+                                    <span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span>
+                                </p>
+                            @endif
+                        </div>
+                    @if ($ann->link_url)
+                        </a>
+                    @else
+                        </div>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</section>
+@endif
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6" aria-label="Live inventory stats">
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
     <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
