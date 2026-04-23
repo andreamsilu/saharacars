@@ -261,18 +261,18 @@
     </div>
 </section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-label="Live inventory stats">
-<div class="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:snap-none">
-    <article class="min-w-[78%] snap-start rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center sm:min-w-0">
-        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Cars in stock</p>
-        <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($totalPublishedCars ?? 0)) }}</p>
+<div class="grid grid-cols-3 gap-2 sm:gap-3">
+    <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">Cars in stock</p>
+        <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($totalPublishedCars ?? 0)) }}</p>
     </article>
-    <article class="min-w-[78%] snap-start rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center sm:min-w-0">
-        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Added this week</p>
-        <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($carsAddedThisWeek ?? 0)) }}</p>
+    <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">Added this week</p>
+        <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($carsAddedThisWeek ?? 0)) }}</p>
     </article>
-    <article class="min-w-[78%] snap-start rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center sm:min-w-0">
-        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Ready to view in Dar</p>
-        <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($darReadyCars ?? 0)) }}</p>
+    <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">Ready in Dar</p>
+        <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($darReadyCars ?? 0)) }}</p>
     </article>
 </div>
 </section>
