@@ -75,10 +75,11 @@
       @include('components.public-effects-tokens')
       @include('components.public-design-tokens')
       @include('components.public-a11y-tokens')
-      .hero-mesh {
-        background:
-          radial-gradient(1200px 500px at 10% 0%, rgba(138, 101, 40, 0.14), transparent 60%),
-          radial-gradient(900px 420px at 90% 20%, rgba(240, 223, 196, 0.28), transparent 62%);
+      .hero-brand-panel {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, transparent 45%);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-bg-video { display: none; }
       }
       .section-wash {
         background:
@@ -125,93 +126,80 @@
     $salesWaHref = 'https://wa.me/' . $salesDigits . '?text=' . rawurlencode($salesWaMessage);
 @endphp
 <main id="main-content" tabindex="-1" class="outline-none">
-<!-- Hero Section -->
-<section class="relative min-h-[min(100svh,720px)] md:min-h-[620px] flex flex-col items-center justify-center px-4 sm:px-6 pt-16 pb-12 sm:pt-20 sm:pb-14 md:pt-24 md:pb-16 overflow-hidden hero-mesh" aria-labelledby="home-hero-heading">
-<div class="absolute inset-0 -z-10">
-<img class="w-full h-full object-cover" alt="Premium car at Sahara Cars showroom" src="{{ asset('images/bg.png') }}" width="1920" height="1080" decoding="async"/>
-<div class="absolute inset-0 bg-primary/65"></div>
-<div class="absolute -top-12 left-[10%] w-28 h-28 md:w-36 md:h-36 rounded-full bg-primary-fixed/40 blur-2xl float-orb"></div>
-<div class="absolute top-24 right-[8%] w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary-fixed/35 blur-2xl float-orb" style="animation-delay: 1.4s;"></div>
+<!-- Hero: video + blue scrim, minimal copy, short search (full filters on /cars) -->
+<section class="relative min-h-[min(92svh,680px)] md:min-h-[600px] flex flex-col items-center justify-center px-4 sm:px-6 pt-20 pb-14 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20 overflow-hidden" aria-labelledby="home-hero-heading">
+<div class="absolute inset-0 -z-10" aria-hidden="true">
+    <img class="absolute inset-0 w-full h-full object-cover hero-video-fallback" src="{{ asset('images/bg.png') }}" width="1920" height="1080" alt="" loading="eager" decoding="async"/>
+    {{-- Background: local MP4 (download Mixkit "Cars driving by on road" free license). Replace public/videos/hero-bg.mp4 to swap clip. --}}
+    <video class="absolute inset-0 w-full h-full object-cover hero-bg-video" autoplay muted loop playsinline poster="{{ asset('images/bg.png') }}">
+        <source src="{{ asset('videos/hero-bg.mp4') }}" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-blue-950/50 to-slate-950/80"></div>
+    <div class="absolute inset-0 hero-brand-panel pointer-events-none"></div>
 </div>
-<div class="max-w-4xl w-full text-center space-y-6 md:space-y-7">
-<div class="flex flex-wrap justify-center gap-2">
-</div>
-<h1 id="home-hero-heading" class="font-headline text-[clamp(1.75rem,6.5vw,3.75rem)] md:text-7xl font-black text-white tracking-tighter leading-[1.1] hero-glow px-1">
-                Own Tanzania's Most <span class="text-secondary-container">Wanted Cars</span>
+<div class="max-w-3xl w-full text-center space-y-5">
+<h1 id="home-hero-heading" class="font-headline text-[clamp(1.6rem,5.5vw,3.25rem)] md:text-6xl font-black text-white tracking-tight leading-[1.12] hero-glow px-2">
+                Own Tanzania's Most <span class="text-sky-200">Wanted Cars</span>
 </h1>
-<p class="text-white text-base sm:text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow px-1">
-                Premium and rugged cars chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
+<p class="text-white/90 text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed px-2">
+                Premium stock for Dar and upcountry—clear details and a team you can reach on the phone or WhatsApp.
             </p>
-<form action="{{ route('cars.index') }}" method="GET" class="max-w-6xl mx-auto bg-white/90 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/70 shadow-[0_16px_30px_rgba(25,28,30,0.16)]">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2 sm:gap-3">
-        <input name="q" type="search" placeholder="Brand, model, or keyword" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30" />
-        <select name="brand" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
-            <option value="">Any brand</option>
-            @foreach ($brandOptions as $brandOption)
-                <option value="{{ $brandOption }}">{{ $brandOption }}</option>
-            @endforeach
-        </select>
-        <select name="body_type" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
-            <option value="">Any body type</option>
-            @foreach (($bodyTypeOptions ?? collect()) as $bodyTypeOption)
-                <option value="{{ $bodyTypeOption }}">{{ $bodyTypeOption }}</option>
-            @endforeach
-        </select>
-        <select name="transmission" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
-            <option value="">Any transmission</option>
-            @foreach (($transmissionOptions ?? collect()) as $transmissionOption)
-                <option value="{{ $transmissionOption }}">{{ $transmissionOption }}</option>
-            @endforeach
-        </select>
-        <select name="source_country" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
-            <option value="">Any source country</option>
-            @foreach (($sourceCountryOptions ?? collect()) as $sourceCountryOption)
-                <option value="{{ $sourceCountryOption }}">{{ $sourceCountryOption }}</option>
-            @endforeach
-        </select>
-        <input name="price_min" type="number" inputmode="numeric" placeholder="Min TZS" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30" />
-        <button type="submit" class="rounded-xl cta-gradient text-white font-bold px-4 py-2.5 min-h-[44px] focus-ring-on-dark">Search Cars</button>
+<form action="{{ route('cars.index') }}" method="GET" class="max-w-2xl mx-auto w-full bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/60 shadow-[0_20px_50px_rgba(15,23,42,0.25)] text-left space-y-3" id="home-hero-search-form">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+        <div class="sm:col-span-2">
+            <label for="hero-q" class="sr-only">Search</label>
+            <input id="hero-q" name="q" type="search" placeholder="Brand, model, or keyword" class="w-full rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-sky-600/30" />
+        </div>
+        <div>
+            <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Brand</label>
+            <select id="hero-brand" name="brand" class="w-full rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
+                <option value="">Any brand</option>
+                @foreach ($brandOptions as $brandOption)
+                    <option value="{{ $brandOption }}">{{ $brandOption }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Min price (TZS)</label>
+            <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="Optional" class="w-full rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface" />
+        </div>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 pt-1">
+        <button type="submit" class="w-full sm:w-auto sm:min-w-[160px] rounded-xl cta-gradient text-white font-bold px-6 py-2.5 min-h-[44px] focus-ring-on-dark shadow-md">Search cars</button>
+        <a href="{{ route('cars.index') }}" class="text-center sm:text-left text-sm font-bold text-sky-800 hover:text-sky-900 underline decoration-sky-600/30 underline-offset-2">All filters (body, transmission, source…)</a>
     </div>
 </form>
-<div class="flex flex-wrap justify-center gap-2 text-[11px] pt-1">
-    <a href="{{ route('cars.index', ['price_range' => '20-50']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Price</a>
-    <a href="{{ route('cars.index', ['body_type' => 'SUV']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Type</a>
-    <a href="{{ route('cars.index', ['sort' => 'year_new_old']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Year</a>
-    <a href="{{ route('cars.index', ['location' => 'Dar es Salaam']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Location</a>
-</div>
-<div class="flex flex-wrap justify-center gap-2 -mt-1">
+@if (count($homeQuickFilterChips ?? []) > 0)
+<div class="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto pt-1">
     @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
-        <a href="{{ $quickFilterChip['url'] }}" class="inline-flex items-center rounded-full bg-white/15 text-white px-4 py-2 text-xs font-bold uppercase tracking-wide border border-white/30 hover:bg-white/25 transition-colors">
-            {{ $quickFilterChip['label'] }}
-        </a>
+        <a href="{{ $quickFilterChip['url'] }}" class="inline-flex items-center rounded-full bg-white/12 text-white/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide border border-white/25 hover:bg-white/20 transition-colors">{{ $quickFilterChip['label'] }}</a>
     @endforeach
 </div>
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 w-full max-w-2xl mx-auto">
-<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-extrabold shadow-lg shadow-black/20 text-center touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 inline-flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> Chat on WhatsApp
+@endif
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-4 w-full max-w-md sm:max-w-2xl mx-auto pt-2">
+<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="min-h-[46px] rounded-full border-2 border-white/40 text-white text-sm font-bold px-5 py-2.5 inline-flex items-center justify-center gap-2 hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-white/40">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span> WhatsApp
 </a>
-<a href="{{ route('cars.index') }}" class="bg-white text-primary px-5 sm:px-7 py-3 sm:py-3.5 min-h-[48px] rounded-full text-sm font-bold border border-white/60 text-center touch-manipulation focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Browse Inventory</a>
+<a href="{{ route('cars.index') }}" class="min-h-[46px] rounded-full bg-white text-slate-900 text-sm font-bold px-5 py-2.5 border border-white/80 inline-flex items-center justify-center hover:bg-slate-50">Browse stock</a>
 </div>
-<button type="button" id="save-search-wa" class="inline-flex items-center justify-center gap-2 rounded-full bg-white/20 text-white border border-white/35 px-5 py-2.5 text-xs font-bold hover:bg-white/30 transition-colors min-h-[44px]">
-    <span class="material-symbols-outlined text-[16px]" aria-hidden="true">bookmark_add</span>
-    Save Search on WhatsApp
-</button>
-<p class="text-white/85 text-xs sm:text-sm font-semibold">Fastest path: start on WhatsApp, then we guide you to the best matching units.</p>
+<p class="pt-1">
+    <button type="button" id="save-search-wa" class="text-xs sm:text-sm text-sky-100/90 font-semibold underline decoration-sky-300/50 hover:text-white">Save this search on WhatsApp</button>
+</p>
 </div>
 </section>
 @if (($homeAnnouncements ?? collect())->isNotEmpty())
-<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-5" aria-labelledby="home-offers-heading">
-    <div class="rounded-2xl border border-primary/20 bg-surface-container-low/80 px-4 py-3 sm:px-5 sm:py-4 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-            <h2 id="home-offers-heading" class="font-headline text-sm sm:text-base font-extrabold text-primary inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-primary text-[20px]" aria-hidden="true">notifications_active</span>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6" aria-labelledby="home-offers-heading">
+    <div class="rounded-2xl border border-sky-200/30 bg-surface-container-low/90 px-4 py-3 sm:px-5 sm:py-3.5 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+            <h2 id="home-offers-heading" class="font-headline text-sm font-extrabold text-primary inline-flex items-center gap-2">
+                <span class="material-symbols-outlined text-sky-700 text-[20px]" aria-hidden="true">notifications_active</span>
                 Offers, discounts &amp; news
             </h2>
-            <p class="text-[10px] sm:text-xs text-on-surface-variant">Limited-time updates from our team.</p>
         </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5" role="list">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2" role="list">
             @foreach ($homeAnnouncements as $ann)
                 @php
+                    $annHref = $ann->publicLinkHref();
                     $kindClass = match ($ann->kind) {
                         \App\Models\Announcement::KIND_DISCOUNT => 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
                         \App\Models\Announcement::KIND_OFFER => 'bg-amber-100 text-amber-950 border-amber-200/80',
@@ -223,34 +211,17 @@
                         default => 'News',
                     };
                 @endphp
-                @php
-                    $annHref = $ann->publicLinkHref();
-                @endphp
                 <li class="min-w-0">
                     @if ($annHref)
-                        <a
-                            href="{{ $annHref }}"
-                            @if ($ann->link_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                            class="group flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 hover:border-primary/30 hover:shadow-sm transition-all text-left h-full"
-                        >
+                        <a href="{{ $annHref }}" @if ($ann->link_new_tab) target="_blank" rel="noopener noreferrer" @endif class="group flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 hover:border-sky-300/50 transition-colors text-left h-full">
                     @else
-                        <div class="flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 h-full">
+                        <div class="flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 h-full">
                     @endif
-                        <span class="shrink-0 inline-flex h-8 items-center rounded-lg border px-2 text-[9px] font-extrabold uppercase tracking-wider {{ $kindClass }}">{{ $kindLabel }}</span>
+                        <span class="shrink-0 inline-flex h-7 items-center rounded-md border px-1.5 text-[8px] font-extrabold uppercase tracking-wider {{ $kindClass }}">{{ $kindLabel }}</span>
                         <div class="min-w-0 flex-1">
-                            <p class="text-sm font-bold text-primary leading-snug line-clamp-2 group-hover:underline">{{ $ann->title }}</p>
+                            <p class="text-xs font-bold text-primary line-clamp-2">{{ $ann->title }}</p>
                             @if ($ann->summary)
-                                <p class="text-xs text-on-surface-variant mt-0.5 line-clamp-2">{{ $ann->summary }}</p>
-                            @endif
-                            @if ($annHref)
-                                <p class="text-[10px] font-bold text-primary mt-1 inline-flex items-center gap-0.5">
-                                    <span>View</span>
-                                    @if ($ann->link_new_tab)
-                                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span>
-                                    @else
-                                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">chevron_right</span>
-                                    @endif
-                                </p>
+                                <p class="text-[10px] text-on-surface-variant line-clamp-1 mt-0.5">{{ $ann->summary }}</p>
                             @endif
                         </div>
                     @if ($annHref)
@@ -538,7 +509,7 @@ aria-label="View {{ $brand['name'] }} cars"
 <script>
 (() => {
     const saveSearchBtn = document.getElementById('save-search-wa');
-    const homeSearchForm = document.querySelector('form[action="{{ route('cars.index') }}"]');
+    const homeSearchForm = document.getElementById('home-hero-search-form');
     if (saveSearchBtn && homeSearchForm) {
         saveSearchBtn.addEventListener('click', () => {
             const formData = new FormData(homeSearchForm);
