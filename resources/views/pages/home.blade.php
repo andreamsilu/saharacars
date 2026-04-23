@@ -75,12 +75,6 @@
       @include('components.public-effects-tokens')
       @include('components.public-design-tokens')
       @include('components.public-a11y-tokens')
-      .hero-brand-panel {
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, transparent 45%);
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .hero-bg-video { display: none; }
-      }
       .section-wash {
         background:
           linear-gradient(180deg, rgba(235, 235, 235, 0.95), rgba(243, 243, 243, 1));
@@ -94,23 +88,6 @@
           radial-gradient(220px 120px at 85% 10%, rgba(138, 101, 40, 0.2), transparent 65%),
           radial-gradient(180px 120px at 15% 100%, rgba(232, 200, 137, 0.22), transparent 70%),
           #ffffff;
-      }
-      .hero-glow {
-        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      }
-      .pulse-chip {
-        animation: pulse-soft 2.8s ease-in-out infinite;
-      }
-      .float-orb {
-        animation: float-soft 7s ease-in-out infinite;
-      }
-      @keyframes pulse-soft {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.03); opacity: 0.92; }
-      }
-      @keyframes float-soft {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
       }
     </style>
 
@@ -126,68 +103,72 @@
     $salesWaHref = 'https://wa.me/' . $salesDigits . '?text=' . rawurlencode($salesWaMessage);
 @endphp
 <main id="main-content" tabindex="-1" class="outline-none">
-<!-- Hero: video + blue scrim, minimal copy, short search (full filters on /cars) -->
-<section class="relative min-h-[min(92svh,680px)] md:min-h-[600px] flex flex-col items-center justify-center px-4 sm:px-6 pt-20 pb-14 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20 overflow-hidden" aria-labelledby="home-hero-heading">
-<div class="absolute inset-0 -z-10" aria-hidden="true">
-    <img class="absolute inset-0 w-full h-full object-cover hero-video-fallback" src="{{ asset('images/bg.png') }}" width="1920" height="1080" alt="" loading="eager" decoding="async"/>
-    {{-- Background: local MP4 (download Mixkit "Cars driving by on road" free license). Replace public/videos/hero-bg.mp4 to swap clip. --}}
-    <video class="absolute inset-0 w-full h-full object-cover hero-bg-video" autoplay muted loop playsinline poster="{{ asset('images/bg.png') }}">
-        <source src="{{ asset('videos/hero-bg.mp4') }}" type="video/mp4" />
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-blue-950/50 to-slate-950/80"></div>
-    <div class="absolute inset-0 hero-brand-panel pointer-events-none"></div>
-</div>
-<div class="max-w-3xl w-full text-center space-y-5">
-<p class="text-sky-200/90 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase hero-glow px-2">Imports · orders · used stock</p>
-<h1 id="home-hero-heading" class="font-headline text-[clamp(1.55rem,4.2vw,2.85rem)] md:text-5xl font-black text-white tracking-tight leading-[1.15] hero-glow px-2">
-                <span class="block sm:inline">Transparent pricing &amp; import paths—</span>
-                <span class="text-sky-200 block sm:inline">no guesswork, just answers.</span>
-</h1>
-<p class="text-white/90 text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed px-2">
-                For Dar, Mwanza, and upcountry buyers—serious details on the phone, WhatsApp, and every listing.
-            </p>
-<form action="{{ route('cars.index') }}" method="GET" class="max-w-2xl mx-auto w-full bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/60 shadow-[0_20px_50px_rgba(15,23,42,0.25)] text-left space-y-3" id="home-hero-search-form">
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-        <div class="sm:col-span-2">
-            <label for="hero-q" class="sr-only">Search</label>
-            <input id="hero-q" name="q" type="search" placeholder="Brand, model, or keyword" class="w-full rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-sky-600/30" />
-        </div>
-        <div>
-            <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Brand</label>
-            <select id="hero-brand" name="brand" class="w-full rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
-                <option value="">Any brand</option>
-                @foreach ($brandOptions as $brandOption)
-                    <option value="{{ $brandOption }}">{{ $brandOption }}</option>
+{{-- Search-first: compact strip (no full-bleed video), inventory hook + form --}}
+@php
+    $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
+@endphp
+<section class="section-wash border-b border-outline-variant/25" aria-labelledby="home-hero-heading">
+    <div class="max-w-4xl mx-auto w-full px-4 sm:px-6 pt-20 pb-8 sm:pb-10">
+        <p class="font-label text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface-variant">Imports · orders · used stock</p>
+        @if ($heroInventoryCount > 0)
+            <h1 id="home-hero-heading" class="mt-1.5 font-headline text-[clamp(1.5rem,5vw,2.75rem)] font-black text-on-surface tracking-tight leading-[1.1]">
+                Search <span class="text-primary tabular-nums">{{ number_format($heroInventoryCount) }}</span> cars
+            </h1>
+        @else
+            <h1 id="home-hero-heading" class="mt-1.5 font-headline text-2xl sm:text-3xl font-black text-on-surface tracking-tight">Search our inventory</h1>
+        @endif
+        <p class="mt-2 text-sm sm:text-base text-on-surface-variant max-w-2xl">
+            @if ($heroInventoryCount > 0)
+                Dar, Mwanza &amp; upcountry—import help, full filters on the results page, transparent pricing, and phone or WhatsApp on every lead.
+            @else
+                New listings are added often—if you are chasing a model we have not published yet, WhatsApp us. The same team answers calls and DMs, with clear next steps.
+            @endif
+        </p>
+
+        <form action="{{ route('cars.index') }}" method="GET" class="mt-5 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left space-y-3" id="home-hero-search-form">
+            <div class="flex flex-col md:flex-row gap-2.5 md:gap-3 md:items-end">
+                <div class="min-w-0 flex-1">
+                    <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Make, model, or keyword</label>
+                    <input id="hero-q" name="q" type="search" placeholder="e.g. Harrier, BMW, automatic" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-primary/30" />
+                </div>
+                <button type="submit" class="w-full md:w-auto md:shrink-0 min-h-[44px] rounded-xl cta-gradient text-white font-bold px-8 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">Search</button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                <div>
+                    <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Brand</label>
+                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
+                        <option value="">Any brand</option>
+                        @foreach ($brandOptions as $brandOption)
+                            <option value="{{ $brandOption }}">{{ $brandOption }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Min price (TZS)</label>
+                    <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="Optional" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface" />
+                </div>
+            </div>
+            <div class="pt-0.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <a href="{{ route('cars.index') }}" class="text-sm font-bold text-primary hover:underline decoration-primary/30 underline-offset-2">All filters: body, transmission, source country…</a>
+            </div>
+        </form>
+        @if (count($homeQuickFilterChips ?? []) > 0)
+            <div class="flex flex-wrap gap-2 mt-4" role="list" aria-label="Quick filters">
+                @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
+                    <a href="{{ $quickFilterChip['url'] }}" role="listitem" class="inline-flex items-center rounded-full border border-primary/20 bg-surface-container-lowest px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-on-surface hover:border-primary/40 hover:bg-surface-container-high transition-colors">{{ $quickFilterChip['label'] }}</a>
                 @endforeach
-            </select>
+            </div>
+        @endif
+        <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-primary text-[18px]" aria-hidden="true">chat</span> WhatsApp sales
+            </a>
+            <a href="{{ route('cars.index') }}" class="min-h-[44px] justify-center rounded-full bg-primary text-on-primary text-sm font-bold px-5 inline-flex items-center hover:opacity-95">Browse all stock</a>
         </div>
-        <div>
-            <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Min price (TZS)</label>
-            <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="Optional" class="w-full rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface" />
-        </div>
+        <p class="mt-2">
+            <button type="button" id="save-search-wa" class="text-xs sm:text-sm font-semibold text-primary underline decoration-primary/35 underline-offset-2 hover:decoration-primary">Message this search on WhatsApp</button>
+        </p>
     </div>
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 pt-1">
-        <button type="submit" class="w-full sm:w-auto sm:min-w-[160px] rounded-xl cta-gradient text-white font-bold px-6 py-2.5 min-h-[44px] focus-ring-on-dark shadow-md">Search cars</button>
-        <a href="{{ route('cars.index') }}" class="text-center sm:text-left text-sm font-bold text-sky-800 hover:text-sky-900 underline decoration-sky-600/30 underline-offset-2">All filters (body, transmission, source…)</a>
-    </div>
-</form>
-@if (count($homeQuickFilterChips ?? []) > 0)
-<div class="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto pt-1">
-    @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
-        <a href="{{ $quickFilterChip['url'] }}" class="inline-flex items-center rounded-full bg-white/12 text-white/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide border border-white/25 hover:bg-white/20 transition-colors">{{ $quickFilterChip['label'] }}</a>
-    @endforeach
-</div>
-@endif
-<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-4 w-full max-w-md sm:max-w-2xl mx-auto pt-2">
-<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="min-h-[46px] rounded-full border-2 border-white/40 text-white text-sm font-bold px-5 py-2.5 inline-flex items-center justify-center gap-2 hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-white/40">
-<span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span> WhatsApp
-</a>
-<a href="{{ route('cars.index') }}" class="min-h-[46px] rounded-full bg-white text-slate-900 text-sm font-bold px-5 py-2.5 border border-white/80 inline-flex items-center justify-center hover:bg-slate-50">Browse stock</a>
-</div>
-<p class="pt-1">
-    <button type="button" id="save-search-wa" class="text-xs sm:text-sm text-sky-100/90 font-semibold underline decoration-sky-300/50 hover:text-white">Save this search on WhatsApp</button>
-</p>
-</div>
 </section>
 @if (($homeAnnouncements ?? collect())->isNotEmpty())
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6" aria-labelledby="home-offers-heading">
