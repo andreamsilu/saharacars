@@ -138,11 +138,13 @@
     <div class="absolute inset-0 hero-brand-panel pointer-events-none"></div>
 </div>
 <div class="max-w-3xl w-full text-center space-y-5">
-<h1 id="home-hero-heading" class="font-headline text-[clamp(1.6rem,5.5vw,3.25rem)] md:text-6xl font-black text-white tracking-tight leading-[1.12] hero-glow px-2">
-                Own Tanzania's Most <span class="text-sky-200">Wanted Cars</span>
+<p class="text-sky-200/90 text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase hero-glow px-2">Imports · orders · used stock</p>
+<h1 id="home-hero-heading" class="font-headline text-[clamp(1.55rem,4.2vw,2.85rem)] md:text-5xl font-black text-white tracking-tight leading-[1.15] hero-glow px-2">
+                <span class="block sm:inline">Transparent pricing &amp; import paths—</span>
+                <span class="text-sky-200 block sm:inline">no guesswork, just answers.</span>
 </h1>
 <p class="text-white/90 text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed px-2">
-                Premium stock for Dar and upcountry—clear details and a team you can reach on the phone or WhatsApp.
+                For Dar, Mwanza, and upcountry buyers—serious details on the phone, WhatsApp, and every listing.
             </p>
 <form action="{{ route('cars.index') }}" method="GET" class="max-w-2xl mx-auto w-full bg-white/95 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/60 shadow-[0_20px_50px_rgba(15,23,42,0.25)] text-left space-y-3" id="home-hero-search-form">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
