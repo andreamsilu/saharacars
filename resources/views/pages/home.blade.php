@@ -108,14 +108,13 @@
     $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
 @endphp
 <section class="section-wash border-b border-outline-variant/25" aria-labelledby="home-hero-heading">
-    <div class="max-w-4xl mx-auto w-full px-4 sm:px-6 pt-20 pb-8 sm:pb-10">
-        <p class="font-label text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface-variant">Imports · orders · used stock</p>
+    <div class="max-w-4xl mx-auto w-full px-4 sm:px-6 pt-20 pb-4 sm:pb-5">
         @if ($heroInventoryCount > 0)
-            <h1 id="home-hero-heading" class="mt-1.5 font-headline text-[clamp(1.5rem,5vw,2.75rem)] font-black text-on-surface tracking-tight leading-[1.1]">
+            <h1 id="home-hero-heading" class="font-headline text-[clamp(1.5rem,5vw,2.75rem)] font-black text-on-surface tracking-tight leading-[1.1]">
                 Search <span class="text-primary tabular-nums">{{ number_format($heroInventoryCount) }}</span> cars
             </h1>
         @else
-            <h1 id="home-hero-heading" class="mt-1.5 font-headline text-2xl sm:text-3xl font-black text-on-surface tracking-tight">Search our inventory</h1>
+            <h1 id="home-hero-heading" class="font-headline text-2xl sm:text-3xl font-black text-on-surface tracking-tight">Search our inventory</h1>
         @endif
         <p class="mt-2 text-sm sm:text-base text-on-surface-variant max-w-2xl">
             @if ($heroInventoryCount > 0)
@@ -125,7 +124,7 @@
             @endif
         </p>
 
-        <form action="{{ route('cars.index') }}" method="GET" class="mt-5 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left space-y-3" id="home-hero-search-form">
+        <form action="{{ route('cars.index') }}" method="GET" class="mt-4 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left space-y-3" id="home-hero-search-form">
             <div class="flex flex-col md:flex-row gap-2.5 md:gap-3 md:items-end">
                 <div class="min-w-0 flex-1">
                     <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Make, model, or keyword</label>
@@ -153,13 +152,13 @@
             </div>
         </form>
         @if (count($homeQuickFilterChips ?? []) > 0)
-            <div class="flex flex-wrap gap-2 mt-4" role="list" aria-label="Quick filters">
+            <div class="flex flex-wrap gap-2 mt-3" role="list" aria-label="Quick filters">
                 @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
                     <a href="{{ $quickFilterChip['url'] }}" role="listitem" class="inline-flex items-center rounded-full border border-primary/20 bg-surface-container-lowest px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-on-surface hover:border-primary/40 hover:bg-surface-container-high transition-colors">{{ $quickFilterChip['label'] }}</a>
                 @endforeach
             </div>
         @endif
-        <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+        <div class="mt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
             <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
                 <span class="material-symbols-outlined text-primary text-[18px]" aria-hidden="true">chat</span> WhatsApp sales
             </a>
@@ -168,57 +167,57 @@
         <p class="mt-2">
             <button type="button" id="save-search-wa" class="text-xs sm:text-sm font-semibold text-primary underline decoration-primary/35 underline-offset-2 hover:decoration-primary">Message this search on WhatsApp</button>
         </p>
+        @if (($homeAnnouncements ?? collect())->isNotEmpty())
+            <div class="mt-3 pt-4 border-t border-outline-variant/20" aria-labelledby="home-offers-heading">
+                <div class="rounded-2xl border border-sky-200/30 bg-surface-container-low/90 px-3 py-2.5 sm:px-4 sm:py-3 shadow-sm">
+                    <div class="mb-1.5">
+                        <h2 id="home-offers-heading" class="font-headline text-sm font-extrabold text-primary inline-flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sky-700 text-[20px]" aria-hidden="true">notifications_active</span>
+                            Offers, discounts &amp; news
+                        </h2>
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2" role="list">
+                        @foreach ($homeAnnouncements as $ann)
+                            @php
+                                $annHref = $ann->publicLinkHref();
+                                $kindClass = match ($ann->kind) {
+                                    \App\Models\Announcement::KIND_DISCOUNT => 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
+                                    \App\Models\Announcement::KIND_OFFER => 'bg-amber-100 text-amber-950 border-amber-200/80',
+                                    default => 'bg-surface-container-high text-on-surface border-outline-variant/40',
+                                };
+                                $kindLabel = match ($ann->kind) {
+                                    \App\Models\Announcement::KIND_DISCOUNT => 'Discount',
+                                    \App\Models\Announcement::KIND_OFFER => 'Offer',
+                                    default => 'News',
+                                };
+                            @endphp
+                            <li class="min-w-0">
+                                @if ($annHref)
+                                    <a href="{{ $annHref }}" @if ($ann->link_new_tab) target="_blank" rel="noopener noreferrer" @endif class="group flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 hover:border-sky-300/50 transition-colors text-left h-full">
+                                @else
+                                    <div class="flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 h-full">
+                                @endif
+                                    <span class="shrink-0 inline-flex h-7 items-center rounded-md border px-1.5 text-[8px] font-extrabold uppercase tracking-wider {{ $kindClass }}">{{ $kindLabel }}</span>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs font-bold text-primary line-clamp-2">{{ $ann->title }}</p>
+                                        @if ($ann->summary)
+                                            <p class="text-[10px] text-on-surface-variant line-clamp-1 mt-0.5">{{ $ann->summary }}</p>
+                                        @endif
+                                    </div>
+                                @if ($annHref)
+                                    </a>
+                                @else
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
     </div>
 </section>
-@if (($homeAnnouncements ?? collect())->isNotEmpty())
-<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6" aria-labelledby="home-offers-heading">
-    <div class="rounded-2xl border border-sky-200/30 bg-surface-container-low/90 px-4 py-3 sm:px-5 sm:py-3.5 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
-            <h2 id="home-offers-heading" class="font-headline text-sm font-extrabold text-primary inline-flex items-center gap-2">
-                <span class="material-symbols-outlined text-sky-700 text-[20px]" aria-hidden="true">notifications_active</span>
-                Offers, discounts &amp; news
-            </h2>
-        </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2" role="list">
-            @foreach ($homeAnnouncements as $ann)
-                @php
-                    $annHref = $ann->publicLinkHref();
-                    $kindClass = match ($ann->kind) {
-                        \App\Models\Announcement::KIND_DISCOUNT => 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
-                        \App\Models\Announcement::KIND_OFFER => 'bg-amber-100 text-amber-950 border-amber-200/80',
-                        default => 'bg-surface-container-high text-on-surface border-outline-variant/40',
-                    };
-                    $kindLabel = match ($ann->kind) {
-                        \App\Models\Announcement::KIND_DISCOUNT => 'Discount',
-                        \App\Models\Announcement::KIND_OFFER => 'Offer',
-                        default => 'News',
-                    };
-                @endphp
-                <li class="min-w-0">
-                    @if ($annHref)
-                        <a href="{{ $annHref }}" @if ($ann->link_new_tab) target="_blank" rel="noopener noreferrer" @endif class="group flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 hover:border-sky-300/50 transition-colors text-left h-full">
-                    @else
-                        <div class="flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 h-full">
-                    @endif
-                        <span class="shrink-0 inline-flex h-7 items-center rounded-md border px-1.5 text-[8px] font-extrabold uppercase tracking-wider {{ $kindClass }}">{{ $kindLabel }}</span>
-                        <div class="min-w-0 flex-1">
-                            <p class="text-xs font-bold text-primary line-clamp-2">{{ $ann->title }}</p>
-                            @if ($ann->summary)
-                                <p class="text-[10px] text-on-surface-variant line-clamp-1 mt-0.5">{{ $ann->summary }}</p>
-                            @endif
-                        </div>
-                    @if ($annHref)
-                        </a>
-                    @else
-                        </div>
-                    @endif
-                </li>
-            @endforeach
-        </ul>
-    </div>
-</section>
-@endif
-<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6" aria-label="Live inventory stats">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-label="Live inventory stats">
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
     <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
         <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Cars in stock</p>
