@@ -299,13 +299,11 @@
                         Recent arrivals
                     @endif
                 </h2>
-                <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
-                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                @if (!($homeNewListingsIsRecentFallback ?? false))
+                    <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
                         <span class="font-semibold text-primary">{{ number_format((int) ($carsNewTodayCount ?? 0)) }}</span> added today.
-                    @else
-                        No new listings in the last 24 hours. Showing the most recently added cars instead.
-                    @endif
-                </p>
+                    </p>
+                @endif
             </div>
             <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
         </div>
