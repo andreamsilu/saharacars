@@ -208,7 +208,7 @@
 <section class="section-editorial px-4 sm:px-6 bg-surface py-16 md:py-20 border-y border-outline-variant/30 why-fade-up why-delay-3" aria-labelledby="why-numbers-heading">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-<div class="lg:col-span-4 rounded-3xl bg-primary-container text-on-primary p-6 sm:p-8 why-lift">
+<div class="lg:col-span-4 rounded-3xl bg-primary-container text-on-primary p-6 sm:p-8 why-lift text-center lg:text-left">
 <p class="text-xs uppercase tracking-widest text-white/80 font-label">Proof that matters</p>
 <h2 id="why-numbers-heading" class="text-3xl font-headline font-extrabold mt-3 leading-tight">Quick trust signals</h2>
 <p class="text-sm text-white/85 mt-3">Use these numbers to build confidence at a glance. Update anytime as your business grows.</p>

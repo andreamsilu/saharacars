@@ -9,8 +9,8 @@
             --theme-primary-container: {{ $themeColors['primary_container'] ?? '#5C4320' }};
         }
     </style>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 bg-slate-950">
-        <div class="md:col-span-2 space-y-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 bg-slate-950 text-center md:text-left">
+        <div class="md:col-span-2 space-y-5 flex flex-col items-center md:items-start">
             <a href="{{ route('home') }}" class="inline-block rounded-xl bg-white/95 p-2.5 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
                 <img
                     src="{{ asset('images/logo.png') }}"
@@ -24,7 +24,7 @@
             <p class="text-sm text-slate-300 max-w-md leading-relaxed">
                 Trusted car marketplace run by our Dar es Salaam team. We help you find verified cars with confidence.
             </p>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center justify-center md:justify-start gap-3">
                 <a href="{{ route('contact') }}" class="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded-full bg-white/10 text-slate-100 hover:bg-white/25 hover:text-white text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&_.material-symbols-outlined]:text-inherit">
                     <span class="material-symbols-outlined text-[16px]" aria-hidden="true">mail</span>
                     Contact
@@ -53,9 +53,9 @@
         <div>
             <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Dar Team</h4>
             <ul class="space-y-2 text-sm text-slate-300">
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">location_on</span>Dar es Salaam</li>
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">schedule</span>Mon-Sat, 08:00-18:00</li>
-                <li class="inline-flex items-center gap-2"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>+{{ $footerPhoneDigits }}</li>
+                <li class="inline-flex items-center gap-2 justify-center md:justify-start"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">location_on</span>Dar es Salaam</li>
+                <li class="inline-flex items-center gap-2 justify-center md:justify-start"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">schedule</span>Mon-Sat, 08:00-18:00</li>
+                <li class="inline-flex items-center gap-2 justify-center md:justify-start"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">call</span>+{{ $footerPhoneDigits }}</li>
             </ul>
         </div>
     </div>

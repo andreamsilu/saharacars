@@ -88,7 +88,7 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 section-editorial-compact">
 <!-- Hero Header -->
-<header class="mb-14 md:mb-16">
+<header class="mb-14 md:mb-16 text-center md:text-left">
 <h1 class="font-headline text-[clamp(2rem,7vw,4.5rem)] md:text-7xl font-extrabold text-primary tracking-tighter mb-4 leading-[1.1] text-balance">Connect with Excellence.</h1>
 <p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">Whether you are sourcing a rare collectible or need help with a car you bought from us, our team is ready to assist you in Dar es Salaam.</p>
 </header>
@@ -197,7 +197,7 @@
 </div>
 <!-- Location Section (Asymmetric) -->
 <section class="mt-20 md:mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div class="lg:col-span-4">
+<div class="lg:col-span-4 text-center lg:text-left">
 <div class="inline-block px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-full font-label text-[10px] uppercase font-bold tracking-widest mb-6">Primary Showroom</div>
 <h2 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary mb-6">Dar es Salaam Sales Center</h2>
 <p class="text-on-surface-variant mb-8 text-lg leading-relaxed">Our Dar es Salaam team is here to help you choose the right car. Visit us for test drives and friendly support.</p>

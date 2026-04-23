@@ -356,7 +356,7 @@
 <!-- Related Vehicles Section -->
 <section class="mt-20">
 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
-<div>
+<div class="text-center sm:text-left">
 <h3 class="font-headline text-2xl font-black text-primary tracking-tight">Similar Premium SUVs</h3>
 <p class="text-on-surface-variant">Recommended for you based on this unit</p>
 </div>

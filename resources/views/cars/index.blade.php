@@ -103,7 +103,7 @@
 <!-- Main Content -->
 <section class="flex-1 min-w-0">
 <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-end mb-6 sm:mb-8 gap-4">
-<div class="min-w-0">
+<div class="min-w-0 text-center sm:text-left">
 <h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-primary tracking-tight">Premium Inventory</h1>
 <p class="text-on-surface-variant font-body mt-1">
 Found {{ $cars->total() }} car{{ $cars->total() === 1 ? '' : 's' }}

@@ -106,7 +106,7 @@
 @if (($newTodayListings ?? collect())->isNotEmpty())
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-labelledby="home-new-today-heading">
     <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
             <div>
                 <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
                     @if (!($homeNewListingsIsRecentFallback ?? false))
@@ -261,16 +261,16 @@
     </div>
 </section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-label="Live inventory stats">
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-    <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
+<div class="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 sm:grid sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:snap-none">
+    <article class="min-w-[78%] snap-start rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center sm:min-w-0">
         <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Cars in stock</p>
         <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($totalPublishedCars ?? 0)) }}</p>
     </article>
-    <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
+    <article class="min-w-[78%] snap-start rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center sm:min-w-0">
         <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Added this week</p>
         <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($carsAddedThisWeek ?? 0)) }}</p>
     </article>
-    <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)]">
+    <article class="min-w-[78%] snap-start rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-4 py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center sm:min-w-0">
         <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label">Ready to view in Dar</p>
         <p class="font-headline text-2xl font-black text-primary mt-1">{{ number_format((int) ($darReadyCars ?? 0)) }}</p>
     </article>
@@ -278,7 +278,7 @@
 </section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
         <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ $homeShortcutsTitle ?? 'Shop by shortcuts' }}</h2>
         <p class="text-xs sm:text-sm text-on-surface-variant">{{ $homeShortcutsSubtitle ?? 'Fast paths for high-intent buyers' }}</p>
     </div>
@@ -291,7 +291,7 @@
 </section>
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="Showroom highlights">
 <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-6 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
-    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
         <div>
             <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Visual highlights</p>
             <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">See the Sahara buying experience</h2>
@@ -331,14 +331,12 @@
 </section>
 @php
     $featuredCollection = collect($featuredCars ?? []);
-    $newArrivals = $featuredCollection->take(5);
-    $editorPicks = $featuredCollection->take(5);
-    $valuePicks = $featuredCollection->sortBy('price_tzs')->take(5);
+    $featuredList = $featuredCollection->take(10);
 @endphp
 <!-- Content: Featured Cars Section -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
-<div class="space-y-2 min-w-0">
+<div class="space-y-2 min-w-0 text-center sm:text-left">
 <span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">Showroom Preview</span>
 <h2 id="home-featured-cars-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">Featured Cars</h2>
 </div>
@@ -347,13 +345,8 @@
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
-<div class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Inventory highlights">
-<button type="button" role="tab" id="home-tab-new-arrivals" class="home-tab bg-primary text-on-primary px-4 py-2 rounded-full text-xs font-bold min-h-[44px]" data-target="new-arrivals" aria-selected="true" aria-controls="home-panel-new-arrivals">New Arrivals</button>
-<button type="button" role="tab" id="home-tab-editor-picks" class="home-tab bg-surface-container-low text-on-surface px-4 py-2 rounded-full text-xs font-bold ghost-border min-h-[44px]" data-target="editor-picks" aria-selected="false" aria-controls="home-panel-editor-picks">Editor Picks</button>
-<button type="button" role="tab" id="home-tab-value-picks" class="home-tab bg-surface-container-low text-on-surface px-4 py-2 rounded-full text-xs font-bold ghost-border min-h-[44px]" data-target="value-picks" aria-selected="false" aria-controls="home-panel-value-picks">Value Picks</button>
-</div>
-<div id="home-panel-new-arrivals" role="tabpanel" aria-labelledby="home-tab-new-arrivals" class="home-tab-panel grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-panel="new-arrivals">
-@forelse ($newArrivals as $car)
+<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+@forelse ($featuredList as $car)
     <x-car-card :car="$car" :compact="true" />
 @empty
     <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
@@ -362,31 +355,11 @@
     </div>
 @endforelse
 </div>
-<div id="home-panel-editor-picks" role="tabpanel" aria-labelledby="home-tab-editor-picks" class="home-tab-panel hidden grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-panel="editor-picks">
-@forelse ($editorPicks as $car)
-    <x-car-card :car="$car" :compact="true" />
-@empty
-    <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
-        <div class="font-headline font-black text-2xl text-primary">More picks coming soon</div>
-        <p class="text-on-surface-variant mt-2">Our team is curating fresh editor recommendations.</p>
-    </div>
-@endforelse
-</div>
-<div id="home-panel-value-picks" role="tabpanel" aria-labelledby="home-tab-value-picks" class="home-tab-panel hidden grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-panel="value-picks">
-@forelse ($valuePicks as $car)
-    <x-car-card :car="$car" :compact="true" />
-@empty
-    <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
-        <div class="font-headline font-black text-2xl text-primary">No value picks yet</div>
-        <p class="text-on-surface-variant mt-2">We will surface budget-friendly recommendations here.</p>
-    </div>
-@endforelse
-</div>
 </section>
 @if (!empty($homeBrands ?? []))
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
 <h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">Car brands in our inventory</h2>
 <p class="text-xs sm:text-sm text-on-surface-variant">From the admin brand catalog. Tap a brand to view matching cars.</p>
 </div>
@@ -437,7 +410,7 @@ aria-label="View {{ $brand['name'] }} cars"
 </div>
 </div>
 <div class="bg-surface-container-lowest rounded-3xl p-8 md:p-12 shadow-[0_20px_32px_rgba(92,67,32,0.1)]">
-<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-center md:text-left">
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Client Voices</p>
 <h3 class="font-headline text-3xl font-extrabold text-primary mt-2">Trusted by buyers across Tanzania</h3>
@@ -531,25 +504,5 @@ aria-label="View {{ $brand['name'] }} cars"
     }
 })();
 
-(() => {
-    const tabs = Array.from(document.querySelectorAll('.home-tab'));
-    const panels = Array.from(document.querySelectorAll('.home-tab-panel'));
-    if (!tabs.length || !panels.length) return;
-
-    tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-            const target = tab.dataset.target;
-            tabs.forEach((t) => {
-                const selected = t === tab;
-                t.setAttribute('aria-selected', selected ? 'true' : 'false');
-                t.classList.toggle('bg-primary', selected);
-                t.classList.toggle('text-on-primary', selected);
-                t.classList.toggle('bg-surface-container-low', !selected);
-                t.classList.toggle('text-on-surface', !selected);
-            });
-            panels.forEach((panel) => panel.classList.toggle('hidden', panel.dataset.panel !== target));
-        });
-    });
-})();
 </script>
 </body></html>

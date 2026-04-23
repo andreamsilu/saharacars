@@ -90,7 +90,7 @@
 </header>
 <div class="bg-surface-container-lowest rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_16px_40px_rgba(25,28,30,0.06)] attention-panel border border-outline-variant/20">
 <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 md:mb-8">
-<div>
+<div class="text-center sm:text-left">
 <h2 class="font-headline text-xl md:text-2xl font-bold text-primary tracking-tight">Your picks</h2>
 <p class="text-sm text-on-surface-variant mt-1">Open a car to see photos, price, and WhatsApp.</p>
 </div>

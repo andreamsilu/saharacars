@@ -19,8 +19,8 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-4xl mx-auto px-4 sm:px-6 py-10">
     <section class="bg-surface-container-lowest rounded-2xl p-6 sm:p-8 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-        <h1 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary tracking-tight">Order a Car from Abroad</h1>
-        <p class="mt-2 text-on-surface-variant">Tell us what you need and we will source options from markets like Japan, Germany, and Thailand.</p>
+        <h1 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary tracking-tight text-center sm:text-left">Order a Car from Abroad</h1>
+        <p class="mt-2 text-on-surface-variant text-center sm:text-left">Tell us what you need and we will source options from markets like Japan, Germany, and Thailand.</p>
 
         @if (session('status'))
             <div class="mt-6 rounded-xl bg-green-500/10 p-4 text-sm text-green-900 ghost-border">{{ session('status') }}</div>
