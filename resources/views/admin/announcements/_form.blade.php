@@ -1,5 +1,4 @@
 @php
-    $isEdit = isset($announcement);
     $a = $announcement ?? null;
     $kinds = [
         \App\Models\Announcement::KIND_OFFER => 'Offer',
