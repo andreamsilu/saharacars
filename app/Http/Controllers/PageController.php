@@ -80,9 +80,15 @@ class PageController extends Controller
 
         $featuredCars = Car::query()
             ->where('is_published', true)
-            ->where('is_featured', true)
-            ->latest()
-            ->limit(6)
+            ->leftJoin('car_search_hits', 'car_search_hits.car_id', '=', 'cars.id')
+            ->select('cars.*')
+            ->selectRaw('COALESCE(car_search_hits.hits_count, 0) as search_hits_count')
+            ->selectRaw('car_search_hits.last_hit_at')
+            ->orderByDesc('search_hits_count')
+            ->orderByDesc('last_hit_at')
+            ->orderByDesc('is_featured')
+            ->latest('cars.created_at')
+            ->limit(5)
             ->get();
 
         $publishedCarsQuery = Car::query()->where('is_published', true);
@@ -107,7 +113,7 @@ class PageController extends Controller
             ->where('created_at', '>=', $todayStart)
             ->where('created_at', '<', $todayEnd)
             ->latest()
-            ->limit(6)
+            ->limit(10)
             ->get();
 
         $homeNewListingsIsRecentFallback = $newTodayListings->isEmpty();
@@ -115,7 +121,7 @@ class PageController extends Controller
             $newTodayListings = Car::query()
                 ->where('is_published', true)
                 ->latest()
-                ->limit(6)
+                ->limit(10)
                 ->get();
         }
 

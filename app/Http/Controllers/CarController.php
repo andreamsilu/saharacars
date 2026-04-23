@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CarController extends Controller
@@ -13,6 +14,7 @@ class CarController extends Controller
         $cars = $this->buildFilteredQuery()
             ->paginate(12)
             ->withQueryString();
+        $this->recordSearchHits($cars->pluck('id')->all());
 
         [$brandOptions, $locationOptions, $sourceCountryOptions, $importStatusOptions] = $this->getFilterOptions();
 
@@ -24,6 +26,7 @@ class CarController extends Controller
         $cars = $this->buildFilteredQuery()
             ->paginate(12)
             ->withQueryString();
+        $this->recordSearchHits($cars->pluck('id')->all());
 
         [$brandOptions, $locationOptions, $sourceCountryOptions, $importStatusOptions] = $this->getFilterOptions();
 
@@ -225,6 +228,38 @@ class CarController extends Controller
             ->pluck('import_status');
 
         return [$brandOptions, $locationOptions, $sourceCountryOptions, $importStatusOptions];
+    }
+
+    /**
+     * Track which cars surface in search results to power "most searched" ranking.
+     *
+     * @param  array<int, mixed>  $carIds
+     */
+    private function recordSearchHits(array $carIds): void
+    {
+        $ids = array_values(array_unique(array_map('intval', array_filter($carIds))));
+        if ($ids === []) {
+            return;
+        }
+
+        $now = now();
+        $rows = array_map(static fn (int $carId): array => [
+            'car_id' => $carId,
+            'hits_count' => 1,
+            'last_hit_at' => $now,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ], $ids);
+
+        DB::table('car_search_hits')->upsert(
+            $rows,
+            ['car_id'],
+            [
+                'hits_count' => DB::raw('car_search_hits.hits_count + 1'),
+                'last_hit_at',
+                'updated_at',
+            ]
+        );
     }
 }
 
