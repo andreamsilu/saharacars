@@ -107,12 +107,9 @@
 @php
     $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
 @endphp
-<section class="section-wash border-b border-outline-variant/25" aria-labelledby="home-hero-heading">
-    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-28 pb-4 sm:pb-5">
-        <h1 id="home-hero-heading" class="font-headline text-[clamp(1.5rem,4.2vw,2.5rem)] font-black text-on-surface tracking-tight leading-tight">Find your next car</h1>
-        <p class="mt-1.5 text-sm sm:text-base text-on-surface-variant max-w-2xl">Imports, pre-owned, and custom orders. Straight answers in Dar and for buyers across Tanzania—by phone or WhatsApp.</p>
-
-        <form action="{{ route('cars.index') }}" method="GET" class="mt-4 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
+<section class="section-wash border-b border-outline-variant/25" aria-label="Inventory search">
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-24 pb-4 sm:pb-5">
+        <form action="{{ route('cars.index') }}" method="GET" class="mt-1 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
                 <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
                     <span class="font-headline font-extrabold text-primary tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
@@ -143,25 +140,22 @@
                 </div>
             </div>
             <div class="pt-2.5 mt-1 border-t border-outline-variant/20">
-                <a href="{{ route('cars.index') }}" class="text-sm font-bold text-primary hover:underline decoration-primary/30 underline-offset-2">All filters: body, transmission, source country…</a>
+                <a href="{{ route('cars.index') }}" class="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-sm font-bold text-primary hover:bg-primary/10 transition-colors"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">tune</span> All filters: body, transmission, source country…</a>
             </div>
         </form>
         @if (count($homeQuickFilterChips ?? []) > 0)
-            <div class="flex flex-wrap gap-2 mt-3" role="list" aria-label="Quick filters">
+            <div class="flex flex-wrap gap-2 mt-4" role="list" aria-label="Quick filters">
                 @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
                     <a href="{{ $quickFilterChip['url'] }}" role="listitem" class="inline-flex items-center rounded-full border border-primary/20 bg-surface-container-lowest px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-on-surface hover:border-primary/40 hover:bg-surface-container-high transition-colors">{{ $quickFilterChip['label'] }}</a>
                 @endforeach
             </div>
         @endif
-        <div class="mt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+        <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
             <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
                 <span class="material-symbols-outlined text-primary text-[18px]" aria-hidden="true">chat</span> WhatsApp sales
             </a>
             <a href="{{ route('cars.index') }}" class="min-h-[44px] justify-center rounded-full bg-primary text-on-primary text-sm font-bold px-5 inline-flex items-center hover:opacity-95">Browse all stock</a>
         </div>
-        <p class="mt-2">
-            <button type="button" id="save-search-wa" class="text-xs sm:text-sm font-semibold text-primary underline decoration-primary/35 underline-offset-2 hover:decoration-primary">Message this search on WhatsApp</button>
-        </p>
         @if (($homeAnnouncements ?? collect())->isNotEmpty())
             <div class="mt-3 pt-4 border-t border-outline-variant/20" aria-labelledby="home-offers-heading">
                 <div class="rounded-2xl border border-sky-200/30 bg-surface-container-low/90 px-3 py-2.5 sm:px-4 sm:py-3 shadow-sm">
