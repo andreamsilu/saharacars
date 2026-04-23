@@ -1,5 +1,6 @@
 @props([
     'car',
+    'compact' => false,
 ])
 
 @php
@@ -19,8 +20,50 @@
         'ready_for_booking' => 'Ready for Booking',
     ];
     $importStatusText = $importStatusLabels[$car->import_status] ?? null;
+    $brandLine = $car->brand ? strtoupper((string) $car->brand) : '';
+    $modelLine = $car->model ? strtoupper((string) $car->model) : '';
 @endphp
 
+@if ($compact)
+<div class="group bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 relative flex flex-col max-w-full">
+    <a
+        href="{{ route('cars.show', ['slug' => $car->slug]) }}"
+        class="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
+        aria-label="Open details for {{ $car->title }}"
+    ></a>
+    <div class="relative aspect-[4/3] max-h-[120px] sm:max-h-[130px] w-full overflow-hidden bg-surface-container-high">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $car->title }}" src="{{ $img }}"/>
+        <button
+            type="button"
+            class="absolute top-2 right-2 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-primary shadow border border-outline-variant/30 hover:bg-white"
+            data-saved-car-toggle
+            data-slug="{{ $car->slug }}"
+            data-title="{{ $car->title }}"
+            aria-pressed="false"
+            aria-label="Save {{ $car->title }} to your list"
+        >
+            <span class="material-symbols-outlined text-lg text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
+        </button>
+        @if ($car->source_country)
+            <span class="absolute top-1.5 left-1.5 z-[5] max-w-[70%] truncate bg-primary/90 text-white px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide">{{ $car->source_country }}</span>
+        @endif
+    </div>
+    <div class="p-2.5 sm:p-3 text-left flex-1 flex flex-col relative z-20 min-h-0">
+        @if ($brandLine !== '' && $modelLine !== '')
+            <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-1">{{ $brandLine }}</p>
+            <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-1 -mt-px">{{ $modelLine }}</p>
+        @elseif ($brandLine !== '')
+            <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-2">{{ $brandLine }}</p>
+        @else
+            <h3 class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-snug uppercase line-clamp-2 min-h-[1.9rem]">{{ $car->title }}</h3>
+        @endif
+        <p class="text-[9px] text-on-surface-variant mt-1.5">Price:</p>
+        <p class="text-sm font-extrabold text-emerald-700 tabular-nums leading-tight">
+            {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact' }}
+        </p>
+    </div>
+</div>
+@else
 <div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
     <a
         href="{{ route('cars.show', ['slug' => $car->slug]) }}"
@@ -123,4 +166,4 @@
         </div>
     </div>
 </div>
-
+@endif

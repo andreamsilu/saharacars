@@ -244,10 +244,10 @@
             </div>
             <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
         </div>
-        <div class="flex gap-4 sm:gap-5 overflow-x-auto pb-2 snap-x snap-mandatory sm:snap-none scroll-px-4 -mx-1 px-1 [scrollbar-width:thin]">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
             @foreach ($newTodayListings as $car)
-                <div class="min-w-[min(100%,300px)] sm:min-w-[320px] max-w-[360px] flex-shrink-0 snap-start">
-                    <x-car-card :car="$car" />
+                <div class="min-w-0">
+                    <x-car-card :car="$car" :compact="true" />
                 </div>
             @endforeach
         </div>
@@ -330,31 +330,31 @@
 <button type="button" role="tab" id="home-tab-editor-picks" class="home-tab bg-surface-container-low text-on-surface px-4 py-2 rounded-full text-xs font-bold ghost-border min-h-[44px]" data-target="editor-picks" aria-selected="false" aria-controls="home-panel-editor-picks">Editor Picks</button>
 <button type="button" role="tab" id="home-tab-value-picks" class="home-tab bg-surface-container-low text-on-surface px-4 py-2 rounded-full text-xs font-bold ghost-border min-h-[44px]" data-target="value-picks" aria-selected="false" aria-controls="home-panel-value-picks">Value Picks</button>
 </div>
-<div id="home-panel-new-arrivals" role="tabpanel" aria-labelledby="home-tab-new-arrivals" class="home-tab-panel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" data-panel="new-arrivals">
+<div id="home-panel-new-arrivals" role="tabpanel" aria-labelledby="home-tab-new-arrivals" class="home-tab-panel grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-panel="new-arrivals">
 @forelse ($newArrivals as $car)
-    <x-car-card :car="$car" />
+    <x-car-card :car="$car" :compact="true" />
 @empty
-    <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
+    <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
         <div class="font-headline font-black text-2xl text-primary">No cars yet</div>
         <p class="text-on-surface-variant mt-2">Car highlights will appear here as soon as new cars are added.</p>
     </div>
 @endforelse
 </div>
-<div id="home-panel-editor-picks" role="tabpanel" aria-labelledby="home-tab-editor-picks" class="home-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" data-panel="editor-picks">
+<div id="home-panel-editor-picks" role="tabpanel" aria-labelledby="home-tab-editor-picks" class="home-tab-panel hidden grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-panel="editor-picks">
 @forelse ($editorPicks as $car)
-    <x-car-card :car="$car" />
+    <x-car-card :car="$car" :compact="true" />
 @empty
-    <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
+    <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
         <div class="font-headline font-black text-2xl text-primary">More picks coming soon</div>
         <p class="text-on-surface-variant mt-2">Our team is curating fresh editor recommendations.</p>
     </div>
 @endforelse
 </div>
-<div id="home-panel-value-picks" role="tabpanel" aria-labelledby="home-tab-value-picks" class="home-tab-panel hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" data-panel="value-picks">
+<div id="home-panel-value-picks" role="tabpanel" aria-labelledby="home-tab-value-picks" class="home-tab-panel hidden grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4" data-panel="value-picks">
 @forelse ($valuePicks as $car)
-    <x-car-card :car="$car" />
+    <x-car-card :car="$car" :compact="true" />
 @empty
-    <div class="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
+    <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
         <div class="font-headline font-black text-2xl text-primary">No value picks yet</div>
         <p class="text-on-surface-variant mt-2">We will surface budget-friendly recommendations here.</p>
     </div>
