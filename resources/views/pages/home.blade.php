@@ -109,22 +109,18 @@
 @endphp
 <section class="section-wash border-b border-outline-variant/25" aria-labelledby="home-hero-heading">
     <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-28 pb-4 sm:pb-5">
-        @if ($heroInventoryCount > 0)
-            <h1 id="home-hero-heading" class="font-headline text-[clamp(1.5rem,5vw,2.75rem)] font-black text-on-surface tracking-tight leading-[1.1]">
-                Search <span class="text-primary tabular-nums">{{ number_format($heroInventoryCount) }}</span> cars
-            </h1>
-        @else
-            <h1 id="home-hero-heading" class="font-headline text-2xl sm:text-3xl font-black text-on-surface tracking-tight">Search our inventory</h1>
-        @endif
-        <p class="mt-2 text-sm sm:text-base text-on-surface-variant max-w-4xl">
-            @if ($heroInventoryCount > 0)
-                Dar, Mwanza &amp; upcountry—import help, full filters on the results page, transparent pricing, and phone or WhatsApp on every lead.
-            @else
-                New listings are added often—if you are chasing a model we have not published yet, WhatsApp us. The same team answers calls and DMs, with clear next steps.
-            @endif
-        </p>
+        <h1 id="home-hero-heading" class="font-headline text-[clamp(1.5rem,4.2vw,2.5rem)] font-black text-on-surface tracking-tight leading-tight">Find your next car</h1>
+        <p class="mt-1.5 text-sm sm:text-base text-on-surface-variant max-w-2xl">Imports, pre-owned, and custom orders. Straight answers in Dar and for buyers across Tanzania—by phone or WhatsApp.</p>
 
         <form action="{{ route('cars.index') }}" method="GET" class="mt-4 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
+            @if ($heroInventoryCount > 0)
+                <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
+                    <span class="font-headline font-extrabold text-primary tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
+                    <span class="text-on-surface/85"> cars in stock</span>
+                </p>
+            @else
+                <p class="text-sm text-on-surface-variant mb-3">We publish new listings regularly—use the search when stock is live, or message us for a model we have not posted yet.</p>
+            @endif
             {{-- Mobile: column; sm–lg: 2×2; lg+: 12-col row uses full 7xl width --}}
             <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
                 <div class="min-w-0 sm:col-span-1 lg:col-span-5">
