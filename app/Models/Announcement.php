@@ -17,6 +17,7 @@ class Announcement extends Model
         'title',
         'summary',
         'link_url',
+        'link_new_tab',
         'kind',
         'is_published',
         'sort_order',
@@ -27,11 +28,29 @@ class Announcement extends Model
     protected function casts(): array
     {
         return [
+            'link_new_tab' => 'boolean',
             'is_published' => 'boolean',
             'sort_order' => 'integer',
             'starts_at' => 'datetime',
             'ends_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Public href for storefront: same-origin path or full URL.
+     */
+    public function publicLinkHref(): ?string
+    {
+        $raw = $this->link_url;
+        if ($raw === null || trim((string) $raw) === '') {
+            return null;
+        }
+        $raw = trim((string) $raw);
+        if (str_starts_with($raw, '/')) {
+            return url($raw);
+        }
+
+        return $raw;
     }
 
     /**

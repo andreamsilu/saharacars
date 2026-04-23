@@ -76,6 +76,7 @@ class AdminAnnouncementController extends Controller
         if (empty($data['ends_at'])) {
             $data['ends_at'] = null;
         }
+        $data['link_new_tab'] = (bool) ($request->boolean('link_new_tab'));
 
         return $data;
     }

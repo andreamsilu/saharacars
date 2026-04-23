@@ -223,9 +223,16 @@
                         default => 'News',
                     };
                 @endphp
+                @php
+                    $annHref = $ann->publicLinkHref();
+                @endphp
                 <li class="min-w-0">
-                    @if ($ann->link_url)
-                        <a href="{{ $ann->link_url }}" target="_blank" rel="noopener noreferrer" class="group flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 hover:border-primary/30 hover:shadow-sm transition-all text-left h-full">
+                    @if ($annHref)
+                        <a
+                            href="{{ $annHref }}"
+                            @if ($ann->link_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                            class="group flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 hover:border-primary/30 hover:shadow-sm transition-all text-left h-full"
+                        >
                     @else
                         <div class="flex gap-3 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 h-full">
                     @endif
@@ -235,14 +242,18 @@
                             @if ($ann->summary)
                                 <p class="text-xs text-on-surface-variant mt-0.5 line-clamp-2">{{ $ann->summary }}</p>
                             @endif
-                            @if ($ann->link_url)
+                            @if ($annHref)
                                 <p class="text-[10px] font-bold text-primary mt-1 inline-flex items-center gap-0.5">
                                     <span>View</span>
-                                    <span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span>
+                                    @if ($ann->link_new_tab)
+                                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span>
+                                    @else
+                                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">chevron_right</span>
+                                    @endif
                                 </p>
                             @endif
                         </div>
-                    @if ($ann->link_url)
+                    @if ($annHref)
                         </a>
                     @else
                         </div>

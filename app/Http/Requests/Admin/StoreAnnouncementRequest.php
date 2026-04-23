@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Models\Announcement;
+use App\Rules\OptionalUrlOrInternalPath;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -21,7 +22,8 @@ class StoreAnnouncementRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:180'],
             'summary' => ['nullable', 'string', 'max:500'],
-            'link_url' => ['nullable', 'string', 'max:500', 'url'],
+            'link_url' => ['nullable', 'string', 'max:500', new OptionalUrlOrInternalPath],
+            'link_new_tab' => ['sometimes', 'boolean'],
             'kind' => ['required', 'string', Rule::in([
                 Announcement::KIND_OFFER,
                 Announcement::KIND_NEWS,
