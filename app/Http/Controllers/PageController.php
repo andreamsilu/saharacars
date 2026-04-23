@@ -59,6 +59,24 @@ class PageController extends Controller
             ->orderBy('source_country')
             ->pluck('source_country');
 
+        $bodyTypeOptions = Car::query()
+            ->where('is_published', true)
+            ->whereNotNull('body_type')
+            ->where('body_type', '!=', '')
+            ->select('body_type')
+            ->distinct()
+            ->orderBy('body_type')
+            ->pluck('body_type');
+
+        $transmissionOptions = Car::query()
+            ->where('is_published', true)
+            ->whereNotNull('transmission')
+            ->where('transmission', '!=', '')
+            ->select('transmission')
+            ->distinct()
+            ->orderBy('transmission')
+            ->pluck('transmission');
+
         $featuredCars = Car::query()
             ->where('is_published', true)
             ->where('is_featured', true)
@@ -109,6 +127,8 @@ class PageController extends Controller
             'brandOptions',
             'locationOptions',
             'sourceCountryOptions',
+            'bodyTypeOptions',
+            'transmissionOptions',
             'homeBrands',
             'homeShortcutChips',
             'homeShortcutsTitle',

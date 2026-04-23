@@ -142,13 +142,25 @@
 <p class="text-white text-base sm:text-lg md:text-xl font-semibold max-w-2xl mx-auto hero-glow px-1">
                 Premium and rugged cars chosen for Tanzanian roads—from Dar commutes to upcountry runs—with clear pricing and documentation you can review before you buy.
             </p>
-<form action="{{ route('cars.index') }}" method="GET" class="max-w-5xl mx-auto bg-white/90 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/70 shadow-[0_16px_30px_rgba(25,28,30,0.16)]">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
+<form action="{{ route('cars.index') }}" method="GET" class="max-w-6xl mx-auto bg-white/90 backdrop-blur rounded-2xl p-3 sm:p-4 border border-white/70 shadow-[0_16px_30px_rgba(25,28,30,0.16)]">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2 sm:gap-3">
         <input name="q" type="search" placeholder="Brand, model, or keyword" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30" />
         <select name="brand" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
             <option value="">Any brand</option>
             @foreach ($brandOptions as $brandOption)
                 <option value="{{ $brandOption }}">{{ $brandOption }}</option>
+            @endforeach
+        </select>
+        <select name="body_type" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
+            <option value="">Any body type</option>
+            @foreach (($bodyTypeOptions ?? collect()) as $bodyTypeOption)
+                <option value="{{ $bodyTypeOption }}">{{ $bodyTypeOption }}</option>
+            @endforeach
+        </select>
+        <select name="transmission" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
+            <option value="">Any transmission</option>
+            @foreach (($transmissionOptions ?? collect()) as $transmissionOption)
+                <option value="{{ $transmissionOption }}">{{ $transmissionOption }}</option>
             @endforeach
         </select>
         <select name="source_country" class="rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border focus:ring-2 focus:ring-primary/30">
@@ -161,6 +173,12 @@
         <button type="submit" class="rounded-xl cta-gradient text-white font-bold px-4 py-2.5 min-h-[44px] focus-ring-on-dark">Search Cars</button>
     </div>
 </form>
+<div class="flex flex-wrap justify-center gap-2 text-[11px] pt-1">
+    <a href="{{ route('cars.index', ['price_range' => '20-50']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Price</a>
+    <a href="{{ route('cars.index', ['body_type' => 'SUV']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Type</a>
+    <a href="{{ route('cars.index', ['sort' => 'year_new_old']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Year</a>
+    <a href="{{ route('cars.index', ['location' => 'Dar es Salaam']) }}" class="rounded-full bg-white/15 text-white border border-white/30 px-3 py-1.5 font-bold uppercase tracking-wide hover:bg-white/25 transition-colors">Search by Location</a>
+</div>
 <div class="flex flex-wrap justify-center gap-2 -mt-1">
     @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
         <a href="{{ $quickFilterChip['url'] }}" class="inline-flex items-center rounded-full bg-white/15 text-white px-4 py-2 text-xs font-bold uppercase tracking-wide border border-white/30 hover:bg-white/25 transition-colors">

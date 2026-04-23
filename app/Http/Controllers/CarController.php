@@ -73,6 +73,7 @@ class CarController extends Controller
         $priceRange = (string) request('price_range', '');
         $priceMin = request()->integer('price_min');
         $priceMax = request()->integer('price_max');
+        $bodyType = trim((string) request('body_type', ''));
         $transmission = trim((string) request('transmission', ''));
         $fuel = trim((string) request('fuel', ''));
         $sourceCountry = trim((string) request('source_country', ''));
@@ -106,6 +107,10 @@ class CarController extends Controller
 
         if ($transmission !== '') {
             $query->where('transmission', 'like', '%'.$transmission.'%');
+        }
+
+        if ($bodyType !== '') {
+            $query->where('body_type', 'like', '%'.$bodyType.'%');
         }
 
         if ($fuel !== '') {
