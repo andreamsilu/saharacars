@@ -215,6 +215,45 @@
     </article>
 </div>
 </section>
+@if (($newTodayListings ?? collect())->isNotEmpty())
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-new-today-heading">
+    <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+            <div>
+                <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        New today
+                    @else
+                        Latest listings
+                    @endif
+                </p>
+                <h2 id="home-new-today-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        Today’s fresh stock
+                    @else
+                        Recent arrivals
+                    @endif
+                </h2>
+                <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        <span class="font-semibold text-primary">{{ number_format((int) ($carsNewTodayCount ?? 0)) }}</span> added today.
+                    @else
+                        No new listings in the last 24 hours. Showing the most recently added cars instead.
+                    @endif
+                </p>
+            </div>
+            <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
+        </div>
+        <div class="flex gap-4 sm:gap-5 overflow-x-auto pb-2 snap-x snap-mandatory sm:snap-none scroll-px-4 -mx-1 px-1 [scrollbar-width:thin]">
+            @foreach ($newTodayListings as $car)
+                <div class="min-w-[min(100%,300px)] sm:min-w-[320px] max-w-[360px] flex-shrink-0 snap-start">
+                    <x-car-card :car="$car" />
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">

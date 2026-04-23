@@ -94,6 +94,30 @@ class PageController extends Controller
             ->whereIn('import_status', ['in_tanzania', 'ready_for_booking'])
             ->count();
 
+        $todayStart = Carbon::today();
+        $todayEnd = Carbon::tomorrow();
+        $carsNewTodayCount = (clone $publishedCarsQuery)
+            ->where('created_at', '>=', $todayStart)
+            ->where('created_at', '<', $todayEnd)
+            ->count();
+
+        $newTodayListings = Car::query()
+            ->where('is_published', true)
+            ->where('created_at', '>=', $todayStart)
+            ->where('created_at', '<', $todayEnd)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+        $homeNewListingsIsRecentFallback = $newTodayListings->isEmpty();
+        if ($homeNewListingsIsRecentFallback) {
+            $newTodayListings = Car::query()
+                ->where('is_published', true)
+                ->latest()
+                ->limit(6)
+                ->get();
+        }
+
         $defaultShortcutChips = [
             ['label' => 'Foreign Used', 'url' => route('cars.index', ['condition' => 'foreign_used'])],
             ['label' => 'Brand New', 'url' => route('cars.index', ['condition' => 'brand_new'])],
@@ -139,7 +163,10 @@ class PageController extends Controller
             'totalPublishedCars',
             'carsAddedThisWeek',
             'darReadyCars',
-            'homeQuickFilterChips'
+            'homeQuickFilterChips',
+            'carsNewTodayCount',
+            'newTodayListings',
+            'homeNewListingsIsRecentFallback'
         ));
     }
 
