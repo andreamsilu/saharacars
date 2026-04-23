@@ -156,6 +156,13 @@
         <div class="absolute inset-0 bg-slate-950/20"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
+        <div class="hidden md:block max-w-3xl mx-auto mb-4 sm:mb-5">
+            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white/75">Sahara Cars</p>
+            <h1 class="mt-1 font-headline text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wide text-white">
+                Get Your Dream Car
+            </h1>
+            <p class="mt-2 text-xs sm:text-sm text-white/80">Browse verified inventory and find the right fit for your budget.</p>
+        </div>
         <form action="{{ route('cars.index') }}" method="GET" class="mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
                 <p class="mb-3 text-sm sm:text-base text-on-surface-variant">

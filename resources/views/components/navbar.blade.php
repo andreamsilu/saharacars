@@ -37,6 +37,10 @@
             />
         </a>
 
+        <p class="md:hidden flex-1 text-center px-1 text-[10px] font-black uppercase tracking-[0.14em] text-primary truncate">
+            GET YOUR DREAM CAR
+        </p>
+
         <div class="hidden md:flex items-center gap-4 lg:gap-6">
             <a class="{{ request()->routeIs('home') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('home') }}">Home</a>
             <a class="{{ request()->routeIs('cars.*') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('cars.index') }}">Inventory</a>
