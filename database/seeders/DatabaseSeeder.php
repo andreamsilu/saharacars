@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             CarSeeder::class,
             InquirySeeder::class,
+            AnnouncementSeeder::class,
         ]);
     }
 }
