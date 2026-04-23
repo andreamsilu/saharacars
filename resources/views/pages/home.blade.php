@@ -103,6 +103,43 @@
     $salesWaHref = 'https://wa.me/' . $salesDigits . '?text=' . rawurlencode($salesWaMessage);
 @endphp
 <main id="main-content" tabindex="-1" class="outline-none">
+@if (($newTodayListings ?? collect())->isNotEmpty())
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-labelledby="home-new-today-heading">
+    <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+            <div>
+                <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        New today
+                    @else
+                        Latest listings
+                    @endif
+                </p>
+                <h2 id="home-new-today-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        Today’s fresh stock
+                    @else
+                        Recent arrivals
+                    @endif
+                </h2>
+                @if (!($homeNewListingsIsRecentFallback ?? false))
+                    <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
+                        <span class="font-semibold text-primary">{{ number_format((int) ($carsNewTodayCount ?? 0)) }}</span> added today.
+                    </p>
+                @endif
+            </div>
+            <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
+            @foreach ($newTodayListings as $car)
+                <div class="min-w-0">
+                    <x-car-card :car="$car" :compact="true" />
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
 {{-- Search-first: compact strip (no full-bleed video), inventory hook + form --}}
 @php
     $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
@@ -232,43 +269,6 @@
     </article>
 </div>
 </section>
-@if (($newTodayListings ?? collect())->isNotEmpty())
-<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-new-today-heading">
-    <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
-            <div>
-                <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
-                    @if (!($homeNewListingsIsRecentFallback ?? false))
-                        New today
-                    @else
-                        Latest listings
-                    @endif
-                </p>
-                <h2 id="home-new-today-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary">
-                    @if (!($homeNewListingsIsRecentFallback ?? false))
-                        Today’s fresh stock
-                    @else
-                        Recent arrivals
-                    @endif
-                </h2>
-                @if (!($homeNewListingsIsRecentFallback ?? false))
-                    <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
-                        <span class="font-semibold text-primary">{{ number_format((int) ($carsNewTodayCount ?? 0)) }}</span> added today.
-                    </p>
-                @endif
-            </div>
-            <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
-            @foreach ($newTodayListings as $car)
-                <div class="min-w-0">
-                    <x-car-card :car="$car" :compact="true" />
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -324,9 +324,9 @@
 </section>
 @php
     $featuredCollection = collect($featuredCars ?? []);
-    $newArrivals = $featuredCollection->take(3);
-    $editorPicks = $featuredCollection->slice(3, 3);
-    $valuePicks = $featuredCollection->sortBy('price_tzs')->take(3);
+    $newArrivals = $featuredCollection->take(5);
+    $editorPicks = $featuredCollection->take(5);
+    $valuePicks = $featuredCollection->sortBy('price_tzs')->take(5);
 @endphp
 <!-- Content: Featured Cars Section -->
 <section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
@@ -380,8 +380,8 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-<h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">Most searched brands</h2>
-<p class="text-xs sm:text-sm text-on-surface-variant">Tap a brand to view matching cars</p>
+<h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">Car brands in our inventory</h2>
+<p class="text-xs sm:text-sm text-on-surface-variant">From the admin brand catalog. Tap a brand to view matching cars.</p>
 </div>
 <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
 @foreach (($homeBrands ?? []) as $brand)
@@ -390,8 +390,14 @@ href="{{ route('cars.index', ['brand' => $brand['name']]) }}"
 class="group rounded-2xl bg-surface-container-low px-3 py-3 ghost-border hover:bg-surface-container-high transition-colors flex flex-col items-center justify-center text-center min-h-[92px]"
 aria-label="View {{ $brand['name'] }} cars"
 >
+@if (!empty($brand['logo']))
 <img src="{{ $brand['logo'] }}" alt="{{ $brand['name'] }} logo" class="h-8 w-auto object-contain mb-2" loading="lazy" decoding="async" />
-<span class="text-[11px] font-label font-semibold uppercase tracking-wide text-on-surface-variant group-hover:text-primary">
+@else
+<span class="mb-2 inline-flex h-8 min-w-[2.5rem] items-center justify-center rounded-full bg-primary/10 px-2 text-[11px] font-extrabold uppercase tracking-wide text-primary">
+{{ \Illuminate\Support\Str::limit((string) $brand['name'], 3, '') }}
+</span>
+@endif
+<span class="text-[11px] font-label font-semibold tracking-wide text-on-surface-variant group-hover:text-primary">
 {{ $brand['name'] }}
 </span>
 </a>
