@@ -124,7 +124,7 @@
 <section class="px-4 sm:px-6 relative z-20 why-fade-up why-delay-1">
 <div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-3xl p-4 sm:p-6 shadow-[0_18px_38px_rgba(92,67,32,0.14)] border border-outline-variant/30">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">verified</span>
 </div>
@@ -132,7 +132,7 @@
 <p class="font-headline text-xl font-black text-primary mt-1">Admin-verified</p>
 <p class="text-xs text-on-surface-variant mt-2">No anonymous self-posting risk.</p>
 </article>
-<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">bolt</span>
 </div>
@@ -140,7 +140,7 @@
 <p class="font-headline text-xl font-black text-primary mt-1">Advisor-led support</p>
 <p class="text-xs text-on-surface-variant mt-2">WhatsApp and phone from one team.</p>
 </article>
-<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">description</span>
 </div>
@@ -148,7 +148,7 @@
 <p class="font-headline text-xl font-black text-primary mt-1">Structured specs</p>
 <p class="text-xs text-on-surface-variant mt-2">Make/model/body/doors/seats present.</p>
 </article>
-<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift">
+<article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">location_city</span>
 </div>
@@ -170,21 +170,21 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <div class="lg:col-span-7 rounded-3xl border border-outline-variant/30 bg-surface-container-lowest p-6 sm:p-8 why-lift">
 <div class="space-y-5">
-<article class="flex gap-4">
+<article class="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">verified_user</span>
 <div>
 <h3 class="font-headline text-lg font-bold">Verified listings only</h3>
 <p class="text-sm text-on-surface-variant mt-1">Our team manages listings for better trust and fewer surprises.</p>
 </div>
 </article>
-<article class="flex gap-4">
+<article class="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">description</span>
 <div>
 <h3 class="font-headline text-lg font-bold">Clear details before you visit</h3>
 <p class="text-sm text-on-surface-variant mt-1">You see specs and condition early, so shortlisting is faster.</p>
 </div>
 </article>
-<article class="flex gap-4">
+<article class="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">support_agent</span>
 <div>
 <h3 class="font-headline text-lg font-bold">Real human support</h3>
@@ -193,7 +193,7 @@
 </article>
 </div>
 </div>
-<aside class="lg:col-span-5 rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest why-lift why-zoom">
+<aside class="lg:col-span-5 rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest why-lift why-zoom text-center sm:text-left">
 <img class="h-56 sm:h-64 w-full object-cover" src="{{ asset('images/why-showroom.jpg') }}" alt="Premium SUV parked in a modern showroom setting" loading="lazy" decoding="async"/>
 <div class="p-6">
 <p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">Showroom quality</p>
@@ -214,19 +214,19 @@
 <p class="text-sm text-white/85 mt-3">Use these numbers to build confidence at a glance. Update anytime as your business grows.</p>
 </div>
 <div class="lg:col-span-8 grid grid-cols-2 gap-4">
-<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">500+</p>
 <p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Cars listed</p>
 </div>
-<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">10k+</p>
 <p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Buyer inquiries</p>
 </div>
-<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">&lt; 30 min</p>
 <p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Average response</p>
 </div>
-<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">4.8/5</p>
 <p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Buyer rating</p>
 </div>
@@ -240,25 +240,25 @@
 <h2 id="why-visuals-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4 text-center">Buying journey, step by step</h2>
 <p class="text-on-surface-variant max-w-3xl mx-auto mb-10 text-center">A simple sequence that keeps you in control from shortlist to handover.</p>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">1</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">search</span>
 <h3 class="font-headline text-base font-bold mt-3">Shortlist cars</h3>
 <p class="text-sm text-on-surface-variant mt-1">Use filters to find the right match quickly.</p>
 </article>
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">2</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">chat</span>
 <h3 class="font-headline text-base font-bold mt-3">Ask questions</h3>
 <p class="text-sm text-on-surface-variant mt-1">Message us on WhatsApp for quick clarifications.</p>
 </article>
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">3</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">event_available</span>
 <h3 class="font-headline text-base font-bold mt-3">Book a viewing</h3>
 <p class="text-sm text-on-surface-variant mt-1">Confirm availability and schedule your visit.</p>
 </article>
-<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift">
+<article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">4</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">key</span>
 <h3 class="font-headline text-base font-bold mt-3">Complete handover</h3>
