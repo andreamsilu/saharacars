@@ -128,7 +128,22 @@
                     </p>
                 @endif
             </div>
-            <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
+            <div class="w-full sm:w-auto sm:min-w-[300px] space-y-2">
+                <form action="{{ route('cars.index') }}" method="GET">
+                    <label for="recent-arrivals-search" class="sr-only">Search recent arrivals</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" aria-hidden="true">search</span>
+                        <input
+                            id="recent-arrivals-search"
+                            name="q"
+                            type="search"
+                            placeholder="Search recent arrivals..."
+                            class="w-full rounded-full bg-surface-container-highest py-2.5 pl-10 pr-4 text-sm font-medium text-primary placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20 ghost-border"
+                        />
+                    </div>
+                </form>
+                <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="inline-flex text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">View all by newest</a>
+            </div>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
             @foreach ($newTodayListings as $car)
