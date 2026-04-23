@@ -108,7 +108,7 @@
     $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
 @endphp
 <section class="section-wash border-b border-outline-variant/25" aria-labelledby="home-hero-heading">
-    <div class="max-w-4xl mx-auto w-full px-4 sm:px-6 pt-20 pb-4 sm:pb-5">
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-20 pb-4 sm:pb-5">
         @if ($heroInventoryCount > 0)
             <h1 id="home-hero-heading" class="font-headline text-[clamp(1.5rem,5vw,2.75rem)] font-black text-on-surface tracking-tight leading-[1.1]">
                 Search <span class="text-primary tabular-nums">{{ number_format($heroInventoryCount) }}</span> cars
@@ -116,7 +116,7 @@
         @else
             <h1 id="home-hero-heading" class="font-headline text-2xl sm:text-3xl font-black text-on-surface tracking-tight">Search our inventory</h1>
         @endif
-        <p class="mt-2 text-sm sm:text-base text-on-surface-variant max-w-2xl">
+        <p class="mt-2 text-sm sm:text-base text-on-surface-variant max-w-4xl">
             @if ($heroInventoryCount > 0)
                 Dar, Mwanza &amp; upcountry—import help, full filters on the results page, transparent pricing, and phone or WhatsApp on every lead.
             @else
@@ -124,16 +124,15 @@
             @endif
         </p>
 
-        <form action="{{ route('cars.index') }}" method="GET" class="mt-4 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left space-y-3" id="home-hero-search-form">
-            <div class="flex flex-col md:flex-row gap-2.5 md:gap-3 md:items-end">
-                <div class="min-w-0 flex-1">
+        <form action="{{ route('cars.index') }}" method="GET" class="mt-4 w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
+            {{-- Mobile: column; sm–lg: 2×2; lg+: 12-col row uses full 7xl width --}}
+            <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
+                <div class="min-w-0 sm:col-span-1 lg:col-span-5">
                     <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Make, model, or keyword</label>
                     <input id="hero-q" name="q" type="search" placeholder="e.g. Harrier, BMW, automatic" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-primary/30" />
                 </div>
-                <button type="submit" class="w-full md:w-auto md:shrink-0 min-h-[44px] rounded-xl cta-gradient text-white font-bold px-8 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">Search</button>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-                <div>
+                <button type="submit" class="w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">Search</button>
+                <div class="sm:col-span-1 lg:col-span-3">
                     <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Brand</label>
                     <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
                         <option value="">Any brand</option>
@@ -142,12 +141,12 @@
                         @endforeach
                     </select>
                 </div>
-                <div>
+                <div class="sm:col-span-1 lg:col-span-2">
                     <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Min price (TZS)</label>
                     <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="Optional" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface" />
                 </div>
             </div>
-            <div class="pt-0.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div class="pt-2.5 mt-1 border-t border-outline-variant/20">
                 <a href="{{ route('cars.index') }}" class="text-sm font-bold text-primary hover:underline decoration-primary/30 underline-offset-2">All filters: body, transmission, source country…</a>
             </div>
         </form>
