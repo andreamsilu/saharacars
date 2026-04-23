@@ -12,7 +12,7 @@ class CarController extends Controller
     public function index(): View
     {
         $cars = $this->buildFilteredQuery()
-            ->paginate(12)
+            ->paginate(15)
             ->withQueryString();
         $this->recordSearchHits($cars->pluck('id')->all());
 
@@ -24,7 +24,7 @@ class CarController extends Controller
     public function bento(): View
     {
         $cars = $this->buildFilteredQuery()
-            ->paginate(12)
+            ->paginate(15)
             ->withQueryString();
         $this->recordSearchHits($cars->pluck('id')->all());
 

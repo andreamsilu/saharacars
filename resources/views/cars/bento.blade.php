@@ -162,11 +162,11 @@ Search cars
 <p class="mt-2 text-xs text-on-surface-variant">Auto-search runs while typing.</p>
 </form>
 <!-- Bento/Grid Car Cards -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
 @forelse ($cars as $car)
-<x-car-card :car="$car" />
+<x-car-card :car="$car" :compact="true" />
 @empty
-<div class="md:col-span-2 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
+<div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
 <div class="font-headline font-black text-2xl text-primary">No cars yet</div>
 <p class="text-on-surface-variant mt-2">No cars are available yet. Please check back soon.</p>
 </div>

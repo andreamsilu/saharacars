@@ -107,8 +107,18 @@
 @php
     $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
 @endphp
-<section class="section-wash border-b border-outline-variant/25" aria-label="Inventory search">
-    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
+<section class="relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="Inventory search">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img
+            src="{{ asset('images/login-bg-hero.jpg') }}"
+            alt=""
+            class="w-full h-full object-cover grayscale opacity-45"
+            loading="eager"
+            decoding="async"
+        />
+        <div class="absolute inset-0 bg-slate-950/20"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
         <form action="{{ route('cars.index') }}" method="GET" class="mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
                 <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
