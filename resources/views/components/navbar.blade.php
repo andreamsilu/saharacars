@@ -3,7 +3,10 @@
     $salesWaIntro = 'Hi Sahara Cars sales, I need help choosing a car.';
     $salesWaHref = 'https://wa.me/' . $salesWaDigits . '?text=' . rawurlencode($salesWaIntro);
 @endphp
-<header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-[20px] shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+{{-- Ticker + nav share one sticky stack so the legal name stays visible when scrolling. --}}
+<div class="sticky top-0 z-50 w-full">
+    <x-brand-ticker />
+<header class="w-full bg-white/80 backdrop-blur-[20px] shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
     <style>
         :root {
             --theme-primary: {{ $themeColors['primary'] ?? '#8A6528' }};
@@ -97,6 +100,7 @@
         </div>
     </div>
 </header>
+</div>
 
 <script>
 (function () {

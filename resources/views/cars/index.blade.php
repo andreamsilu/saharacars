@@ -96,7 +96,7 @@
     </div>
 </details>
 <aside class="hidden lg:block w-72 flex-shrink-0">
-    <div class="sticky top-24 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel max-h-[calc(100vh-7rem)] overflow-y-auto overscroll-contain">
+    <div class="sticky top-32 space-y-8 bg-surface-container-low rounded-2xl p-5 md:p-6 attention-panel max-h-[calc(100vh-9rem)] overflow-y-auto overscroll-contain">
         @include('cars.partials.inventory-filter-form', ['action' => route('cars.index'), 'filterFormIdPrefix' => 'sidebar'])
     </div>
 </aside>

@@ -108,7 +108,7 @@
     $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
 @endphp
 <section class="section-wash border-b border-outline-variant/25" aria-labelledby="home-hero-heading">
-    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-20 pb-4 sm:pb-5">
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 pt-28 pb-4 sm:pb-5">
         @if ($heroInventoryCount > 0)
             <h1 id="home-hero-heading" class="font-headline text-[clamp(1.5rem,5vw,2.75rem)] font-black text-on-surface tracking-tight leading-[1.1]">
                 Search <span class="text-primary tabular-nums">{{ number_format($heroInventoryCount) }}</span> cars

@@ -296,7 +296,7 @@
 @endphp
 <!-- Right Column: Sticky Pricing & Action -->
 <div class="lg:col-span-4">
-<div class="sticky top-24 space-y-6">
+<div class="sticky top-32 space-y-6">
 <!-- Pricing Card -->
 <div class="bg-white p-5 sm:p-6 md:p-8 rounded-2xl shadow-[0_20px_40px_rgba(92,67,32,0.08)] attention-panel">
 <div class="flex justify-between items-start mb-4">
