@@ -107,7 +107,7 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-labelledby="home-new-today-heading">
     <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
-            <div class="text-left">
+            <div>
                 <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
                     @if (!($homeNewListingsIsRecentFallback ?? false))
                         New today
@@ -128,22 +128,7 @@
                     </p>
                 @endif
             </div>
-            <div class="w-full sm:w-auto sm:min-w-[320px] space-y-2 text-center mx-auto sm:mx-0">
-                <form action="{{ route('cars.index') }}" method="GET">
-                    <label for="recent-arrivals-search" class="sr-only">Search recent arrivals</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]" aria-hidden="true">search</span>
-                        <input
-                            id="recent-arrivals-search"
-                            name="q"
-                            type="search"
-                            placeholder="Search recent arrivals..."
-                            class="w-full rounded-full bg-surface-container-highest py-2.5 pl-10 pr-4 text-sm font-medium text-primary placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20 ghost-border"
-                        />
-                    </div>
-                </form>
-                <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="inline-flex text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">View all by newest</a>
-            </div>
+            <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
             @foreach ($newTodayListings as $car)
