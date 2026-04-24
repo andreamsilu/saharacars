@@ -163,7 +163,7 @@
             </h1>
             <p class="mt-2 text-xs sm:text-sm text-white/80">Browse verified inventory and find the right fit for your budget.</p>
         </div>
-        <form action="{{ route('cars.index') }}" method="GET" class="mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
+        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
                 <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
                     <span class="font-headline font-extrabold text-primary tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
@@ -178,7 +178,7 @@
                     <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Make, model, or keyword</label>
                     <input id="hero-q" name="q" type="search" placeholder="e.g. Harrier, BMW, automatic" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-primary/30" />
                 </div>
-                <button type="submit" class="w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">Search</button>
+                <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">Search</button>
                 <div class="sm:col-span-1 lg:col-span-3">
                     <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Brand</label>
                     <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
@@ -205,10 +205,10 @@
             </div>
         @endif
         <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center gap-2.5 sm:gap-3">
-            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
+            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="sahara-live-cta min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
                 <span class="material-symbols-outlined text-primary text-[18px]" aria-hidden="true">chat</span> WhatsApp us
             </a>
-            <a href="{{ route('cars.index') }}" class="min-h-[44px] justify-center rounded-full bg-primary text-on-primary text-sm font-bold px-5 inline-flex items-center hover:opacity-95">Browse all stock</a>
+            <a href="{{ route('cars.index') }}" class="sahara-live-cta min-h-[44px] justify-center rounded-full bg-primary text-on-primary text-sm font-bold px-5 inline-flex items-center hover:opacity-95">Browse all stock</a>
         </div>
         @if (($homeAnnouncements ?? collect())->isNotEmpty())
             <div class="mt-3 pt-4 border-t border-outline-variant/20 text-left" aria-labelledby="home-offers-heading">

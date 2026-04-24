@@ -27,6 +27,39 @@
   }
 }
 
+.sahara-live-panel {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-live-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px rgba(25, 28, 30, 0.1);
+  }
+}
+
+.sahara-live-cta {
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-live-cta:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+  }
+  .sahara-live-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sahara-soft-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(138, 101, 40, 0.0); }
+    50% { box-shadow: 0 0 0 8px rgba(138, 101, 40, 0.08); }
+  }
+  .sahara-pulse-subtle {
+    animation: sahara-soft-pulse 2.8s ease-in-out infinite;
+  }
+}
+
 .sahara-card-motion {
   transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
@@ -58,6 +91,13 @@
   .sahara-motion-footer,
   .sahara-motion-fab,
   .sahara-motion-nav-bottom {
+    animation: none;
+  }
+  .sahara-live-panel,
+  .sahara-live-cta {
+    transition: none;
+  }
+  .sahara-pulse-subtle {
     animation: none;
   }
 }

@@ -298,7 +298,7 @@
 <div class="lg:col-span-4">
 <div class="sticky top-32 space-y-6">
 <!-- Pricing Card -->
-<div class="bg-white p-5 sm:p-6 md:p-8 rounded-2xl shadow-[0_20px_40px_rgba(92,67,32,0.08)] attention-panel">
+<div class="sahara-live-panel bg-white p-5 sm:p-6 md:p-8 rounded-2xl shadow-[0_20px_40px_rgba(92,67,32,0.08)] attention-panel">
 <div class="flex justify-between items-start mb-4">
 <div>
 <h1 class="font-headline text-3xl font-black text-primary tracking-tight">
@@ -328,7 +328,7 @@
 </div>
 </div>
 <div class="space-y-3">
-<a class="w-full bg-secondary text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-lg shadow-secondary/20 focus-ring-on-dark [&_svg]:text-white"
+<a class="sahara-live-cta w-full bg-secondary text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-lg shadow-secondary/20 focus-ring-on-dark [&_svg]:text-white"
    href="{{ $listingWaHref }}"
    target="_blank"
    rel="noopener noreferrer"
@@ -339,11 +339,11 @@
 </svg>
                                 Chat on WhatsApp
                             </a>
-<a class="w-full cta-gradient text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ $listingTelHref }}" aria-label="Call Sahara Cars on the phone">
+<a class="sahara-live-cta w-full cta-gradient text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ $listingTelHref }}" aria-label="Call Sahara Cars on the phone">
 <span class="material-symbols-outlined" aria-hidden="true">call</span>
                                 Call now
                             </a>
-<a class="w-full bg-surface-container-low text-primary font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 border border-outline-variant/40 transition-[filter,transform] hover:brightness-95 active:scale-95 focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('order.request') }}">
+<a class="sahara-live-cta w-full bg-surface-container-low text-primary font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 border border-outline-variant/40 transition-[filter,transform] hover:brightness-95 active:scale-95 focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('order.request') }}">
 <span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
                                 Request Similar Import
                             </a>

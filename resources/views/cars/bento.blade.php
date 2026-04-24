@@ -83,7 +83,7 @@
 <!-- TopNavBar -->
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
-<details class="lg:hidden group rounded-2xl bg-surface-container-low border border-slate-200/80 attention-panel overflow-hidden">
+<details class="sahara-live-panel lg:hidden group rounded-2xl bg-surface-container-low border border-slate-200/80 attention-panel overflow-hidden">
     <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
         <span class="inline-flex items-center gap-2">
             <span class="material-symbols-outlined text-[22px]" aria-hidden="true">tune</span>
@@ -147,7 +147,7 @@ Found {{ $cars->total() }} car{{ $cars->total() === 1 ? '' : 's' }}
 <label for="bento-autosearch" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
 Search cars
 </label>
-<div class="relative max-w-xl attention-panel rounded-2xl p-3">
+<div class="sahara-live-panel relative max-w-xl attention-panel rounded-2xl p-3">
     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
     <input
         id="bento-autosearch"

@@ -95,7 +95,7 @@
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 <!-- Contact Form Card -->
-<section class="md:col-span-7 bg-surface-container-lowest rounded-xl p-5 sm:p-6 md:p-8 shadow-sm attention-panel">
+<section class="sahara-live-panel md:col-span-7 bg-surface-container-lowest rounded-xl p-5 sm:p-6 md:p-8 shadow-sm attention-panel">
 <h2 class="font-headline text-2xl font-bold text-primary mb-8">Send a Message</h2>
 @if (session('status'))
 <div class="mb-6 rounded-xl bg-green-500/10 p-4 text-sm text-green-900 ghost-border">
@@ -136,7 +136,7 @@
 <label for="contact-message" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Message</label>
 <textarea id="contact-message" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="Tell us more about your automotive needs..." rows="5" name="message" required>{{ old('message') }}</textarea>
 </div>
-<button class="w-full cta-gradient text-on-primary py-4 min-h-[52px] rounded-full font-headline font-bold text-lg transition-[filter,transform] hover:brightness-110 shadow-lg shadow-primary/10 active:scale-95 duration-150 focus-ring-on-dark" type="submit">
+<button class="sahara-live-cta w-full cta-gradient text-on-primary py-4 min-h-[52px] rounded-full font-headline font-bold text-lg transition-[filter,transform] hover:brightness-110 shadow-lg shadow-primary/10 active:scale-95 duration-150 focus-ring-on-dark" type="submit">
                         Send Inquiry
                     </button>
 </form>
@@ -144,7 +144,7 @@
 <!-- Location & Hours Side Cards -->
 <div class="md:col-span-5 space-y-6">
 <!-- Quick Contact Card -->
-<div class="bg-primary text-on-primary rounded-xl p-5 sm:p-6 md:p-8 relative overflow-hidden group attention-panel">
+<div class="sahara-live-panel bg-primary text-on-primary rounded-xl p-5 sm:p-6 md:p-8 relative overflow-hidden group attention-panel">
 <div class="relative z-10">
 <h3 class="font-headline text-xl font-bold mb-6">Immediate Support</h3>
 <div class="space-y-6">

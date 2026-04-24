@@ -18,7 +18,7 @@
 <x-skip-to-main />
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-4xl mx-auto px-4 sm:px-6 py-10">
-    <section class="bg-surface-container-lowest rounded-2xl p-6 sm:p-8 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
+    <section class="sahara-live-panel bg-surface-container-lowest rounded-2xl p-6 sm:p-8 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
         <h1 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary tracking-tight text-center sm:text-left">Order a Car from Abroad</h1>
         <p class="mt-2 text-on-surface-variant text-center sm:text-left">Tell us what you need and we will source options from markets like Japan, Germany, and Thailand.</p>
 
@@ -89,7 +89,7 @@
                 <label for="order-message" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Notes</label>
                 <textarea id="order-message" name="message" rows="4" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="Any specific trim, mileage, color, or timeline...">{{ old('message') }}</textarea>
             </div>
-            <button type="submit" class="w-full cta-gradient text-on-primary font-bold py-3.5 rounded-full min-h-[48px] focus-ring-on-dark">Submit Order Request</button>
+            <button type="submit" class="sahara-live-cta w-full cta-gradient text-on-primary font-bold py-3.5 rounded-full min-h-[48px] focus-ring-on-dark">Submit Order Request</button>
         </form>
     </section>
 </main>

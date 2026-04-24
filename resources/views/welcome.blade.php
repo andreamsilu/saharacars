@@ -97,7 +97,7 @@
                 Discover the most reliable luxury and rugged vehicles curated for the African terrain.
             </p>
 <!-- Search Bar (Centered) -->
-<div class="bg-white/90 backdrop-blur-xl p-3 md:p-4 rounded-3xl md:rounded-full shadow-2xl flex flex-col md:flex-row gap-2 items-center w-full max-w-4xl">
+<div class="sahara-live-panel bg-white/90 backdrop-blur-xl p-3 md:p-4 rounded-3xl md:rounded-full shadow-2xl flex flex-col md:flex-row gap-2 items-center w-full max-w-4xl">
 <div class="flex-1 w-full grid grid-cols-1 md:grid-cols-3 gap-2 px-4">
 <div class="flex flex-col items-start border-b md:border-b-0 md:border-r border-slate-200 py-2">
 <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Brand</span>
@@ -125,7 +125,7 @@
 </select>
 </div>
 </div>
-<a class="w-full md:w-auto bg-secondary text-white px-10 py-4 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-on-secondary-container transition-all active:scale-95 shadow-lg" href="{{ route('cars.index') }}">
+<a class="sahara-live-cta w-full md:w-auto bg-secondary text-white px-10 py-4 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-on-secondary-container transition-all active:scale-95 shadow-lg" href="{{ route('cars.index') }}">
 <span class="material-symbols-outlined">search</span>
                     Find Cars
                 </a>
@@ -180,7 +180,7 @@
 </div>
 <div class="pt-4 flex items-center justify-between border-t border-slate-50">
 <div class="font-headline text-2xl font-black text-primary">TZS 185M</div>
-<button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
+<button class="sahara-live-cta bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
 </div>
 </div>
 </div>
@@ -214,7 +214,7 @@
 </div>
 <div class="pt-4 flex items-center justify-between border-t border-slate-50">
 <div class="font-headline text-2xl font-black text-primary">TZS 310M</div>
-<button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
+<button class="sahara-live-cta bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
 </div>
 </div>
 </div>
@@ -250,7 +250,7 @@
 </div>
 <div class="pt-4 flex items-center justify-between border-t border-slate-50">
 <div class="font-headline text-2xl font-black text-primary">TZS 245M</div>
-<button class="bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
+<button class="sahara-live-cta bg-primary text-white px-6 py-2 rounded-full text-sm font-bold active:scale-95 transition-all">Details</button>
 </div>
 </div>
 </div>
