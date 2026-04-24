@@ -144,7 +144,7 @@
                 <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- Car Card 1 -->
 <div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100/50">
 <div class="relative h-64 overflow-hidden">

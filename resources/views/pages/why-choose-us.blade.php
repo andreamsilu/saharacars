@@ -123,7 +123,7 @@
 <!-- Quick trust stats -->
 <section class="px-4 sm:px-6 relative z-20 why-fade-up why-delay-1">
 <div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-3xl p-4 sm:p-6 shadow-[0_18px_38px_rgba(92,67,32,0.14)] border border-outline-variant/30">
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="sahara-stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 <article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">verified</span>
@@ -239,7 +239,7 @@
 <div class="max-w-7xl mx-auto">
 <h2 id="why-visuals-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4 text-center">Buying journey, step by step</h2>
 <p class="text-on-surface-variant max-w-3xl mx-auto mb-10 text-center">A simple sequence that keeps you in control from shortlist to handover.</p>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-4 gap-4">
 <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">1</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">search</span>

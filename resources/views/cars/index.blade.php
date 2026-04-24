@@ -162,7 +162,7 @@ Search cars
 <p class="mt-2 text-xs text-on-surface-variant">Auto-search runs while typing.</p>
 </form>
 <!-- Car Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
+<div class="sahara-stagger-children grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
 @forelse ($cars as $car)
 <x-car-card :car="$car" :compact="true" />
 @empty

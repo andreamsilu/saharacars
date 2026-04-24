@@ -1,4 +1,4 @@
-<footer {{ $attributes->merge(['class' => 'w-full mt-auto bg-slate-950 text-slate-200']) }}>
+<footer {{ $attributes->merge(['class' => 'sahara-motion-footer w-full mt-auto bg-slate-950 text-slate-200']) }}>
     @php
         $footerPhoneDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
     @endphp
@@ -70,5 +70,6 @@
     <x-page-load-progress />
     <x-scroll-to-top />
     <script src="{{ asset('js/sahara-saved-cars.js') }}" defer></script>
+    @include('components.public-motion-init')
 </footer>
 

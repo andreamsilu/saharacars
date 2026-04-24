@@ -25,7 +25,7 @@
 @endphp
 
 @if ($compact)
-<div class="group bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 relative flex flex-col max-w-full">
+<div class="sahara-card-motion group bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 relative flex flex-col max-w-full">
     <a
         href="{{ route('cars.show', ['slug' => $car->slug]) }}"
         class="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
@@ -64,7 +64,7 @@
     </div>
 </div>
 @else
-<div class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
+<div class="sahara-card-motion group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
     <a
         href="{{ route('cars.show', ['slug' => $car->slug]) }}"
         class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"

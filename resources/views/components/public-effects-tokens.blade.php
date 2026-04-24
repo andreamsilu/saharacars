@@ -21,3 +21,4 @@
     radial-gradient(180px 120px at 15% 100%, rgba(232, 200, 137, 0.18), transparent 70%),
     #ffffff;
 }
+@include('components.public-motion-tokens')

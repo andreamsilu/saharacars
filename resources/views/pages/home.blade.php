@@ -130,7 +130,7 @@
             </div>
             <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">View all by newest</a>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
+        <div class="sahara-stagger-children grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
             @foreach ($newTodayListings as $car)
                 <div class="min-w-0">
                     <x-car-card :car="$car" :compact="true" />
@@ -345,7 +345,7 @@
                 <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+<div class="sahara-stagger-children grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
 @forelse ($featuredList as $car)
     <x-car-card :car="$car" :compact="true" />
 @empty

@@ -74,6 +74,7 @@
             -moz-osx-font-smoothing: grayscale;
             font-feature-settings: "cv11", "ss01";
         }
+        @include('components.public-motion-tokens')
         h1, h2, h3, .font-headline {
             font-family: 'Manrope', sans-serif;
             letter-spacing: -0.015em;
@@ -221,5 +222,6 @@
         </div>
     </div>
     @yield('scripts')
+    @include('components.public-motion-init')
 </body>
 </html>

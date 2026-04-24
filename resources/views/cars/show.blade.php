@@ -364,7 +364,7 @@
                     View Gallery <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-3 gap-6">
 @forelse ($related as $rel)
 <a class="bg-surface-container-lowest rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all block" href="{{ route('cars.show', ['slug' => $rel->slug]) }}">
 <div class="aspect-[16/10] overflow-hidden relative bg-surface-dim">
