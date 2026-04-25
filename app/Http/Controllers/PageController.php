@@ -15,71 +15,29 @@ class PageController extends Controller
     {
         $settings = $this->marketplaceSettings();
 
-        $brandOptions = Car::query()
-            ->where('is_published', true)
-            ->whereNotNull('brand')
-            ->where('brand', '!=', '')
-            ->select('brand')
-            ->distinct()
-            ->orderBy('brand')
+        // Frontend brand options are sourced from admin-managed brands.
+        $brandOptions = Brand::query()
+            ->whereHas('cars', fn ($query) => $query->where('is_published', true))
+            ->orderBy('sort_order')
+            ->orderBy('name')
             ->limit(30)
-            ->pluck('brand');
+            ->pluck('name');
 
-        // Public-facing brand list: derive from currently published inventory.
-        // Optional admin logo mapping is applied only when brand names match.
-        $logoByBrandName = Brand::query()
+        // Homepage brand rail is sourced from admin brands to guarantee admin logos.
+        $homeBrands = Brand::query()
+            ->where('is_featured', true)
             ->whereNotNull('logo_path')
             ->where('logo_path', '!=', '')
-            ->pluck('logo_path', 'name');
-
-        $homeBrands = Car::query()
-            ->where('is_published', true)
-            ->whereNotNull('brand')
-            ->where('brand', '!=', '')
-            ->selectRaw('brand as name, COUNT(*) as published_count')
-            ->groupBy('brand')
-            ->orderByDesc('published_count')
-            ->orderBy('brand')
+            ->whereHas('cars', fn ($query) => $query->where('is_published', true))
+            ->withCount(['cars as published_cars_count' => fn ($query) => $query->where('is_published', true)])
+            ->orderBy('sort_order')
+            ->orderBy('name')
             ->get()
-            ->map(function ($row): array {
-                $name = trim((string) $row->name);
-                $normalized = strtolower((string) preg_replace('/[^a-z0-9]+/i', '', $name));
-
+            ->map(function (Brand $brand): array {
                 return [
-                    'name' => $name,
-                    'normalized' => $normalized,
-                    'published_count' => (int) $row->published_count,
-                ];
-            })
-            ->reduce(function (\Illuminate\Support\Collection $carry, array $brand): \Illuminate\Support\Collection {
-                $key = $brand['normalized'] !== '' ? $brand['normalized'] : strtolower($brand['name']);
-                $existing = $carry->get($key);
-
-                if ($existing === null) {
-                    $carry->put($key, $brand);
-
-                    return $carry;
-                }
-
-                $existing['published_count'] += $brand['published_count'];
-                // Keep the cleaner display label (usually longer/full variant).
-                if (strlen($brand['name']) > strlen($existing['name'])) {
-                    $existing['name'] = $brand['name'];
-                }
-
-                $carry->put($key, $existing);
-
-                return $carry;
-            }, collect())
-            ->values()
-            ->sortByDesc('published_count')
-            ->map(function (array $brand) use ($logoByBrandName): array {
-                $logoPath = $logoByBrandName[$brand['name']] ?? null;
-
-                return [
-                    'name' => $brand['name'],
-                    'logo' => $logoPath ? asset('storage/'.$logoPath) : null,
-                    'published_count' => (int) $brand['published_count'],
+                    'name' => trim((string) $brand->name),
+                    'logo' => asset('storage/'.$brand->logo_path),
+                    'published_count' => (int) $brand->published_cars_count,
                 ];
             })
             ->values()

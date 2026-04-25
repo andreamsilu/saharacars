@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Car;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ class AdminBrandController extends Controller
 {
     public function index(): View
     {
+        $this->syncBrandsFromCars();
+
         $brands = Brand::query()
             ->withCount(['cars as published_cars_count' => fn ($q) => $q->where('is_published', true)])
             ->orderBy('sort_order')
@@ -118,6 +121,52 @@ class AdminBrandController extends Controller
     private function storeWithOriginalName(UploadedFile $file, string $directory): string
     {
         return $file->storeAs($directory, $file->getClientOriginalName(), 'public');
+    }
+
+    /**
+     * Keep admin brand list populated from legacy cars.brand values.
+     * This avoids empty brand pickers when records exist before brand management.
+     */
+    private function syncBrandsFromCars(): void
+    {
+        $existingNormalizedNames = Brand::query()
+            ->pluck('name')
+            ->map(fn ($name): string => $this->normalizeBrandName((string) $name))
+            ->filter()
+            ->flip();
+
+        $maxSortOrder = (int) Brand::query()->max('sort_order');
+        $carBrandNames = Car::query()
+            ->whereNotNull('brand')
+            ->where('brand', '!=', '')
+            ->distinct()
+            ->pluck('brand');
+
+        foreach ($carBrandNames as $rawName) {
+            $name = trim((string) $rawName);
+            if ($name === '') {
+                continue;
+            }
+
+            $normalized = $this->normalizeBrandName($name);
+            if ($normalized === '' || $existingNormalizedNames->has($normalized)) {
+                continue;
+            }
+
+            $maxSortOrder++;
+            Brand::query()->create([
+                'name' => $name,
+                'slug' => $this->uniqueSlug($name),
+                'is_featured' => false,
+                'sort_order' => $maxSortOrder,
+            ]);
+            $existingNormalizedNames->put($normalized, true);
+        }
+    }
+
+    private function normalizeBrandName(string $name): string
+    {
+        return Str::lower(trim(preg_replace('/\s+/', ' ', $name) ?? ''));
     }
 }
 

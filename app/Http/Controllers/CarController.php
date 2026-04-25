@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Car;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
@@ -191,14 +192,11 @@ class CarController extends Controller
      */
     private function getFilterOptions(): array
     {
-        $brandOptions = Car::query()
-            ->where('is_published', true)
-            ->whereNotNull('brand')
-            ->where('brand', '!=', '')
-            ->select('brand')
-            ->distinct()
-            ->orderBy('brand')
-            ->pluck('brand');
+        $brandOptions = Brand::query()
+            ->whereHas('cars', fn ($query) => $query->where('is_published', true))
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->pluck('name');
 
         $locationOptions = Car::query()
             ->where('is_published', true)
