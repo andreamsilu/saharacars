@@ -102,6 +102,29 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-surface via-slate-50 to-slate-100 text-on-surface font-body antialiased">
     <x-skip-to-main />
+    @php
+        $unreadOrdersCount = \App\Models\Inquiry::query()
+            ->where('inquiry_type', 'order_request')
+            ->whereNull('read_at')
+            ->count();
+        $adminLink = function (string $route, string $pattern, string $label, string $icon) {
+            $active = request()->routeIs($pattern);
+            $base = 'flex items-center gap-3 py-3.5 pl-4 rounded-2xl mr-2 text-[15px] font-medium tracking-tight transition-colors';
+            $classes = $active
+                ? 'bg-primary text-white shadow-sm ring-1 ring-primary/20 font-bold '.$base
+                : 'text-slate-500 hover:text-primary hover:bg-surface-container '.$base;
+
+            return compact('route', 'label', 'icon', 'classes', 'active');
+        };
+        $adminNavItems = [
+            $adminLink('admin.dashboard', 'admin.dashboard', 'Overview', 'dashboard'),
+            $adminLink('admin.cars.index', 'admin.cars.*', 'Inventory', 'directions_car'),
+            $adminLink('admin.inquiries.index', 'admin.inquiries.*', 'Orders', 'inventory_2'),
+            $adminLink('admin.announcements.index', 'admin.announcements.*', 'Offers & news', 'campaign'),
+            $adminLink('admin.brands.index', 'admin.brands.*', 'Brands', 'branding_watermark'),
+            $adminLink('admin.settings.index', 'admin.settings.*', 'Settings', 'settings'),
+        ];
+    @endphp
     <div class="min-h-screen">
         <aside class="hidden lg:flex fixed top-0 left-0 z-50 w-[280px] h-screen flex-col border-r border-slate-200/90 bg-gradient-to-b from-slate-50 to-slate-100">
             <div class="px-6 py-8 border-b border-slate-200/80">
@@ -119,29 +142,7 @@
             </div>
 
             <nav class="flex-1 p-4 space-y-1">
-                @php
-                    $unreadOrdersCount = \App\Models\Inquiry::query()
-                        ->where('inquiry_type', 'order_request')
-                        ->whereNull('read_at')
-                        ->count();
-                    $link = function (string $route, string $pattern, string $label, string $icon) {
-                        $active = request()->routeIs($pattern);
-                        $base = 'flex items-center gap-3 py-3.5 pl-4 rounded-2xl mr-2 text-[15px] font-medium tracking-tight transition-colors';
-                        $classes = $active
-                            ? 'bg-primary text-white shadow-sm ring-1 ring-primary/20 font-bold '.$base
-                            : 'text-slate-500 hover:text-primary hover:bg-surface-container '.$base;
-                        return compact('route', 'label', 'icon', 'classes', 'active');
-                    };
-                    $items = [
-                        $link('admin.dashboard', 'admin.dashboard', 'Overview', 'dashboard'),
-                        $link('admin.cars.index', 'admin.cars.*', 'Inventory', 'directions_car'),
-                        $link('admin.inquiries.index', 'admin.inquiries.*', 'Orders', 'inventory_2'),
-                        $link('admin.announcements.index', 'admin.announcements.*', 'Offers & news', 'campaign'),
-                        $link('admin.brands.index', 'admin.brands.*', 'Brands', 'branding_watermark'),
-                        $link('admin.settings.index', 'admin.settings.*', 'Settings', 'settings'),
-                    ];
-                @endphp
-                @foreach ($items as $item)
+                @foreach ($adminNavItems as $item)
                     <a
                         href="{{ route($item['route']) }}"
                         class="admin-link smooth {{ $item['classes'] }}"
@@ -194,6 +195,16 @@
                     </div>
 
                     <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                        <button
+                            type="button"
+                            id="admin-mobile-menu-toggle"
+                            class="lg:hidden w-10 h-10 rounded-full border border-slate-200 bg-white text-primary hover:bg-surface-container-low smooth inline-flex items-center justify-center"
+                            aria-label="Toggle admin menu"
+                            aria-controls="admin-mobile-menu-panel"
+                            aria-expanded="false"
+                        >
+                            <span class="material-symbols-outlined text-base">menu</span>
+                        </button>
                         <a href="{{ route('home') }}" class="w-10 h-10 rounded-full bg-primary text-on-primary hover:bg-primary-container smooth inline-flex items-center justify-center border border-primary/20" title="View site" aria-label="View site">
                             <span class="material-symbols-outlined text-base">public</span>
                             <span class="sr-only">View site</span>
@@ -207,9 +218,35 @@
                         </form>
                     </div>
                 </div>
+                <nav id="admin-mobile-menu-panel" class="hidden lg:hidden border-t border-slate-200/80 bg-white/90 backdrop-blur-sm">
+                    <div class="px-4 py-2 overflow-x-auto">
+                        <div class="flex items-center gap-2 min-w-max">
+                            @foreach ($adminNavItems as $item)
+                                @php
+                                    $pillClasses = $item['active']
+                                        ? 'bg-primary text-white border-primary'
+                                        : 'bg-surface-container-low text-on-surface-variant border-slate-200';
+                                @endphp
+                                <a
+                                    href="{{ route($item['route']) }}"
+                                    class="inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-semibold whitespace-nowrap smooth {{ $pillClasses }}"
+                                    aria-current="{{ $item['active'] ? 'page' : 'false' }}"
+                                >
+                                    <span class="material-symbols-outlined text-sm">{{ $item['icon'] }}</span>
+                                    <span>{{ $item['label'] }}</span>
+                                    @if ($item['route'] === 'admin.inquiries.index' && $unreadOrdersCount > 0)
+                                        <span class="inline-flex min-w-[18px] h-[18px] items-center justify-center rounded-full bg-rose-500 text-white text-[10px] font-extrabold px-1">
+                                            {{ $unreadOrdersCount > 99 ? '99+' : $unreadOrdersCount }}
+                                        </span>
+                                    @endif
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </nav>
             </header>
 
-            <main id="main-content" tabindex="-1" class="flex-1 max-w-7xl w-full mx-auto px-5 sm:px-8 py-10 outline-none">
+            <main id="main-content" tabindex="-1" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-6 sm:py-10 outline-none">
                 @if (session('status'))
                     <div class="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900 inline-flex items-start gap-2">
                         <span class="material-symbols-outlined icon-success text-base">check_circle</span>
@@ -222,6 +259,35 @@
         </div>
     </div>
     @yield('scripts')
+    <script>
+        (() => {
+            const toggle = document.getElementById('admin-mobile-menu-toggle');
+            const panel = document.getElementById('admin-mobile-menu-panel');
+            if (!toggle || !panel) {
+                return;
+            }
+
+            const icon = toggle.querySelector('.material-symbols-outlined');
+            const setExpanded = (expanded) => {
+                toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                panel.classList.toggle('hidden', !expanded);
+                if (icon) {
+                    icon.textContent = expanded ? 'close' : 'menu';
+                }
+            };
+
+            setExpanded(false);
+
+            toggle.addEventListener('click', () => {
+                const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                setExpanded(!expanded);
+            });
+
+            panel.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => setExpanded(false));
+            });
+        })();
+    </script>
     @include('components.public-motion-init')
 </body>
 </html>

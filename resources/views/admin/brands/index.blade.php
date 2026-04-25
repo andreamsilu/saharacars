@@ -14,7 +14,7 @@
                 <p class="text-on-surface-variant text-sm">Manage brand names and logos used on home page and linked inventory.</p>
             </div>
 
-            <form method="POST" action="{{ route('admin.brands.store') }}" enctype="multipart/form-data" class="p-7 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-end border-b border-outline-variant/20">
+            <form method="POST" action="{{ route('admin.brands.store') }}" enctype="multipart/form-data" class="p-5 sm:p-7 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-end border-b border-outline-variant/20">
                 @csrf
                 <div class="md:col-span-3 space-y-1">
                     <label for="brand-name" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Brand name</label>
@@ -37,7 +37,7 @@
                 </div>
             </form>
 
-            <div class="p-7 md:p-8 overflow-x-auto">
+            <div class="p-5 sm:p-7 md:p-8 overflow-x-auto">
                 <table class="w-full min-w-[960px] text-sm">
                     <thead>
                         <tr class="text-left text-on-surface-variant border-b border-outline-variant/30">
@@ -64,14 +64,14 @@
                                 <td class="py-4 pr-4">{{ $brand->is_featured ? 'Yes' : 'No' }}</td>
                                 <td class="py-4 pr-4">{{ $brand->sort_order }}</td>
                                 <td class="py-4">
-                                    <div class="flex items-center gap-2">
-                                        <form method="POST" action="{{ route('admin.brands.update', $brand) }}" enctype="multipart/form-data" class="grid grid-cols-1 gap-2 w-[360px]">
+                                    <div class="flex items-start flex-wrap gap-2">
+                                        <form method="POST" action="{{ route('admin.brands.update', $brand) }}" enctype="multipart/form-data" class="grid grid-cols-1 gap-2 w-full sm:w-[360px]">
                                             @csrf
                                             @method('PUT')
                                             <input name="name" type="text" value="{{ $brand->name }}" class="w-full bg-surface-container-low border border-slate-200/80 rounded-xl p-2 text-on-surface" required />
                                             <input name="logo" type="file" accept="image/*,.webp,.avif" class="w-full bg-surface-container-low border border-slate-200/80 rounded-xl p-2 text-on-surface file:mr-2 file:px-2 file:py-1 file:rounded-lg file:border-0 file:bg-primary file:text-on-primary file:font-bold" />
-                                            <div class="flex items-center gap-2">
-                                                <label class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
+                                            <div class="flex items-center flex-wrap gap-2">
+                                                <label class="inline-flex items-center gap-1 text-xs text-on-surface-variant whitespace-nowrap">
                                                     <input name="is_featured" type="checkbox" value="1" {{ $brand->is_featured ? 'checked' : '' }} class="rounded border-slate-300 text-primary focus:ring-primary/30" />
                                                     Show on Home
                                                 </label>
@@ -88,7 +88,7 @@
                                                 <span class="material-symbols-outlined text-base">delete</span>
                                             </button>
                                         </form>
-                                        <a href="{{ route('cars.index', ['brand' => $brand->name]) }}" class="text-primary font-semibold underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+                                        <a href="{{ route('cars.index', ['brand' => $brand->name]) }}" class="text-primary font-semibold underline underline-offset-2 whitespace-nowrap" target="_blank" rel="noopener noreferrer">
                                             View cars
                                         </a>
                                     </div>

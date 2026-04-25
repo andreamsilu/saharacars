@@ -47,6 +47,53 @@
         #admin-cars-table tbody tr {
             border-bottom: 1px solid rgba(195, 198, 209, 0.28);
         }
+
+        @media (max-width: 767px) {
+            #admin-cars-table {
+                min-width: 100%;
+            }
+
+            #admin-cars-table thead {
+                display: none;
+            }
+
+            #admin-cars-table tbody,
+            #admin-cars-table tr,
+            #admin-cars-table td {
+                display: block;
+                width: 100%;
+            }
+
+            #admin-cars-table tbody tr {
+                margin: 0.75rem 0.75rem 1rem;
+                border: 1px solid rgba(195, 198, 209, 0.45);
+                border-radius: 1rem;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+            }
+
+            #admin-cars-table td {
+                border-bottom: 1px solid rgba(195, 198, 209, 0.2);
+            }
+
+            #admin-cars-table td:last-child {
+                border-bottom: 0;
+            }
+
+            #admin-cars-table .text-right,
+            #admin-cars-table .text-center {
+                text-align: left !important;
+            }
+
+            #admin-cars-table td > div {
+                padding: 0.75rem 1rem !important;
+            }
+
+            #admin-cars-table td > div > div {
+                justify-content: flex-start !important;
+            }
+        }
     </style>
 @endsection
 

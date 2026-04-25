@@ -311,7 +311,7 @@
     </div>
 
     <button
-        class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-[1.05] active:scale-95 transition-transform z-50"
+        class="hidden sm:flex fixed bottom-8 right-8 w-12 h-12 bg-primary text-on-primary rounded-full shadow-2xl items-center justify-center hover:scale-[1.05] active:scale-95 transition-transform z-50"
         type="button"
         title="Quick add (coming soon)"
         disabled
