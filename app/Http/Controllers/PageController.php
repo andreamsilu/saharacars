@@ -17,7 +17,6 @@ class PageController extends Controller
 
         // Frontend brand options are sourced from admin-managed brands.
         $brandOptions = Brand::query()
-            ->whereHas('cars', fn ($query) => $query->where('is_published', true))
             ->orderBy('sort_order')
             ->orderBy('name')
             ->limit(30)
@@ -28,7 +27,6 @@ class PageController extends Controller
             ->where('is_featured', true)
             ->whereNotNull('logo_path')
             ->where('logo_path', '!=', '')
-            ->whereHas('cars', fn ($query) => $query->where('is_published', true))
             ->withCount(['cars as published_cars_count' => fn ($query) => $query->where('is_published', true)])
             ->orderBy('sort_order')
             ->orderBy('name')

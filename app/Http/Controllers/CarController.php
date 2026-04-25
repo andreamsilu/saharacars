@@ -193,7 +193,6 @@ class CarController extends Controller
     private function getFilterOptions(): array
     {
         $brandOptions = Brand::query()
-            ->whereHas('cars', fn ($query) => $query->where('is_published', true))
             ->orderBy('sort_order')
             ->orderBy('name')
             ->pluck('name');
