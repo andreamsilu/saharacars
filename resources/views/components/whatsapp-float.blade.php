@@ -4,7 +4,7 @@
 ])
 
 @php
-    $phone = $phone ?? (string) config('sahara.whatsapp_phone', '255000000000');
+    $phone = $phone ?? (string) config('sahara.whatsapp_phone');
     $text = $text ?? 'Hi Sahara Cars, I need help.';
 
     $waUrl = 'https://wa.me/' . preg_replace('/\D+/', '', $phone) . '?text=' . urlencode($text);

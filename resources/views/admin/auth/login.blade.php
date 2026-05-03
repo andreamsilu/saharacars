@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Admin Login • SAHARA COMMISSION AGENTS LIMITED</title>
+    <title>Admin Login • {{ config('sahara.legal_entity_name') }}</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
 <body class="min-h-screen bg-slate-950 text-white">

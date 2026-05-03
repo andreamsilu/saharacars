@@ -97,7 +97,7 @@
 <!-- TopNavBar -->
 <x-navbar />
 @php
-    $salesDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    $salesDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
     $salesTelHref = 'tel:+' . $salesDigits;
     $salesWaMessage = 'Hi Sahara Cars sales, I am interested in buying a car. Please assist.';
     $salesWaHref = 'https://wa.me/' . $salesDigits . '?text=' . rawurlencode($salesWaMessage);

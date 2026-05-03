@@ -1,6 +1,6 @@
 {{-- Legal / brand name marquee (sits above main nav on public site). --}}
 @php
-    $legalName = (string) config('sahara.legal_entity_name', 'SAHARA AUTOLINK TZ LIMITED');
+    $legalName = (string) config('sahara.legal_entity_name');
 @endphp
 <div class="public-brand-ticker w-full overflow-hidden border-b border-amber-500/20 bg-gradient-to-b from-slate-950 via-[#0f172a] to-slate-950 py-1.5 sm:py-2" role="region" aria-label="Registered company name">
     <span class="sr-only">{{ $legalName }}</span>

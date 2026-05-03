@@ -47,6 +47,13 @@ class AdminSettingsController extends Controller
             'support_email' => (string) config('sahara.support_email'),
             'whatsapp_phone' => (string) config('sahara.whatsapp_phone'),
             'tagline' => (string) config('marketplace.tagline'),
+            'legal_entity_name' => (string) config('sahara.legal_entity_name'),
+            'public_site_url' => (string) config('sahara.public_site_url'),
+            'instagram_url' => (string) config('sahara.instagram_url'),
+            'instagram_label' => (string) config('sahara.instagram_label'),
+            'primary_location_label' => (string) config('sahara.primary_location_label'),
+            'footer_intro_extra' => (string) config('sahara.footer_intro_extra'),
+            'footer_hours_summary' => (string) config('sahara.footer_hours_summary'),
             'home_shortcuts_title' => 'Shop by shortcuts',
             'home_shortcuts_subtitle' => 'Fast paths for high-intent buyers',
             'home_shortcuts_lines' => implode("\n", [

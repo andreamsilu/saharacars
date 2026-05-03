@@ -39,13 +39,56 @@
                 </div>
                 <div class="space-y-2">
                     <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="whatsapp_phone"><span class="material-symbols-outlined text-base icon-neutral">chat</span>WhatsApp Phone (E.164 digits)</label>
-                    <input id="whatsapp_phone" name="whatsapp_phone" type="text" inputmode="numeric" pattern="[0-9]{10,15}" value="{{ old('whatsapp_phone', $settings['whatsapp_phone']) }}" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="255000000000" required />
+                    <input id="whatsapp_phone" name="whatsapp_phone" type="text" inputmode="numeric" pattern="[0-9]{10,15}" value="{{ old('whatsapp_phone', $settings['whatsapp_phone']) }}" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="Digits only e.g. 255791666101" required />
+                </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-200/80 bg-surface-container-low/60 p-5 space-y-4">
+                <h3 class="text-sm font-bold text-primary inline-flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base">public</span>
+                    Public site · legal identity · location
+                </h3>
+                <p class="text-xs text-on-surface-variant">These values populate the footer, legal ticker, titles, WhatsApp/email links, and the contact page. No code changes needed when you edit them.</p>
+                <div class="space-y-2 md:col-span-2">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="legal_entity_name">Legal / registered entity name</label>
+                    <input id="legal_entity_name" name="legal_entity_name" type="text" value="{{ old('legal_entity_name', $settings['legal_entity_name'] ?? '') }}" maxlength="255" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="public_site_url">Public website URL</label>
+                        <input id="public_site_url" name="public_site_url" type="url" inputmode="url" value="{{ old('public_site_url', $settings['public_site_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="primary_location_label">Primary location (display)</label>
+                        <input id="primary_location_label" name="primary_location_label" type="text" maxlength="255" value="{{ old('primary_location_label', $settings['primary_location_label'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="instagram_url">Instagram profile URL</label>
+                        <input id="instagram_url" name="instagram_url" type="url" inputmode="url" value="{{ old('instagram_url', $settings['instagram_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="Leave empty to hide Instagram links" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="instagram_label">Instagram handle (display)</label>
+                        <input id="instagram_label" name="instagram_label" type="text" maxlength="160" value="{{ old('instagram_label', $settings['instagram_label'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="e.g. @brandhandle" />
+                    </div>
                 </div>
             </div>
 
             <div class="space-y-2">
-                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="tagline"><span class="material-symbols-outlined text-base icon-neutral">campaign</span>Marketplace Tagline</label>
-                <textarea id="tagline" name="tagline" rows="3" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface">{{ old('tagline', $settings['tagline']) }}</textarea>
+                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="tagline"><span class="material-symbols-outlined text-base icon-neutral">campaign</span>Brand tagline (footer + marketplace copy)</label>
+                <textarea id="tagline" name="tagline" rows="3" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="Short line under your marketplace name">{{ old('tagline', $settings['tagline']) }}</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2 md:col-span-2">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="footer_intro_extra"><span class="material-symbols-outlined text-base icon-neutral">notes</span>Footer supporting text</label>
+                    <textarea id="footer_intro_extra" name="footer_intro_extra" rows="2" maxlength="2000" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="Second line under tagline on the footer (optional)">{{ old('footer_intro_extra', $settings['footer_intro_extra'] ?? '') }}</textarea>
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant inline-flex items-center gap-1" for="footer_hours_summary"><span class="material-symbols-outlined text-base icon-neutral">schedule</span>Hours summary (footer)</label>
+                    <input id="footer_hours_summary" name="footer_hours_summary" type="text" maxlength="255" value="{{ old('footer_hours_summary', $settings['footer_hours_summary'] ?? '') }}" class="w-full bg-surface-container-low border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
+                </div>
             </div>
 
             <div class="rounded-2xl border border-slate-200/80 bg-surface-container-low p-5 space-y-4">

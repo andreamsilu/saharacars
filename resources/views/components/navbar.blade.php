@@ -1,5 +1,5 @@
 @php
-    $salesWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+    $salesWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
     $salesWaIntro = 'Hi Sahara Cars sales, I need help choosing a car.';
     $salesWaHref = 'https://wa.me/' . $salesWaDigits . '?text=' . rawurlencode($salesWaIntro);
 @endphp

@@ -10,8 +10,8 @@ return [
 
     'name' => env('MARKETPLACE_NAME', 'Sahara Cars'),
 
-    'support_email' => env('MARKETPLACE_SUPPORT_EMAIL', 'support@saharacars.co.tz'),
+    'support_email' => env('MARKETPLACE_SUPPORT_EMAIL', 'info@saharaautolink.co.tz'),
 
-    'tagline' => env('MARKETPLACE_TAGLINE', 'Premium automotive marketplace for Tanzania.'),
+    'tagline' => env('MARKETPLACE_TAGLINE', env('SAHARA_BRAND_TAGLINE', 'Driven by Trust, Powered by Excellence')),
 
 ];

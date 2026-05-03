@@ -3,7 +3,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Contact Us | SAHARA COMMISSION AGENTS LIMITED</title>
+<title>Contact Us | {{ config('sahara.legal_entity_name') }}</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -81,8 +81,15 @@
 <body class="bg-surface font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
 <x-skip-to-main />
 @php
-    $contactWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
-    $contactSupportEmail = (string) config('sahara.support_email', 'concierge@saharacars.co.tz');
+    $contactWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
+    $contactPhoneLabel = \App\Support\PhoneDisplay::tzMobileLabel($contactWaDigits);
+    $contactSupportEmail = (string) config('sahara.support_email');
+    $contactSiteUrl = (string) config('sahara.public_site_url');
+    $contactInstagramUrl = trim((string) config('sahara.instagram_url'));
+    $contactInstagramLabel = trim((string) config('sahara.instagram_label'));
+    $contactLocationLabel = (string) config('sahara.primary_location_label');
+    $contactLegalName = (string) config('sahara.legal_entity_name');
+    $contactSiteHost = parse_url($contactSiteUrl, PHP_URL_HOST) ?: $contactSiteUrl;
 @endphp
 <!-- Top Navigation Bar -->
 <x-navbar />
@@ -148,7 +155,7 @@
 <div class="relative z-10">
 <h3 class="font-headline text-xl font-bold mb-6">Immediate Support</h3>
 <div class="space-y-6">
-<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="https://wa.me/{{ $contactWaDigits }}" aria-label="Open WhatsApp chat with Sahara Cars">
+<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="https://wa.me/{{ $contactWaDigits }}" aria-label="Open WhatsApp chat with {{ config('marketplace.name') }}">
 <div class="w-12 h-12 bg-secondary flex items-center justify-center rounded-full">
 <svg viewBox="0 0 32 32" aria-hidden="true" class="w-6 h-6 fill-current text-white">
 <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>
@@ -157,18 +164,38 @@
 </div>
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest opacity-70">WhatsApp</p>
-<p class="font-headline font-bold">+{{ $contactWaDigits }}</p>
+<p class="font-headline font-bold">{{ $contactPhoneLabel }}</p>
 </div>
 </a>
-<div class="flex items-center gap-4 p-3 -m-3">
-<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full" aria-hidden="true">
-<span class="material-symbols-outlined text-white">mail</span>
+<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="mailto:{{ $contactSupportEmail }}" aria-label="Email {{ $contactSupportEmail }}">
+<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-white" aria-hidden="true">mail</span>
 </div>
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest opacity-70">Email</p>
 <p class="font-headline font-bold">{{ $contactSupportEmail }}</p>
 </div>
+</a>
+<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ $contactSiteUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Visit company website">
+<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-white" aria-hidden="true">language</span>
 </div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest opacity-70">Website</p>
+<p class="font-headline font-bold">{{ $contactSiteHost }}</p>
+</div>
+</a>
+@if(filled($contactInstagramUrl))
+<a class="flex items-center gap-4 group/btn p-3 -m-3 hover:bg-white/10 rounded-xl transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="{{ $contactInstagramUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile {{ filled($contactInstagramLabel) ? $contactInstagramLabel : '' }}">
+<div class="w-12 h-12 bg-white/10 flex items-center justify-center rounded-full" aria-hidden="true">
+<svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest opacity-70">Instagram</p>
+<p class="font-headline font-bold">{{ filled($contactInstagramLabel) ? $contactInstagramLabel : config('sahara.instagram_fallback_caption') }}</p>
+</div>
+</a>
+@endif
 </div>
 </div>
 <div class="absolute -bottom-10 -right-10 opacity-10 transform group-hover:scale-110 transition-transform duration-500" aria-hidden="true">
@@ -204,9 +231,9 @@
 <div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] flex items-start gap-4">
 <span class="material-symbols-outlined text-secondary text-3xl">location_on</span>
 <div>
-<p class="font-bold text-primary">Sahara Cars</p>
-<p class="text-sm text-on-surface-variant">Primary Sales Center</p>
-<p class="text-sm text-on-surface-variant">Dar es Salaam, Tanzania</p>
+<p class="font-bold text-primary">{{ config('marketplace.name') }}</p>
+<p class="text-sm text-on-surface-variant">{{ $contactLegalName }}</p>
+<p class="text-sm text-on-surface-variant">{{ $contactLocationLabel }}</p>
 </div>
 </div>
 </div>
@@ -227,7 +254,7 @@
 <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center">
 <div class="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg flex items-center gap-3 text-sm font-bold text-primary">
 <span class="material-symbols-outlined text-secondary">explore</span>
-                        Dar es Salaam, Tanzania
+                        {{ $contactLocationLabel }}
                     </div>
 <button class="bg-primary text-white px-6 py-2 min-h-[44px] rounded-full font-bold text-sm shadow-lg active:scale-95 transition-all focus-ring-on-dark" type="button" aria-label="Get directions (link your map provider when ready)">
                         Get Directions

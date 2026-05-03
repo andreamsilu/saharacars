@@ -3,8 +3,8 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Why Sahara | SAHARA COMMISSION AGENTS LIMITED</title>
-<meta name="description" content="Why buyers choose SAHARA COMMISSION AGENTS LIMITED: trusted cars in Dar es Salaam, clear car details, verified stock, and friendly support by phone or WhatsApp."/>
+<title>Why Sahara | {{ config('sahara.legal_entity_name') }}</title>
+<meta name="description" content="Why buyers choose {{ config('sahara.legal_entity_name') }}: trusted cars in Dar es Salaam, clear car details, verified stock, and friendly support by phone or WhatsApp."/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>

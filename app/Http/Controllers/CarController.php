@@ -48,17 +48,18 @@ class CarController extends Controller
             ->limit(3)
             ->get();
 
-        $waPhone = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone', '255000000000'));
+        $waPhone = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
         $waListingMessage = 'Hi, I saw this car on the Sahara Cars website and would like more details.'
             ."\n\n".'Vehicle: '.$car->title
             .($car->year ? ' ('.$car->year.')' : '')
             ."\n".'Link: '.route('cars.show', ['slug' => $car->slug]);
 
+        $legalShort = (string) config('sahara.legal_entity_name');
         $pageTitle = $car->title.' for sale'
             .($car->location ? ' in '.$car->location : ' in Tanzania')
-            .' | SAHARA COMMISSION AGENTS LIMITED';
+            .' | '.$legalShort;
         $pageDescription = Str::limit(strip_tags((string) ($car->description ?? '')), 155)
-            ?: 'View photos, specs, and price. Contact SAHARA COMMISSION AGENTS LIMITED on WhatsApp or by phone.';
+            ?: 'View photos, specs, and price. Contact '.$legalShort.' on WhatsApp or by phone.';
 
         return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
     }

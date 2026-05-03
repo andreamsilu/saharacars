@@ -3,7 +3,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Saved Cars | SAHARA COMMISSION AGENTS LIMITED</title>
+<title>Saved Cars | {{ config('sahara.legal_entity_name') }}</title>
 <meta name="description" content="Cars you saved while browsing. Stored on this device — no account required."/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
