@@ -13,6 +13,8 @@ final class GoogleMapEmbed
     private const EMBED_PREFIXES = [
         'https://www.google.com/maps/embed',
         'https://maps.google.com/maps/embed',
+        'https://www.google.com/maps?q=',
+        'https://maps.google.com/maps?q=',
     ];
 
     /** @var list<string> */
