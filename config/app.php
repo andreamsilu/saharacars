@@ -78,11 +78,18 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => env('APP_LOCALE', 'sw'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Public site locales (first URL segment, e.g. /en/..., /sw/...)
+    |--------------------------------------------------------------------------
+    */
+    'supported_locales' => array_values(array_filter(array_map('trim', explode(',', (string) env('APP_SUPPORTED_LOCALES', 'sw,en'))))) ?: ['sw', 'en'],
 
     /*
     |--------------------------------------------------------------------------

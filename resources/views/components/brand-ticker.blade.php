@@ -2,7 +2,7 @@
 @php
     $legalName = (string) config('sahara.legal_entity_name');
 @endphp
-<div class="public-brand-ticker w-full overflow-hidden border-b border-amber-500/20 bg-gradient-to-b from-slate-950 via-[#0f172a] to-slate-950 py-1.5 sm:py-2" role="region" aria-label="Registered company name">
+<div class="public-brand-ticker w-full overflow-hidden border-b border-amber-500/20 bg-gradient-to-b from-slate-950 via-[#0f172a] to-slate-950 py-1.5 sm:py-2" role="region" aria-label="{{ __('site.brand_ticker.aria') }}">
     <span class="sr-only">{{ $legalName }}</span>
     <div class="public-brand-ticker__track flex w-max" aria-hidden="true">
         @foreach ([1, 2] as $cycle)

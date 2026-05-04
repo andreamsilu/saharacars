@@ -1,18 +1,20 @@
 @props([
-    'title' => 'Trusted Industry Partners',
-    'subtitle' => 'Connected with finance, insurance, logistics, and inspection leaders across Tanzania.',
+    'title' => null,
+    'subtitle' => null,
 ])
 
 @php
+    $title = $title ?? __('public.partner_slider.default_title');
+    $subtitle = $subtitle ?? __('public.partner_slider.default_subtitle');
     $partners = [
-        ['name' => 'NMB Bank', 'tag' => 'Financing', 'abbr' => 'NMB', 'color' => '#0F4C81'],
-        ['name' => 'CRDB Bank', 'tag' => 'Auto Loans', 'abbr' => 'CRDB', 'color' => '#006C35'],
-        ['name' => 'Jubilee Insurance', 'tag' => 'Insurance', 'abbr' => 'JUB', 'color' => '#BE1E2D'],
-        ['name' => 'Alliance Insurance', 'tag' => 'Coverage', 'abbr' => 'ALL', 'color' => '#5A2A82'],
-        ['name' => 'Tanzania Ports', 'tag' => 'Logistics', 'abbr' => 'TPA', 'color' => '#0077B6'],
-        ['name' => 'TRA Motor Registry', 'tag' => 'Compliance', 'abbr' => 'TRA', 'color' => '#A61E4D'],
-        ['name' => 'A-One Inspection', 'tag' => 'Vehicle Checks', 'abbr' => 'A1', 'color' => '#1F6F78'],
-        ['name' => 'Swift Freight', 'tag' => 'Shipping', 'abbr' => 'SFT', 'color' => '#7A5C00'],
+        ['name' => 'NMB Bank', 'tag' => __('public.partner_slider.financing'), 'abbr' => 'NMB', 'color' => '#0F4C81'],
+        ['name' => 'CRDB Bank', 'tag' => __('public.partner_slider.auto_loans'), 'abbr' => 'CRDB', 'color' => '#006C35'],
+        ['name' => 'Jubilee Insurance', 'tag' => __('public.partner_slider.insurance'), 'abbr' => 'JUB', 'color' => '#BE1E2D'],
+        ['name' => 'Alliance Insurance', 'tag' => __('public.partner_slider.coverage'), 'abbr' => 'ALL', 'color' => '#5A2A82'],
+        ['name' => 'Tanzania Ports', 'tag' => __('public.partner_slider.logistics'), 'abbr' => 'TPA', 'color' => '#0077B6'],
+        ['name' => 'TRA Motor Registry', 'tag' => __('public.partner_slider.compliance'), 'abbr' => 'TRA', 'color' => '#A61E4D'],
+        ['name' => 'A-One Inspection', 'tag' => __('public.partner_slider.vehicle_checks'), 'abbr' => 'A1', 'color' => '#1F6F78'],
+        ['name' => 'Swift Freight', 'tag' => __('public.partner_slider.shipping'), 'abbr' => 'SFT', 'color' => '#7A5C00'],
     ];
 @endphp
 

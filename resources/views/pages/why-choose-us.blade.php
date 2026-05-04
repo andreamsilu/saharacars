@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Why Sahara | {{ config('sahara.legal_entity_name') }}</title>
-<meta name="description" content="Why buyers choose {{ config('sahara.legal_entity_name') }}: trusted cars in Dar es Salaam, clear car details, verified stock, and friendly support by phone or WhatsApp."/>
+<title>{{ __('public.meta.why_title', ['company' => config('sahara.legal_entity_name')]) }}</title>
+<meta name="description" content="{{ __('public.meta.why_description', ['company' => config('sahara.legal_entity_name')]) }}"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -115,9 +115,9 @@
 <main id="main-content" tabindex="-1" class="outline-none">
 <section class="px-4 sm:px-6 pt-10 md:pt-14 pb-6 why-fade-up">
 <div class="max-w-7xl mx-auto text-center">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Why choose Sahara</p>
-<h1 class="text-3xl md:text-5xl font-headline font-extrabold text-primary tracking-tight mb-3">Trusted support for every car decision</h1>
-<p class="text-on-surface-variant max-w-3xl mx-auto leading-relaxed">From first shortlist to final handover, our process is designed to keep buying clear, safe, and predictable.</p>
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">{{ __('public.why.kicker') }}</p>
+<h1 class="text-3xl md:text-5xl font-headline font-extrabold text-primary tracking-tight mb-3">{{ __('public.why.hero_title') }}</h1>
+<p class="text-on-surface-variant max-w-3xl mx-auto leading-relaxed">{{ __('public.why.hero_subtitle') }}</p>
 </div>
 </section>
 <!-- Quick trust stats -->
@@ -128,33 +128,33 @@
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">verified</span>
 </div>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Listing control</p>
-<p class="font-headline text-xl font-black text-primary mt-1">Admin-verified</p>
-<p class="text-xs text-on-surface-variant mt-2">No anonymous self-posting risk.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">{{ __('public.why.card_listing_control') }}</p>
+<p class="font-headline text-xl font-black text-primary mt-1">{{ __('public.why.card_verified') }}</p>
+<p class="text-xs text-on-surface-variant mt-2">{{ __('public.why.card_no_anonymous') }}</p>
 </article>
 <article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">bolt</span>
 </div>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Response standard</p>
-<p class="font-headline text-xl font-black text-primary mt-1">Advisor-led support</p>
-<p class="text-xs text-on-surface-variant mt-2">WhatsApp and phone from one team.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">{{ __('public.why.card_response') }}</p>
+<p class="font-headline text-xl font-black text-primary mt-1">{{ __('public.why.card_advisor') }}</p>
+<p class="text-xs text-on-surface-variant mt-2">{{ __('public.why.card_whatsapp_phone') }}</p>
 </article>
 <article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">description</span>
 </div>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Listing clarity</p>
-<p class="font-headline text-xl font-black text-primary mt-1">Structured specs</p>
-<p class="text-xs text-on-surface-variant mt-2">Make/model/body/doors/seats present.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">{{ __('public.why.card_clarity') }}</p>
+<p class="font-headline text-xl font-black text-primary mt-1">{{ __('public.why.card_structured') }}</p>
+<p class="text-xs text-on-surface-variant mt-2">{{ __('public.why.card_specs_present') }}</p>
 </article>
 <article class="rounded-2xl border border-primary/15 bg-gradient-to-br from-surface-container-low to-surface-container p-5 why-lift text-center sm:text-left">
 <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">location_city</span>
 </div>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">Business base</p>
-<p class="font-headline text-xl font-black text-primary mt-1">Dar es Salaam</p>
-<p class="text-xs text-on-surface-variant mt-2">Physical team, viewing and handover.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant mt-3">{{ __('public.why.card_base') }}</p>
+<p class="font-headline text-xl font-black text-primary mt-1">{{ __('public.why.card_dar') }}</p>
+<p class="text-xs text-on-surface-variant mt-2">{{ __('public.why.card_physical') }}</p>
 </article>
 </div>
 </div>
@@ -163,9 +163,9 @@
 <section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20 why-fade-up why-delay-2" aria-labelledby="why-core-heading">
 <div class="max-w-7xl mx-auto">
 <div class="text-center">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">Why choose Sahara</p>
-<h2 id="why-core-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">A cleaner way to buy your next car</h2>
-<p class="text-on-surface-variant max-w-3xl mx-auto leading-relaxed mb-10">Everything is arranged to help you decide quickly: verified listings, clear specs, and direct support from our Dar es Salaam team.</p>
+<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">{{ __('public.why.section_kicker') }}</p>
+<h2 id="why-core-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">{{ __('public.why.section_title') }}</h2>
+<p class="text-on-surface-variant max-w-3xl mx-auto leading-relaxed mb-10">{{ __('public.why.section_body') }}</p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <div class="lg:col-span-7 rounded-3xl border border-outline-variant/30 bg-surface-container-lowest p-6 sm:p-8 why-lift">
@@ -173,32 +173,32 @@
 <article class="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">verified_user</span>
 <div>
-<h3 class="font-headline text-lg font-bold">Verified listings only</h3>
-<p class="text-sm text-on-surface-variant mt-1">Our team manages listings for better trust and fewer surprises.</p>
+<h3 class="font-headline text-lg font-bold">{{ __('public.why.feat_verified_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.feat_verified_body') }}</p>
 </div>
 </article>
 <article class="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">description</span>
 <div>
-<h3 class="font-headline text-lg font-bold">Clear details before you visit</h3>
-<p class="text-sm text-on-surface-variant mt-1">You see specs and condition early, so shortlisting is faster.</p>
+<h3 class="font-headline text-lg font-bold">{{ __('public.why.feat_details_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.feat_details_body') }}</p>
 </div>
 </article>
 <article class="flex flex-col items-center text-center gap-4 sm:flex-row sm:items-start sm:text-left">
 <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">support_agent</span>
 <div>
-<h3 class="font-headline text-lg font-bold">Real human support</h3>
-<p class="text-sm text-on-surface-variant mt-1">Talk to our local team by WhatsApp or phone any time you need clarity.</p>
+<h3 class="font-headline text-lg font-bold">{{ __('public.why.feat_human_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.feat_human_body') }}</p>
 </div>
 </article>
 </div>
 </div>
 <aside class="lg:col-span-5 rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest why-lift why-zoom text-center sm:text-left">
-<img class="h-56 sm:h-64 w-full object-cover" src="{{ asset('images/why-showroom.jpg') }}" alt="Premium SUV parked in a modern showroom setting" loading="lazy" decoding="async"/>
+<img class="h-56 sm:h-64 w-full object-cover" src="{{ asset('images/why-showroom.jpg') }}" alt="{{ __('public.why.why_img_showroom_alt') }}" loading="lazy" decoding="async"/>
 <div class="p-6">
-<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">Showroom quality</p>
-<h3 class="font-headline text-xl font-bold mt-2">Cars selected for confidence</h3>
-<p class="text-sm text-on-surface-variant mt-2">Every listing is arranged to help buyers compare quickly and decide with clarity.</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">{{ __('public.why.aside_kicker') }}</p>
+<h3 class="font-headline text-xl font-bold mt-2">{{ __('public.why.aside_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-2">{{ __('public.why.aside_body') }}</p>
 </div>
 </aside>
 </div>
@@ -209,26 +209,26 @@
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
 <div class="lg:col-span-4 rounded-3xl bg-primary-container text-on-primary p-6 sm:p-8 why-lift text-center lg:text-left">
-<p class="text-xs uppercase tracking-widest text-white/80 font-label">Proof that matters</p>
-<h2 id="why-numbers-heading" class="text-3xl font-headline font-extrabold mt-3 leading-tight">Quick trust signals</h2>
-<p class="text-sm text-white/85 mt-3">Use these numbers to build confidence at a glance. Update anytime as your business grows.</p>
+<p class="text-xs uppercase tracking-widest text-white/80 font-label">{{ __('public.why.numbers_kicker') }}</p>
+<h2 id="why-numbers-heading" class="text-3xl font-headline font-extrabold mt-3 leading-tight">{{ __('public.why.numbers_title') }}</h2>
+<p class="text-sm text-white/85 mt-3">{{ __('public.why.numbers_body') }}</p>
 </div>
 <div class="lg:col-span-8 grid grid-cols-2 gap-4">
 <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">500+</p>
-<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Cars listed</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">{{ __('public.why.num_listed') }}</p>
 </div>
 <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">10k+</p>
-<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Buyer inquiries</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">{{ __('public.why.num_inquiries') }}</p>
 </div>
 <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">&lt; 30 min</p>
-<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Average response</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">{{ __('public.why.num_response') }}</p>
 </div>
 <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center">
 <p class="font-headline text-3xl font-black text-primary">4.8/5</p>
-<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">Buyer rating</p>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mt-2">{{ __('public.why.num_rating') }}</p>
 </div>
 </div>
 </div>
@@ -237,47 +237,47 @@
 <!-- Graphics placeholders -->
 <section class="section-editorial px-4 sm:px-6 bg-surface-container-low py-16 md:py-20 why-fade-up why-delay-4" aria-labelledby="why-visuals-heading">
 <div class="max-w-7xl mx-auto">
-<h2 id="why-visuals-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4 text-center">Buying journey, step by step</h2>
-<p class="text-on-surface-variant max-w-3xl mx-auto mb-10 text-center">A simple sequence that keeps you in control from shortlist to handover.</p>
+<h2 id="why-visuals-heading" class="text-3xl md:text-4xl font-headline font-extrabold text-primary tracking-tight mb-4 text-center">{{ __('public.why.journey_title') }}</h2>
+<p class="text-on-surface-variant max-w-3xl mx-auto mb-10 text-center">{{ __('public.why.journey_subtitle') }}</p>
 <div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-4 gap-4">
 <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">1</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">search</span>
-<h3 class="font-headline text-base font-bold mt-3">Shortlist cars</h3>
-<p class="text-sm text-on-surface-variant mt-1">Use filters to find the right match quickly.</p>
+<h3 class="font-headline text-base font-bold mt-3">{{ __('public.why.step1_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.step1_body') }}</p>
 </article>
 <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">2</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">chat</span>
-<h3 class="font-headline text-base font-bold mt-3">Ask questions</h3>
-<p class="text-sm text-on-surface-variant mt-1">Message us on WhatsApp for quick clarifications.</p>
+<h3 class="font-headline text-base font-bold mt-3">{{ __('public.why.step2_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.step2_body') }}</p>
 </article>
 <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">3</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">event_available</span>
-<h3 class="font-headline text-base font-bold mt-3">Book a viewing</h3>
-<p class="text-sm text-on-surface-variant mt-1">Confirm availability and schedule your visit.</p>
+<h3 class="font-headline text-base font-bold mt-3">{{ __('public.why.step3_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.step3_body') }}</p>
 </article>
 <article class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-5 why-lift text-center md:text-left">
 <p class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-white text-xs font-bold">4</p>
 <span class="material-symbols-outlined text-primary text-2xl mt-3" aria-hidden="true">key</span>
-<h3 class="font-headline text-base font-bold mt-3">Complete handover</h3>
-<p class="text-sm text-on-surface-variant mt-1">Finalize with the same team that helped you.</p>
+<h3 class="font-headline text-base font-bold mt-3">{{ __('public.why.step4_title') }}</h3>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.why.step4_body') }}</p>
 </article>
 </div>
 <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
 <div class="rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest why-lift why-zoom">
-<img class="h-56 w-full object-cover" src="{{ asset('images/why-handover.jpg') }}" alt="Customer discussing a car handover with a sales advisor" loading="lazy" decoding="async"/>
+<img class="h-56 w-full object-cover" src="{{ asset('images/why-handover.jpg') }}" alt="{{ __('public.why.img_handover_alt') }}" loading="lazy" decoding="async"/>
 </div>
 <div class="rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest why-lift why-zoom">
-<img class="h-56 w-full object-cover" src="{{ asset('images/why-lineup.jpg') }}" alt="Multiple premium cars lined up for buyer comparison" loading="lazy" decoding="async"/>
+<img class="h-56 w-full object-cover" src="{{ asset('images/why-lineup.jpg') }}" alt="{{ __('public.why.img_lineup_alt') }}" loading="lazy" decoding="async"/>
 </div>
 </div>
 </div>
 </section>
 <x-partner-logos-slider
-    title="Related Companies We Work With"
-    subtitle="Trusted partners across financing, logistics, and post-sale support."
+    :title="__('public.why.partner_title')"
+    :subtitle="__('public.why.partner_subtitle')"
 />
 <!-- Call to Action -->
 <section class="section-editorial px-4 sm:px-6 text-center why-fade-up why-delay-5">
@@ -285,15 +285,15 @@
 <div class="absolute top-0 right-0 p-4 opacity-5">
 <span class="material-symbols-outlined text-9xl">directions_car</span>
 </div>
-<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary mb-6">Ready to find your perfect drive?</h3>
-<p class="text-on-surface-variant mb-8 sm:mb-10 text-base sm:text-lg max-w-2xl mx-auto">Explore Tanzania's most exclusive collection of verified cars, from rugged 4x4s to luxury urban cruisers.</p>
+<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary mb-6">{{ __('public.why.cta_title') }}</h3>
+<p class="text-on-surface-variant mb-8 sm:mb-10 text-base sm:text-lg max-w-2xl mx-auto">{{ __('public.why.cta_body') }}</p>
 <div class="flex flex-col sm:flex-row justify-center gap-4">
 <a class="sahara-live-cta cta-gradient text-white px-6 sm:px-10 py-3 sm:py-4 min-h-[48px] sm:min-h-[52px] rounded-full font-headline font-extrabold text-base sm:text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95 inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.index') }}">
-                        Browse Our Inventory
+                        {{ __('public.why.browse_inventory') }}
                     </a>
 <a class="sahara-live-cta bg-secondary text-white px-6 sm:px-10 py-3 sm:py-4 min-h-[48px] sm:min-h-[52px] rounded-full font-headline font-extrabold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg transition-[filter,transform] hover:brightness-110 hover:shadow-secondary/20 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ route('contact') }}">
 <span class="material-symbols-outlined text-white" aria-hidden="true">chat</span>
-                        Chat on WhatsApp
+                        {{ __('site.nav.contact') }}
                     </a>
 </div>
 </div>

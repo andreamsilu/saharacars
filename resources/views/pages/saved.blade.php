@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth" lang="en"><head>
+<html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>Saved Cars | {{ config('sahara.legal_entity_name') }}</title>
-<meta name="description" content="Cars you saved while browsing. Stored on this device — no account required."/>
+<title>{{ __('public.meta.saved_title', ['company' => config('sahara.legal_entity_name')]) }}</title>
+<meta name="description" content="{{ __('public.meta.saved_description') }}"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -84,34 +84,44 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 section-editorial-compact">
 <header class="mb-8 md:mb-10 text-center lg:text-left">
-<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-2">Your shortlist</p>
-<h1 class="font-headline text-[clamp(1.85rem,5vw,2.75rem)] font-black text-primary tracking-tight">Saved cars</h1>
-<p class="text-on-surface-variant mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0">Tap the heart on any listing to add it here. Everything stays on <strong>this device</strong> — no account — until you clear browser data.</p>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-2">{{ __('public.saved.kicker') }}</p>
+<h1 class="font-headline text-[clamp(1.85rem,5vw,2.75rem)] font-black text-primary tracking-tight">{{ __('public.saved.title') }}</h1>
+<p class="text-on-surface-variant mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0">{!! __('public.saved.intro') !!}</p>
 </header>
 <div class="sahara-live-panel bg-surface-container-lowest rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_16px_40px_rgba(25,28,30,0.06)] attention-panel border border-outline-variant/20">
 <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 md:mb-8">
 <div class="text-center sm:text-left">
-<h2 class="font-headline text-xl md:text-2xl font-bold text-primary tracking-tight">Your picks</h2>
-<p class="text-sm text-on-surface-variant mt-1">Open a car to see photos, price, and WhatsApp.</p>
+<h2 class="font-headline text-xl md:text-2xl font-bold text-primary tracking-tight">{{ __('public.saved.picks_title') }}</h2>
+<p class="text-sm text-on-surface-variant mt-1">{{ __('public.saved.picks_subtitle') }}</p>
 </div>
 <a class="sahara-live-cta inline-flex items-center justify-center gap-2 self-start sm:self-auto rounded-full bg-primary text-on-primary px-5 py-2.5 min-h-[44px] text-sm font-bold shadow-md shadow-primary/15 transition-[filter,transform] hover:brightness-110 focus-ring-on-dark" href="{{ route('cars.index') }}">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>
-                Browse cars
+                {{ __('public.saved.browse_cars') }}
             </a>
 </div>
 <ul
     id="saved-cars-render-list"
     class="list-none m-0 p-0 grid gap-3 sm:gap-4"
-    data-cars-base-url="{{ rtrim(url('/cars'), '/') }}/"
+    data-cars-base-url="{{ rtrim(route('cars.index'), '/').'/' }}"
     data-browse-url="{{ route('cars.index') }}"
     aria-live="polite"
     aria-relevant="additions removals"
 ></ul>
 <p class="text-sm text-on-surface-variant mt-8 pt-6 border-t border-outline-variant/40 text-center sm:text-left">
-            Need help choosing? <a class="text-primary font-bold underline underline-offset-2" href="{{ route('contact') }}">Contact us</a> or WhatsApp from any listing.
+            {!! __('public.saved.footer_help', ['url' => route('contact')]) !!}
         </p>
 </div>
 </main>
+<script id="saved-cars-i18n" type="application/json">@json([
+    'emptyTitle' => __('public.saved.js_empty_title'),
+    'emptyBody' => __('public.saved.js_empty_body'),
+    'browse' => __('public.saved.js_browse'),
+    'savedOnTpl' => __('public.saved.js_saved_on'),
+    'savedListing' => __('public.saved.js_saved_listing'),
+    'removePrefix' => __('public.saved.js_remove_aria_prefix'),
+    'removeSuffix' => __('public.saved.js_remove_aria_suffix'),
+    'removeLabel' => __('public.common.remove'),
+])</script>
 <x-footer class="mt-16"/>
 <x-mobile-nav active="saved"/>
 <x-whatsapp-float/>

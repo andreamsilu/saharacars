@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -87,7 +87,7 @@
     <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
         <span class="inline-flex items-center gap-2">
             <span class="material-symbols-outlined text-[22px]" aria-hidden="true">tune</span>
-            Filter cars
+            {{ __('public.cars_index.filter_toggle') }}
         </span>
         <span class="material-symbols-outlined text-slate-500 group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
     </summary>
@@ -104,13 +104,17 @@
 <section class="flex-1 min-w-0">
 <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-end mb-6 sm:mb-8 gap-4">
 <div class="min-w-0 text-center sm:text-left">
-<h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-primary tracking-tight">Premium Inventory</h1>
+<h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-primary tracking-tight">{{ __('public.cars_index.title') }}</h1>
 <p class="text-on-surface-variant font-body mt-1">
-Found {{ $cars->total() }} car{{ $cars->total() === 1 ? '' : 's' }}
+@if ($cars->total() === 1)
+{{ __('public.cars_index.found_one', ['count' => number_format($cars->total())]) }}
+@else
+{{ __('public.cars_index.found_many', ['count' => number_format($cars->total())]) }}
+@endif
 </p>
 </div>
 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:space-x-2 text-sm font-medium text-on-surface-variant w-full sm:w-auto min-w-0">
-<span class="shrink-0">Sort by:</span>
+<span class="shrink-0">{{ __('public.cars_index.sort_by') }}</span>
 <form action="{{ route('cars.bento') }}" method="GET" class="flex items-center gap-2">
 @foreach (request()->except(['sort', 'page']) as $param => $value)
     @if (is_array($value))
@@ -121,15 +125,15 @@ Found {{ $cars->total() }} car{{ $cars->total() === 1 ? '' : 's' }}
         <input type="hidden" name="{{ $param }}" value="{{ $value }}" />
     @endif
 @endforeach
-<select name="sort" onchange="this.form.submit()" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/20 ghost-border min-h-[44px]">
+<select name="sort" onchange="this.form.submit()" aria-label="{{ __('public.cars_index.sort_aria') }}" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/20 ghost-border min-h-[44px]">
     @php $activeSort = request('sort', 'newest'); @endphp
-    <option value="newest" {{ $activeSort === 'newest' ? 'selected' : '' }}>Newest</option>
-    <option value="price_low_high" {{ $activeSort === 'price_low_high' ? 'selected' : '' }}>Price: Low to High</option>
-    <option value="price_high_low" {{ $activeSort === 'price_high_low' ? 'selected' : '' }}>Price: High to Low</option>
-    <option value="year_new_old" {{ $activeSort === 'year_new_old' ? 'selected' : '' }}>Year: New to Old</option>
-    <option value="year_old_new" {{ $activeSort === 'year_old_new' ? 'selected' : '' }}>Year: Old to New</option>
-    <option value="engine_capacity_high_low" {{ $activeSort === 'engine_capacity_high_low' ? 'selected' : '' }}>Engine Capacity: High to Low</option>
-    <option value="engine_capacity_low_high" {{ $activeSort === 'engine_capacity_low_high' ? 'selected' : '' }}>Engine Capacity: Low to High</option>
+    <option value="newest" {{ $activeSort === 'newest' ? 'selected' : '' }}>{{ __('public.cars_index.sort_newest') }}</option>
+    <option value="price_low_high" {{ $activeSort === 'price_low_high' ? 'selected' : '' }}>{{ __('public.cars_index.sort_price_low') }}</option>
+    <option value="price_high_low" {{ $activeSort === 'price_high_low' ? 'selected' : '' }}>{{ __('public.cars_index.sort_price_high') }}</option>
+    <option value="year_new_old" {{ $activeSort === 'year_new_old' ? 'selected' : '' }}>{{ __('public.cars_index.sort_year_new') }}</option>
+    <option value="year_old_new" {{ $activeSort === 'year_old_new' ? 'selected' : '' }}>{{ __('public.cars_index.sort_year_old') }}</option>
+    <option value="engine_capacity_high_low" {{ $activeSort === 'engine_capacity_high_low' ? 'selected' : '' }}>{{ __('public.cars_index.sort_engine_high') }}</option>
+    <option value="engine_capacity_low_high" {{ $activeSort === 'engine_capacity_low_high' ? 'selected' : '' }}>{{ __('public.cars_index.sort_engine_low') }}</option>
 </select>
 </form>
 </div>
@@ -145,7 +149,7 @@ Found {{ $cars->total() }} car{{ $cars->total() === 1 ? '' : 's' }}
     @endif
 @endforeach
 <label for="bento-autosearch" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">
-Search cars
+{{ __('public.cars_index.search_label') }}
 </label>
 <div class="sahara-live-panel relative max-w-xl attention-panel rounded-2xl p-3">
     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
@@ -155,11 +159,11 @@ Search cars
         value="{{ request('q', '') }}"
         type="search"
         autocomplete="off"
-        placeholder="Type model, brand, or location..."
+        placeholder="{{ __('public.cars_index.search_placeholder') }}"
         class="w-full rounded-full bg-surface-container-highest py-3 pl-10 pr-4 text-sm font-medium text-primary placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20 ghost-border"
     />
 </div>
-<p class="mt-2 text-xs text-on-surface-variant">Auto-search runs while typing.</p>
+<p class="mt-2 text-xs text-on-surface-variant">{{ __('public.cars_index.auto_search_hint') }}</p>
 </form>
 <!-- Bento/Grid Car Cards -->
 <div class="sahara-stagger-children grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
@@ -167,8 +171,8 @@ Search cars
 <x-car-card :car="$car" :compact="true" />
 @empty
 <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
-<div class="font-headline font-black text-2xl text-primary">No cars yet</div>
-<p class="text-on-surface-variant mt-2">No cars are available yet. Please check back soon.</p>
+<div class="font-headline font-black text-2xl text-primary">{{ __('public.cars_index.no_cars_title') }}</div>
+<p class="text-on-surface-variant mt-2">{{ __('public.cars_index.no_cars_body') }}</p>
 </div>
 @endforelse
 </div>

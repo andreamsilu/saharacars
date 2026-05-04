@@ -12,19 +12,42 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/', function () {
+    return redirect()->route('home', ['locale' => config('app.locale')]);
+});
 
-Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
-Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
-Route::get('/cars/{slug}', [CarController::class, 'show'])->name('cars.show');
+/** Unprefixed legacy URLs → default locale (bookmarks before i18n). */
+$fallbackLocale = (string) config('app.locale');
+Route::redirect('/cars/bento', '/'.$fallbackLocale.'/cars/bento', 301);
+Route::redirect('/cars', '/'.$fallbackLocale.'/cars', 301);
+Route::get('/cars/{slug}', function (string $slug) use ($fallbackLocale) {
+    return redirect('/'.$fallbackLocale.'/cars/'.$slug, 301);
+})->where('slug', '^[A-Za-z0-9][A-Za-z0-9_-]*$');
+Route::redirect('/contact', '/'.$fallbackLocale.'/contact', 301);
+Route::redirect('/saved', '/'.$fallbackLocale.'/saved', 301);
+Route::redirect('/why-choose-us', '/'.$fallbackLocale.'/why-choose-us', 301);
+Route::redirect('/order-request', '/'.$fallbackLocale.'/order-request', 301);
+Route::redirect('/about', '/'.$fallbackLocale.'/why-choose-us', 301);
 
-Route::redirect('/about', '/why-choose-us', 301);
-Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::post('/contact', [InquiryController::class, 'store'])->name('contact.store');
-Route::get('/order-request', [PageController::class, 'orderRequest'])->name('order.request');
-Route::post('/order-request', [InquiryController::class, 'storeOrderRequest'])->name('order.request.store');
-Route::get('/saved', [PageController::class, 'saved'])->name('saved');
+Route::prefix('{locale}')
+    ->where(['locale' => implode('|', config('app.supported_locales', ['en', 'sw']))])
+    ->middleware(['locale'])
+    ->group(function () {
+        Route::get('/', [PageController::class, 'home'])->name('home');
+
+        Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
+        Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
+        Route::get('/cars/{slug}', [CarController::class, 'show'])->name('cars.show');
+
+        Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
+        Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+        Route::post('/contact', [InquiryController::class, 'store'])->name('contact.store');
+        Route::get('/order-request', [PageController::class, 'orderRequest'])->name('order.request');
+        Route::post('/order-request', [InquiryController::class, 'storeOrderRequest'])->name('order.request.store');
+        Route::get('/saved', [PageController::class, 'saved'])->name('saved');
+
+        Route::permanentRedirect('about', 'why-choose-us');
+    });
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'create'])->name('login');

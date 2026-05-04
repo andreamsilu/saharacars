@@ -49,17 +49,16 @@ class CarController extends Controller
             ->get();
 
         $waPhone = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
-        $waListingMessage = 'Hi, I saw this car on the Sahara Cars website and would like more details.'
-            ."\n\n".'Vehicle: '.$car->title
+        $waListingMessage = __('public.cars.wa_listing_intro')
+            ."\n\n".__('public.cars.wa_listing_vehicle', ['title' => $car->title])
             .($car->year ? ' ('.$car->year.')' : '')
-            ."\n".'Link: '.route('cars.show', ['slug' => $car->slug]);
+            ."\n".__('public.cars.wa_listing_link', ['url' => route('cars.show', ['slug' => $car->slug])]);
 
         $legalShort = (string) config('sahara.legal_entity_name');
-        $pageTitle = $car->title.' for sale'
-            .($car->location ? ' in '.$car->location : ' in Tanzania')
-            .' | '.$legalShort;
+        $salePlace = $car->location ?: __('public.common.tanzania');
+        $pageTitle = $car->title.' '.__('public.cars.for_sale_suffix', ['place' => $salePlace]).' | '.$legalShort;
         $pageDescription = Str::limit(strip_tags((string) ($car->description ?? '')), 155)
-            ?: 'View photos, specs, and price. Contact '.$legalShort.' on WhatsApp or by phone.';
+            ?: __('public.cars.page_description_fallback', ['company' => $legalShort]);
 
         return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
     }

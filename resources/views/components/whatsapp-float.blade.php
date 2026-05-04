@@ -5,7 +5,7 @@
 
 @php
     $phone = $phone ?? (string) config('sahara.whatsapp_phone');
-    $text = $text ?? 'Hi Sahara Cars, I need help.';
+    $text = $text ?? __('site.whatsapp_fab.default_message');
 
     $waUrl = 'https://wa.me/' . preg_replace('/\D+/', '', $phone) . '?text=' . urlencode($text);
 @endphp
@@ -14,7 +14,7 @@
     href="{{ $waUrl }}"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Chat with Sahara Cars on WhatsApp"
+    aria-label="{{ __('site.whatsapp_fab.aria', ['brand' => config('marketplace.name')]) }}"
     class="sahara-motion-fab fixed z-50 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] right-4 sm:right-5 md:bottom-8 md:right-8 w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 flex items-center justify-center transition-[filter,transform] hover:brightness-110 active:scale-95 touch-manipulation focus-ring-on-dark focus-visible:outline-offset-4 [&_svg]:text-white"
 >
     <svg viewBox="0 0 32 32" aria-hidden="true" class="w-7 h-7 fill-current">

@@ -18,25 +18,25 @@
 <nav
     class="sahara-motion-nav-bottom fixed bottom-0 left-0 right-0 z-50 md:hidden flex justify-between items-stretch px-1 pt-2 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-4px_24px_rgba(15,23,42,0.08)]"
     style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));"
-    aria-label="Quick navigation"
+    aria-label="{{ __('site.nav_bottom.aria') }}"
 >
     <a class="{{ $linkClass('home') }}" href="{{ route('home') }}">
         <span class="material-symbols-outlined text-[22px]" style="{{ $active === 'home' ? "font-variation-settings: 'FILL' 1;" : '' }}" aria-hidden="true">home</span>
-        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">Home</span>
+        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">{{ __('site.nav.home') }}</span>
     </a>
 
     <a class="{{ $linkClass('inventory') }}" href="{{ route('cars.index') }}">
         <span class="material-symbols-outlined text-[22px]" style="{{ $active === 'inventory' ? "font-variation-settings: 'FILL' 1;" : '' }}" aria-hidden="true">directions_car</span>
-        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">Cars</span>
+        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">{{ __('site.nav.bottom_cars') }}</span>
     </a>
 
     <a class="{{ $linkClass('saved') }}" href="{{ route('saved') }}">
         <span class="material-symbols-outlined text-[22px]" style="{{ $active === 'saved' ? "font-variation-settings: 'FILL' 1;" : '' }}" aria-hidden="true">favorite</span>
-        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">Saved</span>
+        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">{{ __('site.nav.saved') }}</span>
     </a>
 
     <a class="{{ $linkClass('contact') }}" href="{{ route('contact') }}">
         <span class="material-symbols-outlined text-[22px]" style="{{ $active === 'contact' ? "font-variation-settings: 'FILL' 1;" : '' }}" aria-hidden="true">chat</span>
-        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">Contact</span>
+        <span class="text-[9px] font-semibold uppercase tracking-wide leading-tight text-center">{{ __('site.nav.contact') }}</span>
     </a>
 </nav>

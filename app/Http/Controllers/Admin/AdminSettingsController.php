@@ -42,6 +42,8 @@ class AdminSettingsController extends Controller
      */
     private function mergedSettings(): array
     {
+        $locale = (string) config('app.locale');
+
         $defaults = [
             'marketplace_name' => (string) config('marketplace.name'),
             'support_email' => (string) config('sahara.support_email'),
@@ -57,12 +59,12 @@ class AdminSettingsController extends Controller
             'home_shortcuts_title' => 'Shop by shortcuts',
             'home_shortcuts_subtitle' => 'Fast paths for high-intent buyers',
             'home_shortcuts_lines' => implode("\n", [
-                'Foreign Used|'.route('cars.index', ['condition' => 'foreign_used']),
-                'Brand New|'.route('cars.index', ['condition' => 'brand_new']),
-                'From Japan|'.route('cars.index', ['source_country' => 'Japan']),
-                'From Germany|'.route('cars.index', ['source_country' => 'Germany']),
-                'Under 100M|'.route('cars.index', ['price_max' => 100000000]),
-                'Above 100M|'.route('cars.index', ['price_min' => 100000000]),
+                'Foreign Used|'.route('cars.index', ['locale' => $locale, 'condition' => 'foreign_used']),
+                'Brand New|'.route('cars.index', ['locale' => $locale, 'condition' => 'brand_new']),
+                'From Japan|'.route('cars.index', ['locale' => $locale, 'source_country' => 'Japan']),
+                'From Germany|'.route('cars.index', ['locale' => $locale, 'source_country' => 'Germany']),
+                'Under 100M|'.route('cars.index', ['locale' => $locale, 'price_max' => 100000000]),
+                'Above 100M|'.route('cars.index', ['locale' => $locale, 'price_min' => 100000000]),
             ]),
             'home_import_flow_title' => 'From request to delivery',
             'home_import_flow_subtitle' => 'Import purchase flow',

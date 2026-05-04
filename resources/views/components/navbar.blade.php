@@ -1,6 +1,6 @@
 @php
     $salesWaDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
-    $salesWaIntro = 'Hi Sahara Cars sales, I need help choosing a car.';
+    $salesWaIntro = __('site.whatsapp.sales_intro');
     $salesWaHref = 'https://wa.me/' . $salesWaDigits . '?text=' . rawurlencode($salesWaIntro);
 @endphp
 {{-- Ticker + nav share one sticky stack so the legal name stays visible when scrolling. --}}
@@ -24,12 +24,12 @@
             background-color: var(--theme-primary);
         }
     </style>
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-3" aria-label="Main">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-3" aria-label="{{ __('site.nav.aria_main') }}">
         {{-- Brand: logo from public/images (see asset path) --}}
         <a class="inline-flex items-center gap-2 shrink-0 min-w-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg" href="{{ route('home') }}">
             <img
                 src="{{ asset('images/logo.png') }}"
-                alt="Sahara Cars"
+                alt="{{ config('marketplace.name') }}"
                 class="h-8 w-auto sm:h-10 object-contain object-left max-w-[min(200px,52vw)] sm:max-w-[240px]"
                 width="240"
                 height="40"
@@ -38,22 +38,25 @@
         </a>
 
         <p class="md:hidden flex-1 text-center px-1 text-[10px] font-black uppercase tracking-[0.14em] text-primary truncate">
-            GET YOUR DREAM CAR
+            {{ __('site.nav.brand_tagline_mobile') }}
         </p>
 
         <div class="hidden md:flex items-center gap-4 lg:gap-6">
-            <a class="{{ request()->routeIs('home') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('home') }}">Home</a>
-            <a class="{{ request()->routeIs('cars.*') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('cars.index') }}">Inventory</a>
-            <a class="{{ request()->routeIs('order.request') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('order.request') }}">Order Request</a>
-            <a class="{{ request()->routeIs('saved') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('saved') }}">Saved</a>
-            <a class="{{ request()->routeIs('why.choose.us') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('why.choose.us') }}">Why Sahara</a>
-            <a class="{{ request()->routeIs('contact') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('contact') }}">Contact</a>
+            <a class="{{ request()->routeIs('home') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('home') }}">{{ __('site.nav.home') }}</a>
+            <a class="{{ request()->routeIs('cars.*') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('cars.index') }}">{{ __('site.nav.inventory') }}</a>
+            <a class="{{ request()->routeIs('order.request') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('order.request') }}">{{ __('site.nav.order_request') }}</a>
+            <a class="{{ request()->routeIs('saved') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('saved') }}">{{ __('site.nav.saved') }}</a>
+            <a class="{{ request()->routeIs('why.choose.us') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('why.choose.us') }}">{{ __('site.nav.why_sahara') }}</a>
+            <a class="{{ request()->routeIs('contact') ? 'text-primary font-extrabold' : 'text-slate-700 hover:text-primary font-semibold' }} transition-colors text-sm rounded-md px-1 py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="{{ route('contact') }}">{{ __('site.nav.contact') }}</a>
         </div>
 
         <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            <div class="hidden md:flex items-center">
+                <x-locale-switcher />
+            </div>
             <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-1.5 cta-gradient text-white px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full text-xs sm:text-sm font-bold transition-[filter,transform] hover:brightness-110 active:scale-95 shadow-[0_10px_24px_rgba(92,67,32,0.2)] touch-manipulation focus-ring-on-dark focus-visible:outline-offset-2 [&_.material-symbols-outlined]:text-white">
                 <span class="material-symbols-outlined text-[18px] shrink-0 text-white" aria-hidden="true">support_agent</span>
-                <span class="whitespace-nowrap">Chat on WhatsApp</span>
+                <span class="whitespace-nowrap">{{ __('site.cta.chat_whatsapp') }}</span>
             </a>
 
             {{-- Mobile: open full navigation (primary links hidden on small screens) --}}
@@ -63,7 +66,7 @@
                 class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-manipulation"
                 aria-expanded="false"
                 aria-controls="public-nav-panel"
-                aria-label="Open menu"
+                aria-label="{{ __('site.nav_menu.open') }}"
             >
                 <span class="material-symbols-outlined text-[26px]" data-nav-icon="menu">menu</span>
             </button>
@@ -79,27 +82,30 @@
         <div class="max-w-7xl mx-auto px-4 py-4 space-y-4">
             <ul class="flex flex-col gap-1">
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('home') }}">Home</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('home') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('home') }}">{{ __('site.nav.home') }}</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('cars.*') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('cars.index') }}">Inventory</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('cars.*') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('cars.index') }}">{{ __('site.nav.inventory') }}</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('order.request') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('order.request') }}">Order Request</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('order.request') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('order.request') }}">{{ __('site.nav.order_request') }}</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('saved') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('saved') }}">Saved cars</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('saved') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('saved') }}">{{ __('site.nav.saved_cars') }}</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('why.choose.us') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('why.choose.us') }}">Why Sahara</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('why.choose.us') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('why.choose.us') }}">{{ __('site.nav.why_sahara') }}</a>
                 </li>
                 <li>
-                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">Contact</a>
+                    <a class="flex items-center min-h-[48px] px-3 rounded-xl text-base font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset {{ request()->routeIs('contact') ? 'bg-primary/10 text-primary' : 'text-slate-800' }}" href="{{ route('contact') }}">{{ __('site.nav.contact') }}</a>
                 </li>
             </ul>
+            <div class="flex md:hidden justify-center pb-2">
+                <x-locale-switcher />
+            </div>
             <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="flex md:hidden items-center justify-center gap-2 w-full cta-gradient text-white py-3.5 min-h-[48px] rounded-2xl text-sm font-bold shadow-md touch-manipulation focus-ring-on-dark transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-white">
                 <span class="material-symbols-outlined text-[20px] text-white" aria-hidden="true">support_agent</span>
-                Chat on WhatsApp
+                {{ __('site.cta.chat_whatsapp') }}
             </a>
         </div>
     </div>
@@ -112,11 +118,14 @@
     var panel = document.getElementById('public-nav-panel');
     if (!btn || !panel) return;
 
+    var labelClose = @json(__('site.nav_menu.close'));
+    var labelOpen = @json(__('site.nav_menu.open'));
+
     function setOpen(open) {
         panel.hidden = !open;
         panel.classList.toggle('hidden', !open);
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        btn.setAttribute('aria-label', open ? labelClose : labelOpen);
         var icon = btn.querySelector('[data-nav-icon]');
         if (icon) {
             icon.textContent = open ? 'close' : 'menu';

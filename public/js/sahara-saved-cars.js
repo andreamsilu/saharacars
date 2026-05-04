@@ -84,21 +84,49 @@
         }
     }
 
+    function readSavedI18n() {
+        var el = document.getElementById('saved-cars-i18n');
+        if (!el || !el.textContent) {
+            return {};
+        }
+        try {
+            return JSON.parse(el.textContent);
+        } catch (e) {
+            return {};
+        }
+    }
+
     function renderSavedList() {
         var list = document.getElementById('saved-cars-render-list');
         if (!list) return;
+        var i18n = readSavedI18n();
         var base = list.getAttribute('data-cars-base-url') || '';
-        var browseUrl = list.getAttribute('data-browse-url') || '/cars';
+        var browseUrl =
+            list.getAttribute('data-browse-url') ||
+            (function () {
+                var m = /^\/([^/]+)\//.exec(window.location.pathname || '');
+                var loc = m ? m[1] : 'en';
+                return '/' + loc + '/cars';
+            })();
         var items = read();
         if (!items.length) {
+            var emptyTitle = i18n.emptyTitle || 'No saved cars yet';
+            var emptyBody = i18n.emptyBody || 'When you see something you like in inventory, tap the heart — it will show up here for quick access.';
+            var browseLabel = i18n.browse || 'Browse cars';
             list.innerHTML =
                 '<li class="rounded-2xl border border-dashed border-outline-variant/70 bg-surface-container-low/60 px-6 py-12 sm:py-14 text-center">' +
                 '<span class="material-symbols-outlined text-5xl text-primary/40" aria-hidden="true">favorite</span>' +
-                '<p class="font-headline text-lg sm:text-xl font-bold text-primary mt-5">No saved cars yet</p>' +
-                '<p class="text-sm text-on-surface-variant mt-2 max-w-md mx-auto leading-relaxed">When you see something you like in inventory, tap the heart — it will show up here for quick access.</p>' +
+                '<p class="font-headline text-lg sm:text-xl font-bold text-primary mt-5">' +
+                escapeHtml(emptyTitle) +
+                '</p>' +
+                '<p class="text-sm text-on-surface-variant mt-2 max-w-md mx-auto leading-relaxed">' +
+                escapeHtml(emptyBody) +
+                '</p>' +
                 '<a class="inline-flex items-center justify-center gap-2 mt-8 min-h-[48px] rounded-full bg-secondary text-white px-8 py-3 text-sm font-bold shadow-lg shadow-secondary/20 transition-[filter] hover:brightness-110 focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2" href="' +
                 escapeHtml(browseUrl) +
-                '"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>Browse cars</a>' +
+                '"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>' +
+                escapeHtml(browseLabel) +
+                '</a>' +
                 '</li>';
             return;
         }
@@ -107,7 +135,8 @@
                 var href = base + encodeURIComponent(x.slug);
                 var title = x.title || x.slug;
                 var when = formatSavedDate(x.savedAt);
-                var meta = when ? 'Saved ' + escapeHtml(when) : 'Saved listing';
+                var savedOnTpl = i18n.savedOnTpl || 'Saved :date';
+                var meta = when ? savedOnTpl.replace(':date', escapeHtml(when)) : i18n.savedListing || 'Saved listing';
                 return (
                     '<li class="min-w-0">' +
                     '<div class="flex items-stretch gap-2 sm:gap-3 min-w-0">' +
@@ -131,11 +160,13 @@
                     escapeHtml(x.slug) +
                     '" data-title="' +
                     escapeHtml(title) +
-                    '" aria-label="Remove ' +
-                    escapeHtml(title) +
-                    ' from saved">' +
+                    '" aria-label="' +
+                    escapeHtml((i18n.removePrefix || 'Remove ') + title + (i18n.removeSuffix || ' from saved')) +
+                    '">' +
                     '<span class="material-symbols-outlined text-[22px]" aria-hidden="true">delete</span>' +
-                    '<span class="hidden sm:block text-[9px] font-bold uppercase tracking-wide">Remove</span>' +
+                    '<span class="hidden sm:block text-[9px] font-bold uppercase tracking-wide">' +
+                    escapeHtml(i18n.removeLabel || 'Remove') +
+                    '</span>' +
                     '</button>' +
                     '</div>' +
                     '</li>'

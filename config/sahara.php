@@ -53,6 +53,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Contact page: Google Maps embed (iframe src) and optional directions link
+    |--------------------------------------------------------------------------
+    | Embed must be the full https://www.google.com/maps/embed?... URL from the
+    | Maps “Share → Embed a map” snippet. Directions URL should open Google Maps
+    | navigation to the same pin (e.g. /dir/?api=1&destination=lat,lng).
+    */
+    'contact_map_embed_url' => env('SAHARA_CONTACT_MAP_EMBED', 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3961.967997541917!2d39.22115577499526!3d-6.773749593223121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2stz!4v1777880751643!5m2!1sen!2stz'),
+
+    'contact_map_directions_url' => env(
+        'SAHARA_CONTACT_MAP_DIRECTIONS',
+        'https://www.google.com/maps/dir/?api=1&destination=-6.773749593223121,39.22115577499526'
+    ),
+
+    /** Optional plain-text landmarks (overrides lang defaults when non-empty). */
+    'office_location_notes' => env('SAHARA_OFFICE_LOCATION_NOTES', ''),
+
+    /*
+    |--------------------------------------------------------------------------
     | Footer (optional paragraph under tagline; hours line — admin can override all)
     |--------------------------------------------------------------------------
     */

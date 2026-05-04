@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>{{ e($pageTitle) }}</title>
@@ -88,8 +88,8 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
 <!-- Breadcrumbs -->
-<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6 min-w-0" aria-label="Breadcrumb">
-<a class="hover:text-primary transition-colors rounded-sm focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('cars.index') }}">Inventory</a>
+<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-outline mb-6 min-w-0" aria-label="{{ __('public.car_show.breadcrumb') }}">
+<a class="hover:text-primary transition-colors rounded-sm focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('cars.index') }}">{{ __('public.car_show.breadcrumb_inventory') }}</a>
 <span class="material-symbols-outlined text-[12px]" aria-hidden="true">chevron_right</span>
 <span class="text-on-surface font-bold truncate">{{ $car->title }}</span>
 </nav>
@@ -99,11 +99,11 @@
 <!-- Interactive car gallery -->
 @php
   $conditionLabels = [
-    'brand_new' => 'Brand New',
-    'foreign_used' => 'Foreign Used',
-    'local_used' => 'Locally Used',
+    'brand_new' => __('public.catalog.condition.brand_new'),
+    'foreign_used' => __('public.catalog.condition.foreign_used'),
+    'local_used' => __('public.catalog.condition.local_used'),
   ];
-  $conditionText = $conditionLabels[$car->condition] ?? '—';
+  $conditionText = $conditionLabels[$car->condition] ?? __('public.common.dash');
   $hero = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : 'https://placehold.co/1400x900?text=Sahara+Cars';
 
   $frontImages = is_array($car->front_image_paths) ? $car->front_image_paths : array_filter([$car->front_image_path]);
@@ -134,18 +134,18 @@
 @endphp
 <section class="bg-surface-container-lowest rounded-2xl p-4 md:p-6 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
   <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-    <h3 class="font-headline text-lg font-bold">Vehicle gallery</h3>
+    <h3 class="font-headline text-lg font-bold">{{ __('public.car_show.gallery_title') }}</h3>
     <p class="text-xs text-on-surface-variant"><span id="gallery-current">1</span> / <span id="gallery-total">{{ count($allImages) }}</span></p>
   </div>
 
-  <div class="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="Image categories">
+  <div class="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="{{ __('public.car_show.gallery_tabs_aria') }}">
     @php
       $tabs = [
-        ['key' => 'all', 'label' => 'All', 'count' => count($allImages)],
-        ['key' => 'front', 'label' => 'Front', 'count' => count($frontImages)],
-        ['key' => 'rear', 'label' => 'Rear', 'count' => count($rearImages)],
-        ['key' => 'side', 'label' => 'Side', 'count' => count($sideImages)],
-        ['key' => 'interior', 'label' => 'Interior', 'count' => count($interiorImages)],
+        ['key' => 'all', 'label' => __('public.catalog.gallery_category.all'), 'count' => count($allImages)],
+        ['key' => 'front', 'label' => __('public.catalog.gallery_category.front'), 'count' => count($frontImages)],
+        ['key' => 'rear', 'label' => __('public.catalog.gallery_category.rear'), 'count' => count($rearImages)],
+        ['key' => 'side', 'label' => __('public.catalog.gallery_category.side'), 'count' => count($sideImages)],
+        ['key' => 'interior', 'label' => __('public.catalog.gallery_category.interior'), 'count' => count($interiorImages)],
       ];
     @endphp
     @foreach ($tabs as $tab)
@@ -163,9 +163,9 @@
 
   <div class="relative overflow-hidden rounded-xl bg-surface-dim aspect-[16/10]">
     <img id="gallery-main-image" src="{{ $allImages[0]['src'] }}" alt="{{ $car->title }}" class="w-full h-full object-cover" />
-    <button type="button" id="gallery-open-lightbox" class="absolute right-3 bottom-3 glass-effect bg-surface-container-lowest/70 rounded-full px-3 py-2 min-h-[44px] text-xs font-bold flex items-center gap-1.5 hover:bg-surface-container-lowest focus-visible:ring-2 focus-visible:ring-primary" aria-label="Open car images in fullscreen gallery">
+    <button type="button" id="gallery-open-lightbox" class="absolute right-3 bottom-3 glass-effect bg-surface-container-lowest/70 rounded-full px-3 py-2 min-h-[44px] text-xs font-bold flex items-center gap-1.5 hover:bg-surface-container-lowest focus-visible:ring-2 focus-visible:ring-primary" aria-label="{{ __('public.car_show.fullscreen_aria') }}">
       <span class="material-symbols-outlined text-sm" aria-hidden="true">fullscreen</span>
-      Fullscreen
+      {{ __('public.car_show.fullscreen') }}
     </button>
   </div>
 
@@ -177,10 +177,10 @@
         data-index="{{ $idx }}"
         data-src="{{ $img['src'] }}"
         data-category="{{ $img['category'] }}"
-        aria-label="View image {{ $idx + 1 }}"
+        aria-label="{{ __('public.car_show.view_image_n', ['n' => $idx + 1]) }}"
       >
         <img src="{{ $img['src'] }}" alt="{{ $car->title }} thumbnail {{ $idx + 1 }}" class="w-full h-20 object-cover" />
-        <span class="absolute left-1 top-1 text-[9px] uppercase tracking-wider bg-black/60 text-white px-1.5 py-0.5 rounded">{{ $img['category'] }}</span>
+        <span class="absolute left-1 top-1 text-[9px] uppercase tracking-wider bg-black/60 text-white px-1.5 py-0.5 rounded">{{ __('public.catalog.gallery_category.'.$img['category']) }}</span>
       </button>
     @endforeach
   </div>
@@ -189,53 +189,53 @@
 <section class="grid grid-cols-2 md:grid-cols-5 gap-4">
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">calendar_today</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Year</span>
-<span class="font-headline font-bold text-lg">{{ $car->year ?: '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.year') }}</span>
+<span class="font-headline font-bold text-lg">{{ $car->year ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">speed</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Mileage</span>
-<span class="font-headline font-bold text-lg">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.mileage') }}</span>
+<span class="font-headline font-bold text-lg">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">settings_suggest</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Transmission</span>
-<span class="font-headline font-bold text-lg">{{ $car->transmission ?: '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.transmission') }}</span>
+<span class="font-headline font-bold text-lg">{{ $car->transmission ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">ev_station</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Fuel Type</span>
-<span class="font-headline font-bold text-lg">{{ $car->fuel ?: '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.fuel_type') }}</span>
+<span class="font-headline font-bold text-lg">{{ $car->fuel ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">checklist</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Condition</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.condition') }}</span>
 <span class="font-headline font-bold text-lg">{{ $conditionText }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">precision_manufacturing</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">Engine Capacity</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.engine_capacity') }}</span>
 <span class="font-headline font-bold text-lg">
-{{ $car->engine_capacity_cc ? number_format($car->engine_capacity_cc) . ' cc' : ($car->engine ?: '—') }}
+{{ $car->engine_capacity_cc ? number_format($car->engine_capacity_cc) . ' cc' : ($car->engine ?: __('public.common.dash')) }}
 </span>
 </div>
 </section>
 @php
-    $detail = static fn ($v): string => ($v === null || $v === '') ? '—' : (string) $v;
+    $detail = fn ($v): string => ($v === null || $v === '') ? __('public.common.dash') : (string) $v;
     $carDetails = [
-        ['label' => 'Make', 'value' => $car->brand],
-        ['label' => 'Model', 'value' => $car->model],
-        ['label' => 'Body color', 'value' => $car->body_color],
-        ['label' => 'Body type', 'value' => $car->body_type],
-        ['label' => 'Doors', 'value' => $car->doors],
-        ['label' => 'Seats', 'value' => $car->seats],
+        ['label' => __('public.car_show.label_make'), 'value' => $car->brand],
+        ['label' => __('public.car_show.label_model'), 'value' => $car->model],
+        ['label' => __('public.car_show.label_body_color'), 'value' => $car->body_color],
+        ['label' => __('public.car_show.label_body_type'), 'value' => $car->body_type],
+        ['label' => __('public.car_show.label_doors'), 'value' => $car->doors],
+        ['label' => __('public.car_show.label_seats'), 'value' => $car->seats],
     ];
     $hasCarDetails = collect($carDetails)->contains(fn ($row) => $row['value'] !== null && $row['value'] !== '');
 @endphp
 @if ($hasCarDetails)
 <section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel" aria-labelledby="car-details-heading">
-<h2 id="car-details-heading" class="font-headline text-2xl font-extrabold mb-2 tracking-tight text-primary">Car details</h2>
-<p class="text-sm text-on-surface-variant mb-6">As provided by our listing team from import and inspection records.</p>
+<h2 id="car-details-heading" class="font-headline text-2xl font-extrabold mb-2 tracking-tight text-primary">{{ __('public.car_show.details_heading') }}</h2>
+<p class="text-sm text-on-surface-variant mb-6">{{ __('public.car_show.details_intro') }}</p>
 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
 @foreach ($carDetails as $row)
 <div class="flex flex-col gap-1 border-b border-outline-variant/20 pb-3 sm:border-0 sm:pb-0">
@@ -248,42 +248,42 @@
 @endif
 <!-- Vehicle Description -->
 <section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<h2 class="font-headline text-2xl font-extrabold mb-6 tracking-tight">Vehicle Description</h2>
+<h2 class="font-headline text-2xl font-extrabold mb-6 tracking-tight">{{ __('public.car_show.description_heading') }}</h2>
 <div class="space-y-4 text-on-surface-variant leading-relaxed font-body">
 @if (!empty($car->description))
 <p class="whitespace-pre-line">{{ $car->description }}</p>
 @else
-<p>No description provided yet.</p>
+<p>{{ __('public.car_show.description_empty') }}</p>
 @endif
 </div>
 </section>
 <!-- Detailed Specs List -->
 <section>
-<h3 class="font-headline text-xl font-bold mb-6">Technical Specifications</h3>
+<h3 class="font-headline text-xl font-bold mb-6">{{ __('public.car_show.tech_specs_heading') }}</h3>
 <div class="bg-surface-container-low rounded-2xl overflow-hidden">
 <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-surface-container-high">
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Engine</span>
-<span class="font-bold">{{ $car->engine ?: '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_engine') }}</span>
+<span class="font-bold">{{ $car->engine ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Transmission</span>
-<span class="font-bold">{{ $car->transmission ?: '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_transmission') }}</span>
+<span class="font-bold">{{ $car->transmission ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Fuel</span>
-<span class="font-bold">{{ $car->fuel ?: '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_fuel') }}</span>
+<span class="font-bold">{{ $car->fuel ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Engine Capacity</span>
-<span class="font-bold">{{ $car->engine_capacity_cc ? number_format($car->engine_capacity_cc) . ' cc' : '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_engine_cap') }}</span>
+<span class="font-bold">{{ $car->engine_capacity_cc ? number_format($car->engine_capacity_cc) . ' cc' : __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Mileage</span>
-<span class="font-bold">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : '—' }}</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_mileage') }}</span>
+<span class="font-bold">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">Condition</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_condition') }}</span>
 <span class="font-bold">{{ $conditionText }}</span>
 </div>
 </div>
@@ -302,10 +302,10 @@
 <div class="flex justify-between items-start mb-4">
 <div>
 <h1 class="font-headline text-3xl font-black text-primary tracking-tight">
-{{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : 'Contact for price' }}
+{{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : __('public.car_show.price_contact') }}
 </h1>
 <p class="text-sm text-outline mt-1">
-{{ $car->price_tzs ? (($car->price_is_negotiable ?? true) ? 'Negotiable price' : 'Fixed price') : 'Our team will share pricing details.' }}
+{{ $car->price_tzs ? (($car->price_is_negotiable ?? true) ? __('public.car_show.price_negotiable') : __('public.car_show.price_fixed')) : __('public.car_show.price_team') }}
 </p>
 </div>
 <button
@@ -315,7 +315,7 @@
     data-slug="{{ $car->slug }}"
     data-title="{{ $car->title }}"
     aria-pressed="false"
-    aria-label="Save {{ $car->title }} to your list on this device"
+    aria-label="{{ __('public.car_show.save_aria', ['title' => $car->title]) }}"
 >
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
 </button>
@@ -323,8 +323,8 @@
 <div class="flex items-center gap-3 py-4 my-6 bg-surface-container-low rounded-xl px-4">
 <span class="material-symbols-outlined text-primary">location_on</span>
 <div class="text-sm">
-<p class="font-bold">{{ $car->location ?: 'Tanzania' }}</p>
-<p class="text-outline text-xs">Sales center: Dar es Salaam</p>
+<p class="font-bold">{{ $car->location ?: __('public.common.tanzania') }}</p>
+<p class="text-outline text-xs">{{ __('public.car_show.sales_center') }}</p>
 </div>
 </div>
 <div class="space-y-3">
@@ -332,22 +332,22 @@
    href="{{ $listingWaHref }}"
    target="_blank"
    rel="noopener noreferrer"
-   aria-label="Chat on WhatsApp about this car">
+   aria-label="{{ __('public.car_show.wa_aria') }}">
 <svg viewBox="0 0 32 32" aria-hidden="true" class="w-5 h-5 fill-current">
 <path d="M19.11 17.34c-.29-.14-1.69-.83-1.95-.92-.26-.1-.45-.14-.64.15-.18.29-.74.92-.9 1.1-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.39-.84-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.13-.13.29-.33.44-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.08-.14-.64-1.55-.88-2.13-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.95 2.43.05 1.43 1 2.81 1.14 3 .14.19 1.95 2.98 4.72 4.17.66.29 1.17.46 1.57.59.66.21 1.27.18 1.75.11.53-.08 1.69-.69 1.93-1.35.24-.67.24-1.24.17-1.35-.08-.11-.27-.18-.55-.33z"/>
 <path d="M16.02 3.2c-7.05 0-12.77 5.72-12.77 12.77 0 2.25.59 4.45 1.71 6.39L3.2 28.8l6.6-1.73c1.86 1.01 3.95 1.54 6.09 1.54h.01c7.05 0 12.77-5.72 12.77-12.77 0-3.42-1.33-6.63-3.76-9.05A12.67 12.67 0 0 0 16.02 3.2zm-.12 23.3h-.01c-1.91 0-3.78-.51-5.41-1.48l-.39-.23-3.92 1.03 1.05-3.82-.25-.39a10.58 10.58 0 0 1-1.62-5.65c0-5.86 4.77-10.62 10.63-10.62 2.84 0 5.51 1.1 7.51 3.11a10.54 10.54 0 0 1 3.1 7.51c0 5.86-4.77 10.62-10.62 10.62z"/>
 </svg>
-                                Chat on WhatsApp
+                                {{ __('public.car_show.wa_cta') }}
                             </a>
-<a class="sahara-live-cta w-full cta-gradient text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ $listingTelHref }}" aria-label="Call Sahara Cars on the phone">
+<a class="sahara-live-cta w-full cta-gradient text-white font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 transition-[filter,transform] hover:brightness-110 active:scale-95 focus-ring-on-dark [&_.material-symbols-outlined]:text-white" href="{{ $listingTelHref }}" aria-label="{{ __('public.car_show.call_aria') }}">
 <span class="material-symbols-outlined" aria-hidden="true">call</span>
-                                Call now
+                                {{ __('public.car_show.call_now') }}
                             </a>
 <a class="sahara-live-cta w-full bg-surface-container-low text-primary font-bold py-4 min-h-[52px] rounded-full flex items-center justify-center gap-2 border border-outline-variant/40 transition-[filter,transform] hover:brightness-95 active:scale-95 focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('order.request') }}">
 <span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
-                                Request Similar Import
+                                {{ __('public.car_show.request_import') }}
                             </a>
-<a class="w-full text-center text-sm font-semibold text-primary underline underline-offset-2 py-2 min-h-[44px] rounded-lg focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('contact') }}">Prefer email or a form?</a>
+<a class="w-full text-center text-sm font-semibold text-primary underline underline-offset-2 py-2 min-h-[44px] rounded-lg focus-visible:ring-2 focus-visible:ring-primary" href="{{ route('contact') }}">{{ __('public.car_show.prefer_email') }}</a>
 </div>
 </div>
 </div>
@@ -357,11 +357,11 @@
 <section class="mt-20">
 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
 <div class="text-center sm:text-left">
-<h3 class="font-headline text-2xl font-black text-primary tracking-tight">Similar Premium SUVs</h3>
-<p class="text-on-surface-variant">Recommended for you based on this unit</p>
+<h3 class="font-headline text-2xl font-black text-primary tracking-tight">{{ __('public.car_show.related_title') }}</h3>
+<p class="text-on-surface-variant">{{ __('public.car_show.related_subtitle') }}</p>
 </div>
 <a class="text-primary font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all" href="{{ route('cars.index') }}">
-                    View Gallery <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    {{ __('public.car_show.view_gallery') }} <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 <div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -376,18 +376,18 @@
 <div class="p-6">
 <h4 class="font-headline font-bold text-lg mb-1 group-hover:text-primary transition-colors">{{ $rel->title }}</h4>
 <div class="flex gap-4 text-xs text-outline mb-4 font-label tracking-wide">
-<span>{{ $rel->year ?: '—' }}</span>
-<span>{{ $rel->fuel ?: '—' }}</span>
-<span>{{ $rel->mileage_km ? number_format($rel->mileage_km) . ' KM' : '—' }}</span>
+<span>{{ $rel->year ?: __('public.common.dash') }}</span>
+<span>{{ $rel->fuel ?: __('public.common.dash') }}</span>
+<span>{{ $rel->mileage_km ? number_format($rel->mileage_km) . ' KM' : __('public.common.dash') }}</span>
 </div>
 <div class="flex justify-between items-center pt-4">
-<span class="font-headline font-extrabold text-primary text-xl">{{ $rel->price_tzs ? ('TZS ' . number_format($rel->price_tzs)) : 'Contact' }}</span>
+<span class="font-headline font-extrabold text-primary text-xl">{{ $rel->price_tzs ? ('TZS ' . number_format($rel->price_tzs)) : __('public.car_card.contact') }}</span>
 <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_outward</span>
 </div>
 </div>
 </a>
 @empty
-<div class="md:col-span-3 text-on-surface-variant">No related cars yet.</div>
+<div class="md:col-span-3 text-on-surface-variant">{{ __('public.car_show.no_related') }}</div>
 @endforelse
 </div>
 </section>
@@ -399,17 +399,17 @@
 <div id="gallery-lightbox" class="fixed inset-0 z-[70] hidden bg-black/85 p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="gallery-lightbox-title" aria-hidden="true">
   <div class="w-full h-full flex flex-col">
     <div class="flex items-center justify-between text-white mb-4">
-      <p id="gallery-lightbox-title" class="text-sm font-bold">Image <span id="lightbox-current">1</span> / <span id="lightbox-total">{{ count($allImages) }}</span></p>
-      <button type="button" id="gallery-close-lightbox" class="rounded-full p-2 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="Close gallery">
+      <p id="gallery-lightbox-title" class="text-sm font-bold">{{ __('public.common.image') }} <span id="lightbox-current">1</span> / <span id="lightbox-total">{{ count($allImages) }}</span></p>
+      <button type="button" id="gallery-close-lightbox" class="rounded-full p-2 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="{{ __('public.car_show.lightbox_close') }}">
         <span class="material-symbols-outlined">close</span>
       </button>
     </div>
     <div class="relative flex-1 min-h-0 rounded-xl overflow-hidden bg-black/40">
       <img id="lightbox-image" src="{{ $allImages[0]['src'] }}" alt="{{ $car->title }}" class="w-full h-full object-contain" />
-      <button type="button" id="lightbox-prev" class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-black/50 text-white hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="Previous image">
+      <button type="button" id="lightbox-prev" class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-black/50 text-white hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="{{ __('public.car_show.lightbox_prev') }}">
         <span class="material-symbols-outlined">chevron_left</span>
       </button>
-      <button type="button" id="lightbox-next" class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-black/50 text-white hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="Next image">
+      <button type="button" id="lightbox-next" class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 bg-black/50 text-white hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60" aria-label="{{ __('public.car_show.lightbox_next') }}">
         <span class="material-symbols-outlined">chevron_right</span>
       </button>
     </div>

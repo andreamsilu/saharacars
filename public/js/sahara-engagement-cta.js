@@ -19,7 +19,9 @@
 
     function isCarsPath() {
         var p = window.location.pathname || '';
-        return p === '/cars' || p.indexOf('/cars/') === 0;
+        if (p === '/cars' || p.indexOf('/cars/') === 0) return true;
+        // Localized URLs: /{locale}/cars and /{locale}/cars/...
+        return /^\/[^/]+\/cars(\/|$)/.test(p);
     }
 
     function snoozed() {
