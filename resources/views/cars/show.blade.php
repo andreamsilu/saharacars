@@ -3,8 +3,28 @@
 <html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>{{ e($pageTitle) }}</title>
-<meta name="description" content="{{ e($pageDescription) }}"/>
+<x-public-seo
+    :title="$pageTitle"
+    :description="$pageDescription"
+    :canonical="route('cars.show', ['locale' => app()->getLocale(), 'slug' => $car->slug])"
+    :type="'product'"
+    :image="$car->hero_image_path ? asset('storage/'.$car->hero_image_path) : null"
+    :structured-data="[
+        '@context' => 'https://schema.org',
+        '@type' => 'Product',
+        'name' => $car->title,
+        'description' => $pageDescription,
+        'image' => $car->hero_image_path ? asset('storage/'.$car->hero_image_path) : null,
+        'brand' => ['@type' => 'Brand', 'name' => $car->brand ?: $car->title],
+        'offers' => [
+            '@type' => 'Offer',
+            'priceCurrency' => 'TZS',
+            'price' => $car->price_tzs,
+            'availability' => 'https://schema.org/InStock',
+            'url' => route('cars.show', ['locale' => app()->getLocale(), 'slug' => $car->slug]),
+        ],
+    ]"
+/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>

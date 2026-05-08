@@ -3,8 +3,12 @@
 <html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>{{ __('public.meta.saved_title', ['company' => config('sahara.legal_entity_name')]) }}</title>
-<meta name="description" content="{{ __('public.meta.saved_description') }}"/>
+<x-public-seo
+    :title="__('public.meta.saved_title', ['company' => config('sahara.legal_entity_name')])"
+    :description="__('public.meta.saved_description')"
+    :canonical="route('saved', ['locale' => app()->getLocale()])"
+    :noindex="true"
+/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -108,20 +112,26 @@
     aria-relevant="additions removals"
 ></ul>
 <p class="text-sm text-on-surface-variant mt-8 pt-6 border-t border-outline-variant/40 text-center sm:text-left">
-            {!! __('public.saved.footer_help', ['url' => route('contact')]) !!}
-        </p>
+    @php
+        $savedContactUrl = route('contact', ['locale' => app()->getLocale()]);
+    @endphp
+    {!! __('public.saved.footer_help', ['url' => $savedContactUrl]) !!}
+</p>
 </div>
 </main>
-<script id="saved-cars-i18n" type="application/json">@json([
-    'emptyTitle' => __('public.saved.js_empty_title'),
-    'emptyBody' => __('public.saved.js_empty_body'),
-    'browse' => __('public.saved.js_browse'),
-    'savedOnTpl' => __('public.saved.js_saved_on'),
-    'savedListing' => __('public.saved.js_saved_listing'),
-    'removePrefix' => __('public.saved.js_remove_aria_prefix'),
-    'removeSuffix' => __('public.saved.js_remove_aria_suffix'),
-    'removeLabel' => __('public.common.remove'),
-])</script>
+@php
+    $savedCarsI18n = [
+        'emptyTitle' => __('public.saved.js_empty_title'),
+        'emptyBody' => __('public.saved.js_empty_body'),
+        'browse' => __('public.saved.js_browse'),
+        'savedOnTpl' => __('public.saved.js_saved_on'),
+        'savedListing' => __('public.saved.js_saved_listing'),
+        'removePrefix' => __('public.saved.js_remove_aria_prefix'),
+        'removeSuffix' => __('public.saved.js_remove_aria_suffix'),
+        'removeLabel' => __('public.common.remove'),
+    ];
+@endphp
+<script id="saved-cars-i18n" type="application/json">@json($savedCarsI18n)</script>
 <x-footer class="mt-16"/>
 <x-mobile-nav active="saved"/>
 <x-whatsapp-float/>

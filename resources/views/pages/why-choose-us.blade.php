@@ -3,8 +3,11 @@
 <html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>{{ __('public.meta.why_title', ['company' => config('sahara.legal_entity_name')]) }}</title>
-<meta name="description" content="{{ __('public.meta.why_description', ['company' => config('sahara.legal_entity_name')]) }}"/>
+<x-public-seo
+    :title="__('public.meta.why_title', ['company' => config('sahara.legal_entity_name')])"
+    :description="__('public.meta.why_description', ['company' => config('sahara.legal_entity_name')])"
+    :canonical="route('why.choose.us', ['locale' => app()->getLocale()])"
+/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>

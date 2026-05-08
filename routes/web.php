@@ -10,10 +10,62 @@ use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PageController;
+use App\Models\Car;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 Route::get('/', function () {
     return redirect()->route('home', ['locale' => config('app.locale')]);
+});
+
+Route::get('/robots.txt', function () {
+    $sitemapUrl = url('/sitemap.xml');
+    $content = implode("\n", [
+        'User-agent: *',
+        'Allow: /',
+        'Disallow: /admin',
+        'Disallow: /saved',
+        'Sitemap: '.$sitemapUrl,
+        '',
+    ]);
+
+    return Response::make($content, 200, ['Content-Type' => 'text/plain; charset=UTF-8']);
+});
+
+Route::get('/sitemap.xml', function () {
+    $locales = config('app.supported_locales', [config('app.locale')]);
+    $now = now()->toAtomString();
+
+    $urls = [];
+    foreach ($locales as $locale) {
+        $urls[] = ['loc' => route('home', ['locale' => $locale]), 'lastmod' => $now, 'changefreq' => 'daily', 'priority' => '1.0'];
+        $urls[] = ['loc' => route('cars.index', ['locale' => $locale]), 'lastmod' => $now, 'changefreq' => 'daily', 'priority' => '0.9'];
+        $urls[] = ['loc' => route('cars.bento', ['locale' => $locale]), 'lastmod' => $now, 'changefreq' => 'daily', 'priority' => '0.8'];
+        $urls[] = ['loc' => route('why.choose.us', ['locale' => $locale]), 'lastmod' => $now, 'changefreq' => 'weekly', 'priority' => '0.6'];
+        $urls[] = ['loc' => route('contact', ['locale' => $locale]), 'lastmod' => $now, 'changefreq' => 'weekly', 'priority' => '0.6'];
+        $urls[] = ['loc' => route('order.request', ['locale' => $locale]), 'lastmod' => $now, 'changefreq' => 'weekly', 'priority' => '0.6'];
+    }
+
+    $publishedCars = Car::query()
+        ->where('is_published', true)
+        ->select(['slug', 'updated_at'])
+        ->orderByDesc('updated_at')
+        ->get();
+
+    foreach ($locales as $locale) {
+        foreach ($publishedCars as $car) {
+            $urls[] = [
+                'loc' => route('cars.show', ['locale' => $locale, 'slug' => $car->slug]),
+                'lastmod' => optional($car->updated_at)->toAtomString() ?? $now,
+                'changefreq' => 'weekly',
+                'priority' => '0.7',
+            ];
+        }
+    }
+
+    $xml = view('sitemap.xml', ['urls' => $urls])->render();
+
+    return Response::make($xml, 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
 });
 
 /** Unprefixed legacy URLs → default locale (bookmarks before i18n). */
