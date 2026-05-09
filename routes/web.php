@@ -19,16 +19,17 @@ Route::get('/', function () {
 });
 
 /**
- * Classic favicon path. Serve square vector mark (wide PNG logos look muddy in SERP at 16–48px).
+ * Classic favicon path crawlers hit first.
+ * Serve a square PNG mark for consistent rendering in SERP/tab icons.
  */
 Route::get('/favicon.ico', function () {
-    $svg = public_path('favicon.svg');
-    if (! is_file($svg)) {
+    $faviconPng = public_path('images/favicon-mark-48.png');
+    if (! is_file($faviconPng)) {
         abort(404);
     }
 
-    return Response::file($svg, [
-        'Content-Type' => 'image/svg+xml',
+    return Response::file($faviconPng, [
+        'Content-Type' => 'image/png',
         'Cache-Control' => 'public, max-age=604800',
     ]);
 });
