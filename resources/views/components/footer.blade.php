@@ -112,7 +112,35 @@
     <x-engagement-cta />
     <x-page-load-progress />
     <x-scroll-to-top />
-    <script src="{{ asset('js/sahara-saved-cars.min.js') }}" defer></script>
+    <script>
+        (function () {
+            var scripts = [
+                "{{ asset('js/sahara-saved-cars.min.js') }}",
+                "{{ asset('js/sahara-engagement-cta.min.js') }}",
+                "{{ asset('js/sahara-page-load.min.js') }}",
+            ];
+
+            var loaded = false;
+            function loadScripts() {
+                if (loaded) return;
+                loaded = true;
+                scripts.forEach(function (src) {
+                    var s = document.createElement('script');
+                    s.src = src;
+                    s.defer = true;
+                    document.body.appendChild(s);
+                });
+            }
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadScripts, { timeout: 1200 });
+            } else {
+                window.setTimeout(loadScripts, 800);
+            }
+            window.addEventListener('load', loadScripts, { once: true });
+            window.addEventListener('pointerdown', loadScripts, { once: true, passive: true });
+        })();
+    </script>
     @include('components.public-motion-init')
 </footer>
 
