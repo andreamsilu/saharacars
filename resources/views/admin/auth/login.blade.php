@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Admin Login • {{ config('sahara.legal_entity_name') }}</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" defer></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
 </head>
 <body class="min-h-screen bg-slate-950 text-white">
     <div class="min-h-screen flex items-center justify-center px-6 py-16">

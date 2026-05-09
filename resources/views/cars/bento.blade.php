@@ -8,7 +8,7 @@
     :description="__('public.home.hero_subtitle')"
     :canonical="route('cars.bento', ['locale' => app()->getLocale()])"
 />
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" defer></script>
+<script src="https://cdn.tailwindcss.com" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"/>
