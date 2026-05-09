@@ -105,12 +105,10 @@ Route::prefix('{locale}')
 
         Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
         Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
+        // One segment: numeric → primary key; otherwise legacy slug → 301 to canonical id URL.
         Route::get('/cars/{car}', [CarController::class, 'show'])
-            ->whereNumber('car')
+            ->where('car', '^[A-Za-z0-9][A-Za-z0-9_-]*$')
             ->name('cars.show');
-        Route::get('/cars/{slug}', [CarController::class, 'redirectSlugToCar'])
-            ->where('slug', '^(?![0-9]+$)[A-Za-z0-9][A-Za-z0-9_-]*$')
-            ->name('cars.show.slug-legacy');
 
         Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');

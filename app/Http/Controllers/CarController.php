@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Car;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -35,14 +36,39 @@ class CarController extends Controller
     }
 
     /**
-     * Canonical car URL uses numeric `{car}` binding. Legacy slug URLs redirect here (301).
+     * Canonical URL is `/cars/{id}`. Legacy slug URLs hit the same route and 301 to the id.
+     * Resolves explicitly so unpublished inventory never binds via implicit route model binding.
      */
-    public function show(Car $car): View
+    public function show(string $car): View|RedirectResponse
     {
-        if (! $car->is_published) {
+        $segment = trim($car);
+        if ($segment === '') {
             abort(404);
         }
 
+        $published = Car::query()->where('is_published', true);
+
+        if (ctype_digit($segment)) {
+            $id = (int) $segment;
+            $resolved = (clone $published)->whereKey($id)->first();
+            if ($resolved !== null) {
+                return $this->renderPublishedCarDetail($resolved);
+            }
+            // Numeric slug (no row with that primary key): still allow `slug = '123'` style rows.
+            $bySlug = (clone $published)->where('slug', $segment)->first();
+            if ($bySlug !== null) {
+                return redirect()->route('cars.show', ['car' => $bySlug->id], 301);
+            }
+            abort(404);
+        }
+
+        $bySlug = (clone $published)->where('slug', $segment)->firstOrFail();
+
+        return redirect()->route('cars.show', ['car' => $bySlug->id], 301);
+    }
+
+    private function renderPublishedCarDetail(Car $car): View
+    {
         $related = Car::query()
             ->where('is_published', true)
             ->where('id', '!=', $car->id)
@@ -64,19 +90,6 @@ class CarController extends Controller
             ?: __('public.cars.page_description_fallback', ['company' => $legalShort]);
 
         return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
-    }
-
-    /**
-     * Preserve old bookmarked slug URLs while emitting a single canonical (/cars/{id}).
-     */
-    public function redirectSlugToCar(string $slug): \Illuminate\Http\RedirectResponse
-    {
-        $car = Car::query()
-            ->where('slug', $slug)
-            ->where('is_published', true)
-            ->firstOrFail();
-
-        return redirect()->route('cars.show', ['car' => $car], 301);
     }
 
     private function buildFilteredQuery()
