@@ -40,24 +40,26 @@ return [
     ],
 
     'meta' => [
+        'home_title' => 'Magari Yamethibitishwa na Uagizaji Tanzania | :company',
+        'home_description' => ':company — magari yaliyothibitishwa Dar es Salaam na msaada wa uwasilishaji. Vinjari hesabu hai na bei za TZS; msaada kwa WhatsApp na simu.',
         'contact_title' => 'Wasiliana nasi | :company',
         'saved_title' => 'Magari yaliyohifadhiwa | :company',
         'saved_description' => 'Magari uliyoyaweka alama ukiangalia. Yamehifadhiwa kwenye kifaa hiki — hakuna akaunti inayohitajika.',
         'order_title' => 'Ombi la agizo | :company',
-        'why_title' => 'Kwa nini Sahara | :company',
+        'why_title' => 'Kwa nini uchague :company',
         'why_description' => 'Kwa nini wanunuzi wanachagua :company: magari ya kuaminika Dar es Salaam, maelezo wazi, hesabu iliyothibitishwa, na msaada wa kirafiki kwa simu au WhatsApp.',
     ],
 
     'cars' => [
         'for_sale_suffix' => 'inauzwa katika :place',
         'page_description_fallback' => 'Tazama picha, vipimo, na bei. Wasiliana na :company kupitia WhatsApp au simu.',
-        'wa_listing_intro' => 'Habari, nimeona gari hili kwenye tovuti ya Sahara Cars na ningependa maelezo zaidi.',
+        'wa_listing_intro' => 'Habari, nimeona gari hili kwenye tovuti ya Sahara Autolink Tz Limited na ningependa maelezo zaidi.',
         'wa_listing_vehicle' => 'Gari: :title',
         'wa_listing_link' => 'Kiungo: :url',
     ],
 
     'home' => [
-        'sales_wa_message' => 'Habari Sahara Cars mauzo, nina nia ya kununua gari. Tafadhali nisaidie.',
+        'sales_wa_message' => 'Habari timu ya mauzo ya Sahara Autolink Tz Limited, nina nia ya kununua gari. Tafadhali nisaidie.',
         'new_today' => 'Mpya leo',
         'latest_listings' => 'Orodha za hivi karibuni',
         'fresh_stock' => 'Hesabu safi ya leo',
@@ -124,7 +126,7 @@ return [
         'buyer_dar' => 'Mnunuzi, Dar es Salaam',
         'buyer_arusha' => 'Mnunuzi, Arusha',
         'explore_inventory' => 'Chunguza Hesabu',
-        'wa_save_search_line1' => 'Habari timu ya Sahara Cars, tafadhali hifadhi utafutaji huu kwangu na niarifu magari yanayolingana.',
+        'wa_save_search_line1' => 'Habari timu ya Sahara Autolink Tz Limited, tafadhali hifadhi utafutaji huu kwangu na niarifu magari yanayolingana.',
         'wa_save_search_filters' => 'Vichujio: :summary',
         'wa_save_search_filters_none' => 'Vichujio: hakuna maalum (hesabu ya jumla)',
         'wa_save_search_link' => 'Kiungo: :url',
@@ -371,7 +373,7 @@ return [
         'sales_center' => 'Kituo cha mauzo: Dar es Salaam',
         'wa_aria' => 'Zungumza WhatsApp kuhusu gari hili',
         'wa_cta' => 'Zungumza WhatsApp',
-        'call_aria' => 'Piga simu Sahara Cars',
+        'call_aria' => 'Piga simu Sahara Autolink Tz Limited',
         'call_now' => 'Piga sasa',
         'request_import' => 'Omba Uagizaji Unaofanana',
         'prefer_email' => 'Unapendelea barua pepe au fomu?',

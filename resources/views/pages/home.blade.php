@@ -4,8 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <x-public-seo
-    :title="__('public.home.hero_title').' | '.config('sahara.legal_entity_name')"
-    :description="__('public.home.hero_subtitle')"
+    :title="__('public.meta.home_title', ['company' => config('sahara.legal_entity_name')])"
+    :description="__('public.meta.home_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('home', ['locale' => app()->getLocale()])"
 />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -162,7 +162,7 @@
     </div>
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
         <div class="hidden md:block max-w-3xl mx-auto mb-4 sm:mb-5">
-            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white/75">Sahara Cars</p>
+            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white/75">{{ config('sahara.legal_entity_name') }}</p>
             <h1 class="mt-1 font-headline text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wide text-white">
                 {{ __('public.home.hero_title') }}
             </h1>

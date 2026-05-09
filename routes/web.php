@@ -18,6 +18,19 @@ Route::get('/', function () {
     return redirect()->route('home', ['locale' => config('app.locale')]);
 });
 
+/** Google crawlers commonly request `/favicon.ico`; serve branded logo PNG with correct MIME. */
+Route::get('/favicon.ico', function () {
+    $logoPng = public_path('images/logo.png');
+    if (! is_file($logoPng)) {
+        abort(404);
+    }
+
+    return Response::file($logoPng, [
+        'Content-Type' => 'image/png',
+        'Cache-Control' => 'public, max-age=86400',
+    ]);
+});
+
 Route::get('/robots.txt', function () {
     $sitemapUrl = url('/sitemap.xml');
     $content = implode("\n", [

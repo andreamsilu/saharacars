@@ -19,20 +19,42 @@
     $robotsValue = $shouldNoindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
     $twitterCard = $resolvedImage ? 'summary_large_image' : 'summary';
 
+    // Square logo URL for favicons + Organization schema (helps Google SERP branding).
+    $logoUrl = asset('images/logo.png');
+    // Classic path search engines probe first — must resolve (see `/favicon.ico` route).
+    $faviconIcoUrl = url('/favicon.ico');
+
     $jsonLd = [];
     if ($structuredData) {
         $jsonLd = is_array($structuredData) ? $structuredData : [$structuredData];
     } elseif (! $shouldNoindex) {
+        $siteUrl = rtrim((string) config('sahara.public_site_url', url('/')), '/');
         $jsonLd = [[
             '@context' => 'https://schema.org',
-            '@type' => 'WebSite',
-            'name' => $siteName,
-            'url' => config('sahara.public_site_url', url('/')),
-            'inLanguage' => str_replace('_', '-', app()->getLocale()),
+            '@graph' => [
+                [
+                    '@type' => 'WebSite',
+                    'name' => $siteName,
+                    'url' => $siteUrl,
+                    'inLanguage' => str_replace('_', '-', app()->getLocale()),
+                    'publisher' => ['@id' => $siteUrl.'#organization'],
+                ],
+                [
+                    '@id' => $siteUrl.'#organization',
+                    '@type' => 'Organization',
+                    'name' => $siteName,
+                    'url' => $siteUrl,
+                    'logo' => ['@type' => 'ImageObject', 'url' => $logoUrl],
+                ],
+            ],
         ]];
     }
 @endphp
 
+<link rel="icon" type="image/png" sizes="48x48" href="{{ $faviconIcoUrl }}"/>
+<link rel="icon" type="image/png" href="{{ $logoUrl }}"/>
+<link rel="shortcut icon" href="{{ $faviconIcoUrl }}"/>
+<link rel="apple-touch-icon" href="{{ $logoUrl }}"/>
 <title>{{ e($resolvedTitle) }}</title>
 <meta name="description" content="{{ e($resolvedDescription) }}"/>
 <link rel="canonical" href="{{ e($resolvedCanonical) }}"/>

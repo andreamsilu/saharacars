@@ -40,24 +40,26 @@ return [
     ],
 
     'meta' => [
+        'home_title' => 'Verified Used & Import Cars Tanzania | :company',
+        'home_description' => ':company — verified vehicles in Dar es Salaam and nationwide delivery support. Browse live inventory with clear TZS pricing; WhatsApp and phone advisors.',
         'contact_title' => 'Contact Us | :company',
         'saved_title' => 'Saved Cars | :company',
         'saved_description' => 'Cars you saved while browsing. Stored on this device — no account required.',
         'order_title' => 'Order Request | :company',
-        'why_title' => 'Why Sahara | :company',
+        'why_title' => 'Why Choose :company',
         'why_description' => 'Why buyers choose :company: trusted cars in Dar es Salaam, clear car details, verified stock, and friendly support by phone or WhatsApp.',
     ],
 
     'cars' => [
         'for_sale_suffix' => 'for sale in :place',
         'page_description_fallback' => 'View photos, specs, and price. Contact :company on WhatsApp or by phone.',
-        'wa_listing_intro' => 'Hi, I saw this car on the Sahara Cars website and would like more details.',
+        'wa_listing_intro' => 'Hi, I saw this car on the Sahara Autolink Tz Limited website and would like more details.',
         'wa_listing_vehicle' => 'Vehicle: :title',
         'wa_listing_link' => 'Link: :url',
     ],
 
     'home' => [
-        'sales_wa_message' => 'Hi Sahara Cars sales, I am interested in buying a car. Please assist.',
+        'sales_wa_message' => 'Hi Sahara Autolink Tz Limited sales team, I am interested in buying a car. Please assist.',
         'new_today' => 'New today',
         'latest_listings' => 'Latest listings',
         'fresh_stock' => 'Today’s fresh stock',
@@ -124,7 +126,7 @@ return [
         'buyer_dar' => 'Buyer, Dar es Salaam',
         'buyer_arusha' => 'Buyer, Arusha',
         'explore_inventory' => 'Explore Inventory',
-        'wa_save_search_line1' => 'Hi Sahara Cars team, please save this search for me and notify me on matching units.',
+        'wa_save_search_line1' => 'Hi Sahara Autolink Tz Limited team, please save this search for me and notify me on matching units.',
         'wa_save_search_filters' => 'Filters: :summary',
         'wa_save_search_filters_none' => 'Filters: none specified (general inventory)',
         'wa_save_search_link' => 'Link: :url',
@@ -371,7 +373,7 @@ return [
         'sales_center' => 'Sales center: Dar es Salaam',
         'wa_aria' => 'Chat on WhatsApp about this car',
         'wa_cta' => 'Chat on WhatsApp',
-        'call_aria' => 'Call Sahara Cars on the phone',
+        'call_aria' => 'Call Sahara Autolink Tz Limited on the phone',
         'call_now' => 'Call now',
         'request_import' => 'Request Similar Import',
         'prefer_email' => 'Prefer email or a form?',

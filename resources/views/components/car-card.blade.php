@@ -5,7 +5,7 @@
 
 @php
     /** @var \App\Models\Car $car */
-    $img = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : 'https://placehold.co/1200x800?text=Sahara+Cars';
+    $img = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : 'https://placehold.co/1200x800?text=Sahara+Autolink+Tz+Limited';
     $conditionLabels = [
         'brand_new' => __('public.catalog.condition.brand_new'),
         'foreign_used' => __('public.catalog.condition.foreign_used'),
