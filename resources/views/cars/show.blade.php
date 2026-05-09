@@ -130,7 +130,7 @@
     'local_used' => __('public.catalog.condition.local_used'),
   ];
   $conditionText = $conditionLabels[$car->condition] ?? __('public.common.dash');
-  $hero = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : 'https://placehold.co/1400x900?text=Sahara+Autolink+Tz+Limited';
+  $hero = $car->hero_image_path ? asset('storage/' . $car->hero_image_path) : asset('images/login-bg-hero-1280.jpg');
 
   $frontImages = is_array($car->front_image_paths) ? $car->front_image_paths : array_filter([$car->front_image_path]);
   $rearImages = is_array($car->rear_image_paths) ? $car->rear_image_paths : array_filter([$car->rear_image_path]);
@@ -395,7 +395,7 @@
 <a class="bg-surface-container-lowest rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all block" href="{{ route('cars.show', ['slug' => $rel->slug]) }}">
 <div class="aspect-[16/10] overflow-hidden relative bg-surface-dim">
 @php
-  $relImg = $rel->hero_image_path ? asset('storage/' . $rel->hero_image_path) : 'https://placehold.co/1200x800?text=Sahara+Autolink+Tz+Limited';
+  $relImg = $rel->hero_image_path ? asset('storage/' . $rel->hero_image_path) : asset('images/home-showroom-premium-960.jpg');
 @endphp
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $rel->title }}" src="{{ $relImg }}"/>
 </div>
