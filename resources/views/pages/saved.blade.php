@@ -11,7 +11,7 @@
 />
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..700,0..1,0&amp;icon_names=arrow_forward,arrow_outward,bolt,calendar_month,calendar_today,call,campaign,chat,check_circle,checklist,chevron_left,chevron_right,close,description,directions_car,error,event_available,ev_station,expand_more,explore,favorite,fullscreen,home,insights,inventory_2,key,language,local_fire_department,local_gas_station,location_city,location_on,lock,logout,mail,menu,notes,notifications_active,oil_barrel,people,precision_manufacturing,public,restart_alt,save,schedule,search,sentiment_satisfied,settings,settings_suggest,speed,star,storefront,support_agent,tune,verified,verified_user,visibility&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
