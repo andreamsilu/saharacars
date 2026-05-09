@@ -27,14 +27,21 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-3" aria-label="{{ __('site.nav.aria_main') }}">
         {{-- Brand: logo from public/images (see asset path) --}}
         <a class="inline-flex items-center gap-2 shrink-0 min-w-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg" href="{{ route('home') }}">
-            <img
-                src="{{ asset('images/logo.png') }}"
-                alt="{{ config('marketplace.name') }}"
-                class="h-8 w-auto sm:h-10 object-contain object-left max-w-[min(200px,52vw)] sm:max-w-[240px]"
-                width="240"
-                height="40"
-                decoding="async"
-            />
+            <picture>
+                <source
+                    type="image/webp"
+                    srcset="{{ asset('images/logo-240.webp') }} 240w, {{ asset('images/logo-320.webp') }} 320w"
+                    sizes="(min-width: 640px) 240px, 200px"
+                />
+                <img
+                    src="{{ asset('images/logo.png') }}"
+                    alt="{{ config('marketplace.name') }}"
+                    class="h-8 w-auto sm:h-10 object-contain object-left max-w-[min(200px,52vw)] sm:max-w-[240px]"
+                    width="240"
+                    height="40"
+                    decoding="async"
+                />
+            </picture>
         </a>
 
         <p class="md:hidden flex-1 text-center px-1 text-[10px] font-black uppercase tracking-[0.14em] text-primary truncate">

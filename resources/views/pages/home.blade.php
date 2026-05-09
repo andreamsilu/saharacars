@@ -151,13 +151,20 @@
 @endphp
 <section class="relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <img
-            src="{{ asset('images/login-bg-hero.jpg') }}"
-            alt=""
-            class="w-full h-full object-cover grayscale opacity-45"
-            loading="eager"
-            decoding="async"
-        />
+        <picture>
+            <source
+                type="image/webp"
+                srcset="{{ asset('images/login-bg-hero-1280.webp') }} 1280w, {{ asset('images/login-bg-hero-1920.webp') }} 1920w"
+                sizes="100vw"
+            />
+            <img
+                src="{{ asset('images/login-bg-hero.jpg') }}"
+                alt=""
+                class="w-full h-full object-cover grayscale opacity-45"
+                loading="eager"
+                decoding="async"
+            />
+        </picture>
         <div class="absolute inset-0 bg-slate-950/20"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
@@ -306,7 +313,14 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
             <div class="overflow-hidden">
-                <img src="{{ asset('images/home-showroom-premium.jpg') }}" alt="{{ __('public.home.img_premium_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/home-showroom-premium-640.webp') }} 640w, {{ asset('images/home-showroom-premium-960.webp') }} 960w"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <img src="{{ asset('images/home-showroom-premium.jpg') }}" alt="{{ __('public.home.img_premium_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                </picture>
             </div>
             <div class="p-4">
                 <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_showroom_quality') }}</p>
@@ -315,7 +329,14 @@
         </article>
         <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
             <div class="overflow-hidden">
-                <img src="{{ asset('images/home-driving-road.jpg') }}" alt="{{ __('public.home.img_road_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/home-driving-road-640.webp') }} 640w, {{ asset('images/home-driving-road-960.webp') }} 960w"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <img src="{{ asset('images/home-driving-road.jpg') }}" alt="{{ __('public.home.img_road_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                </picture>
             </div>
             <div class="p-4">
                 <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_road') }}</p>
@@ -324,7 +345,14 @@
         </article>
         <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
             <div class="overflow-hidden">
-                <img src="{{ asset('images/home-inspection-detail.jpg') }}" alt="{{ __('public.home.img_inspection_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/home-inspection-detail-640.webp') }} 640w, {{ asset('images/home-inspection-detail-960.webp') }} 960w"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <img src="{{ asset('images/home-inspection-detail.jpg') }}" alt="{{ __('public.home.img_inspection_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                </picture>
             </div>
             <div class="p-4">
                 <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_condition') }}</p>

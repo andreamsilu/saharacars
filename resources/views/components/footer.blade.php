@@ -24,14 +24,21 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 bg-slate-950 text-center md:text-left">
         <div class="md:col-span-2 space-y-5 flex flex-col items-center md:items-start">
             <a href="{{ route('home') }}" class="inline-block rounded-xl bg-white/95 p-2.5 hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950">
-                <img
-                    src="{{ asset('images/logo.png') }}"
-                    alt="{{ config('marketplace.name') }}"
-                    class="h-9 w-auto sm:h-10 object-contain max-w-[200px] sm:max-w-[240px]"
-                    width="240"
-                    height="40"
-                    decoding="async"
-                />
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/logo-240.webp') }} 240w, {{ asset('images/logo-320.webp') }} 320w"
+                        sizes="(min-width: 640px) 240px, 200px"
+                    />
+                    <img
+                        src="{{ asset('images/logo.png') }}"
+                        alt="{{ config('marketplace.name') }}"
+                        class="h-9 w-auto sm:h-10 object-contain max-w-[200px] sm:max-w-[240px]"
+                        width="240"
+                        height="40"
+                        decoding="async"
+                    />
+                </picture>
             </a>
             @if($footerHasLeadCopy)
             <p class="text-sm text-slate-300 max-w-md leading-relaxed">
