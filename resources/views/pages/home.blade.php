@@ -164,7 +164,7 @@
                 sizes="100vw"
             />
             <img
-                src="{{ asset('images/login-bg-hero.jpg') }}"
+                src="{{ asset('images/login-bg-hero-1280.jpg') }}"
                 alt=""
                 class="w-full h-full object-cover grayscale opacity-45"
                 loading="eager"
@@ -325,7 +325,7 @@
                         srcset="{{ asset('images/home-showroom-premium-640.webp') }} 640w, {{ asset('images/home-showroom-premium-960.webp') }} 960w"
                         sizes="(min-width: 768px) 33vw, 100vw"
                     />
-                    <img src="{{ asset('images/home-showroom-premium.jpg') }}" alt="{{ __('public.home.img_premium_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                    <img src="{{ asset('images/home-showroom-premium-960.jpg') }}" alt="{{ __('public.home.img_premium_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
                 </picture>
             </div>
             <div class="p-4">
@@ -341,7 +341,7 @@
                         srcset="{{ asset('images/home-driving-road-640.webp') }} 640w, {{ asset('images/home-driving-road-960.webp') }} 960w"
                         sizes="(min-width: 768px) 33vw, 100vw"
                     />
-                    <img src="{{ asset('images/home-driving-road.jpg') }}" alt="{{ __('public.home.img_road_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                    <img src="{{ asset('images/home-driving-road-960.jpg') }}" alt="{{ __('public.home.img_road_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
                 </picture>
             </div>
             <div class="p-4">
@@ -357,7 +357,7 @@
                         srcset="{{ asset('images/home-inspection-detail-640.webp') }} 640w, {{ asset('images/home-inspection-detail-960.webp') }} 960w"
                         sizes="(min-width: 768px) 33vw, 100vw"
                     />
-                    <img src="{{ asset('images/home-inspection-detail.jpg') }}" alt="{{ __('public.home.img_inspection_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                    <img src="{{ asset('images/home-inspection-detail-960.jpg') }}" alt="{{ __('public.home.img_inspection_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
                 </picture>
             </div>
             <div class="p-4">

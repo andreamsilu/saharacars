@@ -31,7 +31,7 @@
                         sizes="(min-width: 640px) 240px, 200px"
                     />
                     <img
-                        src="{{ asset('images/logo.png') }}"
+                        src="{{ asset('images/logo-320.png') }}"
                         alt="{{ config('marketplace.name') }}"
                         class="h-9 w-auto sm:h-10 object-contain max-w-[200px] sm:max-w-[240px]"
                         width="240"
