@@ -41,7 +41,7 @@ return [
 
     'meta' => [
         'home_title' => 'Magari Yamethibitishwa na Uagizaji Tanzania | :company',
-        'home_description' => ':company — magari yaliyothibitishwa Dar es Salaam na msaada wa uwasilishaji. Vinjari hesabu hai na bei za TZS; msaada kwa WhatsApp na simu.',
+        'home_description' => ':company · Dar es Salaam. Magari yaliyothibitishwa, uagizaji kutoka nje, na bei za TZS zilizo wazi. Vinjari hesabu hai; WhatsApp au simu. Si soko la jumla — orodha zinasimamiwa ndani ya kampuni na msaada wa mkabidhi wa ndani.',
         'contact_title' => 'Wasiliana nasi | :company',
         'saved_title' => 'Magari yaliyohifadhiwa | :company',
         'saved_description' => 'Magari uliyoyaweka alama ukiangalia. Yamehifadhiwa kwenye kifaa hiki — hakuna akaunti inayohitajika.',

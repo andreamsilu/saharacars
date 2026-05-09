@@ -18,16 +18,18 @@ Route::get('/', function () {
     return redirect()->route('home', ['locale' => config('app.locale')]);
 });
 
-/** Google crawlers commonly request `/favicon.ico`; serve branded logo PNG with correct MIME. */
+/**
+ * Classic favicon path. Serve square vector mark (wide PNG logos look muddy in SERP at 16–48px).
+ */
 Route::get('/favicon.ico', function () {
-    $logoPng = public_path('images/logo.png');
-    if (! is_file($logoPng)) {
+    $svg = public_path('favicon.svg');
+    if (! is_file($svg)) {
         abort(404);
     }
 
-    return Response::file($logoPng, [
-        'Content-Type' => 'image/png',
-        'Cache-Control' => 'public, max-age=86400',
+    return Response::file($svg, [
+        'Content-Type' => 'image/svg+xml',
+        'Cache-Control' => 'public, max-age=604800',
     ]);
 });
 

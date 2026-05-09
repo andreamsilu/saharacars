@@ -19,10 +19,10 @@
     $robotsValue = $shouldNoindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
     $twitterCard = $resolvedImage ? 'summary_large_image' : 'summary';
 
-    // Square logo URL for favicons + Organization schema (helps Google SERP branding).
+    // Full-width header logo (not ideal as favicon — use square mark for tabs + Google).
     $logoUrl = asset('images/logo.png');
-    // Classic path search engines probe first — must resolve (see `/favicon.ico` route).
-    $faviconIcoUrl = url('/favicon.ico');
+    $faviconSvgUrl = asset('favicon.svg');
+    $faviconIcoUrl = url('/favicon.ico'); // resolves to favicon.svg (see routes/web.php)
 
     $jsonLd = [];
     if ($structuredData) {
@@ -44,17 +44,17 @@
                     '@type' => 'Organization',
                     'name' => $siteName,
                     'url' => $siteUrl,
-                    'logo' => ['@type' => 'ImageObject', 'url' => $logoUrl],
+                    'logo' => ['@type' => 'ImageObject', 'url' => $faviconSvgUrl],
                 ],
             ],
         ]];
     }
 @endphp
 
-<link rel="icon" type="image/png" sizes="48x48" href="{{ $faviconIcoUrl }}"/>
-<link rel="icon" type="image/png" href="{{ $logoUrl }}"/>
+<link rel="icon" href="{{ $faviconSvgUrl }}" type="image/svg+xml" sizes="any"/>
+<link rel="icon" type="image/svg+xml" href="{{ $faviconIcoUrl }}" sizes="48x48"/>
 <link rel="shortcut icon" href="{{ $faviconIcoUrl }}"/>
-<link rel="apple-touch-icon" href="{{ $logoUrl }}"/>
+<link rel="apple-touch-icon" href="{{ $faviconIcoUrl }}"/>
 <title>{{ e($resolvedTitle) }}</title>
 <meta name="description" content="{{ e($resolvedDescription) }}"/>
 <link rel="canonical" href="{{ e($resolvedCanonical) }}"/>

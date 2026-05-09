@@ -18,7 +18,7 @@
     ];
 @endphp
 
-<section class="section-editorial px-6 bg-surface-container-low overflow-hidden" aria-labelledby="partner-logos-heading">
+<section class="section-editorial px-6 bg-surface-container-low overflow-hidden" aria-labelledby="partner-logos-heading" data-nosnippet>
     <style>
         .partner-marquee {
             mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);

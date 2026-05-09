@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Sahara Autolink">
+  <defs>
+    <linearGradient id="saBg" x1="8%" y1="0%" x2="92%" y2="100%">
+      <stop offset="0%" stop-color="#c49a47"/>
+      <stop offset="55%" stop-color="#8a6528"/>
+      <stop offset="100%" stop-color="#4a3514"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#saBg)"/>
+  <text x="64" y="84" text-anchor="middle" font-family="Segoe UI, system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="52" font-weight="800" fill="#ffffff" letter-spacing="-2">SA</text>
+</svg>

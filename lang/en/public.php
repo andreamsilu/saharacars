@@ -41,7 +41,7 @@ return [
 
     'meta' => [
         'home_title' => 'Verified Used & Import Cars Tanzania | :company',
-        'home_description' => ':company — verified vehicles in Dar es Salaam and nationwide delivery support. Browse live inventory with clear TZS pricing; WhatsApp and phone advisors.',
+        'home_description' => ':company · Dar es Salaam. Verified used cars, import sourcing, and transparent TZS pricing. Browse live stock; chat on WhatsApp or call our sales team. Not a generic marketplace — admin-led listings and local handover support.',
         'contact_title' => 'Contact Us | :company',
         'saved_title' => 'Saved Cars | :company',
         'saved_description' => 'Cars you saved while browsing. Stored on this device — no account required.',
