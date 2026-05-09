@@ -13,9 +13,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" media="print" onload="this.media='all'"/>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"/></noscript>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" media="print" onload="this.media='all'"/>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"/></noscript>
+<link rel="stylesheet" href="{{ asset('css/material-symbols-outlined.css') }}"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" defer></script>
 <script id="tailwind-config">
       tailwind.config = {
@@ -410,7 +408,7 @@ class="group rounded-2xl bg-surface-container-low px-3 py-3 ghost-border hover:b
 aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
 >
 @if (!empty($brand['logo']))
-<img src="{{ $brand['logo'] }}" alt="{{ __('public.home.brand_logo_alt', ['brand' => $brand['name']]) }}" class="h-8 w-auto object-contain mb-2" loading="lazy" decoding="async" />
+<img src="{{ $brand['logo'] }}" alt="{{ __('public.home.brand_logo_alt', ['brand' => $brand['name']]) }}" class="h-8 w-auto object-contain mb-2" width="128" height="32" loading="lazy" decoding="async" />
 @else
 <span class="mb-2 inline-flex h-8 min-w-[2.5rem] items-center justify-center rounded-full bg-primary/10 px-2 text-[11px] font-extrabold uppercase tracking-wide text-primary">
 {{ \Illuminate\Support\Str::limit((string) $brand['name'], 3, '') }}

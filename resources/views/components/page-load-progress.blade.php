@@ -79,4 +79,4 @@
         }
     }
 </style>
-<script src="{{ asset('js/sahara-page-load.js') }}" defer></script>
+<script src="{{ asset('js/sahara-page-load.min.js') }}" defer></script>

@@ -76,4 +76,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/sahara-engagement-cta.js') }}" defer></script>
+<script src="{{ asset('js/sahara-engagement-cta.min.js') }}" defer></script>
