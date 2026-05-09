@@ -103,16 +103,74 @@
         transform: translateY(-3px);
         box-shadow: 0 18px 28px rgba(25, 28, 30, 0.10);
       }
-      .why-zoom img {
+      .why-zoom img,
+      .why-zoom [role="img"] {
         transition: transform .5s ease;
       }
-      .why-zoom:hover img {
+      .why-zoom:hover img,
+      .why-zoom:hover [role="img"] {
         transform: scale(1.04);
+      }
+      /* Scroll-in cards (preference-aware; toggled via .is-visible) */
+      .why-reveal {
+        opacity: 0;
+        transform: translateY(1.75rem);
+        will-change: opacity, transform;
+      }
+      .why-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--why-stagger, 0ms);
+      }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(1)  { --why-stagger: 0ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(2)  { --why-stagger: 55ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(3)  { --why-stagger: 110ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(4)  { --why-stagger: 165ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(5)  { --why-stagger: 220ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(6)  { --why-stagger: 275ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(7)  { --why-stagger: 330ms; }
+      .why-cards-grid > .why-row.why-reveal.is-visible:nth-child(8)  { --why-stagger: 385ms; }
+      .why-reveal-row {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      .why-reveal-row.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
       }
       @keyframes whyFadeUp {
         to {
           opacity: 1;
           transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .why-fade-up,
+        .why-delay-1,
+        .why-delay-2,
+        .why-delay-3,
+        .why-delay-4,
+        .why-delay-5 {
+          opacity: 1 !important;
+          transform: none !important;
+          animation: none !important;
+        }
+        .why-reveal,
+        .why-reveal-row {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .why-zoom:hover img,
+        .why-zoom:hover [role="img"] {
+          transform: none;
+        }
+        .why-lift:hover {
+          transform: none;
         }
       }
     </style>
@@ -122,183 +180,189 @@
 <!-- TopNavBar -->
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none">
-<section class="px-4 sm:px-6 pt-10 md:pt-14 pb-6 why-fade-up">
-<div class="max-w-7xl mx-auto text-center">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-3">WHY CHOOSE US</p>
-<h1 class="text-3xl md:text-5xl font-headline font-extrabold text-primary tracking-tight mb-3">Sahara Autolink TZ Limited</h1>
-<p class="text-on-surface-variant max-w-3xl mx-auto leading-relaxed">Owner-approved content shown exactly as provided.</p>
+{{-- Hero: on lg+ the photo is full-bleed to the viewport right edge; copy aligns with the 7xl rail. Who-we-are stays max-w-7xl like the sections below. --}}
+<section class="overflow-x-hidden pt-10 md:pt-14 pb-8 lg:pb-10" aria-labelledby="why-page-hero-heading">
+<div class="lg:grid lg:grid-cols-2 lg:gap-0 lg:min-h-[min(420px,52vh)] lg:items-stretch why-fade-up">
+<div class="px-4 sm:px-5 lg:py-6 lg:pr-8 xl:pr-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:flex lg:items-center">
+<div class="text-center lg:text-left min-w-0 max-w-xl sm:max-w-2xl mx-auto lg:mx-0">
+<p class="font-label text-xs md:text-sm font-bold uppercase tracking-widest text-secondary mb-3">{{ __('public.why.page.hero_kicker') }}</p>
+<h1 id="why-page-hero-heading" class="text-3xl sm:text-4xl md:text-5xl font-headline font-extrabold text-primary tracking-tight mb-3">{{ config('sahara.legal_entity_name') }}</h1>
+<p class="text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">{{ __('public.why.page.hero_intro') }}</p>
+</div>
+</div>
+<figure class="relative mt-8 lg:mt-0 mx-4 sm:mx-5 lg:mx-0 aspect-[16/11] lg:aspect-auto min-h-[220px] sm:min-h-[260px] lg:min-h-0 lg:h-full overflow-hidden rounded-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl border border-outline-variant/50 lg:border-y lg:border-l lg:border-r-0 bg-surface-container shadow-md lg:shadow-sm why-zoom isolate max-h-[52vh] lg:max-h-none">
+<x-why-visual file="why/vehicles-services.jpg" :alt="__('public.why.page.img_lineup_alt')" :eager="true"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-black/45 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+</figure>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 mt-8 lg:mt-10">
+<div class="why-fade-up why-delay-1 rounded-3xl border border-outline-variant/40 bg-surface-container-low px-6 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-9 shadow-sm" aria-labelledby="who-we-are-heading">
+<div class="text-center lg:text-start border-b-2 border-primary/35 pb-4 mb-5">
+<h2 id="who-we-are-heading" class="font-headline text-2xl sm:text-3xl md:text-[2rem] font-extrabold text-primary tracking-tight leading-tight">{{ __('public.why.page.who_heading') }}</h2>
+<p class="mt-2 font-label text-xs sm:text-sm font-bold uppercase tracking-widest text-secondary">{{ __('public.why.page.who_subheading') }}</p>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6] text-center lg:text-start max-w-none">{!! __('public.why.page.who_body', ['company' => '<strong>'.e(config('sahara.legal_entity_name')).'</strong>']) !!}</p>
+</div>
 </div>
 </section>
-<section class="px-4 sm:px-6 pb-14 why-fade-up why-delay-1">
-<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-<article class="rounded-3xl p-6 sm:p-8 border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">1. Business Background</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>Sahara Autolink TZ Limited was founded from a simple but powerful vision: to create a trustworthy, modern, and customer-focused automotive company capable of connecting people with reliable mobility solutions while raising the standard of professionalism within the automobile industry in Tanzania.</p>
-<p>The idea behind the company emerged after observing the growing demand for dependable vehicles, transparent business practices, and quality customer service in the local market. Many individuals and businesses were struggling to access trusted automotive services, genuine guidance, and vehicles that matched both their financial capacity and operational needs. This gap in the market became the foundation upon which Sahara Autolink TZ Limited was built.</p>
-<p>The word “Autolink” reflects the company’s core mission — linking people, businesses, and opportunities through transport and automotive solutions. The name “Sahara” symbolizes strength, endurance, resilience, and the ability to thrive even in challenging environments. Together, the company name represents a business built on determination, reliability, and long-term vision.</p>
-<p>From the beginning, Sahara Autolink TZ Limited was inspired not only by business ambition, but also by the desire to build an organization rooted in integrity, trust, discipline, and customer satisfaction. The founders believed that a successful automotive company should not simply sell vehicles, but should become a dependable partner that customers can trust throughout their journey.</p>
-<p>The company started with a commitment to professionalism, transparency, and strong relationships with clients. Through dedication, hard work, and a forward-looking mindset, Sahara Autolink TZ Limited has continued to position itself as a growing and ambitious company focused on delivering value, convenience, and confidence to its customers.</p>
-<p>Beyond business, the company is also inspired by the belief that transportation plays a vital role in economic growth, personal development, and community progress. Every vehicle delivered, every customer served, and every partnership established represents part of a broader mission to contribute positively to society and support movement, productivity, and opportunity.</p>
-<p>Today, Sahara Autolink TZ Limited continues to grow with the vision of becoming one of the most respected and trusted automotive brands in Tanzania and beyond,  driven by excellence, guided by integrity, and committed to creating lasting impact in the automotive sector.</p>
-</div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-amber-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-showroom.jpg') }}" alt="Sahara Autolink TZ Limited showroom" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-amber-800">Business Background</p>
+<section class="px-4 sm:px-5 lg:px-8 pb-14 why-fade-up why-delay-1">
+<div class="max-w-7xl mx-auto grid grid-cols-1 gap-6 why-cards-grid">
+{{-- Image panels sit outside the gradient text cards (sibling columns in the same row). --}}
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:col-span-5 rounded-2xl border border-amber-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/business-background.jpg" :alt="__('public.why.page.img_showroom_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-amber-950 shadow-md border border-amber-200/80">{{ __('public.why.page.badge_bg') }}</p>
 </aside>
+<article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">01</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec01_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec01_p1') }}</p>
+<p>{{ __('public.why.page.sec01_p2') }}</p>
+<p>{{ __('public.why.page.sec01_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">2. What Makes Sahara Autolink TZ Limited Different?</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>Sahara Autolink TZ Limited is more than a car dealership — it is a customer-focused automotive brand built on trust, professionalism, and long-term relationships. What makes the company different is its commitment to delivering not only vehicles, but also confidence, reliability, and exceptional customer experience.</p>
-<p>Unlike many traditional car dealers that focus mainly on transactions, Sahara Autolink TZ Limited focuses on understanding the real needs of customers. The company believes that every client deserves honest guidance, transparent communication, and personalized service when making important automotive decisions.</p>
-<p>Integrity is one of the strongest foundations of the business. Sahara Autolink TZ Limited operates with a culture of honesty, accountability, and professionalism, ensuring that customers feel secure and respected throughout every stage of engagement. The company values reputation and trust as essential pillars of sustainable growth.</p>
-<p>Another distinguishing factor is the company’s vision for excellence and innovation within the automotive industry. Sahara Autolink TZ Limited is continuously working to raise service standards by combining modern business practices, customer care, and reliable automotive solutions that meet the changing demands of today’s market.</p>
-<p>The company is also driven by a strong belief that success is built through relationships rather than short-term profits. Every customer interaction is treated as an opportunity to build lasting trust and create positive impact. This approach has helped Sahara Autolink TZ Limited establish itself as a growing and respected name within the automotive sector.</p>
-<p>With a passion for quality service, commitment to professionalism, and dedication to customer satisfaction, Sahara Autolink TZ Limited continues to position itself as a dependable automotive partner for individuals, families, entrepreneurs, and businesses across Tanzania.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-blue-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-lineup.jpg') }}" alt="Quality vehicles at Sahara Autolink TZ Limited" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-blue-800">What Makes Us Different</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:order-2 md:col-span-5 rounded-2xl border border-blue-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/different.jpg" :alt="__('public.why.page.img_quality_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-blue-950 shadow-md border border-blue-200/80">{{ __('public.why.page.badge_diff') }}</p>
 </aside>
+<article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">02</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec02_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec02_p1') }}</p>
+<p>{{ __('public.why.page.sec02_p2') }}</p>
+<p>{{ __('public.why.page.sec02_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">3. Why Customers Trust and Choose Sahara Autolink TZ Limited</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>Customers continue to trust and choose Sahara Autolink TZ Limited because the company has built its reputation on honesty, professionalism, reliability, and genuine customer care. Trust is not viewed as something that is demanded,  it is something earned through consistent actions, transparent communication, and quality service.</p>
-<p>One of the main reasons customers choose Sahara Autolink TZ Limited is the company’s commitment to integrity in every transaction. Clients appreciate dealing with a business that values openness, accountability, and ethical conduct. The company believes that long-term relationships are more important than short-term gains, and this philosophy creates confidence among customers.</p>
-<p>Sahara Autolink TZ Limited also understands that purchasing a vehicle is an important financial and personal decision. For that reason, the company focuses on guiding customers with professionalism, respect, and clear information to help them make informed choices. Customers are treated as valued partners, not simply buyers.</p>
-<p>Another factor that strengthens customer trust is the company’s dedication to reliability and service excellence. Sahara Autolink TZ Limited works to ensure that clients receive dependable automotive solutions that match their needs, expectations, and lifestyle. The company is committed to maintaining high standards in customer support and business operations.</p>
-<p>In addition, customers choose Sahara Autolink TZ Limited because of the strong values that define the organization. Discipline, responsibility, respect, and customer satisfaction are deeply embedded in the company culture. These values help create a positive experience that encourages loyalty and long-term relationships.</p>
-<p>The company’s growing reputation is also driven by its vision to become a trusted and respected automotive brand in Tanzania and beyond. Through continuous improvement, professional leadership, and customer-centered service, Sahara Autolink TZ Limited continues to earn confidence from individuals, families, entrepreneurs, and businesses seeking reliable automotive partnership.</p>
-<p>At Sahara Autolink TZ Limited, trust is considered the foundation of success, and every customer relationship is handled with the care, commitment, and professionalism necessary to maintain that trust for years to come.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-emerald-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-handover.jpg') }}" alt="Customer vehicle handover at Sahara Autolink TZ Limited" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-800">Customer Trust</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:col-span-5 rounded-2xl border border-emerald-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/customer-trust.jpg" :alt="__('public.why.page.img_handover_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-emerald-950 shadow-md border border-emerald-200/80">{{ __('public.why.page.badge_trust') }}</p>
 </aside>
+<article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">03</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec03_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec03_p1') }}</p>
+<p>{{ __('public.why.page.sec03_p2') }}</p>
+<p>{{ __('public.why.page.sec03_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">4. What Type of Customers Do You Mainly Serve?</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>Sahara Autolink TZ Limited proudly serves a diverse range of customers who are looking for reliable, professional, and trustworthy automotive solutions. The company is committed to meeting the needs of both individuals and organizations by providing services that support mobility, convenience, and business growth.</p>
-<p>Our customers include individuals and families seeking dependable vehicles for personal use, daily transportation, and lifestyle needs. We understand that every customer has different preferences, financial goals, and expectations, which is why we focus on offering personalized guidance and customer-centered service.</p>
-<p>Sahara Autolink TZ Limited also serves entrepreneurs, business owners, and corporate clients who require reliable transportation solutions to support their operations and productivity. The company recognizes the important role vehicles play in business efficiency and economic development, and therefore works to provide dependable automotive support to growing businesses and organizations.</p>
-<p>In addition, the company serves customers who value professionalism, transparency, and long-term business relationships. Many clients choose Sahara Autolink TZ Limited because they are looking for an automotive partner they can trust,  a company that prioritizes integrity, accountability, and customer satisfaction.</p>
-<p>The company welcomes customers from different backgrounds, professions, and industries, while maintaining one common goal: delivering quality service and creating a positive customer experience. Whether serving first-time buyers, experienced vehicle owners, families, or businesses, Sahara Autolink TZ Limited remains committed to understanding customer needs and providing solutions that create confidence and long-term value.</p>
-<p>Through dedication to excellence and strong customer relationships, Sahara Autolink TZ Limited continues to grow as a trusted automotive brand serving people and businesses across Tanzania.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-violet-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-showroom.jpg') }}" alt="Sahara Autolink TZ Limited customer service and consultation" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-violet-800">Main Customers</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:order-2 md:col-span-5 rounded-2xl border border-violet-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/main-customers.jpg" :alt="__('public.why.page.img_consult_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-violet-950 shadow-md border border-violet-200/80">{{ __('public.why.page.badge_serve') }}</p>
 </aside>
+<article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">04</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec04_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec04_p1') }}</p>
+<p>{{ __('public.why.page.sec04_p2') }}</p>
+<p>{{ __('public.why.page.sec04_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">5. Vehicles & Services</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>Sahara Autolink TZ Limited specializes in providing reliable automotive solutions designed to meet the transportation needs of individuals, families, entrepreneurs, and businesses across Tanzania. The company focuses on delivering quality vehicles and professional services that combine reliability, performance, comfort, and value.</p>
-<p>Our vehicle selection includes a variety of modern and dependable cars suitable for personal use, family transportation, commercial activities, and business operations. We aim to provide vehicles that meet different customer lifestyles, preferences, and mobility needs while maintaining high standards of quality and customer satisfaction.</p>
-<p>In addition to vehicle supply, Sahara Autolink TZ Limited is committed to offering professional automotive support and customer-centered services that create convenience and confidence for our clients. The company values long-term relationships and strives to ensure that every customer receives guidance, support, and a positive experience throughout their journey with us.</p>
-<p>*Key areas we focus on include:*</p>
-<p>▪️Quality and reliable vehicles</p>
-<p>▪️Customer-focused automotive solutions</p>
-<p>▪️Professional guidance and consultation</p>
-<p>▪️Transparent and trustworthy business processes</p>
-<p>▪️Long-term customer relationships</p>
-<p>▪️Reliable transportation support for individuals and businesses</p>
-<p>At Sahara Autolink TZ Limited, we believe that vehicles are more than machines, they are tools that support growth, productivity, opportunity, and everyday life. Our mission is to continue providing dependable automotive services that empower our customers and contribute positively to mobility and development within our communities.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-rose-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-lineup.jpg') }}" alt="Vehicle lineup for personal and business needs" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-rose-800">Vehicles and Services</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:col-span-5 rounded-2xl border border-rose-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/vehicles-services.jpg" :alt="__('public.why.page.img_lineup_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-rose-950 shadow-md border border-rose-200/80">{{ __('public.why.page.badge_vehicles') }}</p>
 </aside>
+<article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">05</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec05_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec05_p1') }}</p>
+<p>{{ __('public.why.page.sec05_p2') }}</p>
+<p>{{ __('public.why.page.sec05_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-teal-200 bg-gradient-to-br from-teal-50 to-sky-50 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">6.Customer Experience</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>What kind of experience do you want customers to feel when buying from Sahara Autolink Tz Limited?</p>
-<p>At Sahara Autolink Tz Limited, we want every customer to enjoy a professional, trustworthy, and stress-free experience when purchasing a vehicle from us. We understand that buying a car is an important decision, so we focus on giving customers confidence, comfort, and complete satisfaction throughout the process.</p>
-<p>From the first conversation to vehicle delivery, we aim to provide honest guidance, transparent communication, quality vehicles, and reliable customer support. Our team is committed to treating every customer with respect, integrity, and care.</p>
-<p>We want our customers to leave not only with a vehicle, but also with peace of mind and a lasting relationship with a company they can trust.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-teal-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-handover.jpg') }}" alt="Customer experience at Sahara Autolink TZ Limited" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-teal-800">Customer Experience</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:order-2 md:col-span-5 rounded-2xl border border-teal-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/customer-experience.jpg" :alt="__('public.why.page.img_experience_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-teal-950 shadow-md border border-teal-200/80">{{ __('public.why.page.badge_experience') }}</p>
 </aside>
+<article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-teal-200 bg-gradient-to-br from-teal-50 to-sky-50 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">06</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec06_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec06_p1') }}</p>
+<p>{{ __('public.why.page.sec06_p2') }}</p>
+<p>{{ __('public.why.page.sec06_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-lime-200 bg-gradient-to-br from-lime-50 to-green-100 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">7. Business Strengths</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>What are the biggest strengths of Sahara Autolink Tz Limited today?</p>
-<p>Sahara Autolink Tz Limited has built its strength through trust, professionalism, and commitment to customer satisfaction. One of our biggest strengths is our ability to provide quality vehicles while maintaining honest and transparent relationships with our customers.</p>
-<p>We are also strengthened by our dedicated team, strong customer service, and understanding of the local automotive market. Our focus on reliability, integrity, and long-term relationships has helped us earn the confidence of many customers.</p>
-<p>Another key strength is our commitment to continuous growth and improvement. We work hard to ensure that every customer receives the right vehicle, proper guidance, and dependable support before and after purchase.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-lime-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-showroom.jpg') }}" alt="Sahara Autolink TZ Limited team and business growth" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-lime-800">Business Strengths</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:col-span-5 rounded-2xl border border-lime-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/business-strengths.jpg" :alt="__('public.why.page.img_team_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-lime-950 shadow-md border border-lime-300/90">{{ __('public.why.page.badge_strengths') }}</p>
 </aside>
+<article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-lime-200 bg-gradient-to-br from-lime-50 to-green-100 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">07</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec07_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec07_p1') }}</p>
+<p>{{ __('public.why.page.sec07_p2') }}</p>
+<p>{{ __('public.why.page.sec07_p3') }}</p>
+</div>
 </article>
-<article class="rounded-3xl p-6 sm:p-8 border border-indigo-200 bg-gradient-to-br from-indigo-50 to-blue-100 why-lift grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
-<div class="xl:col-span-8">
-<p class="font-label text-[10px] font-bold uppercase tracking-widest text-primary mb-3">8. Customer SupportWhat support do customers receive before and after buying a car?</p>
-<div class="space-y-4 text-sm leading-relaxed text-on-surface">
-<p>At Sahara Autolink Tz Limited, customers receive full support before, during, and after buying a car. We believe customer care does not end after a sale,  it is the beginning of a long-term relationship.</p>
-<p>*Before buying a car, customers receive:*</p>
-<p>Professional consultation to help them choose the right vehicle based on budget, lifestyle, and business needs.</p>
-<p>Honest guidance on vehicle condition, specifications, fuel efficiency, and performance.</p>
-<p>Assistance with vehicle inspections, test drives, and comparisons.</p>
-<p>Clear explanations about pricing, financing options, and ownership procedures.</p>
-<p>*After buying a car, customers continue to receive:*</p>
-<p>Vehicle registration and ownership transfer assistance.</p>
-<p>Guidance on insurance and road compliance requirements.</p>
-<p>Maintenance advice and service recommendations.</p>
-<p>Support in sourcing spare parts and trusted repair services.</p>
-<p>Ongoing communication whenever customers need technical advice or assistance.</p>
-<p>Sahara Autolink Tz Limited is committed to transparency, reliability, and customer satisfaction, ensuring every client feels confident, supported, and valued throughout their ownership journey. Strong after-sales support is one of the key factors that builds long-term trust and customer loyalty in the automotive industry.</p>
 </div>
-</div>
-<aside class="xl:col-span-4 rounded-2xl border border-indigo-300/60 bg-white/70 min-h-[180px] overflow-hidden relative">
-<img class="h-full min-h-[180px] w-full object-cover" src="{{ asset('images/why-handover.jpg') }}" alt="After-sales support at Sahara Autolink TZ Limited" loading="lazy" decoding="async"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent"></div>
-<p class="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-indigo-800">Customer Support</p>
+<div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
+<aside class="md:order-2 md:col-span-5 rounded-2xl border border-indigo-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
+<x-why-visual file="why/customer-support.jpg" :alt="__('public.why.page.img_support_alt')"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
+<p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-indigo-950 shadow-md border border-indigo-200/80">{{ __('public.why.page.badge_support') }}</p>
 </aside>
+<article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-indigo-200 bg-gradient-to-br from-indigo-50 to-blue-100 flex flex-col min-w-0 shadow-sm">
+<div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
+<span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">08</span>
+<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec08_title') }}</h2>
+</div>
+<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<p class="font-medium text-on-surface">{{ __('public.why.page.sec08_p1') }}</p>
+<p><span class="font-semibold text-primary">{{ __('public.why.page.sec08_before') }}</span> {{ __('public.why.page.sec08_p2') }}</p>
+<p><span class="font-semibold text-primary">{{ __('public.why.page.sec08_after') }}</span> {{ __('public.why.page.sec08_p3') }}</p>
+<p>{{ __('public.why.page.sec08_p4') }}</p>
+</div>
 </article>
+</div>
 </div>
 </section>
-<x-partner-logos-slider
-    title="Sahara Autolink TZ Limited"
-    subtitle="Vehicles are more than machines, they are tools that support growth, productivity, opportunity, and everyday life."
-/>
 <!-- Call to Action -->
-<section class="section-editorial px-4 sm:px-6 text-center why-fade-up why-delay-5">
+<section class="section-editorial px-4 sm:px-6 text-center why-reveal-row">
 <div class="sahara-live-panel max-w-4xl mx-auto bg-surface-container-lowest rounded-3xl p-6 sm:p-8 md:p-12 shadow-xl relative overflow-hidden attention-panel">
 <div class="absolute top-0 right-0 p-4 opacity-5">
 <span class="material-symbols-outlined text-9xl">directions_car</span>
 </div>
-<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary mb-6">Trust is considered the foundation of success</h3>
-<p class="text-on-surface-variant mb-8 sm:mb-10 text-base sm:text-lg max-w-2xl mx-auto">At Sahara Autolink TZ Limited, every customer relationship is handled with the care, commitment, and professionalism necessary to maintain that trust for years to come.</p>
+<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary mb-6">{{ __('public.why.page.cta_heading') }}</h3>
+<p class="text-on-surface-variant mb-8 sm:mb-10 leading-relaxed text-base md:text-lg lg:text-xl/[1.6] max-w-2xl mx-auto">{{ __('public.why.page.cta_intro') }}</p>
 <div class="flex flex-col sm:flex-row justify-center gap-4">
 <a class="sahara-live-cta cta-gradient text-white px-6 sm:px-10 py-3 sm:py-4 min-h-[48px] sm:min-h-[52px] rounded-full font-headline font-extrabold text-base sm:text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95 inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.index') }}">
                         {{ __('public.why.browse_inventory') }}
@@ -315,5 +379,31 @@
 <x-footer />
 <x-mobile-nav active="" />
 <x-whatsapp-float />
+<script>
+document.addEventListener('DOMContentLoaded', function whyChooseUsReveal() {
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function revealAll(sel) {
+    document.querySelectorAll(sel).forEach(function (el) { el.classList.add('is-visible'); });
+  }
+  if (mq.matches) {
+    revealAll('.why-reveal');
+    revealAll('.why-reveal-row');
+    return;
+  }
+  var io = new IntersectionObserver(
+    function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      });
+    },
+    { root: null, rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
+  );
+  document.querySelectorAll('.why-reveal, .why-reveal-row').forEach(function (el) {
+    io.observe(el);
+  });
+});
+</script>
 </body></html>
 

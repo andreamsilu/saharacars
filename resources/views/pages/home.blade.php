@@ -426,10 +426,6 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
 </div>
 </section>
 @endif
-<x-partner-logos-slider
-    :title="__('public.home.partner_title')"
-    :subtitle="__('public.home.partner_subtitle')"
-/>
 <section class="section-editorial px-4 sm:px-6 section-wash-soft">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
