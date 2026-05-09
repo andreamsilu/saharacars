@@ -79,7 +79,7 @@ Route::get('/sitemap.xml', function () {
         }
     }
 
-    $xml = view('sitemap.xml', ['urls' => $urls])->render();
+    $xml = view('sitemap', ['urls' => $urls])->render();
 
     return Response::make($xml, 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
 });
