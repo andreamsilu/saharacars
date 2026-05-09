@@ -6,7 +6,7 @@
 <x-public-seo
     :title="$pageTitle"
     :description="$pageDescription"
-    :canonical="route('cars.show', ['locale' => app()->getLocale(), 'car' => $car->id])"
+    :canonical="$car->publicShowUrl()"
     :type="'product'"
     :image="$car->hero_image_path ? asset('storage/'.$car->hero_image_path) : null"
     :structured-data="[
@@ -21,7 +21,7 @@
             'priceCurrency' => 'TZS',
             'price' => $car->price_tzs,
             'availability' => 'https://schema.org/InStock',
-            'url' => route('cars.show', ['locale' => app()->getLocale(), 'car' => $car->id]),
+            'url' => $car->publicShowUrl(),
         ],
     ]"
 />
@@ -393,7 +393,7 @@
 </div>
 <div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-3 gap-6">
 @forelse ($related as $rel)
-<a class="bg-surface-container-lowest rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all block" href="{{ route('cars.show', ['car' => $rel->id]) }}">
+<a class="bg-surface-container-lowest rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all block" href="{{ $rel->publicShowUrl() }}">
 <div class="aspect-[16/10] overflow-hidden relative bg-surface-dim">
 @php
   $relImg = $rel->hero_image_path ? asset('storage/' . $rel->hero_image_path) : asset('images/home-showroom-premium-960.jpg');

@@ -76,4 +76,20 @@ class Car extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+    /**
+     * Public inventory detail URL (canonical /{locale}/cars/{id}).
+     * Built explicitly so link generation survives stale `php artisan route:cache`
+     * where the `cars.show` route parameter name may still be `{slug}` while views pass `car`.
+     */
+    public function publicShowUrl(?string $locale = null): string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $supported = config('app.supported_locales', ['en', 'sw']);
+        if (! is_string($locale) || ! in_array($locale, $supported, true)) {
+            $locale = (string) config('app.locale');
+        }
+
+        return url('/'.$locale.'/cars/'.$this->getKey());
+    }
 }

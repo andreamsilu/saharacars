@@ -57,14 +57,14 @@ class CarController extends Controller
             // Numeric slug (no row with that primary key): still allow `slug = '123'` style rows.
             $bySlug = (clone $published)->where('slug', $segment)->first();
             if ($bySlug !== null) {
-                return redirect()->route('cars.show', ['car' => $bySlug->id], 301);
+                return redirect()->to($bySlug->publicShowUrl(), 301);
             }
             abort(404);
         }
 
         $bySlug = (clone $published)->where('slug', $segment)->firstOrFail();
 
-        return redirect()->route('cars.show', ['car' => $bySlug->id], 301);
+        return redirect()->to($bySlug->publicShowUrl(), 301);
     }
 
     private function renderPublishedCarDetail(Car $car): View
@@ -77,7 +77,7 @@ class CarController extends Controller
             ->get();
 
         $waPhone = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
-        $listingUrl = route('cars.show', ['car' => $car]);
+        $listingUrl = $car->publicShowUrl();
         $waListingMessage = __('public.cars.wa_listing_intro')
             ."\n\n".__('public.cars.wa_listing_vehicle', ['title' => $car->title])
             .($car->year ? ' ('.$car->year.')' : '')

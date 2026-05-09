@@ -71,7 +71,7 @@ Route::get('/sitemap.xml', function () {
     foreach ($locales as $locale) {
         foreach ($publishedCars as $car) {
             $urls[] = [
-                'loc' => route('cars.show', ['locale' => $locale, 'car' => $car->id]),
+                'loc' => $car->publicShowUrl($locale),
                 'lastmod' => optional($car->updated_at)->toAtomString() ?? $now,
                 'changefreq' => 'weekly',
                 'priority' => '0.7',
