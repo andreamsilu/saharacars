@@ -27,7 +27,7 @@
 @if ($compact)
 <div class="sahara-card-motion group bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 relative flex flex-col max-w-full">
     <a
-        href="{{ route('cars.show', ['slug' => $car->slug]) }}"
+        href="{{ route('cars.show', ['car' => $car->id]) }}"
         class="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
         aria-label="{{ __('public.car_card.aria_open', ['title' => $car->title]) }}"
     ></a>
@@ -37,6 +37,7 @@
             type="button"
             class="absolute top-2 right-2 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-primary shadow border border-outline-variant/30 hover:bg-white"
             data-saved-car-toggle
+            data-car-id="{{ $car->id }}"
             data-slug="{{ $car->slug }}"
             data-title="{{ $car->title }}"
             aria-pressed="false"
@@ -66,7 +67,7 @@
 @else
 <div class="sahara-card-motion group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
     <a
-        href="{{ route('cars.show', ['slug' => $car->slug]) }}"
+        href="{{ route('cars.show', ['car' => $car->id]) }}"
         class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         aria-label="{{ __('public.car_card.aria_open', ['title' => $car->title]) }}"
     ></a>
@@ -76,6 +77,7 @@
             type="button"
             class="absolute top-4 right-4 z-20 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             data-saved-car-toggle
+            data-car-id="{{ $car->id }}"
             data-slug="{{ $car->slug }}"
             data-title="{{ $car->title }}"
             aria-pressed="false"
@@ -160,7 +162,7 @@
         </div>
 
         <div class="mt-auto">
-            <a class="relative z-20 w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-bold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['slug' => $car->slug]) }}">
+            <a class="relative z-20 w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-bold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.show', ['car' => $car->id]) }}">
                 {{ __('public.car_card.view_details') }}
             </a>
         </div>

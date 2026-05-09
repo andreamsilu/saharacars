@@ -1,15 +1,22 @@
 /**
- * Saved cars (localStorage, no login). Key: sahara_saved_cars_v1
+ * Saved cars (localStorage). Canonical keys use numeric car id (`sahara_saved_cars_v2`).
+ * Legacy `sahara_saved_cars_v1` slug-only rows are migrated on read; slug bookmarks still redirect (301 → /cars/{id}).
  */
 (function () {
     'use strict';
 
-    var STORAGE_KEY = 'sahara_saved_cars_v1';
+    var STORAGE_KEY_V1 = 'sahara_saved_cars_v1';
+    var STORAGE_KEY_V2 = 'sahara_saved_cars_v2';
     var MAX_ITEMS = 40;
+    /** @typedef {{ id: number|null, slug?: string, title: string, savedAt: number }} SavedItem */
 
+    /**
+     * @returns {SavedItem[]}
+     */
     function read() {
         try {
-            var raw = localStorage.getItem(STORAGE_KEY);
+            migrateV1IfNeeded();
+            var raw = localStorage.getItem(STORAGE_KEY_V2);
             var data = raw ? JSON.parse(raw) : [];
             return Array.isArray(data) ? data : [];
         } catch (e) {
@@ -17,21 +24,78 @@
         }
     }
 
+    function migrateV1IfNeeded() {
+        try {
+            if (localStorage.getItem(STORAGE_KEY_V2)) return;
+            var oldRaw = localStorage.getItem(STORAGE_KEY_V1);
+            if (!oldRaw) return;
+            var parsed = JSON.parse(oldRaw);
+            if (!Array.isArray(parsed)) return;
+            var migrated = parsed.map(function (x) {
+                return {
+                    id: null,
+                    slug: typeof x.slug === 'string' ? x.slug : '',
+                    title: x.title || x.slug || '',
+                    savedAt: Number(x.savedAt) || Date.now(),
+                };
+            });
+            localStorage.setItem(STORAGE_KEY_V2, JSON.stringify(migrated));
+        } catch (e) {
+            /* noop */
+        }
+    }
+
+    /**
+     * @param {SavedItem[]} items
+     */
     function write(items) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(items.slice(0, MAX_ITEMS)));
+        localStorage.setItem(STORAGE_KEY_V2, JSON.stringify(items.slice(0, MAX_ITEMS)));
         window.dispatchEvent(new CustomEvent('sahara-saved-changed'));
     }
 
-    function isSaved(slug) {
+    /**
+     * @param {number|null|string} carId
+     * @param {string} [slug]
+     */
+    function isSaved(carId, slug) {
+        var nid = normalizeId(carId);
         return read().some(function (x) {
-            return x.slug === slug;
+            return sameItem(x, nid, slug);
         });
     }
 
-    function toggle(slug, title) {
+    function normalizeId(carId) {
+        if (carId === null || carId === undefined || carId === '') return null;
+        var n = Number(carId);
+        return Number.isFinite(n) && n > 0 ? n : null;
+    }
+
+    /**
+     * @param {SavedItem} x
+     * @param {number|null} carId
+     * @param {string|undefined} slug
+     */
+    function sameItem(x, carId, slug) {
+        var xid = x.id != null ? Number(x.id) : null;
+        var cid = carId != null ? carId : null;
+        if (xid !== null && cid !== null && xid === cid) return true;
+        if (slug && x.slug === slug && (xid === null || cid === null || xid === cid)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param {number|null|string} carId
+     * @param {string} slug
+     * @param {string} title
+     * @returns {boolean} true when added after toggle
+     */
+    function toggle(carId, slug, title) {
+        var nid = normalizeId(carId);
         var items = read();
         var idx = items.findIndex(function (x) {
-            return x.slug === slug;
+            return sameItem(x, nid, slug || undefined);
         });
         var added;
         if (idx >= 0) {
@@ -39,14 +103,29 @@
             added = false;
         } else {
             items.unshift({
-                slug: slug,
-                title: title || slug,
+                id: nid,
+                slug: slug || '',
+                title: title || slug || '',
                 savedAt: Date.now(),
             });
             added = true;
         }
         write(items);
         return added;
+    }
+
+    /**
+     * @param {HTMLElement} btn
+     */
+    function slugFromClosestCard(btn) {
+        var anchor = btn.closest('.sahara-card-motion');
+        if (!anchor) return '';
+        var a = anchor.querySelector('a[href*="/cars/"]');
+        if (!a || !a.getAttribute('href')) return '';
+        var m = /\/cars\/([^/?#]+)/.exec(a.getAttribute('href') || '');
+        if (!m || !m[1]) return '';
+        var seg = decodeURIComponent(m[1]);
+        return /^[0-9]+$/.test(seg) ? '' : seg;
     }
 
     function escapeHtml(s) {
@@ -57,9 +136,11 @@
 
     function syncToggleButtons() {
         document.querySelectorAll('[data-saved-car-toggle]').forEach(function (btn) {
-            var slug = btn.getAttribute('data-slug');
-            if (!slug) return;
-            var filled = isSaved(slug);
+            var idAttr = btn.getAttribute('data-car-id');
+            var slugAttr = btn.getAttribute('data-slug');
+            var nid = normalizeId(idAttr);
+            if (nid === null && !slugAttr) return;
+            var filled = isSaved(nid, slugAttr || undefined);
             btn.setAttribute('aria-pressed', filled ? 'true' : 'false');
             var icon = btn.querySelector('.material-symbols-outlined');
             if (icon) {
@@ -132,11 +213,13 @@
         }
         list.innerHTML = items
             .map(function (x) {
-                var href = base + encodeURIComponent(x.slug);
-                var title = x.title || x.slug;
+                var segment = x.id != null ? String(x.id) : encodeURIComponent(x.slug || '');
+                var href = base + segment;
+                var title = x.title || x.slug || '';
                 var when = formatSavedDate(x.savedAt);
                 var savedOnTpl = i18n.savedOnTpl || 'Saved :date';
                 var meta = when ? savedOnTpl.replace(':date', escapeHtml(when)) : i18n.savedListing || 'Saved listing';
+                var removeKey = x.id != null ? String(x.id) : x.slug || '';
                 return (
                     '<li class="min-w-0">' +
                     '<div class="flex items-stretch gap-2 sm:gap-3 min-w-0">' +
@@ -156,10 +239,14 @@
                     '</span>' +
                     '<span class="material-symbols-outlined shrink-0 text-on-surface-variant group-hover:text-primary transition-colors" aria-hidden="true">chevron_right</span>' +
                     '</a>' +
-                    '<button type="button" class="flex w-12 sm:w-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest text-on-surface-variant shadow-sm transition-[background-color,color,border-color] hover:bg-error-container/30 hover:text-error hover:border-error/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation" data-saved-remove data-slug="' +
-                    escapeHtml(x.slug) +
+                    '<button type="button" class="flex w-12 sm:w-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest text-on-surface-variant shadow-sm transition-[background-color,color,border-color] hover:bg-error-container/30 hover:text-error hover:border-error/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation" data-saved-remove data-car-id="' +
+                    escapeHtml(x.id != null ? String(x.id) : '') +
+                    '" data-slug="' +
+                    escapeHtml(x.slug || '') +
                     '" data-title="' +
                     escapeHtml(title) +
+                    '" data-remove-key="' +
+                    escapeHtml(removeKey) +
                     '" aria-label="' +
                     escapeHtml((i18n.removePrefix || 'Remove ') + title + (i18n.removeSuffix || ' from saved')) +
                     '">' +
@@ -179,20 +266,22 @@
         var removeBtn = e.target.closest('[data-saved-remove]');
         if (removeBtn) {
             e.preventDefault();
-            var rSlug = removeBtn.getAttribute('data-slug');
-            var rTitle = removeBtn.getAttribute('data-title');
-            if (!rSlug) return;
-            toggle(rSlug, rTitle || rSlug);
+            var rid = normalizeId(removeBtn.getAttribute('data-car-id'));
+            var rSlug = removeBtn.getAttribute('data-slug') || '';
+            var rTitle = removeBtn.getAttribute('data-title') || '';
+            if (rid === null && !rSlug) return;
+            toggle(rid, rSlug, rTitle || rSlug);
             return;
         }
 
         var btn = e.target.closest('[data-saved-car-toggle]');
         if (!btn) return;
-        var slug = btn.getAttribute('data-slug');
+        var nid = normalizeId(btn.getAttribute('data-car-id'));
+        var slug = btn.getAttribute('data-slug') || slugFromClosestCard(btn) || '';
         var title = btn.getAttribute('data-title');
-        if (!slug) return;
+        if (nid === null && !slug) return;
         e.preventDefault();
-        toggle(slug, title);
+        toggle(nid, slug, title || slug);
         syncToggleButtons();
     });
 

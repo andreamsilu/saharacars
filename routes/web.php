@@ -64,14 +64,14 @@ Route::get('/sitemap.xml', function () {
 
     $publishedCars = Car::query()
         ->where('is_published', true)
-        ->select(['slug', 'updated_at'])
+        ->select(['id', 'updated_at'])
         ->orderByDesc('updated_at')
         ->get();
 
     foreach ($locales as $locale) {
         foreach ($publishedCars as $car) {
             $urls[] = [
-                'loc' => route('cars.show', ['locale' => $locale, 'slug' => $car->slug]),
+                'loc' => route('cars.show', ['locale' => $locale, 'car' => $car->id]),
                 'lastmod' => optional($car->updated_at)->toAtomString() ?? $now,
                 'changefreq' => 'weekly',
                 'priority' => '0.7',
@@ -88,9 +88,9 @@ Route::get('/sitemap.xml', function () {
 $fallbackLocale = (string) config('app.locale');
 Route::redirect('/cars/bento', '/'.$fallbackLocale.'/cars/bento', 301);
 Route::redirect('/cars', '/'.$fallbackLocale.'/cars', 301);
-Route::get('/cars/{slug}', function (string $slug) use ($fallbackLocale) {
-    return redirect('/'.$fallbackLocale.'/cars/'.$slug, 301);
-})->where('slug', '^[A-Za-z0-9][A-Za-z0-9_-]*$');
+Route::get('/cars/{segment}', function (string $segment) use ($fallbackLocale) {
+    return redirect('/'.$fallbackLocale.'/cars/'.$segment, 301);
+})->where('segment', '^[A-Za-z0-9][A-Za-z0-9_-]*$');
 Route::redirect('/contact', '/'.$fallbackLocale.'/contact', 301);
 Route::redirect('/saved', '/'.$fallbackLocale.'/saved', 301);
 Route::redirect('/why-choose-us', '/'.$fallbackLocale.'/why-choose-us', 301);
@@ -105,7 +105,12 @@ Route::prefix('{locale}')
 
         Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
         Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
-        Route::get('/cars/{slug}', [CarController::class, 'show'])->name('cars.show');
+        Route::get('/cars/{car}', [CarController::class, 'show'])
+            ->whereNumber('car')
+            ->name('cars.show');
+        Route::get('/cars/{slug}', [CarController::class, 'redirectSlugToCar'])
+            ->where('slug', '^(?![0-9]+$)[A-Za-z0-9][A-Za-z0-9_-]*$')
+            ->name('cars.show.slug-legacy');
 
         Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');

@@ -34,12 +34,14 @@ class CarController extends Controller
         return view('cars.bento', compact('cars', 'brandOptions', 'locationOptions', 'sourceCountryOptions', 'importStatusOptions'));
     }
 
-    public function show(string $slug): View
+    /**
+     * Canonical car URL uses numeric `{car}` binding. Legacy slug URLs redirect here (301).
+     */
+    public function show(Car $car): View
     {
-        $car = Car::query()
-            ->where('is_published', true)
-            ->where('slug', $slug)
-            ->firstOrFail();
+        if (! $car->is_published) {
+            abort(404);
+        }
 
         $related = Car::query()
             ->where('is_published', true)
@@ -49,10 +51,11 @@ class CarController extends Controller
             ->get();
 
         $waPhone = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
+        $listingUrl = route('cars.show', ['car' => $car]);
         $waListingMessage = __('public.cars.wa_listing_intro')
             ."\n\n".__('public.cars.wa_listing_vehicle', ['title' => $car->title])
             .($car->year ? ' ('.$car->year.')' : '')
-            ."\n".__('public.cars.wa_listing_link', ['url' => route('cars.show', ['slug' => $car->slug])]);
+            ."\n".__('public.cars.wa_listing_link', ['url' => $listingUrl]);
 
         $legalShort = (string) config('sahara.legal_entity_name');
         $salePlace = $car->location ?: __('public.common.tanzania');
@@ -61,6 +64,19 @@ class CarController extends Controller
             ?: __('public.cars.page_description_fallback', ['company' => $legalShort]);
 
         return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
+    }
+
+    /**
+     * Preserve old bookmarked slug URLs while emitting a single canonical (/cars/{id}).
+     */
+    public function redirectSlugToCar(string $slug): \Illuminate\Http\RedirectResponse
+    {
+        $car = Car::query()
+            ->where('slug', $slug)
+            ->where('is_published', true)
+            ->firstOrFail();
+
+        return redirect()->route('cars.show', ['car' => $car], 301);
     }
 
     private function buildFilteredQuery()

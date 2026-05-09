@@ -6,7 +6,7 @@
 <x-public-seo
     :title="$pageTitle"
     :description="$pageDescription"
-    :canonical="route('cars.show', ['locale' => app()->getLocale(), 'slug' => $car->slug])"
+    :canonical="route('cars.show', ['locale' => app()->getLocale(), 'car' => $car->id])"
     :type="'product'"
     :image="$car->hero_image_path ? asset('storage/'.$car->hero_image_path) : null"
     :structured-data="[
@@ -21,7 +21,7 @@
             'priceCurrency' => 'TZS',
             'price' => $car->price_tzs,
             'availability' => 'https://schema.org/InStock',
-            'url' => route('cars.show', ['locale' => app()->getLocale(), 'slug' => $car->slug]),
+            'url' => route('cars.show', ['locale' => app()->getLocale(), 'car' => $car->id]),
         ],
     ]"
 />
@@ -338,6 +338,7 @@
     type="button"
     class="bg-surface-container-high p-2 min-h-[44px] min-w-[44px] rounded-full hover:bg-error-container/30 hover:text-error transition-colors focus-visible:ring-2 focus-visible:ring-primary"
     data-saved-car-toggle
+    data-car-id="{{ $car->id }}"
     data-slug="{{ $car->slug }}"
     data-title="{{ $car->title }}"
     aria-pressed="false"
@@ -392,7 +393,7 @@
 </div>
 <div class="sahara-stagger-children grid grid-cols-1 md:grid-cols-3 gap-6">
 @forelse ($related as $rel)
-<a class="bg-surface-container-lowest rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all block" href="{{ route('cars.show', ['slug' => $rel->slug]) }}">
+<a class="bg-surface-container-lowest rounded-2xl overflow-hidden group shadow-sm hover:shadow-xl transition-all block" href="{{ route('cars.show', ['car' => $rel->id]) }}">
 <div class="aspect-[16/10] overflow-hidden relative bg-surface-dim">
 @php
   $relImg = $rel->hero_image_path ? asset('storage/' . $rel->hero_image_path) : asset('images/home-showroom-premium-960.jpg');
