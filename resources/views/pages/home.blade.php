@@ -100,10 +100,6 @@
           radial-gradient(180px 120px at 15% 100%, rgba(232, 200, 137, 0.22), transparent 70%),
           #ffffff;
       }
-      .perf-defer-section {
-        content-visibility: auto;
-        contain-intrinsic-size: 800px;
-      }
     </style>
 
 </head>
@@ -299,7 +295,7 @@
     </article>
 </div>
 </section>
-<section class="perf-defer-section max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
         <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ $homeShortcutsTitle ?? __('public.home.shortcuts_title_fallback') }}</h2>
@@ -312,7 +308,7 @@
     </div>
 </div>
 </section>
-<section class="perf-defer-section max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="{{ __('public.home.highlights_aria') }}">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="{{ __('public.home.highlights_aria') }}">
 <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-6 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
         <div>
@@ -378,7 +374,7 @@
     $featuredList = $featuredCollection->take(10);
 @endphp
 <!-- Content: Featured Cars Section -->
-<section class="perf-defer-section max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
 <div class="space-y-2 min-w-0 text-center sm:text-left">
 <span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">{{ __('public.home.featured_kicker') }}</span>
@@ -401,7 +397,7 @@
 </div>
 </section>
 @if (!empty($homeBrands ?? []))
-<section class="perf-defer-section max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
 <h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ __('public.home.brands_title') }}</h2>
@@ -434,7 +430,7 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
     :title="__('public.home.partner_title')"
     :subtitle="__('public.home.partner_subtitle')"
 />
-<section class="perf-defer-section section-editorial px-4 sm:px-6 section-wash-soft">
+<section class="section-editorial px-4 sm:px-6 section-wash-soft">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 <div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
