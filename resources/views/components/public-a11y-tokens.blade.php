@@ -1,6 +1,5 @@
 {{--
-  WCAG-oriented baseline: visible focus, reduced motion, skip-link companion styles.
-  Include inside a <style> block after public-design-tokens (do not nest <style> tags).
+  WCAG-oriented baseline (source for sahara-public-tokens.css). Loaded via linked stylesheet on the site.
 --}}
   /* Visible focus: links / chromeless controls use brown outline; form fields use .ghost-border (gold) — avoids browser default blue rings. */
   :where(a, button, summary):focus {

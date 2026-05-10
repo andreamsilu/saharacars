@@ -75,10 +75,6 @@
     </script>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-      @include('components.public-typography-tokens')
-      @include('components.public-effects-tokens')
-      @include('components.public-design-tokens')
-      @include('components.public-a11y-tokens')
       .section-wash {
         background:
           linear-gradient(180deg, rgba(235, 235, 235, 0.95), rgba(243, 243, 243, 1));

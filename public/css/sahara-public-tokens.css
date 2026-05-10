@@ -1,0 +1,379 @@
+/* sahara-public-tokens.css — merged from Blade token partials; external sheet so the HTML parser never sees token text as markup */
+/* --- public-typography-tokens --- */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11", "ss01";
+  overflow-wrap: anywhere;
+}
+h1, h2, h3, .font-headline {
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.font-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+input, select, textarea, button {
+  font-weight: 500;
+}
+
+/*
+ * Editorial scale — matches Why Sahara (why-choose-us): hero intro, section titles, kickers.
+ * Use with semantic color tokens (e.g. text-on-surface-variant, text-secondary) in markup.
+ */
+.text-editorial-body {
+  font-size: 1rem;
+  line-height: 1.625;
+}
+@media (min-width: 768px) {
+  .text-editorial-body {
+    font-size: 1.125rem;
+  }
+}
+@media (min-width: 1024px) {
+  .text-editorial-body {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+}
+
+.text-editorial-hero {
+  font-size: 1.875rem;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+@media (min-width: 640px) {
+  .text-editorial-hero {
+    font-size: 2.25rem;
+  }
+}
+@media (min-width: 768px) {
+  .text-editorial-hero {
+    font-size: 3rem;
+  }
+}
+
+.text-editorial-section-title {
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+@media (min-width: 640px) {
+  .text-editorial-section-title {
+    font-size: 1.875rem;
+  }
+}
+@media (min-width: 768px) {
+  .text-editorial-section-title {
+    font-size: 2rem;
+  }
+}
+
+.text-editorial-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .text-editorial-kicker {
+    font-size: 0.875rem;
+  }
+}
+
+/* --- public-effects-tokens + motion --- */
+.glass-effect {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.tap-highlight-transparent {
+  -webkit-tap-highlight-color: transparent;
+}
+/* Base canvas aligns with logo neutral #f3f3f3 (set in Tailwind background/surface); primary is for emphasis only */
+.tonal-shift-layering {
+  background: linear-gradient(to top, rgba(243, 243, 243, 1), rgba(255, 255, 255, 0));
+}
+/* Page wash: warm gold/cream only (no blue/green tints) */
+.attention-mesh {
+  background:
+    radial-gradient(900px 420px at 0% 0%, rgba(138, 101, 40, 0.12), transparent 62%),
+    radial-gradient(760px 360px at 100% 100%, rgba(240, 223, 196, 0.32), transparent 66%);
+}
+.attention-panel {
+  background:
+    radial-gradient(220px 120px at 85% 10%, rgba(138, 101, 40, 0.16), transparent 65%),
+    radial-gradient(180px 120px at 15% 100%, rgba(232, 200, 137, 0.18), transparent 70%),
+    #ffffff;
+}
+/* Sahara public motion: subtle entrance, scroll reveal, and hovers. Honor prefers-reduced-motion. */
+@keyframes sahara-fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes sahara-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes sahara-scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-motion-header {
+    animation: sahara-fade-in-up 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .sahara-motion-footer {
+    animation: sahara-fade-in 0.5s ease-out 0.04s both;
+  }
+  .sahara-motion-fab {
+    animation: sahara-scale-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+  }
+  .sahara-motion-nav-bottom {
+    animation: sahara-fade-in-up 0.42s ease-out 0.12s both;
+  }
+}
+
+.sahara-live-panel {
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-live-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px rgba(25, 28, 30, 0.1);
+  }
+}
+
+.sahara-live-cta {
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-live-cta:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+  }
+  .sahara-live-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sahara-soft-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(138, 101, 40, 0.0); }
+    50% { box-shadow: 0 0 0 8px rgba(138, 101, 40, 0.08); }
+  }
+  .sahara-pulse-subtle {
+    animation: sahara-soft-pulse 2.8s ease-in-out infinite;
+  }
+}
+
+.sahara-card-motion {
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-card-motion:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Intersection-based reveal: applied by public-motion-init to #main-content > * */
+.sahara-reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sahara-reveal.sahara-reveal--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .sahara-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .sahara-motion-header,
+  .sahara-motion-footer,
+  .sahara-motion-fab,
+  .sahara-motion-nav-bottom {
+    animation: none;
+  }
+  .sahara-live-panel,
+  .sahara-live-cta {
+    transition: none;
+  }
+  .sahara-pulse-subtle {
+    animation: none;
+  }
+}
+
+/* Car grids: light stagger on first paint (cards also scroll inside parent) */
+@media (prefers-reduced-motion: no-preference) {
+  .sahara-stagger-children > * {
+    animation: sahara-fade-in-up 0.42s ease backwards;
+  }
+  .sahara-stagger-children > *:nth-child(1) { animation-delay: 0.02s; }
+  .sahara-stagger-children > *:nth-child(2) { animation-delay: 0.04s; }
+  .sahara-stagger-children > *:nth-child(3) { animation-delay: 0.06s; }
+  .sahara-stagger-children > *:nth-child(4) { animation-delay: 0.08s; }
+  .sahara-stagger-children > *:nth-child(5) { animation-delay: 0.1s; }
+  .sahara-stagger-children > *:nth-child(6) { animation-delay: 0.12s; }
+  .sahara-stagger-children > *:nth-child(7) { animation-delay: 0.14s; }
+  .sahara-stagger-children > *:nth-child(8) { animation-delay: 0.16s; }
+  .sahara-stagger-children > *:nth-child(9) { animation-delay: 0.18s; }
+  .sahara-stagger-children > *:nth-child(10) { animation-delay: 0.2s; }
+  .sahara-stagger-children > *:nth-child(11) { animation-delay: 0.22s; }
+  .sahara-stagger-children > *:nth-child(12) { animation-delay: 0.24s; }
+  .sahara-stagger-children > *:nth-child(13) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(14) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(15) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(16) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(17) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(18) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(19) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(20) { animation-delay: 0.25s; }
+  .sahara-stagger-children > *:nth-child(n+21) { animation-delay: 0.26s; }
+}
+
+/* --- public-design-tokens --- */
+/* Gold CTAs: always white label (Tailwind CDN may omit `text-on-primary` when theme is partial; avoids body text-on-surface inheritance). */
+.cta-gradient {
+  background-color: #8a6528;
+  color: #ffffff;
+}
+.text-on-primary {
+  color: #ffffff !important;
+}
+.section-editorial { padding-top: 7rem; padding-bottom: 5rem; }
+.section-editorial-compact { padding-top: 4rem; padding-bottom: 3rem; }
+@media (min-width: 768px) {
+  .section-editorial { padding-top: 8rem; padding-bottom: 6rem; }
+  .section-editorial-compact { padding-top: 6rem; padding-bottom: 4rem; }
+}
+
+/*
+ * Public pages with fixed <x-mobile-nav /> need bottom padding so content clears the bar
+ * and iOS safe-area (home indicator). Hidden on md+ where bottom nav is not shown.
+ */
+.pb-mobile-nav {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 768px) {
+  .pb-mobile-nav {
+    padding-bottom: 0;
+  }
+}
+
+/*
+ * Shared subtle border utility used by inputs, selects, chips, and pills.
+ * Explicitly themed to avoid browser/Tailwind default blue focus styling.
+ */
+.ghost-border {
+  border: 1px solid rgba(195, 198, 209, 0.9);
+}
+
+:is(input, select, textarea).ghost-border:focus,
+:is(input, select, textarea).ghost-border:focus-visible {
+  border-color: rgba(138, 101, 40, 0.55);
+  box-shadow: 0 0 0 2px rgba(138, 101, 40, 0.14);
+}
+
+/* Native checkbox/radio accent (otherwise browsers often show blue). */
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: #8a6528;
+}
+
+/*
+ * Tailwind’s default ring color reads as blue; `ring-primary/20` etc. must set --tw-ring-color
+ * (plain `ring-primary` is overridden in <x-navbar /> with --theme-primary).
+ */
+[class*='ring-primary/'] {
+  --tw-ring-color: rgba(138, 101, 40, 0.45) !important;
+}
+
+/* --- public-a11y-tokens --- */
+/* Visible focus: links / chromeless controls use brown outline; form fields use .ghost-border (gold) — avoids browser default blue rings. */
+  :where(a, button, summary):focus {
+    outline: none;
+  }
+  :where(a, button, summary):focus-visible {
+    outline: 2px solid #5c4320;
+    outline-offset: 2px;
+  }
+  :where(input, select, textarea):focus,
+  :where(input, select, textarea):focus-visible {
+    outline: none;
+  }
+  /* High-contrast focus on dark / filled buttons (keep offset readable on gold). */
+  .focus-ring-on-dark:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+  .focus-ring-inset:focus-visible {
+    outline: 2px solid #5c4320;
+    outline-offset: -2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .partner-track {
+      animation: none !important;
+    }
+    .pulse-chip,
+    .float-orb {
+      animation: none !important;
+    }
+    .animate-ping {
+      animation: none !important;
+    }
+  }
+
+  /* 2.4.1 Skip link (after global focus rules so visible styles win). */
+  .skip-to-main {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-to-main:focus,
+  .skip-to-main:focus-visible {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 99999;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+    clip: auto;
+    overflow: visible;
+    white-space: normal;
+    border-radius: 0.5rem;
+    background: #ffffff;
+    color: #5c4320;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    box-shadow: 0 10px 25px rgba(25, 28, 30, 0.15);
+    text-decoration: none;
+    outline: 3px solid #5c4320;
+    outline-offset: 2px;
+  }
+
+/* Regenerate: php scripts/merge-sahara-public-tokens-css.php */

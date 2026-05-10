@@ -74,7 +74,6 @@
             -moz-osx-font-smoothing: grayscale;
             font-feature-settings: "cv11", "ss01";
         }
-        @include('components.public-motion-tokens')
         h1, h2, h3, .font-headline {
             font-family: 'Manrope', sans-serif;
             letter-spacing: -0.015em;
@@ -89,7 +88,6 @@
             font-family: 'Inter', sans-serif;
             font-weight: 500;
         }
-        @include('components.public-a11y-tokens')
         .admin-link:hover { text-decoration: none; }
 
         .icon-info { color: #8a6528; }

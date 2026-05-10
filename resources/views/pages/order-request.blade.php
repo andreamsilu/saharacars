@@ -10,12 +10,6 @@
     />
     <x-public-head-assets />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @include('components.public-typography-tokens')
-        @include('components.public-effects-tokens')
-        @include('components.public-design-tokens')
-        @include('components.public-a11y-tokens')
-    </style>
 </head>
 <body class="bg-surface font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
 <x-skip-to-main />

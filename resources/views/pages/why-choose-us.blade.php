@@ -75,10 +75,6 @@
     </script>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-      @include('components.public-typography-tokens')
-      @include('components.public-effects-tokens')
-      @include('components.public-design-tokens')
-      @include('components.public-a11y-tokens')
       .why-fade-up {
         opacity: 0;
         transform: translateY(14px);
