@@ -167,15 +167,16 @@
         </picture>
         <div class="absolute inset-0 bg-slate-950/20"></div>
     </div>
-    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
-        <div class="max-w-3xl mx-auto mb-4 sm:mb-5">
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
+        {{-- White text scoped here only; avoid inheriting onto the light search card (select/input were white-on-white). --}}
+        <div class="max-w-3xl mx-auto mb-4 sm:mb-5 text-white">
             <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white">{{ config('sahara.legal_entity_name') }}</p>
             <h1 class="mt-1 font-headline text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wide text-white">
                 {{ __('public.home.hero_title') }}
             </h1>
             <p class="mt-2 text-xs sm:text-sm text-white/90">{{ __('public.home.hero_subtitle') }}</p>
         </div>
-        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left text-on-surface" id="home-hero-search-form">
+        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left text-on-surface text-neutral-900 [color-scheme:light]" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
                 <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
                     <span class="font-headline font-extrabold text-primary tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
@@ -188,12 +189,12 @@
             <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
                 <div class="min-w-0 sm:col-span-1 lg:col-span-5">
                     <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_keyword') }}</label>
-                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-primary/30" />
+                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-neutral-900 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/30" />
                 </div>
                 <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">{{ __('public.common.search') }}</button>
                 <div class="sm:col-span-1 lg:col-span-3">
                     <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_brand') }}</label>
-                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
+                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-white px-3 py-2.5 text-sm ghost-border text-neutral-900 focus:ring-2 focus:ring-primary/30">
                         <option value="">{{ __('public.home.any_brand') }}</option>
                         @foreach ($brandOptions as $brandOption)
                             <option value="{{ $brandOption }}">{{ $brandOption }}</option>
@@ -202,7 +203,7 @@
                 </div>
                 <div class="sm:col-span-1 lg:col-span-2">
                     <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_price_min') }}</label>
-                    <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="{{ __('public.common.optional') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface" />
+                    <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="{{ __('public.common.optional') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-neutral-900 placeholder:text-neutral-500" />
                 </div>
             </div>
             <div class="pt-2.5 mt-1 border-t border-outline-variant/20 text-center">
