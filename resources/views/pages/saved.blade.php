@@ -9,15 +9,7 @@
     :canonical="route('saved', ['locale' => app()->getLocale()])"
     :noindex="true"
 />
-<script src="https://cdn.tailwindcss.com" defer></script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" media="print" onload="this.media='all'"/>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"/></noscript>
-<link rel="preload" as="style" href="{{ asset('css/material-symbols-outlined.css') }}"/>
-<link rel="stylesheet" href="{{ asset('css/material-symbols-outlined.css') }}" media="print" onload="this.media='all'"/>
-<noscript><link rel="stylesheet" href="{{ asset('css/material-symbols-outlined.css') }}"/></noscript>
+<x-public-head-assets />
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -82,6 +74,7 @@
         },
       }
     </script>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
       @include('components.public-typography-tokens')
       @include('components.public-effects-tokens')
