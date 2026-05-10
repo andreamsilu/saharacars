@@ -174,15 +174,15 @@
         </picture>
         <div class="absolute inset-0 bg-slate-950/20"></div>
     </div>
-    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
-        <div class="hidden md:block max-w-3xl mx-auto mb-4 sm:mb-5">
-            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white/75">{{ config('sahara.legal_entity_name') }}</p>
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
+        <div class="max-w-3xl mx-auto mb-4 sm:mb-5">
+            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white">{{ config('sahara.legal_entity_name') }}</p>
             <h1 class="mt-1 font-headline text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wide text-white">
                 {{ __('public.home.hero_title') }}
             </h1>
-            <p class="mt-2 text-xs sm:text-sm text-white/80">{{ __('public.home.hero_subtitle') }}</p>
+            <p class="mt-2 text-xs sm:text-sm text-white/90">{{ __('public.home.hero_subtitle') }}</p>
         </div>
-        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
+        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left text-on-surface" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
                 <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
                     <span class="font-headline font-extrabold text-primary tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
@@ -219,18 +219,18 @@
         @if (count($homeQuickFilterChips ?? []) > 0)
             <div class="flex flex-wrap justify-center gap-2 mt-4" role="list" aria-label="{{ __('public.home.quick_filters_aria') }}">
                 @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
-                    <a href="{{ $quickFilterChip['url'] }}" role="listitem" class="inline-flex items-center rounded-full border border-primary/20 bg-surface-container-lowest px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-on-surface hover:border-primary/40 hover:bg-surface-container-high transition-colors">{{ $quickFilterChip['label'] }}</a>
+                    <a href="{{ $quickFilterChip['url'] }}" role="listitem" class="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white hover:border-white/40 hover:bg-white/15 transition-colors">{{ $quickFilterChip['label'] }}</a>
                 @endforeach
             </div>
         @endif
         <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center gap-2.5 sm:gap-3">
-            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="sahara-live-cta min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
-                <span class="material-symbols-outlined text-primary text-[18px]" aria-hidden="true">chat</span> {{ __('public.home.whatsapp_us') }}
+            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="sahara-live-cta min-h-[44px] justify-center rounded-full border-2 border-white/40 bg-transparent text-white text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-white hover:bg-white/10 transition-colors">
+                <span class="material-symbols-outlined text-white text-[18px]" aria-hidden="true">chat</span> {{ __('public.home.whatsapp_us') }}
             </a>
-            <a href="{{ route('cars.index') }}" class="sahara-live-cta min-h-[44px] justify-center rounded-full bg-primary text-on-primary text-sm font-bold px-5 inline-flex items-center hover:opacity-95">{{ __('public.home.browse_all_stock') }}</a>
+            <a href="{{ route('cars.index') }}" class="sahara-live-cta min-h-[44px] justify-center rounded-full border-2 border-white bg-white text-slate-900 text-sm font-bold px-5 inline-flex items-center hover:bg-white/95">{{ __('public.home.browse_all_stock') }}</a>
         </div>
         @if (($homeAnnouncements ?? collect())->isNotEmpty())
-            <div class="mt-3 pt-4 border-t border-outline-variant/20 text-left" aria-labelledby="home-offers-heading">
+            <div class="mt-3 pt-4 border-t border-white/15 text-left text-on-surface" aria-labelledby="home-offers-heading">
                 <div class="rounded-2xl border border-sky-200/30 bg-surface-container-low/90 px-3 py-2.5 sm:px-4 sm:py-3 shadow-sm">
                     <div class="mb-1.5 text-center">
                         <h2 id="home-offers-heading" class="font-headline text-sm font-extrabold text-primary inline-flex items-center gap-2">
