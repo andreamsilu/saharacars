@@ -107,7 +107,6 @@ return [
         'no_cars_title' => 'No cars yet',
         'no_cars_body' => 'Car highlights will appear here as soon as new cars are added.',
         'brands_title' => 'Car brands in our inventory',
-        'brands_subtitle' => 'From the admin brand catalog. Tap a brand to view matching cars.',
         'brand_aria' => 'View :brand cars',
         'brand_logo_alt' => ':brand logo',
         'stat_buyers' => 'Buyers matched across Tanzania',

@@ -107,7 +107,6 @@ return [
         'no_cars_title' => 'Bado hakuna magari',
         'no_cars_body' => 'Vipaumbele vya magari vitaonekana hapa mara magari mapya yatakapoongezwa.',
         'brands_title' => 'Chapa za magari kwenye hesabu yetu',
-        'brands_subtitle' => 'Kutoka katalogi ya chapa kwenye mfumo wa msimamizi. Gusa chapa kuona magari yanayolingana.',
         'brand_aria' => 'Tazama magari :brand',
         'brand_logo_alt' => 'nembo ya :brand',
         'stat_buyers' => 'Wanunuzi walioratibiwa Tanzania nzima',

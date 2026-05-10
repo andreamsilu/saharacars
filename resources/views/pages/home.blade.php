@@ -393,9 +393,8 @@
 @if (!empty($homeBrands ?? []))
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
+<div class="text-center sm:text-left">
 <h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ __('public.home.brands_title') }}</h2>
-<p class="text-xs sm:text-sm text-on-surface-variant">{{ __('public.home.brands_subtitle') }}</p>
 </div>
 <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
 @foreach (($homeBrands ?? []) as $brand)
