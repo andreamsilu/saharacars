@@ -112,7 +112,7 @@
 <ul
     id="saved-cars-render-list"
     class="list-none m-0 p-0 grid gap-3 sm:gap-4"
-    data-cars-base-url="{{ rtrim(route('cars.index'), '/').'/' }}"
+    data-cars-base-url="{{ url('/cars/') }}"
     data-browse-url="{{ route('cars.index') }}"
     aria-live="polite"
     aria-relevant="additions removals"

@@ -68,15 +68,13 @@ Route::get('/sitemap.xml', function () {
         ->orderByDesc('updated_at')
         ->get();
 
-    foreach ($locales as $locale) {
-        foreach ($publishedCars as $car) {
-            $urls[] = [
-                'loc' => $car->publicShowUrl($locale),
-                'lastmod' => optional($car->updated_at)->toAtomString() ?? $now,
-                'changefreq' => 'weekly',
-                'priority' => '0.7',
-            ];
-        }
+    foreach ($publishedCars as $car) {
+        $urls[] = [
+            'loc' => $car->publicShowUrl(),
+            'lastmod' => optional($car->updated_at)->toAtomString() ?? $now,
+            'changefreq' => 'weekly',
+            'priority' => '0.7',
+        ];
     }
 
     $xml = view('sitemap', ['urls' => $urls])->render();
@@ -88,9 +86,12 @@ Route::get('/sitemap.xml', function () {
 $fallbackLocale = (string) config('app.locale');
 Route::redirect('/cars/bento', '/'.$fallbackLocale.'/cars/bento', 301);
 Route::redirect('/cars', '/'.$fallbackLocale.'/cars', 301);
-Route::get('/cars/{segment}', function (string $segment) use ($fallbackLocale) {
-    return redirect('/'.$fallbackLocale.'/cars/'.$segment, 301);
-})->where('segment', '^[A-Za-z0-9][A-Za-z0-9_-]*$');
+
+/** Public inventory detail — no locale prefix; published-only in {@see CarController::show}. */
+Route::middleware(['default_locale'])
+    ->get('/cars/{car}', [CarController::class, 'show'])
+    ->where('car', '^[A-Za-z0-9][A-Za-z0-9_-]*$')
+    ->name('cars.show');
 Route::redirect('/contact', '/'.$fallbackLocale.'/contact', 301);
 Route::redirect('/saved', '/'.$fallbackLocale.'/saved', 301);
 Route::redirect('/why-choose-us', '/'.$fallbackLocale.'/why-choose-us', 301);
@@ -105,10 +106,10 @@ Route::prefix('{locale}')
 
         Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
         Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
-        // One segment: numeric → primary key; otherwise legacy slug → 301 to canonical id URL.
-        Route::get('/cars/{car}', [CarController::class, 'show'])
-            ->where('car', '^[A-Za-z0-9][A-Za-z0-9_-]*$')
-            ->name('cars.show');
+        // Legacy: /{locale}/cars/… → canonical /cars/…
+        Route::get('/cars/{car}', function (string $locale, string $car) {
+            return redirect()->to(url('/cars/'.$car), 301);
+        })->where('car', '^[A-Za-z0-9][A-Za-z0-9_-]*$');
 
         Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');

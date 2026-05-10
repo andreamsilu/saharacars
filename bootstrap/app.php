@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminAuthenticate::class,
             'locale' => \App\Http\Middleware\SetLocale::class,
+            'default_locale' => \App\Http\Middleware\SetDefaultAppLocale::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -36,7 +36,7 @@ class CarController extends Controller
     }
 
     /**
-     * Canonical URL is `/cars/{id}`. Legacy slug URLs hit the same route and 301 to the id.
+     * Canonical URL is `/cars/{id}` (no locale). Legacy `/{locale}/cars/…` 301s here. Slug segments 301 to `/cars/{id}`.
      * Resolves explicitly so unpublished inventory never binds via implicit route model binding.
      */
     public function show(string $car): View|RedirectResponse
