@@ -61,6 +61,7 @@
         .bg-secondary { background-color: var(--theme-secondary) !important; }
         .bg-primary-container { background-color: var(--theme-primary-container) !important; }
         .text-primary-container { color: var(--theme-primary-container) !important; }
+        .text-on-primary { color: #ffffff !important; }
 
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
         .smooth { transition: all .2s ease; }

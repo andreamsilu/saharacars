@@ -22,6 +22,7 @@
         .bg-primary-container { background-color: var(--theme-primary-container) !important; }
         .cta-gradient {
             background-color: var(--theme-primary);
+            color: #ffffff;
         }
     </style>
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-2 sm:gap-3" aria-label="{{ __('site.nav.aria_main') }}">

@@ -1,5 +1,11 @@
-/* CTA: both stops dark enough for white label text (WCAG AA ≥4.5:1) */
-.cta-gradient { background-color: #8a6528; }
+/* Gold CTAs: always white label (Tailwind CDN may omit `text-on-primary` when theme is partial; avoids body text-on-surface inheritance). */
+.cta-gradient {
+  background-color: #8a6528;
+  color: #ffffff;
+}
+.text-on-primary {
+  color: #ffffff !important;
+}
 .section-editorial { padding-top: 7rem; padding-bottom: 5rem; }
 .section-editorial-compact { padding-top: 4rem; padding-bottom: 3rem; }
 @media (min-width: 768px) {
