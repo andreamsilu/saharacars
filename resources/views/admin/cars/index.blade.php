@@ -358,12 +358,21 @@
                                         <span class="sr-only">Delete</span>
                                     </button>
                                 </form>`;
+                            const publicBtn = row.is_published
+                                ? `<a href="${row.public_site_url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-9 h-9 text-secondary hover:bg-secondary-container/20 rounded-full smooth border border-secondary/35 bg-white" title="Open on public website" aria-label="Open on public website">
+                                        <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                                        <span class="sr-only">Public site</span>
+                                   </a>`
+                                : `<span class="inline-flex items-center justify-center w-9 h-9 text-on-surface-variant/50 rounded-full border border-slate-200/80 bg-surface-container-high/50 cursor-not-allowed" title="Draft — publish the listing for a public URL" aria-label="Public page unavailable until published">
+                                        <span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                                   </span>`;
                             return `
                                 <div class="px-6 py-5 text-right">
                                     <div class="flex items-center justify-end gap-2 flex-wrap">
-                                        <a href="${row.show_url}" class="inline-flex items-center justify-center w-9 h-9 text-primary hover:bg-slate-100 hover:text-primary rounded-full smooth border border-primary/30 bg-white" title="View details" aria-label="View details">
+                                        ${publicBtn}
+                                        <a href="${row.show_url}" class="inline-flex items-center justify-center w-9 h-9 text-primary hover:bg-slate-100 hover:text-primary rounded-full smooth border border-primary/30 bg-white" title="Admin details (this panel)" aria-label="Admin details">
                                             <span class="material-symbols-outlined text-[20px] icon-info">visibility</span>
-                                            <span class="sr-only">View</span>
+                                            <span class="sr-only">Admin view</span>
                                         </a>
                                         <a href="${row.edit_url}" class="inline-flex items-center justify-center w-9 h-9 text-on-surface-variant hover:bg-surface-container-high rounded-full smooth border border-slate-300/80 bg-white" title="Edit" aria-label="Edit">
                                             <span class="material-symbols-outlined text-[20px] icon-neutral">edit</span>

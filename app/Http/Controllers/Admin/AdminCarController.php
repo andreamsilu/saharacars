@@ -78,7 +78,9 @@ class AdminCarController extends Controller
             ->take($length)
             ->get();
 
-        $data = $cars->map(function (Car $car): array {
+        $defaultLocale = (string) config('app.locale');
+
+        $data = $cars->map(function (Car $car) use ($defaultLocale): array {
             return [
                 'id' => $car->id,
                 'title' => $car->title,
@@ -93,6 +95,8 @@ class AdminCarController extends Controller
                 'hero_image_path' => $car->hero_image_path,
                 'updated_at' => $car->updated_at?->format('M d, Y'),
                 'show_url' => route('admin.cars.show', $car),
+                /** Public storefront URL (locale prefix). Drafts still 404 for visitors until published. */
+                'public_site_url' => url('/'.$defaultLocale.'/cars/'.$car->getKey()),
                 'edit_url' => route('admin.cars.edit', $car),
                 'delete_url' => route('admin.cars.destroy', $car),
             ];

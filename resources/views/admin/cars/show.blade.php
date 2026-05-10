@@ -4,12 +4,33 @@
 @section('breadcrumb', 'Cars / View')
 
 @section('content')
+    @php
+        $publicSiteUrl = url('/' . config('app.locale') . '/cars/' . $car->getKey());
+    @endphp
+
     <div class="flex items-end justify-between gap-4 mb-8">
         <div>
             <h1 class="text-4xl font-black tracking-tight text-primary font-headline">View car</h1>
             <p class="text-sm text-on-surface-variant mt-2">{{ $car->title }}</p>
+            <p class="text-xs text-on-surface-variant mt-3 max-w-2xl leading-relaxed">
+                <strong class="text-on-surface">Admin vs website:</strong> This page is only in the admin panel.
+                The public listing lives at <code class="text-xs bg-surface-container-high px-1 rounded">{{ $publicSiteUrl }}</code>.
+                @if ($car->is_published)
+                    Visitors can open it; use “Open public page” below.
+                @else
+                    <span class="text-tertiary font-semibold">This listing is not published — the public URL will show 404 until you turn on <strong>Published</strong> in Edit.</span>
+                @endif
+            </p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <a href="{{ $publicSiteUrl }}" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 min-h-10 px-4 rounded-lg border text-sm font-semibold transition-colors {{ $car->is_published ? 'border-secondary/40 bg-secondary-container/15 text-on-secondary-container hover:bg-secondary-container/25' : 'border-outline-variant/50 text-on-surface-variant cursor-not-allowed pointer-events-none opacity-60' }}"
+                @if ($car->is_published) title="Open public listing in new tab" @else title="Publish this listing first — public visitors cannot see drafts" @endif
+                @if (! $car->is_published) aria-disabled="true" @endif>
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                Open public page
+            </a>
+            <div class="flex items-center gap-2">
             <a href="{{ route('admin.cars.index') }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container-high border border-slate-200/80 text-primary" title="Back to inventory" aria-label="Back to inventory">
                 <span class="material-symbols-outlined text-[18px]">arrow_back</span>
                 <span class="sr-only">Back</span>
@@ -18,6 +39,7 @@
                 <span class="material-symbols-outlined text-[18px]">edit</span>
                 <span class="sr-only">Edit</span>
             </a>
+            </div>
         </div>
     </div>
 
