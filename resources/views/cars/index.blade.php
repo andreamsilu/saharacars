@@ -108,8 +108,8 @@
 <section class="flex-1 min-w-0">
 <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-end mb-6 sm:mb-8 gap-4">
 <div class="min-w-0 text-center sm:text-left">
-<h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-primary tracking-tight">{{ __('public.cars_index.title') }}</h1>
-<p class="text-on-surface-variant font-body mt-1">
+<h1 class="font-headline text-editorial-hero font-extrabold text-primary tracking-tight">{{ __('public.cars_index.title') }}</h1>
+<p class="text-on-surface-variant font-body mt-1 text-editorial-body">
 @if ($cars->total() === 1)
 {{ __('public.cars_index.found_one', ['count' => number_format($cars->total())]) }}
 @else

@@ -208,32 +208,32 @@
 <section class="grid grid-cols-2 md:grid-cols-5 gap-4">
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">calendar_today</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.year') }}</span>
+<span class="font-label text-editorial-kicker text-outline">{{ __('public.car_show.year') }}</span>
 <span class="font-headline font-bold text-lg">{{ $car->year ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">speed</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.mileage') }}</span>
+<span class="font-label text-editorial-kicker text-outline">{{ __('public.car_show.mileage') }}</span>
 <span class="font-headline font-bold text-lg">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">settings_suggest</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.transmission') }}</span>
+<span class="font-label text-editorial-kicker text-outline">{{ __('public.car_show.transmission') }}</span>
 <span class="font-headline font-bold text-lg">{{ $car->transmission ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">ev_station</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.fuel_type') }}</span>
+<span class="font-label text-editorial-kicker text-outline">{{ __('public.car_show.fuel_type') }}</span>
 <span class="font-headline font-bold text-lg">{{ $car->fuel ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">checklist</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.condition') }}</span>
+<span class="font-label text-editorial-kicker text-outline">{{ __('public.car_show.condition') }}</span>
 <span class="font-headline font-bold text-lg">{{ $conditionText }}</span>
 </div>
 <div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary">precision_manufacturing</span>
-<span class="text-[10px] font-label uppercase tracking-widest text-outline">{{ __('public.car_show.engine_capacity') }}</span>
+<span class="font-label text-editorial-kicker text-outline">{{ __('public.car_show.engine_capacity') }}</span>
 <span class="font-headline font-bold text-lg">
 {{ $car->engine_capacity_cc ? number_format($car->engine_capacity_cc) . ' cc' : ($car->engine ?: __('public.common.dash')) }}
 </span>
@@ -253,12 +253,12 @@
 @endphp
 @if ($hasCarDetails)
 <section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel" aria-labelledby="car-details-heading">
-<h2 id="car-details-heading" class="font-headline text-2xl font-extrabold mb-2 tracking-tight text-primary">{{ __('public.car_show.details_heading') }}</h2>
-<p class="text-sm text-on-surface-variant mb-6">{{ __('public.car_show.details_intro') }}</p>
+<h2 id="car-details-heading" class="font-headline text-editorial-section-title font-extrabold mb-2 tracking-tight text-primary leading-tight">{{ __('public.car_show.details_heading') }}</h2>
+<p class="text-on-surface-variant text-editorial-body mb-6">{{ __('public.car_show.details_intro') }}</p>
 <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
 @foreach ($carDetails as $row)
 <div class="flex flex-col gap-1 border-b border-outline-variant/20 pb-3 sm:border-0 sm:pb-0">
-<dt class="font-label text-[10px] font-bold uppercase tracking-widest text-outline">{{ $row['label'] }}</dt>
+<dt class="font-label text-editorial-kicker text-outline">{{ $row['label'] }}</dt>
 <dd class="font-headline text-lg font-bold text-on-surface">{{ $detail($row['value']) }}</dd>
 </div>
 @endforeach
@@ -267,8 +267,8 @@
 @endif
 <!-- Vehicle Description -->
 <section class="bg-surface-container-lowest p-5 sm:p-6 md:p-8 rounded-xl shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-<h2 class="font-headline text-2xl font-extrabold mb-6 tracking-tight">{{ __('public.car_show.description_heading') }}</h2>
-<div class="space-y-4 text-on-surface-variant leading-relaxed font-body">
+<h2 class="font-headline text-editorial-section-title font-extrabold mb-6 tracking-tight leading-tight text-on-surface">{{ __('public.car_show.description_heading') }}</h2>
+<div class="space-y-4 text-on-surface-variant text-editorial-body font-body">
 @if (!empty($car->description))
 <p class="whitespace-pre-line">{{ $car->description }}</p>
 @else
@@ -278,31 +278,31 @@
 </section>
 <!-- Detailed Specs List -->
 <section>
-<h3 class="font-headline text-xl font-bold mb-6">{{ __('public.car_show.tech_specs_heading') }}</h3>
+<h3 class="font-headline text-editorial-section-title font-extrabold tracking-tight leading-tight text-primary mb-6">{{ __('public.car_show.tech_specs_heading') }}</h3>
 <div class="bg-surface-container-low rounded-2xl overflow-hidden">
 <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-surface-container-high">
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_engine') }}</span>
+<span class="font-label text-editorial-kicker text-outline block mb-1">{{ __('public.car_show.spec_engine') }}</span>
 <span class="font-bold">{{ $car->engine ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_transmission') }}</span>
+<span class="font-label text-editorial-kicker text-outline block mb-1">{{ __('public.car_show.spec_transmission') }}</span>
 <span class="font-bold">{{ $car->transmission ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_fuel') }}</span>
+<span class="font-label text-editorial-kicker text-outline block mb-1">{{ __('public.car_show.spec_fuel') }}</span>
 <span class="font-bold">{{ $car->fuel ?: __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_engine_cap') }}</span>
+<span class="font-label text-editorial-kicker text-outline block mb-1">{{ __('public.car_show.spec_engine_cap') }}</span>
 <span class="font-bold">{{ $car->engine_capacity_cc ? number_format($car->engine_capacity_cc) . ' cc' : __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_mileage') }}</span>
+<span class="font-label text-editorial-kicker text-outline block mb-1">{{ __('public.car_show.spec_mileage') }}</span>
 <span class="font-bold">{{ $car->mileage_km ? number_format($car->mileage_km) . ' KM' : __('public.common.dash') }}</span>
 </div>
 <div class="bg-surface-container-low p-6">
-<span class="text-[10px] font-label uppercase tracking-widest text-outline block mb-1">{{ __('public.car_show.spec_condition') }}</span>
+<span class="font-label text-editorial-kicker text-outline block mb-1">{{ __('public.car_show.spec_condition') }}</span>
 <span class="font-bold">{{ $conditionText }}</span>
 </div>
 </div>
@@ -320,7 +320,7 @@
 <div class="sahara-live-panel bg-white p-5 sm:p-6 md:p-8 rounded-2xl shadow-[0_20px_40px_rgba(92,67,32,0.08)] attention-panel">
 <div class="flex justify-between items-start mb-4">
 <div>
-<h1 class="font-headline text-3xl font-black text-primary tracking-tight">
+<h1 class="font-headline text-editorial-hero font-black text-primary tracking-tight">
 {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : __('public.car_show.price_contact') }}
 </h1>
 <p class="text-sm text-outline mt-1">
@@ -377,8 +377,8 @@
 <section class="mt-20">
 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8">
 <div class="text-center sm:text-left">
-<h3 class="font-headline text-2xl font-black text-primary tracking-tight">{{ __('public.car_show.related_title') }}</h3>
-<p class="text-on-surface-variant">{{ __('public.car_show.related_subtitle') }}</p>
+<h3 class="font-headline text-editorial-section-title font-black text-primary tracking-tight leading-tight">{{ __('public.car_show.related_title') }}</h3>
+<p class="text-on-surface-variant text-editorial-body">{{ __('public.car_show.related_subtitle') }}</p>
 </div>
 <a class="text-primary font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all" href="{{ route('cars.index') }}">
                     {{ __('public.car_show.view_gallery') }} <span class="material-symbols-outlined text-sm">arrow_forward</span>

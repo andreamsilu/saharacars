@@ -112,14 +112,14 @@
     <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
             <div>
-                <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+                <p class="font-label text-editorial-kicker text-on-surface-variant">
                     @if (!($homeNewListingsIsRecentFallback ?? false))
                         {{ __('public.home.new_today') }}
                     @else
                         {{ __('public.home.latest_listings') }}
                     @endif
                 </p>
-                <h2 id="home-new-today-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary">
+                <h2 id="home-new-today-heading" class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">
                     @if (!($homeNewListingsIsRecentFallback ?? false))
                         {{ __('public.home.fresh_stock') }}
                     @else
@@ -127,7 +127,7 @@
                     @endif
                 </h2>
                 @if (!($homeNewListingsIsRecentFallback ?? false))
-                    <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
+                    <p class="text-on-surface-variant text-editorial-body mt-1">
                         <span class="font-semibold text-primary">{{ number_format((int) ($carsNewTodayCount ?? 0)) }}</span>{{ __('public.home.added_today_suffix') }}
                     </p>
                 @endif
@@ -170,11 +170,11 @@
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
         {{-- White text scoped here only; avoid inheriting onto the light search card (select/input were white-on-white). --}}
         <div class="max-w-3xl mx-auto mb-4 sm:mb-5 text-white">
-            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white">{{ config('sahara.legal_entity_name') }}</p>
-            <h1 class="mt-1 font-headline text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wide text-white">
+            <p class="font-label text-editorial-kicker text-white tracking-[0.24em]">{{ config('sahara.legal_entity_name') }}</p>
+            <h1 class="mt-1 font-headline text-editorial-hero font-black uppercase tracking-wide text-white">
                 {{ __('public.home.hero_title') }}
             </h1>
-            <p class="mt-2 text-xs sm:text-sm text-white/90">{{ __('public.home.hero_subtitle') }}</p>
+            <p class="mt-2 text-editorial-body text-white/90">{{ __('public.home.hero_subtitle') }}</p>
         </div>
         <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left text-on-surface text-neutral-900 [color-scheme:light]" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
@@ -188,12 +188,12 @@
             {{-- Mobile: column; sm–lg: 2×2; lg+: 12-col row uses full 7xl width --}}
             <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
                 <div class="min-w-0 sm:col-span-1 lg:col-span-5">
-                    <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_keyword') }}</label>
+                    <label for="hero-q" class="block font-label text-editorial-kicker text-on-surface-variant mb-1">{{ __('public.home.label_keyword') }}</label>
                     <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-neutral-900 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/30" />
                 </div>
                 <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">{{ __('public.common.search') }}</button>
                 <div class="sm:col-span-1 lg:col-span-3">
-                    <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_brand') }}</label>
+                    <label for="hero-brand" class="block font-label text-editorial-kicker text-on-surface-variant mb-1">{{ __('public.home.label_brand') }}</label>
                     <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-white px-3 py-2.5 text-sm ghost-border text-neutral-900 focus:ring-2 focus:ring-primary/30">
                         <option value="">{{ __('public.home.any_brand') }}</option>
                         @foreach ($brandOptions as $brandOption)
@@ -202,7 +202,7 @@
                     </select>
                 </div>
                 <div class="sm:col-span-1 lg:col-span-2">
-                    <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_price_min') }}</label>
+                    <label for="hero-price" class="block font-label text-editorial-kicker text-on-surface-variant mb-1">{{ __('public.home.label_price_min') }}</label>
                     <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="{{ __('public.common.optional') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-neutral-900 placeholder:text-neutral-500" />
                 </div>
             </div>
@@ -276,15 +276,15 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-label="{{ __('public.home.live_stats_aria') }}">
 <div class="grid grid-cols-3 gap-2 sm:gap-3">
     <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
-        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">{{ __('public.home.stats_cars_in_stock') }}</p>
+        <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.stats_cars_in_stock') }}</p>
         <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($totalPublishedCars ?? 0)) }}</p>
     </article>
     <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
-        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">{{ __('public.home.stats_added_week') }}</p>
+        <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.stats_added_week') }}</p>
         <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($carsAddedThisWeek ?? 0)) }}</p>
     </article>
     <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
-        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">{{ __('public.home.stats_ready_dar') }}</p>
+        <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.stats_ready_dar') }}</p>
         <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($darReadyCars ?? 0)) }}</p>
     </article>
 </div>
@@ -292,8 +292,8 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
-        <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ $homeShortcutsTitle ?? __('public.home.shortcuts_title_fallback') }}</h2>
-        <p class="text-xs sm:text-sm text-on-surface-variant">{{ $homeShortcutsSubtitle ?? __('public.home.shortcuts_subtitle_fallback') }}</p>
+        <h2 class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">{{ $homeShortcutsTitle ?? __('public.home.shortcuts_title_fallback') }}</h2>
+        <p class="text-on-surface-variant text-editorial-body">{{ $homeShortcutsSubtitle ?? __('public.home.shortcuts_subtitle_fallback') }}</p>
     </div>
     <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         @foreach (($homeShortcutChips ?? []) as $shortcut)
@@ -306,8 +306,8 @@
 <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-6 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
         <div>
-            <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">{{ __('public.home.visual_highlights') }}</p>
-            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">{{ __('public.home.buying_experience') }}</h2>
+            <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.visual_highlights') }}</p>
+            <h2 class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">{{ __('public.home.buying_experience') }}</h2>
         </div>
         <a href="{{ route('order.request') }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">{{ __('public.home.request_matching') }}</a>
     </div>
@@ -324,7 +324,7 @@
                 </picture>
             </div>
             <div class="p-4">
-                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_showroom_quality') }}</p>
+                <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.panel_showroom_quality') }}</p>
                 <p class="font-headline font-extrabold text-primary mt-1">{{ __('public.home.panel_curated') }}</p>
             </div>
         </article>
@@ -340,7 +340,7 @@
                 </picture>
             </div>
             <div class="p-4">
-                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_road') }}</p>
+                <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.panel_road') }}</p>
                 <p class="font-headline font-extrabold text-primary mt-1">{{ __('public.home.panel_routes') }}</p>
             </div>
         </article>
@@ -356,7 +356,7 @@
                 </picture>
             </div>
             <div class="p-4">
-                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_condition') }}</p>
+                <p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.panel_condition') }}</p>
                 <p class="font-headline font-extrabold text-primary mt-1">{{ __('public.home.panel_inspection') }}</p>
             </div>
         </article>
@@ -371,8 +371,8 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
 <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
 <div class="space-y-2 min-w-0 text-center sm:text-left">
-<span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">{{ __('public.home.featured_kicker') }}</span>
-<h2 id="home-featured-cars-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">{{ __('public.home.featured_title') }}</h2>
+<span class="font-label text-editorial-kicker text-secondary">{{ __('public.home.featured_kicker') }}</span>
+<h2 id="home-featured-cars-heading" class="font-headline text-editorial-section-title font-black text-primary tracking-tight leading-tight">{{ __('public.home.featured_title') }}</h2>
 </div>
 <a class="inline-flex sm:ml-auto items-center justify-center gap-2 text-primary font-bold underline decoration-primary/20 hover:decoration-primary transition-all py-2 min-h-[44px] touch-manipulation shrink-0 rounded-md" href="{{ route('cars.index') }}">
                 {{ __('public.home.view_all_inventory') }}
@@ -384,8 +384,8 @@
     <x-car-card :car="$car" :compact="true" />
 @empty
     <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
-        <div class="font-headline font-black text-2xl text-primary">{{ __('public.home.no_cars_title') }}</div>
-        <p class="text-on-surface-variant mt-2">{{ __('public.home.no_cars_body') }}</p>
+        <div class="font-headline text-editorial-section-title font-black text-primary tracking-tight leading-tight">{{ __('public.home.no_cars_title') }}</div>
+        <p class="text-on-surface-variant text-editorial-body mt-2">{{ __('public.home.no_cars_body') }}</p>
     </div>
 @endforelse
 </div>
@@ -394,7 +394,7 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
 <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
 <div class="text-center sm:text-left">
-<h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ __('public.home.brands_title') }}</h2>
+<h2 id="home-brands-heading" class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">{{ __('public.home.brands_title') }}</h2>
 </div>
 <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
 @foreach (($homeBrands ?? []) as $brand)
@@ -425,24 +425,24 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
 <div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
 <span class="material-symbols-outlined text-primary">directions_car</span>
 <p class="font-headline text-4xl font-extrabold text-primary">500+</p>
-<p class="text-on-surface-variant text-sm mt-2">{{ __('public.home.stat_buyers') }}</p>
+<p class="text-on-surface-variant text-editorial-body mt-2">{{ __('public.home.stat_buyers') }}</p>
 </div>
 <div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
 <span class="material-symbols-outlined text-primary">sentiment_satisfied</span>
 <p class="font-headline text-4xl font-extrabold text-primary">98%</p>
-<p class="text-on-surface-variant text-sm mt-2">{{ __('public.home.stat_satisfaction') }}</p>
+<p class="text-on-surface-variant text-editorial-body mt-2">{{ __('public.home.stat_satisfaction') }}</p>
 </div>
 <div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
 <span class="material-symbols-outlined text-primary">support_agent</span>
 <p class="font-headline text-4xl font-extrabold text-primary">24/7</p>
-<p class="text-on-surface-variant text-sm mt-2">{{ __('public.home.stat_support') }}</p>
+<p class="text-on-surface-variant text-editorial-body mt-2">{{ __('public.home.stat_support') }}</p>
 </div>
 </div>
 <div class="bg-surface-container-lowest rounded-3xl p-8 md:p-12 shadow-[0_20px_32px_rgba(92,67,32,0.1)]">
 <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-center md:text-left">
 <div>
-<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">{{ __('public.home.testimonials_kicker') }}</p>
-<h3 class="font-headline text-3xl font-extrabold text-primary mt-2">{{ __('public.home.testimonials_title') }}</h3>
+<p class="font-label text-editorial-kicker text-on-surface-variant">{{ __('public.home.testimonials_kicker') }}</p>
+<h3 class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight mt-2">{{ __('public.home.testimonials_title') }}</h3>
 </div>
 <div class="inline-flex items-center gap-2 bg-surface-container-low rounded-full px-4 py-2 ghost-border">
 <span class="material-symbols-outlined text-secondary text-[18px]">star</span>
@@ -458,7 +458,7 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
 <span class="material-symbols-outlined text-[18px]">star</span>
 <span class="material-symbols-outlined text-[18px]">star</span>
 </div>
-<p class="text-sm text-on-surface-variant leading-relaxed">
+<p class="text-on-surface-variant text-editorial-body">
 {{ __('public.home.testimonial_1') }}
 </p>
 <div class="flex items-center gap-3 mt-4">
@@ -477,7 +477,7 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
 <span class="material-symbols-outlined text-[18px]">star</span>
 <span class="material-symbols-outlined text-[18px]">star</span>
 </div>
-<p class="text-sm text-on-surface-variant leading-relaxed">
+<p class="text-on-surface-variant text-editorial-body">
 {{ __('public.home.testimonial_2') }}
 </p>
 <div class="flex items-center gap-3 mt-4">

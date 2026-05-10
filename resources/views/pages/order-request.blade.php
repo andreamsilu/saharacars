@@ -22,8 +22,8 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-4xl mx-auto px-4 sm:px-6 py-10">
     <section class="sahara-live-panel bg-surface-container-lowest rounded-2xl p-6 sm:p-8 shadow-[0_16px_24px_rgba(25,28,30,0.04)] attention-panel">
-        <h1 class="font-headline text-3xl sm:text-4xl font-extrabold text-primary tracking-tight text-center sm:text-left">{{ __('public.order.title') }}</h1>
-        <p class="mt-2 text-on-surface-variant text-center sm:text-left">{{ __('public.order.subtitle') }}</p>
+        <h1 class="font-headline text-editorial-hero font-extrabold text-primary tracking-tight text-center sm:text-left">{{ __('public.order.title') }}</h1>
+        <p class="mt-2 text-on-surface-variant text-editorial-body text-center sm:text-left">{{ __('public.order.subtitle') }}</p>
 
         @if (session('status'))
             <div class="mt-6 rounded-xl bg-green-500/10 p-4 text-sm text-green-900 ghost-border">{{ session('status') }}</div>

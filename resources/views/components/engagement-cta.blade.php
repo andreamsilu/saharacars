@@ -30,7 +30,7 @@
             >
                 <span class="material-symbols-outlined text-[22px]" aria-hidden="true">close</span>
             </button>
-            <p class="font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">{{ config('marketplace.name') }}</p>
+            <p class="font-label text-editorial-kicker text-secondary mb-2">{{ config('marketplace.name') }}</p>
             <h2 id="sahara-engagement-title" class="font-headline text-xl font-extrabold text-primary tracking-tight sm:text-2xl pr-8">
                 {{ __('site.engagement.title') }}
             </h2>

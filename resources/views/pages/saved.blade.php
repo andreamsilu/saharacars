@@ -87,15 +87,15 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 section-editorial-compact">
 <header class="mb-8 md:mb-10 text-center lg:text-left">
-<p class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-2">{{ __('public.saved.kicker') }}</p>
-<h1 class="font-headline text-[clamp(1.85rem,5vw,2.75rem)] font-black text-primary tracking-tight">{{ __('public.saved.title') }}</h1>
-<p class="text-on-surface-variant mt-3 leading-relaxed max-w-2xl mx-auto lg:mx-0">{!! __('public.saved.intro') !!}</p>
+<p class="font-label text-editorial-kicker text-secondary mb-2">{{ __('public.saved.kicker') }}</p>
+<h1 class="font-headline text-editorial-hero font-extrabold text-primary tracking-tight">{{ __('public.saved.title') }}</h1>
+<p class="text-on-surface-variant mt-3 text-editorial-body max-w-2xl mx-auto lg:mx-0">{!! __('public.saved.intro') !!}</p>
 </header>
 <div class="sahara-live-panel bg-surface-container-lowest rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_16px_40px_rgba(25,28,30,0.06)] attention-panel border border-outline-variant/20">
 <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 md:mb-8">
 <div class="text-center sm:text-left">
-<h2 class="font-headline text-xl md:text-2xl font-bold text-primary tracking-tight">{{ __('public.saved.picks_title') }}</h2>
-<p class="text-sm text-on-surface-variant mt-1">{{ __('public.saved.picks_subtitle') }}</p>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">{{ __('public.saved.picks_title') }}</h2>
+<p class="text-on-surface-variant text-editorial-body mt-1">{{ __('public.saved.picks_subtitle') }}</p>
 </div>
 <a class="sahara-live-cta inline-flex items-center justify-center gap-2 self-start sm:self-auto rounded-full bg-primary text-on-primary px-5 py-2.5 min-h-[44px] text-sm font-bold shadow-md shadow-primary/15 transition-[filter,transform] hover:brightness-110 focus-ring-on-dark" href="{{ route('cars.index') }}">
 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">directions_car</span>
@@ -110,7 +110,7 @@
     aria-live="polite"
     aria-relevant="additions removals"
 ></ul>
-<p class="text-sm text-on-surface-variant mt-8 pt-6 border-t border-outline-variant/40 text-center sm:text-left">
+<p class="text-on-surface-variant text-editorial-body mt-8 pt-6 border-t border-outline-variant/40 text-center sm:text-left">
     @php
         $savedContactUrl = route('contact', ['locale' => app()->getLocale()]);
     @endphp

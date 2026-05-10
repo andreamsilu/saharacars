@@ -178,9 +178,9 @@
 <div class="lg:grid lg:grid-cols-2 lg:gap-0 lg:min-h-[min(420px,52vh)] lg:items-stretch why-fade-up">
 <div class="px-4 sm:px-5 lg:py-6 lg:pr-8 xl:pr-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:flex lg:items-center">
 <div class="text-center lg:text-left min-w-0 max-w-xl sm:max-w-2xl mx-auto lg:mx-0">
-<p class="font-label text-xs md:text-sm font-bold uppercase tracking-widest text-secondary mb-3">{{ __('public.why.page.hero_kicker') }}</p>
-<h1 id="why-page-hero-heading" class="text-3xl sm:text-4xl md:text-5xl font-headline font-extrabold text-primary tracking-tight mb-3">{{ config('sahara.legal_entity_name') }}</h1>
-<p class="text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">{{ __('public.why.page.hero_intro') }}</p>
+<p class="font-label text-editorial-kicker text-secondary mb-3">{{ __('public.why.page.hero_kicker') }}</p>
+<h1 id="why-page-hero-heading" class="font-headline text-editorial-hero font-extrabold text-primary tracking-tight mb-3">{{ config('sahara.legal_entity_name') }}</h1>
+<p class="text-on-surface-variant text-editorial-body">{{ __('public.why.page.hero_intro') }}</p>
 </div>
 </div>
 <figure class="relative mt-8 lg:mt-0 mx-4 sm:mx-5 lg:mx-0 aspect-[16/11] lg:aspect-auto min-h-[220px] sm:min-h-[260px] lg:min-h-0 lg:h-full overflow-hidden rounded-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl border border-outline-variant/50 lg:border-y lg:border-l lg:border-r-0 bg-surface-container shadow-md lg:shadow-sm why-zoom isolate max-h-[52vh] lg:max-h-none">
@@ -191,10 +191,10 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 mt-8 lg:mt-10">
 <div class="why-fade-up why-delay-1 rounded-3xl border border-outline-variant/40 bg-surface-container-low px-6 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-9 shadow-sm" aria-labelledby="who-we-are-heading">
 <div class="text-center lg:text-start border-b-2 border-primary/35 pb-4 mb-5">
-<h2 id="who-we-are-heading" class="font-headline text-2xl sm:text-3xl md:text-[2rem] font-extrabold text-primary tracking-tight leading-tight">{{ __('public.why.page.who_heading') }}</h2>
-<p class="mt-2 font-label text-xs sm:text-sm font-bold uppercase tracking-widest text-secondary">{{ __('public.why.page.who_subheading') }}</p>
+<h2 id="who-we-are-heading" class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">{{ __('public.why.page.who_heading') }}</h2>
+<p class="mt-2 font-label text-editorial-kicker text-secondary">{{ __('public.why.page.who_subheading') }}</p>
 </div>
-<p class="text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6] text-center lg:text-start max-w-none">{!! __('public.why.page.who_body', ['company' => '<strong>'.e(config('sahara.legal_entity_name')).'</strong>']) !!}</p>
+<p class="text-on-surface-variant text-editorial-body text-center lg:text-start max-w-none">{!! __('public.why.page.who_body', ['company' => '<strong>'.e(config('sahara.legal_entity_name')).'</strong>']) !!}</p>
 </div>
 </div>
 </section>
@@ -210,9 +210,9 @@
 <article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">01</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec01_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec01_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec01_p1') }}</p>
 <p>{{ __('public.why.page.sec01_p2') }}</p>
 <p>{{ __('public.why.page.sec01_p3') }}</p>
@@ -228,9 +228,9 @@
 <article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">02</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec02_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec02_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec02_p1') }}</p>
 <p>{{ __('public.why.page.sec02_p2') }}</p>
 <p>{{ __('public.why.page.sec02_p3') }}</p>
@@ -246,9 +246,9 @@
 <article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">03</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec03_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec03_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec03_p1') }}</p>
 <p>{{ __('public.why.page.sec03_p2') }}</p>
 <p>{{ __('public.why.page.sec03_p3') }}</p>
@@ -264,9 +264,9 @@
 <article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-violet-200 bg-gradient-to-br from-violet-50 to-purple-50 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">04</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec04_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec04_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec04_p1') }}</p>
 <p>{{ __('public.why.page.sec04_p2') }}</p>
 <p>{{ __('public.why.page.sec04_p3') }}</p>
@@ -282,9 +282,9 @@
 <article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">05</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec05_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec05_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec05_p1') }}</p>
 <p>{{ __('public.why.page.sec05_p2') }}</p>
 <p>{{ __('public.why.page.sec05_p3') }}</p>
@@ -300,9 +300,9 @@
 <article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-teal-200 bg-gradient-to-br from-teal-50 to-sky-50 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">06</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec06_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec06_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec06_p1') }}</p>
 <p>{{ __('public.why.page.sec06_p2') }}</p>
 <p>{{ __('public.why.page.sec06_p3') }}</p>
@@ -318,9 +318,9 @@
 <article class="why-lift md:col-span-7 rounded-3xl p-6 sm:p-8 border border-lime-200 bg-gradient-to-br from-lime-50 to-green-100 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">07</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec07_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec07_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec07_p1') }}</p>
 <p>{{ __('public.why.page.sec07_p2') }}</p>
 <p>{{ __('public.why.page.sec07_p3') }}</p>
@@ -336,9 +336,9 @@
 <article class="why-lift md:order-1 md:col-span-7 rounded-3xl p-6 sm:p-8 border border-indigo-200 bg-gradient-to-br from-indigo-50 to-blue-100 flex flex-col min-w-0 shadow-sm">
 <div class="mb-5 pb-4 border-b-2 border-primary/35 space-y-2">
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">08</span>
-<h2 class="font-headline text-xl md:text-2xl font-extrabold text-on-surface leading-snug tracking-tight">{{ __('public.why.page.sec08_title') }}</h2>
+<h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec08_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant leading-relaxed text-base md:text-lg lg:text-xl/[1.6]">
+<div class="space-y-4 text-on-surface-variant text-editorial-body">
 <p class="font-medium text-on-surface">{{ __('public.why.page.sec08_p1') }}</p>
 <p><span class="font-semibold text-primary">{{ __('public.why.page.sec08_before') }}</span> {{ __('public.why.page.sec08_p2') }}</p>
 <p><span class="font-semibold text-primary">{{ __('public.why.page.sec08_after') }}</span> {{ __('public.why.page.sec08_p3') }}</p>
@@ -354,8 +354,8 @@
 <div class="absolute top-0 right-0 p-4 opacity-5">
 <span class="material-symbols-outlined text-9xl">directions_car</span>
 </div>
-<h3 class="text-3xl sm:text-4xl font-headline font-extrabold text-primary mb-6">{{ __('public.why.page.cta_heading') }}</h3>
-<p class="text-on-surface-variant mb-8 sm:mb-10 leading-relaxed text-base md:text-lg lg:text-xl/[1.6] max-w-2xl mx-auto">{{ __('public.why.page.cta_intro') }}</p>
+<h3 class="font-headline text-editorial-hero font-extrabold text-primary tracking-tight mb-6">{{ __('public.why.page.cta_heading') }}</h3>
+<p class="text-on-surface-variant text-editorial-body mb-8 sm:mb-10 max-w-2xl mx-auto">{{ __('public.why.page.cta_intro') }}</p>
 <div class="flex flex-col sm:flex-row justify-center gap-4">
 <a class="sahara-live-cta cta-gradient text-white px-6 sm:px-10 py-3 sm:py-4 min-h-[48px] sm:min-h-[52px] rounded-full font-headline font-extrabold text-base sm:text-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-95 inline-flex items-center justify-center focus-ring-on-dark" href="{{ route('cars.index') }}">
                         {{ __('public.why.browse_inventory') }}
