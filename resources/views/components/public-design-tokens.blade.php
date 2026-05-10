@@ -39,3 +39,17 @@
   border-color: rgba(138, 101, 40, 0.55);
   box-shadow: 0 0 0 2px rgba(138, 101, 40, 0.14);
 }
+
+/* Native checkbox/radio accent (otherwise browsers often show blue). */
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: #8a6528;
+}
+
+/*
+ * Tailwind’s default ring color reads as blue; `ring-primary/20` etc. must set --tw-ring-color
+ * (plain `ring-primary` is overridden in <x-navbar /> with --theme-primary).
+ */
+[class*='ring-primary/'] {
+  --tw-ring-color: rgba(138, 101, 40, 0.45) !important;
+}

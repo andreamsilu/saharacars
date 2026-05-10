@@ -87,7 +87,7 @@
 <x-navbar />
 <main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
 <details class="sahara-live-panel lg:hidden group rounded-2xl bg-surface-container-low border border-slate-200/80 attention-panel overflow-hidden">
-    <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+    <summary class="cursor-pointer list-none flex items-center justify-between gap-3 px-4 py-4 min-h-[52px] font-headline font-bold text-primary touch-manipulation rounded-xl outline-none focus-visible:shadow-[inset_0_0_0_2px_rgba(138,101,40,0.45)]">
         <span class="inline-flex items-center gap-2">
             <span class="material-symbols-outlined text-[22px]" aria-hidden="true">tune</span>
             {{ __('public.cars_index.filter_toggle') }}
@@ -128,7 +128,7 @@
         <input type="hidden" name="{{ $param }}" value="{{ $value }}" />
     @endif
 @endforeach
-<select name="sort" onchange="this.form.submit()" aria-label="{{ __('public.cars_index.sort_aria') }}" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary focus:ring-2 focus:ring-primary/20 ghost-border min-h-[44px]">
+<select name="sort" onchange="this.form.submit()" aria-label="{{ __('public.cars_index.sort_aria') }}" class="rounded-full bg-surface-container-low px-3 py-2 text-xs font-bold text-primary ghost-border min-h-[44px]">
     @php $activeSort = request('sort', 'newest'); @endphp
     <option value="newest" {{ $activeSort === 'newest' ? 'selected' : '' }}>{{ __('public.cars_index.sort_newest') }}</option>
     <option value="price_low_high" {{ $activeSort === 'price_low_high' ? 'selected' : '' }}>{{ __('public.cars_index.sort_price_low') }}</option>
@@ -163,7 +163,7 @@
         type="search"
         autocomplete="off"
         placeholder="{{ __('public.cars_index.search_placeholder') }}"
-        class="w-full rounded-full bg-surface-container-highest py-3 pl-10 pr-4 text-sm font-medium text-primary placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20 ghost-border"
+        class="w-full rounded-full bg-surface-container-highest py-3 pl-10 pr-4 text-sm font-medium text-primary placeholder:text-on-surface-variant ghost-border"
     />
 </div>
 <p class="mt-2 text-xs text-on-surface-variant">{{ __('public.cars_index.auto_search_hint') }}</p>

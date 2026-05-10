@@ -170,7 +170,7 @@
     @foreach ($tabs as $tab)
       <button
         type="button"
-        class="gallery-tab px-3 py-1.5 rounded-full text-xs font-bold bg-surface-container-low text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/30 ghost-border"
+        class="gallery-tab px-3 py-1.5 rounded-full text-xs font-bold bg-surface-container-low text-on-surface-variant focus:outline-none ghost-border"
         data-filter="{{ $tab['key'] }}"
         role="tab"
         aria-selected="{{ $tab['key'] === 'all' ? 'true' : 'false' }}"
@@ -192,7 +192,7 @@
     @foreach ($allImages as $idx => $img)
       <button
         type="button"
-        class="gallery-thumb relative rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/30 ghost-border {{ $idx === 0 ? 'ring-2 ring-primary/40' : '' }}"
+        class="gallery-thumb relative rounded-lg overflow-hidden focus:outline-none ghost-border {{ $idx === 0 ? 'ring-2 ring-primary/40' : '' }}"
         data-index="{{ $idx }}"
         data-src="{{ $img['src'] }}"
         data-category="{{ $img['category'] }}"

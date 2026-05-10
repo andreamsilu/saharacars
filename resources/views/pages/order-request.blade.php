@@ -44,19 +44,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="order-full-name" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_full_name') }}</label>
-                    <input id="order-full-name" name="full_name" value="{{ old('full_name') }}" required class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" />
+                    <input id="order-full-name" name="full_name" value="{{ old('full_name') }}" required class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" />
                 </div>
                 <div>
                     <label for="order-email" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_email') }}</label>
-                    <input id="order-email" name="email" type="email" value="{{ old('email') }}" required class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" />
+                    <input id="order-email" name="email" type="email" value="{{ old('email') }}" required class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" />
                 </div>
                 <div>
                     <label for="order-phone" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_phone') }}</label>
-                    <input id="order-phone" name="phone" value="{{ old('phone') }}" required class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.order.placeholder_phone') }}" />
+                    <input id="order-phone" name="phone" value="{{ old('phone') }}" required class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="{{ __('public.order.placeholder_phone') }}" />
                 </div>
                 <div>
                     <label for="order-source-country" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_source_country') }}</label>
-                    <select id="order-source-country" name="source_country" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30">
+                    <select id="order-source-country" name="source_country" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border">
                         <option value="">{{ __('public.order.any_country') }}</option>
                         @foreach (['Japan', 'Germany', 'Thailand', 'United Kingdom', 'United Arab Emirates', 'South Korea'] as $country)
                             <option value="{{ $country }}" {{ old('source_country') === $country ? 'selected' : '' }}>{{ $country }}</option>
@@ -65,32 +65,32 @@
                 </div>
                 <div>
                     <label for="order-brand" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_brand') }}</label>
-                    <input id="order-brand" name="preferred_brand" value="{{ old('preferred_brand') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.order.placeholder_brand') }}" />
+                    <input id="order-brand" name="preferred_brand" value="{{ old('preferred_brand') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="{{ __('public.order.placeholder_brand') }}" />
                 </div>
                 <div>
                     <label for="order-model" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_model') }}</label>
-                    <input id="order-model" name="preferred_model" value="{{ old('preferred_model') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.order.placeholder_model') }}" />
+                    <input id="order-model" name="preferred_model" value="{{ old('preferred_model') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="{{ __('public.order.placeholder_model') }}" />
                 </div>
                 <div>
                     <label for="order-year-min" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_year_min') }}</label>
-                    <input id="order-year-min" name="year_min" type="number" value="{{ old('year_min') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.order.placeholder_year') }}" />
+                    <input id="order-year-min" name="year_min" type="number" value="{{ old('year_min') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="{{ __('public.order.placeholder_year') }}" />
                 </div>
                 <div>
                     <label for="order-year-max" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_year_max') }}</label>
-                    <input id="order-year-max" name="year_max" type="number" value="{{ old('year_max') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="2024" />
+                    <input id="order-year-max" name="year_max" type="number" value="{{ old('year_max') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="2024" />
                 </div>
                 <div>
                     <label for="order-budget-min" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_budget_min') }}</label>
-                    <input id="order-budget-min" name="budget_min_tzs" type="number" value="{{ old('budget_min_tzs') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="50000000" />
+                    <input id="order-budget-min" name="budget_min_tzs" type="number" value="{{ old('budget_min_tzs') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="50000000" />
                 </div>
                 <div>
                     <label for="order-budget-max" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_budget_max') }}</label>
-                    <input id="order-budget-max" name="budget_max_tzs" type="number" value="{{ old('budget_max_tzs') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="200000000" />
+                    <input id="order-budget-max" name="budget_max_tzs" type="number" value="{{ old('budget_max_tzs') }}" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="200000000" />
                 </div>
             </div>
             <div>
                 <label for="order-message" class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">{{ __('public.order.label_notes') }}</label>
-                <textarea id="order-message" name="message" rows="4" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.order.placeholder_notes') }}">{{ old('message') }}</textarea>
+                <textarea id="order-message" name="message" rows="4" class="w-full rounded-xl bg-surface-container-highest py-3 px-4 ghost-border" placeholder="{{ __('public.order.placeholder_notes') }}">{{ old('message') }}</textarea>
             </div>
             <button type="submit" class="sahara-live-cta w-full cta-gradient text-on-primary font-bold py-3.5 rounded-full min-h-[48px] focus-ring-on-dark">{{ __('public.order.submit') }}</button>
         </form>

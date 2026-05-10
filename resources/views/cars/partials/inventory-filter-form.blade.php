@@ -21,7 +21,7 @@
         <div class="space-y-6">
             <div class="space-y-3">
                 <label for="filter-brand-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.brand') }}</label>
-                <select id="filter-brand-{{ $filterFormIdPrefix }}" name="brand" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-brand-{{ $filterFormIdPrefix }}" name="brand" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
                     <option value="">{{ __('public.filters.all_manufacturers') }}</option>
                     @foreach ($brandOptions as $brandOption)
                         <option value="{{ $brandOption }}" {{ request('brand') === $brandOption ? 'selected' : '' }}>{{ $brandOption }}</option>
@@ -31,8 +31,8 @@
             <div class="space-y-3">
                 <span id="filter-price-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">{{ __('public.filters.price_range') }}</span>
                 <div class="grid grid-cols-2 gap-2" role="group" aria-labelledby="filter-price-label-{{ $filterFormIdPrefix }}">
-                    <input id="filter-price-min-{{ $filterFormIdPrefix }}" name="price_min" value="{{ request('price_min') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.common.min') }}" type="number" inputmode="numeric" aria-label="{{ __('public.filters.price_min_aria') }}" />
-                    <input id="filter-price-max-{{ $filterFormIdPrefix }}" name="price_max" value="{{ request('price_max') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border focus:ring-2 focus:ring-primary/30" placeholder="{{ __('public.common.max') }}" type="number" inputmode="numeric" aria-label="{{ __('public.filters.price_max_aria') }}" />
+                    <input id="filter-price-min-{{ $filterFormIdPrefix }}" name="price_min" value="{{ request('price_min') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border" placeholder="{{ __('public.common.min') }}" type="number" inputmode="numeric" aria-label="{{ __('public.filters.price_min_aria') }}" />
+                    <input id="filter-price-max-{{ $filterFormIdPrefix }}" name="price_max" value="{{ request('price_max') }}" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 ghost-border" placeholder="{{ __('public.common.max') }}" type="number" inputmode="numeric" aria-label="{{ __('public.filters.price_max_aria') }}" />
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-3">
@@ -44,7 +44,7 @@
                             : trim((string) $locationRequest);
                     @endphp
                     <label for="filter-location-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.location') }}</label>
-                    <select id="filter-location-{{ $filterFormIdPrefix }}" name="location" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                    <select id="filter-location-{{ $filterFormIdPrefix }}" name="location" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
                         <option value="">{{ __('public.filters.all_locations') }}</option>
                         @foreach ($locationOptions as $locationOption)
                             <option value="{{ $locationOption }}" {{ $selectedLocation === $locationOption ? 'selected' : '' }}>{{ $locationOption }}</option>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="space-y-3">
                     <label for="filter-condition-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.condition') }}</label>
-                    <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                    <select id="filter-condition-{{ $filterFormIdPrefix }}" name="condition" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
                         <option value="">{{ __('public.filters.any_condition') }}</option>
                         <option value="brand_new" {{ request('condition', request('category')) === 'brand_new' ? 'selected' : '' }}>{{ __('public.catalog.condition.brand_new') }}</option>
                         <option value="foreign_used" {{ request('condition', request('category')) === 'foreign_used' ? 'selected' : '' }}>{{ __('public.catalog.condition.foreign_used') }}</option>
@@ -80,7 +80,7 @@
             </div>
             <div class="space-y-3">
                 <label for="filter-fuel-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.fuel') }}</label>
-                <select id="filter-fuel-{{ $filterFormIdPrefix }}" name="fuel" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-fuel-{{ $filterFormIdPrefix }}" name="fuel" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
                     <option value="">{{ __('public.filters.any_fuel') }}</option>
                     <option value="Petrol" {{ request('fuel') === 'Petrol' ? 'selected' : '' }}>{{ __('public.filters.fuel_petrol') }}</option>
                     <option value="Diesel" {{ request('fuel') === 'Diesel' ? 'selected' : '' }}>{{ __('public.filters.fuel_diesel') }}</option>
@@ -90,7 +90,7 @@
             </div>
             <div class="space-y-3">
                 <label for="filter-source-country-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.source_country') }}</label>
-                <select id="filter-source-country-{{ $filterFormIdPrefix }}" name="source_country" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-source-country-{{ $filterFormIdPrefix }}" name="source_country" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
                     <option value="">{{ __('public.filters.any_source') }}</option>
                     @foreach ($sourceCountryOptions as $sourceCountryOption)
                         <option value="{{ $sourceCountryOption }}" {{ request('source_country') === $sourceCountryOption ? 'selected' : '' }}>{{ $sourceCountryOption }}</option>
@@ -99,7 +99,7 @@
             </div>
             <div class="space-y-3">
                 <label for="filter-import-status-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.import_status') }}</label>
-                <select id="filter-import-status-{{ $filterFormIdPrefix }}" name="import_status" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 focus:ring-2 focus:ring-primary/30 appearance-none ghost-border focus:shadow-[inset_0_0_0_1px_rgba(195,198,209,0.15)]">
+                <select id="filter-import-status-{{ $filterFormIdPrefix }}" name="import_status" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
                     <option value="">{{ __('public.filters.any_status') }}</option>
                     @foreach ($importStatusOptions as $importStatusOption)
                         <option value="{{ $importStatusOption }}" {{ request('import_status') === $importStatusOption ? 'selected' : '' }}>

@@ -189,12 +189,12 @@
             <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
                 <div class="min-w-0 sm:col-span-1 lg:col-span-5">
                     <label for="hero-q" class="block font-label text-editorial-kicker text-on-surface-variant mb-1">{{ __('public.home.label_keyword') }}</label>
-                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-neutral-900 placeholder:text-neutral-500 focus:ring-2 focus:ring-primary/30" />
+                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-neutral-900 placeholder:text-neutral-500" />
                 </div>
                 <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">{{ __('public.common.search') }}</button>
                 <div class="sm:col-span-1 lg:col-span-3">
                     <label for="hero-brand" class="block font-label text-editorial-kicker text-on-surface-variant mb-1">{{ __('public.home.label_brand') }}</label>
-                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-white px-3 py-2.5 text-sm ghost-border text-neutral-900 focus:ring-2 focus:ring-primary/30">
+                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-white px-3 py-2.5 text-sm ghost-border text-neutral-900">
                         <option value="">{{ __('public.home.any_brand') }}</option>
                         @foreach ($brandOptions as $brandOption)
                             <option value="{{ $brandOption }}">{{ $brandOption }}</option>

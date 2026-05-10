@@ -61,7 +61,7 @@
                     <input
                         id="sahara-engagement-noremind"
                         type="checkbox"
-                        class="mt-0.5 h-4 w-4 rounded border-outline text-primary focus:ring-primary/40"
+                        class="mt-0.5 h-4 w-4 rounded border-outline text-primary"
                     />
                     <span>{{ __('site.engagement.dont_show') }}</span>
                 </label>

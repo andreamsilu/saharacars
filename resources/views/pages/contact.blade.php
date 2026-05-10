@@ -132,16 +132,16 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label for="contact-full-name" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">{{ __('public.contact.label_full_name') }}</label>
-<input id="contact-full-name" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="{{ __('public.contact.placeholder_full_name') }}" type="text" name="full_name" value="{{ old('full_name') }}" required autocomplete="name"/>
+<input id="contact-full-name" class="w-full bg-surface-container-highest rounded-lg p-4 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="{{ __('public.contact.placeholder_full_name') }}" type="text" name="full_name" value="{{ old('full_name') }}" required autocomplete="name"/>
 </div>
 <div class="space-y-2">
 <label for="contact-email" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">{{ __('public.contact.label_email') }}</label>
-<input id="contact-email" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="{{ __('public.contact.placeholder_email') }}" type="email" name="email" value="{{ old('email') }}" required autocomplete="email"/>
+<input id="contact-email" class="w-full bg-surface-container-highest rounded-lg p-4 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="{{ __('public.contact.placeholder_email') }}" type="email" name="email" value="{{ old('email') }}" required autocomplete="email"/>
 </div>
 </div>
 <div class="space-y-2">
 <label for="contact-subject" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">{{ __('public.contact.label_subject') }}</label>
-<select id="contact-subject" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all ghost-border" name="subject">
+<select id="contact-subject" class="w-full bg-surface-container-highest rounded-lg p-4 focus:bg-surface-container-lowest transition-all ghost-border" name="subject">
 <option>{{ __('public.contact.subject_car') }}</option>
 <option>{{ __('public.contact.subject_selling') }}</option>
 <option>{{ __('public.contact.subject_partnership') }}</option>
@@ -150,7 +150,7 @@
 </div>
 <div class="space-y-2">
 <label for="contact-message" class="font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">{{ __('public.contact.label_message') }}</label>
-<textarea id="contact-message" class="w-full bg-surface-container-highest rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="{{ __('public.contact.placeholder_message') }}" rows="5" name="message" required>{{ old('message') }}</textarea>
+<textarea id="contact-message" class="w-full bg-surface-container-highest rounded-lg p-4 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 ghost-border" placeholder="{{ __('public.contact.placeholder_message') }}" rows="5" name="message" required>{{ old('message') }}</textarea>
 </div>
 <button class="sahara-live-cta w-full cta-gradient text-on-primary py-4 min-h-[52px] rounded-full font-headline font-bold text-lg transition-[filter,transform] hover:brightness-110 shadow-lg shadow-primary/10 active:scale-95 duration-150 focus-ring-on-dark" type="submit">
                         {{ __('public.contact.submit') }}

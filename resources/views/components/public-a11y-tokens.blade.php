@@ -2,13 +2,17 @@
   WCAG-oriented baseline: visible focus, reduced motion, skip-link companion styles.
   Include inside a <style> block after public-design-tokens (do not nest <style> tags).
 --}}
-  /* Visible focus fallback where components omit Tailwind focus rings (2.4.7). */
-  :where(a, button, input, select, textarea, summary):focus {
+  /* Visible focus: links / chromeless controls use brown outline; form fields use .ghost-border (gold) — avoids browser default blue rings. */
+  :where(a, button, summary):focus {
     outline: none;
   }
-  :where(a, button, input, select, textarea, summary):focus-visible {
+  :where(a, button, summary):focus-visible {
     outline: 2px solid #5c4320;
     outline-offset: 2px;
+  }
+  :where(input, select, textarea):focus,
+  :where(input, select, textarea):focus-visible {
+    outline: none;
   }
   /* High-contrast focus on dark / filled buttons (keep offset readable on gold). */
   .focus-ring-on-dark:focus-visible {
