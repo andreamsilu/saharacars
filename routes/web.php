@@ -1,18 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminAnnouncementController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminBrandController;
 use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminInquiryController;
+use App\Http\Controllers\Admin\AdminAnnouncementController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\PageController;
 use App\Models\Car;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 Route::get('/', function () {
     return redirect()->route('home', ['locale' => config('app.locale')]);
@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 /**
  * Classic favicon path crawlers hit first.
+ * Serve a square PNG mark for consistent rendering in SERP/tab icons.
  */
 Route::get('/favicon.ico', function () {
     $faviconPng = public_path('images/favicon-mark-48.png');
@@ -104,6 +105,7 @@ Route::prefix('{locale}')
 
         Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
         Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
+        // One segment: numeric → primary key; otherwise legacy slug → 301 to canonical id URL.
         Route::get('/cars/{car}', [CarController::class, 'show'])
             ->where('car', '^[A-Za-z0-9][A-Za-z0-9_-]*$')
             ->name('cars.show');

@@ -78,7 +78,9 @@ class Car extends Model
     }
 
     /**
-     * Canonical public URL: /{locale}/cars/{id}
+     * Public inventory detail URL (canonical /{locale}/cars/{id}).
+     * Built explicitly so link generation survives stale `php artisan route:cache`
+     * where the `cars.show` route parameter name may still be `{slug}` while views pass `car`.
      */
     public function publicShowUrl(?string $locale = null): string
     {

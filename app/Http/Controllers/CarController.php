@@ -36,8 +36,8 @@ class CarController extends Controller
     }
 
     /**
-     * Canonical URL is `/cars/{id}`. Legacy slug segment 301-redirects to the id URL.
-     * Only published inventory is visible on the storefront.
+     * Canonical URL is `/cars/{id}`. Legacy slug URLs hit the same route and 301 to the id.
+     * Resolves explicitly so unpublished inventory never binds via implicit route model binding.
      */
     public function show(string $car): View|RedirectResponse
     {
@@ -46,34 +46,23 @@ class CarController extends Controller
             abort(404);
         }
 
+        $published = Car::query()->where('is_published', true);
+
         if (ctype_digit($segment)) {
             $id = (int) $segment;
-
-            $resolved = Car::query()
-                ->where('is_published', true)
-                ->whereKey($id)
-                ->first();
-
+            $resolved = (clone $published)->whereKey($id)->first();
             if ($resolved !== null) {
                 return $this->renderPublishedCarDetail($resolved);
             }
-
-            $bySlug = Car::query()
-                ->where('is_published', true)
-                ->where('slug', $segment)
-                ->first();
-
+            // Numeric slug (no row with that primary key): still allow `slug = '123'` style rows.
+            $bySlug = (clone $published)->where('slug', $segment)->first();
             if ($bySlug !== null) {
                 return redirect()->to($bySlug->publicShowUrl(), 301);
             }
-
             abort(404);
         }
 
-        $bySlug = Car::query()
-            ->where('is_published', true)
-            ->where('slug', $segment)
-            ->firstOrFail();
+        $bySlug = (clone $published)->where('slug', $segment)->firstOrFail();
 
         return redirect()->to($bySlug->publicShowUrl(), 301);
     }
@@ -122,6 +111,7 @@ class CarController extends Controller
         $fuel = trim((string) request('fuel', ''));
         $sourceCountry = trim((string) request('source_country', ''));
         $importStatus = trim((string) request('import_status', ''));
+        // `condition` is canonical; `category` kept for legacy query strings only.
         $condition = trim((string) request('condition', request('category', '')));
         $sort = (string) request('sort', 'newest');
 
@@ -267,6 +257,8 @@ class CarController extends Controller
     }
 
     /**
+     * Track which cars surface in search results to power "most searched" ranking.
+     *
      * @param  array<int, mixed>  $carIds
      */
     private function recordSearchHits(array $carIds): void
@@ -296,3 +288,4 @@ class CarController extends Controller
         );
     }
 }
+

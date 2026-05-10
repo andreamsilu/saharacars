@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
+<html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-@php
-    $legal = config('sahara.legal_entity_name', config('app.name'));
-    $homeSeoTitle = $legal.' | '.__('site.nav.home');
-    $homeSeoDesc = trim((string) config('sahara.brand_tagline', '')) ?: (number_format($totalPublishedCars).' curated vehicles across Dar & beyond.');
-@endphp
 <x-public-seo
-    :title="$homeSeoTitle"
-    :description="$homeSeoDesc"
+    :title="__('public.meta.home_title', ['company' => config('sahara.legal_entity_name')])"
+    :description="__('public.meta.home_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('home', ['locale' => app()->getLocale()])"
 />
-<script src="https://cdn.tailwindcss.com" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"/>
@@ -22,24 +16,60 @@
 <link rel="preload" as="style" href="{{ asset('css/material-symbols-outlined.css') }}"/>
 <link rel="stylesheet" href="{{ asset('css/material-symbols-outlined.css') }}" media="print" onload="this.media='all'"/>
 <noscript><link rel="stylesheet" href="{{ asset('css/material-symbols-outlined.css') }}"/></noscript>
+<script src="https://cdn.tailwindcss.com" defer></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
+              "on-primary": "#ffffff",
+              "on-background": "#191c1e",
               "primary": "#8a6528",
-              "on-surface": "#191c1e",
-              "on-surface-variant": "#43474f",
-              "surface": "#f3f3f3",
-              "surface-container-low": "#f2f4f6",
               "surface-container-lowest": "#ffffff",
               "surface-container-high": "#e6e8ea",
-              "secondary": "#006d2f",
-              "secondary-container": "#5dfd8a",
-              "on-secondary-container": "#007232",
-              "outline-variant": "#c3c6d1",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#2a1d09",
+              "secondary-fixed": "#d4b896",
+              "on-secondary-container": "#3d2e1f",
+              "on-primary-fixed-variant": "#4a3614",
+              "on-surface-variant": "#43474f",
+              "on-tertiary-fixed-variant": "#723610",
+              "surface-container-highest": "#e0e3e5",
+              "secondary-container": "#f0e6d8",
+              "tertiary-fixed": "#ffdbca",
+              "surface-variant": "#e0e3e5",
+              "on-secondary-fixed-variant": "#4a3d30",
+              "tertiary-container": "#592300",
+              "on-tertiary": "#ffffff",
               "background": "#f3f3f3",
+              "inverse-on-surface": "#eff1f3",
+              "surface-tint": "#8a6528",
+              "secondary": "#7a6046",
+              "surface-container": "#eceef0",
+              "surface": "#f3f3f3",
+              "tertiary": "#381300",
+              "primary-fixed": "#f0dfc4",
+              "on-tertiary-container": "#d8885c",
+              "inverse-surface": "#2d3133",
+              "surface-bright": "#f3f3f3",
+              "outline": "#737780",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#ffb690",
+              "primary-container": "#5c4320",
+              "error": "#ba1a1a",
+              "outline-variant": "#c3c6d1",
+              "surface-dim": "#d8dadc",
+              "on-secondary-fixed": "#241a10",
+              "on-surface": "#191c1e",
+              "primary-fixed-dim": "#d4b57a",
+              "on-tertiary-fixed": "#341100",
+              "inverse-primary": "#e8c889",
+              "on-secondary": "#faf7f3",
+              "on-primary-container": "#f4e4c4",
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed-dim": "#b8966a"
             },
             fontFamily: {
               "headline": ["Manrope"],
@@ -56,187 +86,462 @@
       @include('components.public-effects-tokens')
       @include('components.public-design-tokens')
       @include('components.public-a11y-tokens')
+      .section-wash {
+        background:
+          linear-gradient(180deg, rgba(235, 235, 235, 0.95), rgba(243, 243, 243, 1));
+      }
+      .section-wash-soft {
+        background:
+          linear-gradient(180deg, rgba(243, 243, 243, 1), rgba(235, 235, 235, 0.6));
+      }
+      .graphic-panel {
+        background:
+          radial-gradient(220px 120px at 85% 10%, rgba(138, 101, 40, 0.2), transparent 65%),
+          radial-gradient(180px 120px at 15% 100%, rgba(232, 200, 137, 0.22), transparent 70%),
+          #ffffff;
+      }
     </style>
+
 </head>
-<body class="bg-surface font-body text-on-surface attention-mesh pb-mobile-nav md:pb-0">
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden attention-mesh pb-mobile-nav md:pb-0">
 <x-skip-to-main />
-<x-brand-ticker />
+<!-- TopNavBar -->
 <x-navbar />
-
-<main id="main-content" tabindex="-1" class="outline-none max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-
-    {{-- Hero --}}
-    <header class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-3">{{ $legal }}</p>
-        <h1 class="font-headline text-[clamp(1.85rem,5vw,3rem)] font-black text-primary tracking-tight leading-tight">
-            {{ __('site.nav.brand_tagline_mobile') }}
-        </h1>
-        <p class="text-on-surface-variant mt-4 text-lg leading-relaxed">
-            {{ $homeSeoDesc }}
-        </p>
-        <div class="flex flex-wrap justify-center gap-3 mt-8">
-            <a href="{{ route('cars.index') }}" class="sahara-live-cta inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full bg-primary text-white px-8 py-3 font-bold shadow-lg shadow-primary/20 hover:brightness-110">
-                <span class="material-symbols-outlined" aria-hidden="true">directions_car</span>
-                {{ __('site.engagement.browse_cars') }}
-            </a>
-            <a href="{{ route('order.request') }}" class="inline-flex items-center justify-center gap-2 min-h-[48px] rounded-full border-2 border-primary text-primary px-8 py-3 font-bold hover:bg-primary/5">
-                <span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
-                {{ __('site.nav.order_request') }}
-            </a>
-        </div>
-    </header>
-
-    {{-- Live stats --}}
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-14" aria-label="Marketplace stats">
-        <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-4 text-center shadow-sm">
-            <p class="text-2xl font-black text-primary tabular-nums">{{ number_format($totalPublishedCars) }}</p>
-            <p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide mt-1">Listed</p>
-        </div>
-        <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-4 text-center shadow-sm">
-            <p class="text-2xl font-black text-primary tabular-nums">{{ number_format($carsAddedThisWeek) }}</p>
-            <p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide mt-1">New (7d)</p>
-        </div>
-        <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-4 text-center shadow-sm">
-            <p class="text-2xl font-black text-primary tabular-nums">{{ number_format($darReadyCars) }}</p>
-            <p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide mt-1">Dar-ready</p>
-        </div>
-        <div class="rounded-2xl bg-surface-container-lowest border border-outline-variant/30 p-4 text-center shadow-sm">
-            <p class="text-2xl font-black text-primary tabular-nums">{{ number_format($carsNewTodayCount) }}</p>
-            <p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-wide mt-1">Today</p>
-        </div>
-    </section>
-
-    {{-- Shortcuts --}}
-    <section class="mb-12" aria-labelledby="home-shortcuts-title">
-        <div class="text-center md:text-left mb-6">
-            <h2 id="home-shortcuts-title" class="font-headline text-2xl font-bold text-primary">{{ $homeShortcutsTitle }}</h2>
-            <p class="text-on-surface-variant mt-1">{{ $homeShortcutsSubtitle }}</p>
-        </div>
-        <div class="flex flex-wrap justify-center md:justify-start gap-2">
-            @foreach ($homeShortcutChips as $chip)
-                <a href="{{ $chip['url'] }}" class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold hover:bg-primary/15 border border-primary/20">
-                    {{ $chip['label'] }}
-                </a>
-            @endforeach
-        </div>
-    </section>
-
-    {{-- Quick filters --}}
-    <section class="mb-14" aria-label="Quick filters">
-        <div class="flex flex-wrap justify-center md:justify-start gap-2">
-            @foreach ($homeQuickFilterChips as $chip)
-                <a href="{{ $chip['url'] }}" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface text-sm font-semibold hover:bg-surface-container-lowest border border-outline-variant/40">
-                    {{ $chip['label'] }}
-                </a>
-            @endforeach
-        </div>
-    </section>
-
-    {{-- Featured (search popularity) --}}
-    @if ($featuredCars->isNotEmpty())
-        <section class="mb-16" aria-labelledby="feat-heading">
-            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-                <div>
-                    <h2 id="feat-heading" class="font-headline text-2xl sm:text-3xl font-black text-primary">Featured & searched</h2>
-                    <p class="text-on-surface-variant mt-1 text-sm">Popular picks from Dar & imports.</p>
-                </div>
-                <a href="{{ route('cars.index') }}" class="inline-flex items-center gap-2 text-primary font-bold border-b-2 border-primary/20 hover:border-primary text-sm self-start sm:self-auto">
-                    {{ __('site.engagement.browse_cars') }}
-                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                </a>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
-                @foreach ($featuredCars as $car)
-                    <x-car-card :car="$car" :compact="true" />
-                @endforeach
-            </div>
-        </section>
-    @endif
-
-    {{-- New listings --}}
-    @if ($newTodayListings->isNotEmpty())
-        <section class="mb-16" aria-labelledby="new-listings-heading">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-                <div>
-                    <h2 id="new-listings-heading" class="font-headline text-2xl font-bold text-primary">
-                        @if ($homeNewListingsIsRecentFallback)
-                            Recent arrivals
-                        @else
-                            New today
-                        @endif
-                    </h2>
-                    @if ($homeNewListingsIsRecentFallback)
-                        <p class="text-sm text-on-surface-variant mt-1">No listings created today — showing the latest instead.</p>
+@php
+    $salesDigits = preg_replace('/\D+/', '', (string) config('sahara.whatsapp_phone'));
+    $salesTelHref = 'tel:+' . $salesDigits;
+    $salesWaMessage = __('public.home.sales_wa_message');
+    $salesWaHref = 'https://wa.me/' . $salesDigits . '?text=' . rawurlencode($salesWaMessage);
+@endphp
+<main id="main-content" tabindex="-1" class="outline-none">
+@if (($newTodayListings ?? collect())->isNotEmpty())
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-labelledby="home-new-today-heading">
+    <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
+            <div>
+                <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        {{ __('public.home.new_today') }}
+                    @else
+                        {{ __('public.home.latest_listings') }}
                     @endif
+                </p>
+                <h2 id="home-new-today-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary">
+                    @if (!($homeNewListingsIsRecentFallback ?? false))
+                        {{ __('public.home.fresh_stock') }}
+                    @else
+                        {{ __('public.home.recent_arrivals') }}
+                    @endif
+                </h2>
+                @if (!($homeNewListingsIsRecentFallback ?? false))
+                    <p class="text-xs sm:text-sm text-on-surface-variant mt-1">
+                        <span class="font-semibold text-primary">{{ number_format((int) ($carsNewTodayCount ?? 0)) }}</span>{{ __('public.home.added_today_suffix') }}
+                    </p>
+                @endif
+            </div>
+            <a href="{{ route('cars.index', ['sort' => 'newest']) }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary shrink-0">{{ __('public.home.view_all_newest') }}</a>
+        </div>
+        <div class="sahara-stagger-children grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
+            @foreach ($newTodayListings as $car)
+                <div class="min-w-0">
+                    <x-car-card :car="$car" :compact="true" />
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+{{-- Search-first: compact strip (no full-bleed video), inventory hook + form --}}
+@php
+    $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
+@endphp
+<section class="relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <picture>
+            <source
+                type="image/webp"
+                srcset="{{ asset('images/login-bg-hero-1280.webp') }} 1280w, {{ asset('images/login-bg-hero-1920.webp') }} 1920w"
+                sizes="100vw"
+            />
+            <img
+                src="{{ asset('images/login-bg-hero-1280.jpg') }}"
+                alt=""
+                class="w-full h-full object-cover grayscale opacity-45"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+            />
+        </picture>
+        <div class="absolute inset-0 bg-slate-950/20"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center">
+        <div class="hidden md:block max-w-3xl mx-auto mb-4 sm:mb-5">
+            <p class="font-label text-[10px] uppercase tracking-[0.24em] text-white/75">{{ config('sahara.legal_entity_name') }}</p>
+            <h1 class="mt-1 font-headline text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wide text-white">
+                {{ __('public.home.hero_title') }}
+            </h1>
+            <p class="mt-2 text-xs sm:text-sm text-white/80">{{ __('public.home.hero_subtitle') }}</p>
+        </div>
+        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel mt-1 mx-auto w-full rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-4 sm:p-5 shadow-[0_8px_30px_rgba(25,28,30,0.07)] text-left" id="home-hero-search-form">
+            @if ($heroInventoryCount > 0)
+                <p class="mb-3 text-sm sm:text-base text-on-surface-variant">
+                    <span class="font-headline font-extrabold text-primary tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
+                    <span class="text-on-surface/85"> {{ __('public.home.cars_in_stock') }}</span>
+                </p>
+            @else
+                <p class="text-sm text-on-surface-variant mb-3">{{ __('public.home.no_stock_message') }}</p>
+            @endif
+            {{-- Mobile: column; sm–lg: 2×2; lg+: 12-col row uses full 7xl width --}}
+            <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
+                <div class="min-w-0 sm:col-span-1 lg:col-span-5">
+                    <label for="hero-q" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_keyword') }}</label>
+                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface focus:ring-2 focus:ring-primary/30" />
+                </div>
+                <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">{{ __('public.common.search') }}</button>
+                <div class="sm:col-span-1 lg:col-span-3">
+                    <label for="hero-brand" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_brand') }}</label>
+                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface">
+                        <option value="">{{ __('public.home.any_brand') }}</option>
+                        @foreach ($brandOptions as $brandOption)
+                            <option value="{{ $brandOption }}">{{ $brandOption }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="sm:col-span-1 lg:col-span-2">
+                    <label for="hero-price" class="block text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">{{ __('public.home.label_price_min') }}</label>
+                    <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="{{ __('public.common.optional') }}" class="w-full min-h-[44px] rounded-xl bg-surface-container-highest px-3 py-2.5 text-sm ghost-border text-on-surface" />
                 </div>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
-                @foreach ($newTodayListings as $car)
-                    <x-car-card :car="$car" :compact="true" />
+            <div class="pt-2.5 mt-1 border-t border-outline-variant/20 text-center">
+                <a href="{{ route('cars.index') }}" class="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-sm font-bold text-primary hover:bg-primary/10 transition-colors"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">tune</span> {{ __('public.home.all_filters_link') }}</a>
+            </div>
+        </form>
+        @if (count($homeQuickFilterChips ?? []) > 0)
+            <div class="flex flex-wrap justify-center gap-2 mt-4" role="list" aria-label="{{ __('public.home.quick_filters_aria') }}">
+                @foreach (($homeQuickFilterChips ?? []) as $quickFilterChip)
+                    <a href="{{ $quickFilterChip['url'] }}" role="listitem" class="inline-flex items-center rounded-full border border-primary/20 bg-surface-container-lowest px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wide text-on-surface hover:border-primary/40 hover:bg-surface-container-high transition-colors">{{ $quickFilterChip['label'] }}</a>
                 @endforeach
             </div>
-        </section>
-    @endif
-
-    {{-- Brand rail --}}
-    @if (count($homeBrands) > 0)
-        <section class="mb-16" aria-labelledby="brands-heading">
-            <h2 id="brands-heading" class="font-headline text-xl font-bold text-primary mb-6 text-center">Trusted brands</h2>
-            <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-10">
-                @foreach ($homeBrands as $b)
-                    <div class="flex flex-col items-center gap-2 text-center max-w-[120px]">
-                        <img src="{{ $b['logo'] }}" alt="" class="h-12 w-auto object-contain max-w-full" loading="lazy" decoding="async"/>
-                        <span class="text-xs font-semibold text-on-surface-variant">{{ $b['name'] }}</span>
+        @endif
+        <div class="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-center gap-2.5 sm:gap-3">
+            <a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="sahara-live-cta min-h-[44px] justify-center rounded-full border-2 border-primary/35 bg-surface-container-lowest text-on-surface text-sm font-bold px-5 inline-flex items-center gap-2 hover:border-primary/55 hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined text-primary text-[18px]" aria-hidden="true">chat</span> {{ __('public.home.whatsapp_us') }}
+            </a>
+            <a href="{{ route('cars.index') }}" class="sahara-live-cta min-h-[44px] justify-center rounded-full bg-primary text-on-primary text-sm font-bold px-5 inline-flex items-center hover:opacity-95">{{ __('public.home.browse_all_stock') }}</a>
+        </div>
+        @if (($homeAnnouncements ?? collect())->isNotEmpty())
+            <div class="mt-3 pt-4 border-t border-outline-variant/20 text-left" aria-labelledby="home-offers-heading">
+                <div class="rounded-2xl border border-sky-200/30 bg-surface-container-low/90 px-3 py-2.5 sm:px-4 sm:py-3 shadow-sm">
+                    <div class="mb-1.5 text-center">
+                        <h2 id="home-offers-heading" class="font-headline text-sm font-extrabold text-primary inline-flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sky-700 text-[20px]" aria-hidden="true">notifications_active</span>
+                            {{ __('public.home.offers_heading') }}
+                        </h2>
                     </div>
-                @endforeach
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2" role="list">
+                        @foreach ($homeAnnouncements as $ann)
+                            @php
+                                $annHref = $ann->publicLinkHref();
+                                $kindClass = match ($ann->kind) {
+                                    \App\Models\Announcement::KIND_DISCOUNT => 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
+                                    \App\Models\Announcement::KIND_OFFER => 'bg-amber-100 text-amber-950 border-amber-200/80',
+                                    default => 'bg-surface-container-high text-on-surface border-outline-variant/40',
+                                };
+                                $kindLabel = match ($ann->kind) {
+                                    \App\Models\Announcement::KIND_DISCOUNT => __('public.home.announcement_discount'),
+                                    \App\Models\Announcement::KIND_OFFER => __('public.home.announcement_offer'),
+                                    default => __('public.home.announcement_news'),
+                                };
+                            @endphp
+                            <li class="min-w-0">
+                                @if ($annHref)
+                                    <a href="{{ $annHref }}" @if ($ann->link_new_tab) target="_blank" rel="noopener noreferrer" @endif class="group flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 hover:border-sky-300/50 transition-colors text-left h-full">
+                                @else
+                                    <div class="flex gap-2 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-2.5 h-full">
+                                @endif
+                                    <span class="shrink-0 inline-flex h-7 items-center rounded-md border px-1.5 text-[8px] font-extrabold uppercase tracking-wider {{ $kindClass }}">{{ $kindLabel }}</span>
+                                    <div class="min-w-0 flex-1">
+                                        <p class="text-xs font-bold text-primary line-clamp-2">{{ $ann->title }}</p>
+                                        @if ($ann->summary)
+                                            <p class="text-[10px] text-on-surface-variant line-clamp-1 mt-0.5">{{ $ann->summary }}</p>
+                                        @endif
+                                    </div>
+                                @if ($annHref)
+                                    </a>
+                                @else
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-        </section>
-    @endif
-
-    {{-- Import flow --}}
-    <section class="mb-16 rounded-3xl border border-outline-variant/30 bg-surface-container-low/60 p-6 sm:p-10" aria-labelledby="import-flow-title">
-        <h2 id="import-flow-title" class="font-headline text-2xl font-bold text-primary">{{ $homeImportFlowTitle }}</h2>
-        <p class="text-on-surface-variant mt-2 mb-8">{{ $homeImportFlowSubtitle }}</p>
-        <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0">
-            @foreach ($homeImportFlowSteps as $idx => $step)
-                <li class="rounded-2xl bg-surface-container-lowest p-5 border border-outline-variant/25 shadow-sm">
-                    <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-on-primary font-black text-sm mb-3">{{ $idx + 1 }}</span>
-                    <h3 class="font-headline font-bold text-primary">{{ $step['title'] }}</h3>
-                    <p class="text-sm text-on-surface-variant mt-2 leading-relaxed">{{ $step['description'] }}</p>
-                </li>
-            @endforeach
-        </ol>
-    </section>
-
-    {{-- Announcements --}}
-    @if ($homeAnnouncements->isNotEmpty())
-        <section class="mb-8" aria-labelledby="news-heading">
-            <h2 id="news-heading" class="font-headline text-2xl font-bold text-primary mb-6">Offers & news</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                @foreach ($homeAnnouncements as $announcement)
-                    @php
-                        $href = $announcement->publicLinkHref();
-                    @endphp
-                    <article class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-5 shadow-sm flex flex-col">
-                        <h3 class="font-headline font-bold text-primary">{{ $announcement->title }}</h3>
-                        @if ($announcement->summary)
-                            <p class="text-sm text-on-surface-variant mt-2 flex-1">{{ $announcement->summary }}</p>
-                        @endif
-                        @if ($href)
-                            <a href="{{ $href }}" class="mt-4 inline-flex items-center gap-1 text-sm font-bold text-secondary hover:underline" @if ($announcement->link_new_tab) target="_blank" rel="noopener noreferrer" @endif>
-                                Learn more
-                                <span class="material-symbols-outlined text-base">open_in_new</span>
-                            </a>
-                        @endif
-                    </article>
-                @endforeach
+        @endif
+    </div>
+</section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-label="{{ __('public.home.live_stats_aria') }}">
+<div class="grid grid-cols-3 gap-2 sm:gap-3">
+    <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">{{ __('public.home.stats_cars_in_stock') }}</p>
+        <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($totalPublishedCars ?? 0)) }}</p>
+    </article>
+    <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">{{ __('public.home.stats_added_week') }}</p>
+        <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($carsAddedThisWeek ?? 0)) }}</p>
+    </article>
+    <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">
+        <p class="text-[9px] sm:text-[10px] uppercase tracking-wide sm:tracking-widest text-on-surface-variant font-label">{{ __('public.home.stats_ready_dar') }}</p>
+        <p class="font-headline text-lg sm:text-2xl font-black text-primary mt-1">{{ number_format((int) ($darReadyCars ?? 0)) }}</p>
+    </article>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+<div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
+        <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ $homeShortcutsTitle ?? __('public.home.shortcuts_title_fallback') }}</h2>
+        <p class="text-xs sm:text-sm text-on-surface-variant">{{ $homeShortcutsSubtitle ?? __('public.home.shortcuts_subtitle_fallback') }}</p>
+    </div>
+    <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        @foreach (($homeShortcutChips ?? []) as $shortcut)
+            <a href="{{ $shortcut['url'] }}" class="rounded-2xl bg-surface-container-low px-3 py-3 ghost-border hover:bg-surface-container-high transition-colors text-center text-xs font-bold uppercase tracking-wide text-on-surface-variant">{{ $shortcut['label'] }}</a>
+        @endforeach
+    </div>
+</div>
+</section>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-label="{{ __('public.home.highlights_aria') }}">
+<div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-4 sm:p-6 shadow-[0_12px_22px_rgba(25,28,30,0.05)]">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 text-center sm:text-left">
+        <div>
+            <p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">{{ __('public.home.visual_highlights') }}</p>
+            <h2 class="font-headline text-xl sm:text-2xl font-extrabold text-primary">{{ __('public.home.buying_experience') }}</h2>
+        </div>
+        <a href="{{ route('order.request') }}" class="text-sm font-bold text-primary underline decoration-primary/20 hover:decoration-primary">{{ __('public.home.request_matching') }}</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <div class="overflow-hidden">
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/home-showroom-premium-640.webp') }} 640w, {{ asset('images/home-showroom-premium-960.webp') }} 960w"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <img src="{{ asset('images/home-showroom-premium-960.jpg') }}" alt="{{ __('public.home.img_premium_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                </picture>
             </div>
-        </section>
-    @endif
-
+            <div class="p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_showroom_quality') }}</p>
+                <p class="font-headline font-extrabold text-primary mt-1">{{ __('public.home.panel_curated') }}</p>
+            </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <div class="overflow-hidden">
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/home-driving-road-640.webp') }} 640w, {{ asset('images/home-driving-road-960.webp') }} 960w"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <img src="{{ asset('images/home-driving-road-960.jpg') }}" alt="{{ __('public.home.img_road_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                </picture>
+            </div>
+            <div class="p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_road') }}</p>
+                <p class="font-headline font-extrabold text-primary mt-1">{{ __('public.home.panel_routes') }}</p>
+            </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-surface-container-low border border-outline-variant/20">
+            <div class="overflow-hidden">
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ asset('images/home-inspection-detail-640.webp') }} 640w, {{ asset('images/home-inspection-detail-960.webp') }} 960w"
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <img src="{{ asset('images/home-inspection-detail-960.jpg') }}" alt="{{ __('public.home.img_inspection_alt') }}" class="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async"/>
+                </picture>
+            </div>
+            <div class="p-4">
+                <p class="text-[10px] uppercase tracking-widest font-label text-on-surface-variant">{{ __('public.home.panel_condition') }}</p>
+                <p class="font-headline font-extrabold text-primary mt-1">{{ __('public.home.panel_inspection') }}</p>
+            </div>
+        </article>
+    </div>
+</div>
+</section>
+@php
+    $featuredCollection = collect($featuredCars ?? []);
+    $featuredList = $featuredCollection->take(10);
+@endphp
+<!-- Content: Featured Cars Section -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 section-editorial section-wash-soft rounded-[1.25rem] sm:rounded-[2rem]" aria-labelledby="home-featured-cars-heading">
+<div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end mb-8">
+<div class="space-y-2 min-w-0 text-center sm:text-left">
+<span class="text-secondary font-bold text-sm uppercase tracking-[0.2em]">{{ __('public.home.featured_kicker') }}</span>
+<h2 id="home-featured-cars-heading" class="font-headline text-2xl sm:text-4xl font-black text-primary leading-tight">{{ __('public.home.featured_title') }}</h2>
+</div>
+<a class="inline-flex sm:ml-auto items-center justify-center gap-2 text-primary font-bold underline decoration-primary/20 hover:decoration-primary transition-all py-2 min-h-[44px] touch-manipulation shrink-0 rounded-md" href="{{ route('cars.index') }}">
+                {{ __('public.home.view_all_inventory') }}
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+</a>
+</div>
+<div class="sahara-stagger-children grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+@forelse ($featuredList as $car)
+    <x-car-card :car="$car" :compact="true" />
+@empty
+    <div class="col-span-full bg-surface-container-lowest rounded-2xl p-10 text-center shadow-[0_16px_24px_rgba(25,28,30,0.04)]">
+        <div class="font-headline font-black text-2xl text-primary">{{ __('public.home.no_cars_title') }}</div>
+        <p class="text-on-surface-variant mt-2">{{ __('public.home.no_cars_body') }}</p>
+    </div>
+@endforelse
+</div>
+</section>
+@if (!empty($homeBrands ?? []))
+<section class="max-w-7xl mx-auto px-4 sm:px-6 mt-8" aria-labelledby="home-brands-heading">
+<div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-[0_12px_22px_rgba(25,28,30,0.05)] attention-panel">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
+<h2 id="home-brands-heading" class="font-headline text-xl sm:text-2xl font-extrabold text-primary tracking-tight">{{ __('public.home.brands_title') }}</h2>
+<p class="text-xs sm:text-sm text-on-surface-variant">{{ __('public.home.brands_subtitle') }}</p>
+</div>
+<div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+@foreach (($homeBrands ?? []) as $brand)
+<a
+href="{{ route('cars.index', ['brand' => $brand['name']]) }}"
+class="group rounded-2xl bg-surface-container-low px-3 py-3 ghost-border hover:bg-surface-container-high transition-colors flex flex-col items-center justify-center text-center min-h-[92px]"
+aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
+>
+@if (!empty($brand['logo']))
+<img src="{{ $brand['logo'] }}" alt="{{ __('public.home.brand_logo_alt', ['brand' => $brand['name']]) }}" class="h-8 w-auto object-contain mb-2" width="128" height="32" loading="lazy" decoding="async" />
+@else
+<span class="mb-2 inline-flex h-8 min-w-[2.5rem] items-center justify-center rounded-full bg-primary/10 px-2 text-[11px] font-extrabold uppercase tracking-wide text-primary">
+{{ \Illuminate\Support\Str::limit((string) $brand['name'], 3, '') }}
+</span>
+@endif
+<span class="text-[11px] font-label font-semibold tracking-wide text-on-surface-variant group-hover:text-primary">
+{{ $brand['name'] }}
+</span>
+</a>
+@endforeach
+</div>
+</div>
+</section>
+@endif
+<section class="section-editorial px-4 sm:px-6 section-wash-soft">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
+<span class="material-symbols-outlined text-primary">directions_car</span>
+<p class="font-headline text-4xl font-extrabold text-primary">500+</p>
+<p class="text-on-surface-variant text-sm mt-2">{{ __('public.home.stat_buyers') }}</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
+<span class="material-symbols-outlined text-primary">sentiment_satisfied</span>
+<p class="font-headline text-4xl font-extrabold text-primary">98%</p>
+<p class="text-on-surface-variant text-sm mt-2">{{ __('public.home.stat_satisfaction') }}</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-6 graphic-panel">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+<p class="font-headline text-4xl font-extrabold text-primary">24/7</p>
+<p class="text-on-surface-variant text-sm mt-2">{{ __('public.home.stat_support') }}</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-8 md:p-12 shadow-[0_20px_32px_rgba(92,67,32,0.1)]">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 text-center md:text-left">
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">{{ __('public.home.testimonials_kicker') }}</p>
+<h3 class="font-headline text-3xl font-extrabold text-primary mt-2">{{ __('public.home.testimonials_title') }}</h3>
+</div>
+<div class="inline-flex items-center gap-2 bg-surface-container-low rounded-full px-4 py-2 ghost-border">
+<span class="material-symbols-outlined text-secondary text-[18px]">star</span>
+<span class="text-xs font-bold text-primary">{{ __('public.home.testimonials_rating') }}</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-7">
+<article class="bg-surface-container-low rounded-2xl p-6 shadow-[0_12px_20px_rgba(25,28,30,0.04)]">
+<div class="flex items-center gap-1 text-secondary mb-3" aria-label="{{ __('public.home.stars_aria') }}">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+{{ __('public.home.testimonial_1') }}
+</p>
+<div class="flex items-center gap-3 mt-4">
+<div class="h-10 w-10 rounded-full bg-primary-container text-white flex items-center justify-center text-xs font-black">AS</div>
+<div>
+<p class="text-sm font-bold text-primary">{{ __('public.home.buyer_asha') }}</p>
+<p class="text-xs text-on-surface-variant">{{ __('public.home.buyer_dar') }}</p>
+</div>
+</div>
+</article>
+<article class="bg-surface-container-low rounded-2xl p-6 shadow-[0_12px_20px_rgba(25,28,30,0.04)]">
+<div class="flex items-center gap-1 text-secondary mb-3" aria-label="{{ __('public.home.stars_aria') }}">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+{{ __('public.home.testimonial_2') }}
+</p>
+<div class="flex items-center gap-3 mt-4">
+<div class="h-10 w-10 rounded-full bg-primary-container text-white flex items-center justify-center text-xs font-black">JM</div>
+<div>
+<p class="text-sm font-bold text-primary">{{ __('public.home.buyer_james') }}</p>
+<p class="text-xs text-on-surface-variant">{{ __('public.home.buyer_arusha') }}</p>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-8 flex flex-col sm:flex-row gap-3">
+<a href="{{ route('cars.index') }}" class="cta-gradient text-white rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-center inline-flex items-center justify-center focus-ring-on-dark">{{ __('public.home.explore_inventory') }}</a>
+<a href="{{ $salesWaHref }}" target="_blank" rel="noopener noreferrer" class="bg-surface-container-low rounded-full px-7 py-3 min-h-[48px] font-bold text-sm text-primary text-center ghost-border inline-flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span> {{ __('site.cta.chat_whatsapp') }}
+</a>
+</div>
+</div>
+</div>
+</section>
 </main>
-
-<x-footer class="mt-12" />
 <x-mobile-nav active="home" />
 <x-whatsapp-float />
+<x-footer />
+<script>
+(() => {
+    const saveSearchBtn = document.getElementById('save-search-wa');
+    const homeSearchForm = document.getElementById('home-hero-search-form');
+    if (saveSearchBtn && homeSearchForm) {
+        saveSearchBtn.addEventListener('click', () => {
+            const formData = new FormData(homeSearchForm);
+            const params = new URLSearchParams();
+            const summary = [];
+
+            for (const [key, rawValue] of formData.entries()) {
+                const value = String(rawValue).trim();
+                if (value === '') continue;
+                params.set(key, value);
+                summary.push(`${key}: ${value}`);
+            }
+
+            const inventoryUrl = `{{ route('cars.index') }}${params.toString() ? `?${params.toString()}` : ''}`;
+            const filtersLineTpl = @json(__('public.home.wa_save_search_filters'));
+            const filtersNone = @json(__('public.home.wa_save_search_filters_none'));
+            const linkLineTpl = @json(__('public.home.wa_save_search_link'));
+            const message = [
+                @json(__('public.home.wa_save_search_line1')),
+                '',
+                summary.length ? filtersLineTpl.replace(':summary', summary.join(', ')) : filtersNone,
+                linkLineTpl.replace(':url', inventoryUrl),
+            ].join('\n');
+
+            const waUrl = `https://wa.me/{{ $salesDigits }}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+    }
+})();
+
+</script>
 </body></html>
