@@ -13,7 +13,7 @@ return [
 
     'nav' => [
         'aria_main' => 'Menyu kuu',
-        'brand_tagline_mobile' => 'Hesabu ya kuaminika · Dar',
+        'brand_tagline_mobile' => 'Uuzaji · Kodi · Uagizaji',
         'home' => 'Mwanzo',
         'inventory' => 'Vinjari magari',
         'order_request' => 'Agiza',
@@ -50,6 +50,10 @@ return [
     'footer' => [
         'contact' => 'Wasiliana',
         'navigation' => 'Menyu',
+        'services_heading' => 'Huduma',
+        'service_sales' => 'Uuzaji wa magari',
+        'service_rental' => 'Ukodishaji wa magari',
+        'service_import' => 'Uagizaji wa magari',
         'team_heading' => 'Timu ya Dar',
         'rights' => 'Haki zote zimehifadhiwa.',
     ],

@@ -86,8 +86,25 @@ class CarController extends Controller
         $legalShort = (string) config('sahara.legal_entity_name');
         $salePlace = $car->location ?: __('public.common.tanzania');
         $pageTitle = $car->title.' '.__('public.cars.for_sale_suffix', ['place' => $salePlace]).' | '.$legalShort;
-        $pageDescription = Str::limit(strip_tags((string) ($car->description ?? '')), 155)
-            ?: __('public.cars.page_description_fallback', ['company' => $legalShort]);
+
+        $priceLabel = $car->price_tzs
+            ? 'TZS '.number_format((int) $car->price_tzs).'. '
+            : '';
+        $pageDescription = Str::limit(strip_tags((string) ($car->description ?? '')), 155);
+        if ($pageDescription === '') {
+            $pageDescription = $priceLabel !== ''
+                ? __('public.meta.listing_description', [
+                    'title' => $car->title,
+                    'place' => $salePlace,
+                    'price' => trim($priceLabel),
+                    'company' => $legalShort,
+                ])
+                : __('public.meta.listing_description_no_price', [
+                    'title' => $car->title,
+                    'place' => $salePlace,
+                    'company' => $legalShort,
+                ]);
+        }
 
         return view('cars.show', compact('car', 'related', 'waPhone', 'waListingMessage', 'pageTitle', 'pageDescription'));
     }

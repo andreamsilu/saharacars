@@ -42,7 +42,7 @@ return [
     | Brand line (physical signage slogan; shown e.g. in footer intro)
     |--------------------------------------------------------------------------
     */
-    'brand_tagline' => env('SAHARA_BRAND_TAGLINE', 'Driven by Trust, Powered by Excellence'),
+    'brand_tagline' => env('SAHARA_BRAND_TAGLINE', 'Car sales · Car rental · Car importation'),
 
     /*
     |--------------------------------------------------------------------------

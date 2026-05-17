@@ -7,6 +7,8 @@
     :title="__('public.meta.why_title', ['company' => config('sahara.legal_entity_name')])"
     :description="__('public.meta.why_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('why.choose.us', ['locale' => app()->getLocale()])"
+    :image="asset('images/why-showroom.jpg')"
+    :image-alt="__('public.why.page.img_showroom_alt')"
 />
 <x-public-head-assets />
 <script id="tailwind-config">

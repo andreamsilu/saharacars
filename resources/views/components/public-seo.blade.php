@@ -3,48 +3,39 @@
     'description' => null,
     'canonical' => null,
     'image' => null,
+    'imageAlt' => null,
     'type' => 'website',
     'noindex' => false,
     'structuredData' => null,
 ])
 
 @php
+    use App\Support\PublicSeoBuilder;
+
     $siteName = (string) config('sahara.legal_entity_name', config('app.name'));
-    $defaultDescription = __('public.cars.page_description_fallback', ['company' => $siteName]);
+    $defaultDescription = __('public.meta.default_description', ['company' => $siteName]);
     $resolvedTitle = trim((string) ($title ?? $siteName)) ?: $siteName;
     $resolvedDescription = trim((string) ($description ?? $defaultDescription)) ?: $defaultDescription;
     $resolvedCanonical = $canonical ?: url()->current();
     $resolvedImage = $image ?: asset('images/login-bg-hero.jpg');
+    $resolvedImageAlt = trim((string) ($imageAlt ?? $resolvedTitle));
     $shouldNoindex = (bool) $noindex;
     $robotsValue = $shouldNoindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
     $twitterCard = $resolvedImage ? 'summary_large_image' : 'summary';
-
-    $favicon512Url = asset('images/favicon-512.png');
+    $localeTag = str_replace('_', '-', app()->getLocale());
+    $supportedLocales = config('app.supported_locales', ['en', 'sw']);
+    $hreflangAlternates = PublicSeoBuilder::hreflangAlternates();
 
     $jsonLd = [];
     if ($structuredData) {
-        $jsonLd = is_array($structuredData) ? $structuredData : [$structuredData];
+        $payload = is_array($structuredData) ? $structuredData : [$structuredData];
+        if (isset($payload['@graph']) || isset($payload['@context'])) {
+            $jsonLd = [$payload];
+        } else {
+            $jsonLd = [PublicSeoBuilder::graphWithProduct($payload)];
+        }
     } elseif (! $shouldNoindex) {
-        $siteUrl = rtrim((string) config('sahara.public_site_url', url('/')), '/');
-        $jsonLd = [[
-            '@context' => 'https://schema.org',
-            '@graph' => [
-                [
-                    '@type' => 'WebSite',
-                    'name' => $siteName,
-                    'url' => $siteUrl,
-                    'inLanguage' => str_replace('_', '-', app()->getLocale()),
-                    'publisher' => ['@id' => $siteUrl.'#organization'],
-                ],
-                [
-                    '@id' => $siteUrl.'#organization',
-                    '@type' => 'Organization',
-                    'name' => $siteName,
-                    'url' => $siteUrl,
-                    'logo' => ['@type' => 'ImageObject', 'url' => $favicon512Url],
-                ],
-            ],
-        ]];
+        $jsonLd = [PublicSeoBuilder::defaultGraph()];
     }
 @endphp
 
@@ -52,19 +43,31 @@
 <meta name="description" content="{{ e($resolvedDescription) }}"/>
 <link rel="canonical" href="{{ e($resolvedCanonical) }}"/>
 <meta name="robots" content="{{ $robotsValue }}"/>
+<meta name="theme-color" content="#8a6528"/>
 
-<meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}"/>
+@foreach ($hreflangAlternates as $alternate)
+    <link rel="alternate" hreflang="{{ $alternate['hreflang'] }}" href="{{ e($alternate['href']) }}"/>
+@endforeach
+
+<meta property="og:locale" content="{{ $localeTag }}"/>
+@foreach ($supportedLocales as $altLocale)
+    @if ($altLocale !== app()->getLocale())
+        <meta property="og:locale:alternate" content="{{ str_replace('_', '-', $altLocale) }}"/>
+    @endif
+@endforeach
 <meta property="og:type" content="{{ e($type) }}"/>
 <meta property="og:site_name" content="{{ e($siteName) }}"/>
 <meta property="og:title" content="{{ e($resolvedTitle) }}"/>
 <meta property="og:description" content="{{ e($resolvedDescription) }}"/>
 <meta property="og:url" content="{{ e($resolvedCanonical) }}"/>
 <meta property="og:image" content="{{ e($resolvedImage) }}"/>
+<meta property="og:image:alt" content="{{ e($resolvedImageAlt) }}"/>
 
 <meta name="twitter:card" content="{{ $twitterCard }}"/>
 <meta name="twitter:title" content="{{ e($resolvedTitle) }}"/>
 <meta name="twitter:description" content="{{ e($resolvedDescription) }}"/>
 <meta name="twitter:image" content="{{ e($resolvedImage) }}"/>
+<meta name="twitter:image:alt" content="{{ e($resolvedImageAlt) }}"/>
 
 @foreach ($jsonLd as $schema)
     @if (is_array($schema))

@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <x-public-seo
         :title="__('public.meta.order_title', ['company' => config('sahara.legal_entity_name')])"
-        :description="__('public.cars.page_description_fallback', ['company' => config('sahara.legal_entity_name')])"
+        :description="__('public.meta.order_description', ['company' => config('sahara.legal_entity_name')])"
         :canonical="route('order.request', ['locale' => app()->getLocale()])"
+        :image="asset('images/home-driving-road-960.jpg')"
+        :image-alt="__('public.home.service_import_title')"
     />
     <x-public-head-assets />
     <script src="https://cdn.tailwindcss.com"></script>

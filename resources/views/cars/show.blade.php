@@ -3,18 +3,13 @@
 <html class="light" lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<x-public-seo
-    :title="$pageTitle"
-    :description="$pageDescription"
-    :canonical="$car->publicShowUrl()"
-    :type="'product'"
-    :image="$car->hero_image_path ? asset('storage/'.$car->hero_image_path) : null"
-    :structured-data="[
-        '@context' => 'https://schema.org',
-        '@type' => 'Product',
+@php
+    $listingImage = $car->hero_image_path ? asset('storage/'.$car->hero_image_path) : asset('images/home-showroom-premium-960.jpg');
+    $listingSchema = [
+        '@type' => ['Product', 'Car'],
         'name' => $car->title,
         'description' => $pageDescription,
-        'image' => $car->hero_image_path ? asset('storage/'.$car->hero_image_path) : null,
+        'image' => $listingImage,
         'brand' => ['@type' => 'Brand', 'name' => $car->brand ?: $car->title],
         'offers' => [
             '@type' => 'Offer',
@@ -22,8 +17,28 @@
             'price' => $car->price_tzs,
             'availability' => 'https://schema.org/InStock',
             'url' => $car->publicShowUrl(),
+            'seller' => ['@id' => rtrim((string) config('sahara.public_site_url', url('/')), '/').'#organization'],
         ],
-    ]"
+    ];
+    if ($car->year) {
+        $listingSchema['vehicleModelDate'] = (string) $car->year;
+    }
+    if ($car->mileage_km) {
+        $listingSchema['mileageFromOdometer'] = [
+            '@type' => 'QuantitativeValue',
+            'value' => (int) $car->mileage_km,
+            'unitCode' => 'KMT',
+        ];
+    }
+@endphp
+<x-public-seo
+    :title="$pageTitle"
+    :description="$pageDescription"
+    :canonical="$car->publicShowUrl()"
+    type="product"
+    :image="$listingImage"
+    :image-alt="$car->title"
+    :structured-data="$listingSchema"
 />
 <x-public-head-assets />
 <script id="tailwind-config">

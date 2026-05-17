@@ -7,6 +7,8 @@
     :title="__('public.meta.home_title', ['company' => config('sahara.legal_entity_name')])"
     :description="__('public.meta.home_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('home', ['locale' => app()->getLocale()])"
+    :image="asset('images/home-showroom-premium-960.jpg')"
+    :image-alt="__('public.home.services_title')"
 />
 <x-public-head-assets />
 <script id="tailwind-config">
@@ -182,6 +184,11 @@
                 {{ __('public.home.hero_title') }}
             </h1>
             <p class="mt-2 text-editorial-body text-white/95">{{ __('public.home.hero_subtitle') }}</p>
+            <ul class="mt-4 flex flex-wrap justify-center gap-2" aria-label="{{ __('public.home.hero_services_aria') }}">
+                <li class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">{{ __('public.home.service_sales_title') }}</li>
+                <li class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">{{ __('public.home.service_rental_title') }}</li>
+                <li class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">{{ __('public.home.service_import_title') }}</li>
+            </ul>
         </div>
         <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel home-hero-search mt-1 mx-auto w-full rounded-2xl border border-white/20 bg-white/10 p-4 sm:p-5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-md text-left text-white [color-scheme:dark]" id="home-hero-search-form">
             @if ($heroInventoryCount > 0)
@@ -280,6 +287,7 @@
         @endif
     </div>
 </section>
+<x-home-services />
 <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-4" aria-label="{{ __('public.home.live_stats_aria') }}">
 <div class="grid grid-cols-3 gap-2 sm:gap-3">
     <article class="rounded-xl sm:rounded-2xl bg-surface-container-lowest border border-outline-variant/30 px-2.5 py-3 sm:px-4 sm:py-4 shadow-[0_10px_18px_rgba(25,28,30,0.04)] text-center">

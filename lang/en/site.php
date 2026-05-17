@@ -13,7 +13,7 @@ return [
 
     'nav' => [
         'aria_main' => 'Main navigation',
-        'brand_tagline_mobile' => 'Trusted stock · Dar',
+        'brand_tagline_mobile' => 'Sales · Rental · Import',
         'home' => 'Home',
         'inventory' => 'Browse cars',
         'order_request' => 'Import',
@@ -50,6 +50,10 @@ return [
     'footer' => [
         'contact' => 'Contact',
         'navigation' => 'Navigation',
+        'services_heading' => 'Services',
+        'service_sales' => 'Car sales',
+        'service_rental' => 'Car rental',
+        'service_import' => 'Car importation',
         'team_heading' => 'Dar team',
         'rights' => 'All rights reserved.',
     ],

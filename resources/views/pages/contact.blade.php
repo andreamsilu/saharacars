@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <x-public-seo
     :title="__('public.meta.contact_title', ['company' => config('sahara.legal_entity_name')])"
-    :description="__('public.cars.page_description_fallback', ['company' => config('sahara.legal_entity_name')])"
+    :description="__('public.meta.contact_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('contact', ['locale' => app()->getLocale()])"
+    :image="asset('images/login-bg-hero-1280.jpg')"
+    :image-alt="__('public.contact.hero_title')"
 />
 <x-public-head-assets />
 <script id="tailwind-config">

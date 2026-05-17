@@ -1,4 +1,4 @@
-{{-- Brand favicons derived from public/images/logo.png (square PNG set). --}}
+{{-- Brand favicons from public/images/logo.png (transparent PNG). Regenerate: node scripts/generate-favicons.mjs --}}
 @php
     $favicon48Url = asset('images/favicon-48.png');
     $favicon96Url = asset('images/favicon-96.png');

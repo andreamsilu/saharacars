@@ -63,6 +63,11 @@
                     {{ __('site.cta.whatsapp_short') }}
                 </a>
             </div>
+            <ul class="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-xs font-semibold text-slate-300">
+                <li><a class="hover:text-white transition-colors" href="{{ route('cars.index') }}">{{ __('site.footer.service_sales') }}</a></li>
+                <li><a class="hover:text-white transition-colors" href="https://wa.me/{{ $footerPhoneDigits }}?text={{ rawurlencode(__('public.home.rental_wa_message')) }}" target="_blank" rel="noopener noreferrer">{{ __('site.footer.service_rental') }}</a></li>
+                <li><a class="hover:text-white transition-colors" href="{{ route('order.request') }}">{{ __('site.footer.service_import') }}</a></li>
+            </ul>
         </div>
 
         <div>

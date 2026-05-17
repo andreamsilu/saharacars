@@ -4,9 +4,11 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <x-public-seo
-    :title="__('public.cars_index.title').' | '.config('sahara.legal_entity_name')"
-    :description="__('public.home.hero_subtitle')"
+    :title="__('public.meta.bento_title', ['company' => config('sahara.legal_entity_name')])"
+    :description="__('public.meta.bento_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('cars.bento', ['locale' => app()->getLocale()])"
+    :image="asset('images/home-showroom-premium-960.jpg')"
+    :image-alt="__('public.home.img_premium_alt')"
 />
 <x-public-head-assets />
 <script id="tailwind-config">
