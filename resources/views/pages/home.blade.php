@@ -177,8 +177,7 @@
     </div>
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
         <div class="max-w-3xl mx-auto mb-4 sm:mb-5 text-white">
-            <p class="font-label text-editorial-kicker text-white/90 tracking-[0.14em] uppercase">{{ __('public.home.hero_kicker') }}</p>
-            <p class="mt-1 text-sm text-white/80">{{ config('sahara.legal_entity_name') }}</p>
+            <p class="text-sm text-white/80">{{ config('sahara.legal_entity_name') }}</p>
             <h1 class="mt-2 font-headline text-editorial-hero font-black uppercase tracking-wide text-white">
                 {{ __('public.home.hero_title') }}
             </h1>
