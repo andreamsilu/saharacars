@@ -62,21 +62,12 @@
                 </div>
             </div>
             <div class="space-y-3">
-                <span id="filter-transmission-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">{{ __('public.filters.transmission') }}</span>
-                <div class="inventory-transmission-segment grid grid-cols-3 gap-1 p-1 bg-surface-container-low rounded-2xl text-xs" role="radiogroup" aria-labelledby="filter-transmission-label-{{ $filterFormIdPrefix }}">
-                    <label class="min-w-0 cursor-pointer">
-                        <input type="radio" name="transmission" value="Automatic" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === 'Automatic' ? 'checked' : '' }} />
-                        <span class="inventory-transmission-option block text-center py-2.5 px-1 rounded-xl font-bold leading-tight text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_auto') }}</span>
-                    </label>
-                    <label class="min-w-0 cursor-pointer">
-                        <input type="radio" name="transmission" value="Manual" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === 'Manual' ? 'checked' : '' }} />
-                        <span class="inventory-transmission-option block text-center py-2.5 px-1 rounded-xl font-bold leading-tight text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_manual') }}</span>
-                    </label>
-                    <label class="min-w-0 cursor-pointer">
-                        <input type="radio" name="transmission" value="" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === null || request('transmission') === '' ? 'checked' : '' }} />
-                        <span class="inventory-transmission-option block text-center py-2.5 px-1 rounded-xl font-bold leading-tight text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_any') }}</span>
-                    </label>
-                </div>
+                <label for="filter-transmission-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.transmission') }}</label>
+                <select id="filter-transmission-{{ $filterFormIdPrefix }}" name="transmission" data-filter-auto-submit-trigger class="w-full bg-surface-container-highest rounded-xl font-body text-sm py-3 px-4 appearance-none ghost-border">
+                    <option value="">{{ __('public.filters.trans_any') }}</option>
+                    <option value="Automatic" {{ request('transmission') === 'Automatic' ? 'selected' : '' }}>{{ __('public.filters.trans_auto') }}</option>
+                    <option value="Manual" {{ request('transmission') === 'Manual' ? 'selected' : '' }}>{{ __('public.filters.trans_manual') }}</option>
+                </select>
             </div>
             <div class="space-y-3">
                 <label for="filter-fuel-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">{{ __('public.filters.fuel') }}</label>

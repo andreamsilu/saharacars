@@ -243,21 +243,6 @@ input, select, textarea, button {
   .sahara-stagger-children > *:nth-child(n+21) { animation-delay: 0.26s; }
 }
 
-/* --- inventory filters --- */
-/* Transmission pills: 3-column layout + selected state (CDN may omit peer-checked utilities). */
-.inventory-transmission-segment {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.25rem;
-}
-.inventory-transmission-segment label {
-  min-width: 0;
-}
-.inventory-transmission-segment label:has(input:checked) .inventory-transmission-option {
-  background-color: #8a6528;
-  color: #ffffff;
-}
-
 /* --- public-design-tokens --- */
 /* Gold CTAs: always white label (Tailwind CDN may omit `text-on-primary` when theme is partial; avoids body text-on-surface inheritance). */
 .cta-gradient {
