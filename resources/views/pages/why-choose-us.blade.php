@@ -143,6 +143,40 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
+      /* Gentle pulse on “Read more” when section is in view */
+      @keyframes whyReadMorePulse {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(138, 101, 40, 0);
+          border-color: rgba(138, 101, 40, 0.28);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(138, 101, 40, 0.14);
+          border-color: rgba(138, 101, 40, 0.5);
+        }
+      }
+      @keyframes whyReadMoreIconNudge {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(2px); }
+      }
+      .why-reveal.is-visible .why-read-more-attention {
+        --why-read-more-delay: calc(var(--why-stagger, 0ms) + 600ms);
+        animation: whyReadMorePulse 1.75s ease-in-out var(--why-read-more-delay) 3;
+      }
+      .why-fade-up .why-read-more-attention {
+        animation: whyReadMorePulse 1.75s ease-in-out 1.1s 3;
+      }
+      .why-reveal.is-visible .why-read-more-attention .material-symbols-outlined,
+      .why-fade-up .why-read-more-attention .material-symbols-outlined {
+        animation: whyReadMoreIconNudge 1.2s ease-in-out calc(var(--why-read-more-delay, 0.6s) + 0.15s) 3;
+      }
+      .why-read-more-attention:hover,
+      .why-read-more-attention:focus-visible {
+        animation: none;
+      }
+      .why-read-more-attention:hover .material-symbols-outlined,
+      .why-read-more-attention:focus-visible .material-symbols-outlined {
+        animation: none;
+      }
       @media (prefers-reduced-motion: reduce) {
         .why-fade-up,
         .why-delay-1,
@@ -167,6 +201,10 @@
         .why-lift:hover {
           transform: none;
         }
+        .why-read-more-attention,
+        .why-read-more-attention .material-symbols-outlined {
+          animation: none !important;
+        }
       }
     </style>
 </head>
@@ -186,7 +224,7 @@
 <p class="text-on-surface-variant text-editorial-body why-hero-clamp">{{ __('public.why.page.hero_intro') }}</p>
 <button
     type="button"
-    class="why-read-more-trigger inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-2.5 min-h-[44px] text-sm font-bold text-primary hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation"
+    class="why-read-more-trigger why-read-more-attention inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-2.5 min-h-[44px] text-sm font-bold text-primary hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation"
     data-why-read-more-open="why-tpl-hero"
     data-why-read-more-title="{{ config('sahara.legal_entity_name') }}"
     aria-haspopup="dialog"

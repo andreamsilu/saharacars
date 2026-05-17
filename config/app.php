@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'sw'),
+    'locale' => env('APP_LOCALE', 'en'),
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
@@ -89,7 +89,7 @@ return [
     | Public site locales (first URL segment, e.g. /en/..., /sw/...)
     |--------------------------------------------------------------------------
     */
-    'supported_locales' => array_values(array_filter(array_map('trim', explode(',', (string) env('APP_SUPPORTED_LOCALES', 'sw,en'))))) ?: ['sw', 'en'],
+    'supported_locales' => array_values(array_filter(array_map('trim', explode(',', (string) env('APP_SUPPORTED_LOCALES', 'en,sw'))))) ?: ['en', 'sw'],
 
     /*
     |--------------------------------------------------------------------------

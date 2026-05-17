@@ -12,7 +12,7 @@
     @if ($hasFull)
         <button
             type="button"
-            class="why-read-more-trigger inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-2.5 min-h-[44px] text-sm font-bold text-primary hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation"
+            class="why-read-more-trigger why-read-more-attention inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-2.5 min-h-[44px] text-sm font-bold text-primary hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation"
             data-why-read-more-open="{{ $templateId }}"
             data-why-read-more-title="{{ $title }}"
             aria-haspopup="dialog"
