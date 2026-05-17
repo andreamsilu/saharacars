@@ -23,7 +23,7 @@ Route::get('/', function () {
  * Serve a square PNG mark for consistent rendering in SERP/tab icons.
  */
 Route::get('/favicon.ico', function () {
-    $faviconPng = public_path('images/favicon-mark-48.png');
+    $faviconPng = public_path('images/favicon-48.png');
     if (! is_file($faviconPng)) {
         abort(404);
     }

@@ -19,13 +19,7 @@
     $robotsValue = $shouldNoindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
     $twitterCard = $resolvedImage ? 'summary_large_image' : 'summary';
 
-    // Keep wide logo for site UI, but use square icons for search/browser favicons.
-    $logoUrl = asset('images/logo.png');
-    $favicon48Url = asset('images/favicon-mark-48.png');
-    $favicon192Url = asset('images/favicon-mark-192.png');
-    $favicon512Url = asset('images/favicon-mark-512.png');
-    $appleTouchIconUrl = asset('images/favicon-mark-180.png');
-    $faviconIcoUrl = url('/favicon.ico');
+    $favicon512Url = asset('images/favicon-512.png');
 
     $jsonLd = [];
     if ($structuredData) {
@@ -54,11 +48,6 @@
     }
 @endphp
 
-<link rel="icon" type="image/png" sizes="48x48" href="{{ $favicon48Url }}"/>
-<link rel="icon" type="image/png" sizes="192x192" href="{{ $favicon192Url }}"/>
-<link rel="icon" type="image/png" sizes="512x512" href="{{ $favicon512Url }}"/>
-<link rel="shortcut icon" href="{{ $faviconIcoUrl }}"/>
-<link rel="apple-touch-icon" sizes="180x180" href="{{ $appleTouchIconUrl }}"/>
 <title>{{ e($resolvedTitle) }}</title>
 <meta name="description" content="{{ e($resolvedDescription) }}"/>
 <link rel="canonical" href="{{ e($resolvedCanonical) }}"/>

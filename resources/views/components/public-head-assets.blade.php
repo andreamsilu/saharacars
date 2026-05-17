@@ -8,3 +8,4 @@
 <link rel="stylesheet" href="{{ asset('css/material-symbols-outlined.css') }}"/>
 {{-- Shared public tokens (typography, effects, motion, design, a11y): external file avoids premature inline style termination. --}}
 <link rel="stylesheet" href="{{ asset('css/sahara-public-tokens.css') }}"/>
+<x-public-favicon />
