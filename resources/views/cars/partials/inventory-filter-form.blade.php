@@ -63,18 +63,18 @@
             </div>
             <div class="space-y-3">
                 <span id="filter-transmission-label-{{ $filterFormIdPrefix }}" class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant block">{{ __('public.filters.transmission') }}</span>
-                <div class="flex flex-wrap gap-2 p-1 bg-surface-container-low rounded-full text-xs" role="radiogroup" aria-labelledby="filter-transmission-label-{{ $filterFormIdPrefix }}">
-                    <label class="flex-1 min-w-[5.5rem]">
+                <div class="inventory-transmission-segment grid grid-cols-3 gap-1 p-1 bg-surface-container-low rounded-2xl text-xs" role="radiogroup" aria-labelledby="filter-transmission-label-{{ $filterFormIdPrefix }}">
+                    <label class="min-w-0 cursor-pointer">
                         <input type="radio" name="transmission" value="Automatic" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === 'Automatic' ? 'checked' : '' }} />
-                        <span class="block text-center py-2.5 rounded-full font-bold text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_auto') }}</span>
+                        <span class="inventory-transmission-option block text-center py-2.5 px-1 rounded-xl font-bold leading-tight text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_auto') }}</span>
                     </label>
-                    <label class="flex-1 min-w-[5.5rem]">
+                    <label class="min-w-0 cursor-pointer">
                         <input type="radio" name="transmission" value="Manual" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === 'Manual' ? 'checked' : '' }} />
-                        <span class="block text-center py-2.5 rounded-full font-bold text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_manual') }}</span>
+                        <span class="inventory-transmission-option block text-center py-2.5 px-1 rounded-xl font-bold leading-tight text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_manual') }}</span>
                     </label>
-                    <label class="flex-1 min-w-[5.5rem]">
+                    <label class="min-w-0 cursor-pointer">
                         <input type="radio" name="transmission" value="" data-filter-auto-submit-trigger class="sr-only peer" {{ request('transmission') === null || request('transmission') === '' ? 'checked' : '' }} />
-                        <span class="block text-center py-2.5 rounded-full font-bold text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_any') }}</span>
+                        <span class="inventory-transmission-option block text-center py-2.5 px-1 rounded-xl font-bold leading-tight text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:hover:bg-primary peer-checked:hover:text-on-primary transition-colors touch-manipulation">{{ __('public.filters.trans_any') }}</span>
                     </label>
                 </div>
             </div>
