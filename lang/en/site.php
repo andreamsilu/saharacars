@@ -2,7 +2,7 @@
 
 return [
     'brand_ticker' => [
-        'aria' => 'Registered company name',
+        'aria' => 'Company name',
     ],
 
     'locale_switcher' => [
@@ -12,14 +12,14 @@ return [
     ],
 
     'nav' => [
-        'aria_main' => 'Main',
-        'brand_tagline_mobile' => 'Get your dream car',
+        'aria_main' => 'Main navigation',
+        'brand_tagline_mobile' => 'Trusted stock · Dar',
         'home' => 'Home',
-        'inventory' => 'Inventory',
-        'order_request' => 'Order request',
+        'inventory' => 'Browse cars',
+        'order_request' => 'Import',
         'saved' => 'Saved',
-        'saved_cars' => 'Saved cars',
-        'why_sahara' => 'Why Sahara',
+        'saved_cars' => 'My saved cars',
+        'why_sahara' => 'Why us',
         'contact' => 'Contact',
         'bottom_cars' => 'Cars',
     ],
@@ -30,16 +30,16 @@ return [
     ],
 
     'nav_bottom' => [
-        'aria' => 'Quick navigation',
+        'aria' => 'Quick links',
     ],
 
     'cta' => [
-        'chat_whatsapp' => 'Chat on WhatsApp',
+        'chat_whatsapp' => 'WhatsApp us',
         'whatsapp_short' => 'WhatsApp',
     ],
 
     'whatsapp' => [
-        'sales_intro' => 'Hi, I need help choosing a car.',
+        'sales_intro' => 'Hi, I\'m looking for a car—can you help me find the right one?',
     ],
 
     'whatsapp_fab' => [
@@ -56,8 +56,8 @@ return [
 
     'engagement' => [
         'close' => 'Close',
-        'title' => 'Ready to find your next car?',
-        'body' => 'Browse cars to see verified options from Dar es Salaam. Prefer to talk first? We are one tap away on WhatsApp.',
+        'title' => 'Ready for your next car?',
+        'body' => 'Browse verified stock in Dar—or message us on WhatsApp if you want to talk first.',
         'browse_cars' => 'Browse cars',
         'whatsapp' => 'Chat on WhatsApp',
         'dont_show' => 'Do not show this again for 7 days',

@@ -137,6 +137,12 @@
           transform: translateY(0);
         }
       }
+      .why-hero-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
       @media (prefers-reduced-motion: reduce) {
         .why-fade-up,
         .why-delay-1,
@@ -176,7 +182,22 @@
 <div class="text-center lg:text-left min-w-0 max-w-xl sm:max-w-2xl mx-auto lg:mx-0">
 <p class="font-label text-editorial-kicker text-secondary mb-3">{{ __('public.why.page.hero_kicker') }}</p>
 <h1 id="why-page-hero-heading" class="font-headline text-editorial-hero font-extrabold text-primary tracking-tight mb-3">{{ config('sahara.legal_entity_name') }}</h1>
-<p class="text-on-surface-variant text-editorial-body">{{ __('public.why.page.hero_intro') }}</p>
+<div class="space-y-3">
+<p class="text-on-surface-variant text-editorial-body why-hero-clamp">{{ __('public.why.page.hero_intro') }}</p>
+<button
+    type="button"
+    class="why-read-more-trigger inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-2.5 min-h-[44px] text-sm font-bold text-primary hover:bg-primary/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary touch-manipulation"
+    data-why-read-more-open="why-tpl-hero"
+    data-why-read-more-title="{{ config('sahara.legal_entity_name') }}"
+    aria-haspopup="dialog"
+>
+    <span>{{ __('public.why.read_more') }}</span>
+    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">expand_content</span>
+</button>
+<template id="why-tpl-hero">
+    <p class="text-editorial-body">{{ __('public.why.page.hero_intro') }}</p>
+</template>
+</div>
 </div>
 </div>
 <figure class="relative mt-8 lg:mt-0 mx-4 sm:mx-5 lg:mx-0 aspect-[16/11] lg:aspect-auto min-h-[220px] sm:min-h-[260px] lg:min-h-0 lg:h-full overflow-hidden rounded-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl border border-outline-variant/50 lg:border-y lg:border-l lg:border-r-0 bg-surface-container shadow-md lg:shadow-sm why-zoom isolate max-h-[52vh] lg:max-h-none">
@@ -190,7 +211,18 @@
 <h2 id="who-we-are-heading" class="font-headline text-editorial-section-title font-extrabold text-primary tracking-tight leading-tight">{{ __('public.why.page.who_heading') }}</h2>
 <p class="mt-2 font-label text-editorial-kicker text-secondary">{{ __('public.why.page.who_subheading') }}</p>
 </div>
-<p class="text-on-surface-variant text-editorial-body text-center lg:text-start max-w-none">{!! __('public.why.page.who_body', ['company' => '<strong>'.e(config('sahara.legal_entity_name')).'</strong>']) !!}</p>
+<x-why-section-read-more
+    template-id="why-tpl-who"
+    :title="__('public.why.page.who_heading')"
+    class="text-center lg:text-start max-w-none"
+>
+    <x-slot:preview>
+        <p>{{ __('public.why.page.who_teaser') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p>{!! __('public.why.page.who_body', ['company' => '<strong>'.e(config('sahara.legal_entity_name')).'</strong>']) !!}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </div>
 </div>
 </section>
@@ -208,11 +240,16 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">01</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec01_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec01_p1') }}</p>
-<p>{{ __('public.why.page.sec01_p2') }}</p>
-<p>{{ __('public.why.page.sec01_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec01" :title="__('public.why.page.sec01_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec01_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec01_p1') }}</p>
+        <p>{{ __('public.why.page.sec01_p2') }}</p>
+        <p>{{ __('public.why.page.sec01_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -226,11 +263,16 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">02</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec02_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec02_p1') }}</p>
-<p>{{ __('public.why.page.sec02_p2') }}</p>
-<p>{{ __('public.why.page.sec02_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec02" :title="__('public.why.page.sec02_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec02_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec02_p1') }}</p>
+        <p>{{ __('public.why.page.sec02_p2') }}</p>
+        <p>{{ __('public.why.page.sec02_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -244,11 +286,16 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">03</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec03_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec03_p1') }}</p>
-<p>{{ __('public.why.page.sec03_p2') }}</p>
-<p>{{ __('public.why.page.sec03_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec03" :title="__('public.why.page.sec03_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec03_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec03_p1') }}</p>
+        <p>{{ __('public.why.page.sec03_p2') }}</p>
+        <p>{{ __('public.why.page.sec03_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -262,11 +309,16 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">04</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec04_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec04_p1') }}</p>
-<p>{{ __('public.why.page.sec04_p2') }}</p>
-<p>{{ __('public.why.page.sec04_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec04" :title="__('public.why.page.sec04_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec04_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec04_p1') }}</p>
+        <p>{{ __('public.why.page.sec04_p2') }}</p>
+        <p>{{ __('public.why.page.sec04_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -280,11 +332,22 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">05</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec05_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec05_p1') }}</p>
-<p>{{ __('public.why.page.sec05_p2') }}</p>
-<p>{{ __('public.why.page.sec05_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec05" :title="__('public.why.page.sec05_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec05_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec05_p1') }}</p>
+        <p>{{ __('public.why.page.sec05_p2') }}</p>
+        <p class="font-semibold text-on-surface">{{ __('public.why.page.sec05_focus_intro') }}</p>
+        <ul class="list-none space-y-2 pl-0">
+@foreach (__('public.why.page.sec05_focus_items') as $item)
+<li class="flex gap-2"><span class="text-primary font-bold shrink-0" aria-hidden="true">▪</span><span>{{ $item }}</span></li>
+@endforeach
+        </ul>
+        <p>{{ __('public.why.page.sec05_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -298,11 +361,16 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">06</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec06_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec06_p1') }}</p>
-<p>{{ __('public.why.page.sec06_p2') }}</p>
-<p>{{ __('public.why.page.sec06_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec06" :title="__('public.why.page.sec06_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec06_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec06_p1') }}</p>
+        <p>{{ __('public.why.page.sec06_p2') }}</p>
+        <p>{{ __('public.why.page.sec06_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -316,11 +384,16 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">07</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec07_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec07_p1') }}</p>
-<p>{{ __('public.why.page.sec07_p2') }}</p>
-<p>{{ __('public.why.page.sec07_p3') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec07" :title="__('public.why.page.sec07_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec07_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec07_p1') }}</p>
+        <p>{{ __('public.why.page.sec07_p2') }}</p>
+        <p>{{ __('public.why.page.sec07_p3') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
@@ -334,12 +407,27 @@
 <span class="block font-headline text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight tabular-nums">08</span>
 <h2 class="font-headline text-editorial-section-title font-extrabold text-on-surface leading-tight tracking-tight">{{ __('public.why.page.sec08_title') }}</h2>
 </div>
-<div class="space-y-4 text-on-surface-variant text-editorial-body">
-<p class="font-medium text-on-surface">{{ __('public.why.page.sec08_p1') }}</p>
-<p><span class="font-semibold text-primary">{{ __('public.why.page.sec08_before') }}</span> {{ __('public.why.page.sec08_p2') }}</p>
-<p><span class="font-semibold text-primary">{{ __('public.why.page.sec08_after') }}</span> {{ __('public.why.page.sec08_p3') }}</p>
-<p>{{ __('public.why.page.sec08_p4') }}</p>
-</div>
+<x-why-section-read-more template-id="why-tpl-sec08" :title="__('public.why.page.sec08_title')">
+    <x-slot:preview>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec08_p1') }}</p>
+    </x-slot:preview>
+    <x-slot:full>
+        <p class="font-medium text-on-surface">{{ __('public.why.page.sec08_p1') }}</p>
+        <p class="font-semibold text-primary mb-2">{{ __('public.why.page.sec08_before') }}</p>
+        <ul class="list-none space-y-2 mb-5">
+@foreach (__('public.why.page.sec08_before_items') as $item)
+<li class="flex gap-2"><span class="text-primary font-bold shrink-0" aria-hidden="true">▪</span><span>{{ $item }}</span></li>
+@endforeach
+        </ul>
+        <p class="font-semibold text-primary mb-2">{{ __('public.why.page.sec08_after') }}</p>
+        <ul class="list-none space-y-2 mb-5">
+@foreach (__('public.why.page.sec08_after_items') as $item)
+<li class="flex gap-2"><span class="text-primary font-bold shrink-0" aria-hidden="true">▪</span><span>{{ $item }}</span></li>
+@endforeach
+        </ul>
+        <p>{{ __('public.why.page.sec08_p4') }}</p>
+    </x-slot:full>
+</x-why-section-read-more>
 </article>
 </div>
 </div>
@@ -364,6 +452,7 @@
 </div>
 </section>
 </main>
+<x-why-read-more-modal />
 <!-- Footer -->
 <x-footer />
 <x-mobile-nav active="" />
@@ -393,6 +482,69 @@ document.addEventListener('DOMContentLoaded', function whyChooseUsReveal() {
     io.observe(el);
   });
 });
+</script>
+<script>
+(function whyReadMoreModal() {
+  var root = document.getElementById('why-read-more-root');
+  if (!root) return;
+  var titleEl = document.getElementById('why-read-more-title');
+  var bodyEl = document.getElementById('why-read-more-body');
+  var lastFocus = null;
+
+  function open(templateId, title) {
+    var tpl = document.getElementById(templateId);
+    if (!tpl || !tpl.content) return;
+    if (titleEl) titleEl.textContent = title || '';
+    if (bodyEl) {
+      bodyEl.innerHTML = '';
+      bodyEl.appendChild(tpl.content.cloneNode(true));
+    }
+    lastFocus = document.activeElement;
+    root.classList.remove('hidden');
+    root.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('overflow-hidden');
+    var closeBtn = root.querySelector('[data-why-read-more-dismiss="action"]');
+    if (closeBtn && typeof closeBtn.focus === 'function') {
+      window.setTimeout(function () { closeBtn.focus(); }, 50);
+    }
+  }
+
+  function close() {
+    root.classList.add('hidden');
+    root.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('overflow-hidden');
+    if (bodyEl) bodyEl.innerHTML = '';
+    if (lastFocus && typeof lastFocus.focus === 'function') {
+      try { lastFocus.focus(); } catch (e) {}
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var openBtn = e.target.closest && e.target.closest('[data-why-read-more-open]');
+    if (openBtn) {
+      e.preventDefault();
+      open(
+        openBtn.getAttribute('data-why-read-more-open'),
+        openBtn.getAttribute('data-why-read-more-title')
+      );
+      return;
+    }
+    if (root.classList.contains('hidden')) return;
+    if (e.target.closest && e.target.closest('[data-why-read-more-dismiss="backdrop"]')) {
+      e.preventDefault();
+      close();
+      return;
+    }
+    if (e.target.closest && e.target.closest('[data-why-read-more-dismiss="action"]')) {
+      e.preventDefault();
+      close();
+    }
+  }, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !root.classList.contains('hidden')) close();
+  });
+})();
 </script>
 </body></html>
 

@@ -126,31 +126,31 @@ class PageController extends Controller
         }
 
         $defaultShortcutChips = [
-            ['label' => 'Foreign Used', 'url' => route('cars.index', ['condition' => 'foreign_used'])],
-            ['label' => 'Brand New', 'url' => route('cars.index', ['condition' => 'brand_new'])],
-            ['label' => 'From Japan', 'url' => route('cars.index', ['source_country' => 'Japan'])],
-            ['label' => 'From Germany', 'url' => route('cars.index', ['source_country' => 'Germany'])],
-            ['label' => 'Under 100M', 'url' => route('cars.index', ['price_max' => 100000000])],
-            ['label' => 'Above 100M', 'url' => route('cars.index', ['price_min' => 100000000])],
+            ['label' => __('public.catalog.condition.foreign_used'), 'url' => route('cars.index', ['condition' => 'foreign_used'])],
+            ['label' => __('public.catalog.condition.brand_new'), 'url' => route('cars.index', ['condition' => 'brand_new'])],
+            ['label' => __('public.home.shortcut_from_japan'), 'url' => route('cars.index', ['source_country' => 'Japan'])],
+            ['label' => __('public.home.shortcut_from_germany'), 'url' => route('cars.index', ['source_country' => 'Germany'])],
+            ['label' => __('public.home.shortcut_under_100m'), 'url' => route('cars.index', ['price_max' => 100000000])],
+            ['label' => __('public.home.shortcut_above_100m'), 'url' => route('cars.index', ['price_min' => 100000000])],
         ];
 
         $homeShortcutChips = $this->parseLabelUrlLines((string) ($settings['home_shortcuts_lines'] ?? ''), $defaultShortcutChips);
         $homeImportFlowSteps = $this->parseLabelDescriptionLines((string) ($settings['home_import_flow_steps'] ?? ''), [
-            ['title' => 'Request', 'description' => 'Tell us your preferred brand, model, and budget.'],
-            ['title' => 'Quote', 'description' => 'We share options, specs, and landed-cost estimates.'],
-            ['title' => 'Shipment', 'description' => 'Track status from on-order to in-transit.'],
-            ['title' => 'Delivery', 'description' => 'Handover and support from our Dar team.'],
+            ['title' => __('public.home.import_step_request_title'), 'description' => __('public.home.import_step_request_body')],
+            ['title' => __('public.home.import_step_quote_title'), 'description' => __('public.home.import_step_quote_body')],
+            ['title' => __('public.home.import_step_shipment_title'), 'description' => __('public.home.import_step_shipment_body')],
+            ['title' => __('public.home.import_step_delivery_title'), 'description' => __('public.home.import_step_delivery_body')],
         ]);
 
-        $homeShortcutsTitle = trim((string) ($settings['home_shortcuts_title'] ?? '')) ?: 'Shop by shortcuts';
-        $homeShortcutsSubtitle = trim((string) ($settings['home_shortcuts_subtitle'] ?? '')) ?: 'Fast paths for high-intent buyers';
-        $homeImportFlowTitle = trim((string) ($settings['home_import_flow_title'] ?? '')) ?: 'From request to delivery';
-        $homeImportFlowSubtitle = trim((string) ($settings['home_import_flow_subtitle'] ?? '')) ?: 'Import purchase flow';
+        $homeShortcutsTitle = trim((string) ($settings['home_shortcuts_title'] ?? '')) ?: __('public.home.shortcuts_title_fallback');
+        $homeShortcutsSubtitle = trim((string) ($settings['home_shortcuts_subtitle'] ?? '')) ?: __('public.home.shortcuts_subtitle_fallback');
+        $homeImportFlowTitle = trim((string) ($settings['home_import_flow_title'] ?? '')) ?: __('public.home.import_flow_title_fallback');
+        $homeImportFlowSubtitle = trim((string) ($settings['home_import_flow_subtitle'] ?? '')) ?: __('public.home.import_flow_subtitle_fallback');
         $homeQuickFilterChips = [
-            ['label' => 'Automatic', 'url' => route('cars.index', ['transmission' => 'automatic'])],
-            ['label' => 'Diesel', 'url' => route('cars.index', ['fuel' => 'diesel'])],
-            ['label' => 'Budget 20M-50M', 'url' => route('cars.index', ['price_range' => '20-50'])],
-            ['label' => 'Budget 50M-100M', 'url' => route('cars.index', ['price_range' => '50-100'])],
+            ['label' => __('public.home.quick_filter_automatic'), 'url' => route('cars.index', ['transmission' => 'automatic'])],
+            ['label' => __('public.home.quick_filter_diesel'), 'url' => route('cars.index', ['fuel' => 'diesel'])],
+            ['label' => __('public.home.quick_filter_budget_mid'), 'url' => route('cars.index', ['price_range' => '20-50'])],
+            ['label' => __('public.home.quick_filter_budget_high'), 'url' => route('cars.index', ['price_range' => '50-100'])],
         ];
 
         $homeAnnouncements = Announcement::query()

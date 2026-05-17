@@ -56,7 +56,7 @@ class AdminSettingsController extends Controller
             'primary_location_label' => (string) config('sahara.primary_location_label'),
             'footer_intro_extra' => (string) config('sahara.footer_intro_extra'),
             'footer_hours_summary' => (string) config('sahara.footer_hours_summary'),
-            'home_shortcuts_title' => 'Shop by shortcuts',
+            'home_shortcuts_title' => 'Start here',
             'home_shortcuts_subtitle' => 'Fast paths for high-intent buyers',
             'home_shortcuts_lines' => implode("\n", [
                 'Foreign Used|'.route('cars.index', ['locale' => $locale, 'condition' => 'foreign_used']),

@@ -376,4 +376,13 @@ input[type='radio'] {
     outline-offset: 2px;
   }
 
+/* Opaque modal panels (engagement CTA, Why read-more). Avoid transparent panels over page content. */
+.sahara-modal-panel,
+#sahara-engagement-dialog.sahara-modal-panel,
+#why-read-more-dialog.sahara-modal-panel {
+  background-color: #ffffff;
+  color: #191c1e;
+  isolation: isolate;
+}
+
 /* Regenerate: php scripts/merge-sahara-public-tokens-css.php */

@@ -2,7 +2,7 @@
 
 return [
     'brand_ticker' => [
-        'aria' => 'Jina lililojisajiliwa la kampuni',
+        'aria' => 'Jina la kampuni',
     ],
 
     'locale_switcher' => [
@@ -12,14 +12,14 @@ return [
     ],
 
     'nav' => [
-        'aria_main' => 'Kuongoza',
-        'brand_tagline_mobile' => 'Pata gari la ndoto yako',
-        'home' => 'Nyumbani',
-        'inventory' => 'Magari',
-        'order_request' => 'Ombi la agizo',
+        'aria_main' => 'Menyu kuu',
+        'brand_tagline_mobile' => 'Hesabu ya kuaminika · Dar',
+        'home' => 'Mwanzo',
+        'inventory' => 'Vinjari magari',
+        'order_request' => 'Agiza',
         'saved' => 'Yaliyohifadhiwa',
-        'saved_cars' => 'Magari yaliyohifadhiwa',
-        'why_sahara' => 'Kwa nini Sahara',
+        'saved_cars' => 'Magari yangu yaliyohifadhiwa',
+        'why_sahara' => 'Kwa nini sisi',
         'contact' => 'Wasiliana',
         'bottom_cars' => 'Magari',
     ],
@@ -30,16 +30,16 @@ return [
     ],
 
     'nav_bottom' => [
-        'aria' => 'Urambazaji wa haraka',
+        'aria' => 'Viungo vya haraka',
     ],
 
     'cta' => [
-        'chat_whatsapp' => 'Zungumza WhatsApp',
+        'chat_whatsapp' => 'WhatsApp sasa',
         'whatsapp_short' => 'WhatsApp',
     ],
 
     'whatsapp' => [
-        'sales_intro' => 'Habari, nahitaji msaada kuchagua gari.',
+        'sales_intro' => 'Habari, ninatafuta gari—mnaweza kunisaidia kupata kinachonifaa?',
     ],
 
     'whatsapp_fab' => [
@@ -57,7 +57,7 @@ return [
     'engagement' => [
         'close' => 'Funga',
         'title' => 'Tayari kupata gari lako linalofuata?',
-        'body' => 'Vinjari magari ili kuona machaguo yaliyoangaliwa kutoka Dar es Salaam. Unapenda kuzungumza kwanza? Tuko WhatsApp kwa mbofyo mmoja.',
+        'body' => 'Vinjari hesabu iliyothibitishwa Dar—au tuandikie WhatsApp ikiwa unataka kuzungumza kwanza.',
         'browse_cars' => 'Vinjari magari',
         'whatsapp' => 'Zungumza WhatsApp',
         'dont_show' => 'Usionyeshe tena kwa siku 7',

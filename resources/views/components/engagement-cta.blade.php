@@ -14,13 +14,13 @@
         data-engagement-dismiss="backdrop"
         aria-hidden="true"
     ></div>
-    <div class="relative flex min-h-full items-end justify-center p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:items-center sm:p-6">
+    <div class="relative flex min-h-full items-center justify-center p-4 sm:p-6">
         <div
             id="sahara-engagement-dialog"
             role="dialog"
             aria-modal="true"
             aria-labelledby="sahara-engagement-title"
-            class="relative w-full max-w-md rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-2xl shadow-primary/10 sm:p-8 motion-reduce:transition-none"
+            class="sahara-modal-panel relative w-full max-w-md rounded-2xl border border-outline-variant/40 bg-white p-6 text-on-surface shadow-2xl shadow-primary/10 sm:p-8 [color-scheme:light] motion-reduce:transition-none"
         >
             <button
                 type="button"
@@ -50,7 +50,7 @@
                     href="{{ $waHref }}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border-2 border-secondary bg-surface-container-lowest px-5 py-3 text-center text-sm font-bold text-secondary transition-[filter,background-color] hover:bg-secondary-container/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                    class="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border-2 border-secondary bg-white px-5 py-3 text-center text-sm font-bold text-secondary transition-[filter,background-color] hover:bg-secondary-container/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
                 >
                     <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span>
                     {{ __('site.engagement.whatsapp') }}

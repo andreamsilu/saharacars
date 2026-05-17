@@ -109,10 +109,11 @@
             <p>{{ __('site.footer.rights') }}</p>
         </div>
     </div>
-    <x-engagement-cta />
-    <x-page-load-progress />
-    <x-scroll-to-top />
-    <script>
+</footer>
+<x-engagement-cta />
+<x-page-load-progress />
+<x-scroll-to-top />
+<script>
         (function () {
             var scripts = [
                 "{{ asset('js/sahara-saved-cars.min.js') }}",
@@ -141,6 +142,5 @@
             window.addEventListener('pointerdown', loadScripts, { once: true, passive: true });
         })();
     </script>
-    @include('components.public-motion-init')
-</footer>
+@include('components.public-motion-init')
 
