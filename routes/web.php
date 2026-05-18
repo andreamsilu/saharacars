@@ -106,9 +106,23 @@ Route::prefix('{locale}')
 
         Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
         Route::get('/cars/bento', [CarController::class, 'bento'])->name('cars.bento');
-        // Legacy: /{locale}/cars/… → canonical /cars/…
+        // Legacy: /{locale}/cars/{slug|id} → canonical /cars/{id} (single 301, avoids redirect chains)
         Route::get('/cars/{car}', function (string $locale, string $car) {
-            return redirect()->to(url('/cars/'.$car), 301);
+            $segment = trim($car);
+            if ($segment === '') {
+                abort(404);
+            }
+
+            $published = Car::query()->where('is_published', true);
+            $resolved = ctype_digit($segment)
+                ? (clone $published)->whereKey((int) $segment)->first()
+                : (clone $published)->where('slug', $segment)->first();
+
+            if ($resolved === null) {
+                abort(404);
+            }
+
+            return redirect()->to($resolved->publicShowUrl(), 301);
         })->where('car', '^[A-Za-z0-9][A-Za-z0-9_-]*$');
 
         Route::get('/why-choose-us', [PageController::class, 'whyChooseUs'])->name('why.choose.us');
