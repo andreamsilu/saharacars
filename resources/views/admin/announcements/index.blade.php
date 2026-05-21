@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', 'Offers & news')
-@section('breadcrumb', 'Cars Admin / Offers & news')
+@section('breadcrumb', 'Sahara Autolink / Offers & news')
 
 @section('content')
     <div class="space-y-6">

@@ -28,6 +28,19 @@ class InquiryFactory extends Factory
             'ip_address' => $this->faker->ipv4(),
             'user_agent' => $this->faker->userAgent(),
             'read_at' => $this->faker->boolean(45) ? now()->subHours($this->faker->numberBetween(1, 96)) : null,
+            'status' => Inquiry::STATUS_PENDING,
         ];
+    }
+
+    public function orderRequest(): static
+    {
+        return $this->state(fn (): array => [
+            'inquiry_type' => 'order_request',
+            'subject' => 'Order Request',
+            'phone' => $this->faker->numerify('255#########'),
+            'preferred_brand' => $this->faker->randomElement(['Toyota', 'Mercedes-Benz', 'BMW', null]),
+            'preferred_model' => $this->faker->optional()->words(2, true),
+            'status' => $this->faker->randomElement([Inquiry::STATUS_PENDING, Inquiry::STATUS_DONE]),
+        ]);
     }
 }

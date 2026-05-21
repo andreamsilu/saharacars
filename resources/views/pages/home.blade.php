@@ -7,7 +7,7 @@
     :title="__('public.meta.home_title', ['company' => config('sahara.legal_entity_name')])"
     :description="__('public.meta.home_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('home', ['locale' => app()->getLocale()])"
-    :image="asset('images/home-showroom-premium-960.jpg')"
+    :image="asset('images/sahara-front-1080.jpg')"
     :image-alt="__('public.home.services_title')"
 />
 <x-public-head-assets />
@@ -163,19 +163,21 @@
         <picture>
             <source
                 type="image/webp"
-                srcset="{{ asset('images/login-bg-hero-1280.webp') }} 1280w, {{ asset('images/login-bg-hero-1920.webp') }} 1920w"
+                srcset="{{ asset('images/sahara-front-640.webp') }} 640w, {{ asset('images/sahara-front-1080.webp') }} 1080w"
                 sizes="100vw"
             />
             <img
-                src="{{ asset('images/login-bg-hero-1280.jpg') }}"
+                src="{{ asset('images/sahara-front-1080.jpg') }}"
                 alt=""
-                class="w-full h-full object-cover grayscale opacity-45"
+                class="w-full h-full object-cover object-center opacity-50"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
+                width="1080"
+                height="810"
             />
         </picture>
-        <div class="absolute inset-0 bg-slate-950/55"></div>
+        <div class="absolute inset-0 bg-slate-950/50"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
         <div class="max-w-3xl mx-auto mb-4 sm:mb-5 text-white">

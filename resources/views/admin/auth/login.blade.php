@@ -13,7 +13,7 @@
                 <div class="rounded-xl bg-white/10 p-3 inline-block mb-1">
                     <img
                         src="{{ asset('images/logo.png') }}"
-                        alt="Sahara Cars"
+                        alt="{{ config('marketplace.name') }}"
                         class="h-9 w-auto object-contain max-w-[200px]"
                         width="200"
                         height="36"

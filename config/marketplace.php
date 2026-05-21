@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'name' => env('MARKETPLACE_NAME', 'Sahara Cars'),
+    'name' => env('MARKETPLACE_NAME', 'Sahara Autolink'),
 
     'support_email' => env('MARKETPLACE_SUPPORT_EMAIL', 'info@saharaautolink.co.tz'),
 

@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', 'Inventory Management')
-@section('breadcrumb', 'Fleet · Inventory')
+@section('breadcrumb', 'Sahara Autolink / Inventory')
 
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">

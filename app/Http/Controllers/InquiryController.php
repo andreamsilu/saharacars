@@ -88,6 +88,7 @@ class InquiryController extends Controller
             'subject' => 'Order Request',
             'message' => $validated['message'] ?? 'No additional notes provided.',
             'inquiry_type' => 'order_request',
+            'status' => Inquiry::STATUS_PENDING,
             'preferred_brand' => $validated['preferred_brand'] ?? null,
             'preferred_model' => $validated['preferred_model'] ?? null,
             'year_min' => $validated['year_min'] ?? null,

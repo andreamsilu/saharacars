@@ -7,7 +7,7 @@
     :title="__('public.meta.why_title', ['company' => config('sahara.legal_entity_name')])"
     :description="__('public.meta.why_description', ['company' => config('sahara.legal_entity_name')])"
     :canonical="route('why.choose.us', ['locale' => app()->getLocale()])"
-    :image="asset('images/why-showroom.jpg')"
+    :image="asset('images/about-page-1080.jpg')"
     :image-alt="__('public.why.page.img_showroom_alt')"
 />
 <x-public-head-assets />
@@ -241,7 +241,23 @@
 </div>
 </div>
 <figure class="relative mt-8 lg:mt-0 mx-4 sm:mx-5 lg:mx-0 aspect-[16/11] lg:aspect-auto min-h-[220px] sm:min-h-[260px] lg:min-h-0 lg:h-full overflow-hidden rounded-3xl lg:rounded-none lg:rounded-tl-3xl lg:rounded-bl-3xl border border-outline-variant/50 lg:border-y lg:border-l lg:border-r-0 bg-surface-container shadow-md lg:shadow-sm why-zoom isolate max-h-[52vh] lg:max-h-none">
-<x-why-visual file="why/vehicles-services.jpg" :alt="__('public.why.page.img_lineup_alt')" :eager="true"/>
+    <picture>
+        <source
+            type="image/webp"
+            srcset="{{ asset('images/about-page-640.webp') }} 640w, {{ asset('images/about-page-1080.webp') }} 1080w"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+        />
+        <img
+            src="{{ asset('images/about-page.png') }}"
+            alt="{{ __('public.why.page.img_showroom_alt') }}"
+            class="absolute inset-0 h-full w-full object-cover"
+            width="1080"
+            height="810"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+        />
+    </picture>
 <div class="absolute inset-0 bg-gradient-to-tr from-black/45 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
 </figure>
 </div>
@@ -317,7 +333,7 @@
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
 <aside class="md:col-span-5 rounded-2xl border border-emerald-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
-<x-why-visual file="why/customer-trust.jpg" :alt="__('public.why.page.img_handover_alt')"/>
+<x-why-visual file="sahara-front.jpeg" :alt="__('public.why.page.img_handover_alt')"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
 <p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-emerald-950 shadow-md border border-emerald-200/80">{{ __('public.why.page.badge_trust') }}</p>
 </aside>
@@ -363,7 +379,7 @@
 </div>
 <div class="why-row why-reveal grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 md:items-stretch">
 <aside class="md:col-span-5 rounded-2xl border border-rose-300/60 bg-white/70 min-h-[200px] overflow-hidden relative md:min-h-[260px] why-zoom shadow-sm">
-<x-why-visual file="why/vehicles-services.jpg" :alt="__('public.why.page.img_lineup_alt')"/>
+<x-why-visual file="sahara-front4.jpeg" :alt="__('public.why.page.img_lineup_alt')"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent pointer-events-none"></div>
 <p class="absolute bottom-3 left-3 right-3 sm:right-auto rounded-lg bg-white/95 backdrop-blur-sm px-3 py-2 text-sm font-headline font-extrabold tracking-tight text-rose-950 shadow-md border border-rose-200/80">{{ __('public.why.page.badge_vehicles') }}</p>
 </aside>

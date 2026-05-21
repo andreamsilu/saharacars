@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', 'Brand Management')
-@section('breadcrumb', 'Cars Admin / Brands')
+@section('breadcrumb', 'Sahara Autolink / Brands')
 
 @section('content')
     <div class="space-y-6">

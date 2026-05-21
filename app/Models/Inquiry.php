@@ -9,6 +9,10 @@ class Inquiry extends Model
 {
     use HasFactory;
 
+    public const STATUS_PENDING = 'pending';
+
+    public const STATUS_DONE = 'done';
+
     protected $fillable = [
         'full_name',
         'email',
@@ -16,6 +20,7 @@ class Inquiry extends Model
         'subject',
         'message',
         'inquiry_type',
+        'status',
         'preferred_brand',
         'preferred_model',
         'year_min',

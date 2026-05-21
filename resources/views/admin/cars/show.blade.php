@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', 'View Car')
-@section('breadcrumb', 'Cars / View')
+@section('breadcrumb', 'Sahara Autolink / Inventory / View')
 
 @section('content')
     <div class="flex items-end justify-between gap-4 mb-8">

@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', 'New announcement')
-@section('breadcrumb', 'Cars Admin / Offers & news / New')
+@section('breadcrumb', 'Sahara Autolink / Offers & news / New')
 
 @section('content')
     <div class="rounded-3xl card-lift bg-surface text-on-surface shadow-xl ring-1 ring-slate-200/70 overflow-hidden">

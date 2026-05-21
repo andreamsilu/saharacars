@@ -162,7 +162,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('settings.index');
         Route::put('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');
         Route::get('/order-requests', [AdminInquiryController::class, 'index'])->name('inquiries.index');
-        Route::patch('/order-requests/{inquiry}/read', [AdminInquiryController::class, 'markRead'])->name('inquiries.read');
+        Route::patch('/order-requests/{inquiry}/status', [AdminInquiryController::class, 'updateStatus'])->name('inquiries.status');
 
         Route::get('/announcements', [AdminAnnouncementController::class, 'index'])->name('announcements.index');
         Route::get('/announcements/create', [AdminAnnouncementController::class, 'create'])->name('announcements.create');

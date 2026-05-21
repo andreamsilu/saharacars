@@ -95,9 +95,9 @@ class AdminDashboardController extends Controller
         );
 
         $recentCars = Car::query()->latest()->limit(8)->get();
-        $unreadOrderRequestsCount = Inquiry::query()
+        $pendingOrderRequestsCount = Inquiry::query()
             ->where('inquiry_type', 'order_request')
-            ->whereNull('read_at')
+            ->where('status', Inquiry::STATUS_PENDING)
             ->count();
         $latestOrderRequests = Inquiry::query()
             ->where('inquiry_type', 'order_request')
@@ -123,7 +123,7 @@ class AdminDashboardController extends Controller
             'visitors6MonthsTrend' => $visitors6MonthsTrend,
             'visitorsYearTrend' => $visitorsYearTrend,
             'recentCars' => $recentCars,
-            'unreadOrderRequestsCount' => $unreadOrderRequestsCount,
+            'pendingOrderRequestsCount' => $pendingOrderRequestsCount,
             'latestOrderRequests' => $latestOrderRequests,
         ]);
     }

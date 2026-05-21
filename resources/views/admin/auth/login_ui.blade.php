@@ -95,7 +95,7 @@
 <div class="mb-5 flex justify-center">
 <img
     src="{{ asset('images/logo.png') }}"
-    alt="Sahara Cars"
+    alt="{{ config('marketplace.name') }}"
     class="h-10 w-auto object-contain"
     width="180"
     height="40"

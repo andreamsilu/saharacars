@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title', 'System Settings')
-@section('breadcrumb', 'Cars Admin / Settings')
+@section('breadcrumb', 'Sahara Autolink / Settings')
 
 @section('content')
     <div class="rounded-3xl card-lift bg-surface text-on-surface shadow-xl ring-1 ring-slate-200/70 overflow-hidden">

@@ -201,7 +201,7 @@
                     Latest order requests
                 </h2>
                 <p class="text-sm text-on-surface-variant mt-1">
-                    Unread: <span class="font-bold text-primary">{{ number_format($unreadOrderRequestsCount) }}</span>
+                    Pending: <span class="font-bold text-primary">{{ number_format($pendingOrderRequestsCount) }}</span>
                 </p>
             </div>
             <a href="{{ route('admin.inquiries.index') }}" class="inline-flex items-center justify-center w-9 h-9 rounded-full text-primary hover:bg-slate-100 hover:text-primary smooth border border-primary/30 bg-white" title="View all order requests" aria-label="View all order requests">
@@ -215,6 +215,7 @@
                     <tr class="bg-surface-container-low">
                         <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Customer</th>
                         <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Request</th>
+                        <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
                         <th class="px-6 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-widest">Submitted</th>
                     </tr>
                 </thead>
@@ -234,11 +235,18 @@
                                     · {{ $order->source_country }}
                                 @endif
                             </td>
+                            <td class="px-6 py-4">
+                                @if ($order->status === \App\Models\Inquiry::STATUS_DONE)
+                                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">Done</span>
+                                @else
+                                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-200">Pending</span>
+                                @endif
+                            </td>
                             <td class="px-6 py-4 text-sm text-on-surface-variant">{{ $order->created_at?->format('M d, Y H:i') }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="px-6 py-8 text-center text-sm text-on-surface-variant">No order requests yet.</td>
+                            <td colspan="4" class="px-6 py-8 text-center text-sm text-on-surface-variant">No order requests yet.</td>
                         </tr>
                     @endforelse
                 </tbody>

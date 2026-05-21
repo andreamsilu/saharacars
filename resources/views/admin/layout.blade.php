@@ -101,9 +101,9 @@
 <body class="min-h-screen bg-gradient-to-br from-surface via-slate-50 to-slate-100 text-on-surface font-body antialiased">
     <x-skip-to-main />
     @php
-        $unreadOrdersCount = \App\Models\Inquiry::query()
+        $pendingOrdersCount = \App\Models\Inquiry::query()
             ->where('inquiry_type', 'order_request')
-            ->whereNull('read_at')
+            ->where('status', \App\Models\Inquiry::STATUS_PENDING)
             ->count();
         $adminLink = function (string $route, string $pattern, string $label, string $icon) {
             $active = request()->routeIs($pattern);
@@ -126,10 +126,10 @@
     <div class="min-h-screen">
         <aside class="hidden lg:flex fixed top-0 left-0 z-50 w-[280px] h-screen flex-col border-r border-slate-200/90 bg-gradient-to-b from-slate-50 to-slate-100">
             <div class="px-6 py-8 border-b border-slate-200/80">
-                <a href="{{ route('home') }}" class="block rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" title="Sahara Cars — view site">
+                <a href="{{ route('home') }}" class="block rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" title="{{ config('marketplace.name') }} — view site">
                     <img
                         src="{{ asset('images/logo.png') }}"
-                        alt="Sahara Cars"
+                        alt="{{ config('marketplace.name') }}"
                         class="h-8 w-auto object-contain object-left max-w-[200px]"
                         width="200"
                         height="32"
@@ -151,9 +151,9 @@
                         <span class="material-symbols-outlined text-[22px]">{{ $item['icon'] }}</span>
                         <span class="inline-flex items-center gap-2">
                             <span>{{ $item['label'] }}</span>
-                            @if ($item['route'] === 'admin.inquiries.index' && $unreadOrdersCount > 0)
-                                <span class="inline-flex min-w-[20px] h-5 items-center justify-center rounded-full bg-rose-500 text-white text-[10px] font-extrabold px-1.5" aria-label="{{ $unreadOrdersCount }} unread order requests">
-                                    {{ $unreadOrdersCount > 99 ? '99+' : $unreadOrdersCount }}
+                            @if ($item['route'] === 'admin.inquiries.index' && $pendingOrdersCount > 0)
+                                <span class="inline-flex min-w-[20px] h-5 items-center justify-center rounded-full bg-rose-500 text-white text-[10px] font-extrabold px-1.5" aria-label="{{ $pendingOrdersCount }} pending order requests">
+                                    {{ $pendingOrdersCount > 99 ? '99+' : $pendingOrdersCount }}
                                 </span>
                             @endif
                         </span>
@@ -179,7 +179,7 @@
                         <a href="{{ route('home') }}" class="lg:hidden shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg">
                             <img
                                 src="{{ asset('images/logo.png') }}"
-                                alt="Sahara Cars"
+                                alt="{{ config('marketplace.name') }}"
                                 class="h-8 w-auto object-contain max-w-[160px]"
                                 width="160"
                                 height="32"
@@ -188,7 +188,7 @@
                         </a>
                         <div class="hidden lg:block">
                             <h1 class="text-base font-bold text-primary font-headline truncate">@yield('title', 'Admin')</h1>
-                            <p class="text-xs text-on-surface-variant truncate">@yield('breadcrumb', 'Cars Admin')</p>
+                            <p class="text-xs text-on-surface-variant truncate">@yield('breadcrumb', 'Sahara Autolink Admin')</p>
                         </div>
                     </div>
 
@@ -232,9 +232,9 @@
                                 >
                                     <span class="material-symbols-outlined text-sm">{{ $item['icon'] }}</span>
                                     <span>{{ $item['label'] }}</span>
-                                    @if ($item['route'] === 'admin.inquiries.index' && $unreadOrdersCount > 0)
+                                    @if ($item['route'] === 'admin.inquiries.index' && $pendingOrdersCount > 0)
                                         <span class="inline-flex min-w-[18px] h-[18px] items-center justify-center rounded-full bg-rose-500 text-white text-[10px] font-extrabold px-1">
-                                            {{ $unreadOrdersCount > 99 ? '99+' : $unreadOrdersCount }}
+                                            {{ $pendingOrdersCount > 99 ? '99+' : $pendingOrdersCount }}
                                         </span>
                                     @endif
                                 </a>
