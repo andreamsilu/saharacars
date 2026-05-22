@@ -110,24 +110,59 @@
                     @error('source_country')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
-                <div>
-                    <label class="admin-label" for="transmission">Transmission</label>
-                    <select id="transmission" name="transmission" class="admin-control">
+                @php
+                    $transmissionPresets = ['Automatic', 'Manual'];
+                    $fuelPresets = ['Petrol', 'Diesel'];
+                    $transmissionStored = old('transmission', $car->transmission ?? '');
+                    $fuelStored = old('fuel', $car->fuel ?? '');
+                    $transmissionPreset = old('transmission_preset', in_array($transmissionStored, $transmissionPresets, true) ? $transmissionStored : ($transmissionStored !== '' ? '__other__' : ''));
+                    $fuelPreset = old('fuel_preset', in_array($fuelStored, $fuelPresets, true) ? $fuelStored : ($fuelStored !== '' ? '__other__' : ''));
+                    $transmissionOther = old('transmission_other', in_array($transmissionStored, $transmissionPresets, true) ? '' : $transmissionStored);
+                    $fuelOther = old('fuel_other', in_array($fuelStored, $fuelPresets, true) ? '' : $fuelStored);
+                @endphp
+
+                <div class="space-y-2" data-spec-choice>
+                    <label class="admin-label" for="transmission-preset">Transmission</label>
+                    <select id="transmission-preset" name="transmission_preset" class="admin-control" data-spec-choice-select>
                         <option value="">Select transmission</option>
-                        <option value="Automatic" {{ old('transmission', $car->transmission ?? '') === 'Automatic' ? 'selected' : '' }}>Automatic</option>
-                        <option value="Manual" {{ old('transmission', $car->transmission ?? '') === 'Manual' ? 'selected' : '' }}>Manual</option>
+                        <option value="Automatic" {{ $transmissionPreset === 'Automatic' ? 'selected' : '' }}>Automatic</option>
+                        <option value="Manual" {{ $transmissionPreset === 'Manual' ? 'selected' : '' }}>Manual</option>
+                        <option value="__other__" {{ $transmissionPreset === '__other__' ? 'selected' : '' }}>Other (type manually)</option>
                     </select>
+                    <input
+                        id="transmission-other"
+                        name="transmission_other"
+                        type="text"
+                        value="{{ $transmissionOther }}"
+                        class="admin-control {{ $transmissionPreset === '__other__' ? '' : 'hidden' }}"
+                        placeholder="e.g. CVT, Semi-automatic"
+                        data-spec-choice-other
+                        @disabled($transmissionPreset !== '__other__')
+                    />
                     @error('transmission')<div class="admin-field-error">{{ $message }}</div>@enderror
+                    @error('transmission_other')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
-                <div>
-                    <label class="admin-label" for="fuel">Fuel</label>
-                    <select id="fuel" name="fuel" class="admin-control">
+                <div class="space-y-2" data-spec-choice>
+                    <label class="admin-label" for="fuel-preset">Fuel</label>
+                    <select id="fuel-preset" name="fuel_preset" class="admin-control" data-spec-choice-select>
                         <option value="">Select fuel type</option>
-                        <option value="Petrol" {{ old('fuel', $car->fuel ?? '') === 'Petrol' ? 'selected' : '' }}>Petrol</option>
-                        <option value="Diesel" {{ old('fuel', $car->fuel ?? '') === 'Diesel' ? 'selected' : '' }}>Diesel</option>
+                        <option value="Petrol" {{ $fuelPreset === 'Petrol' ? 'selected' : '' }}>Petrol</option>
+                        <option value="Diesel" {{ $fuelPreset === 'Diesel' ? 'selected' : '' }}>Diesel</option>
+                        <option value="__other__" {{ $fuelPreset === '__other__' ? 'selected' : '' }}>Other (type manually)</option>
                     </select>
+                    <input
+                        id="fuel-other"
+                        name="fuel_other"
+                        type="text"
+                        value="{{ $fuelOther }}"
+                        class="admin-control {{ $fuelPreset === '__other__' ? '' : 'hidden' }}"
+                        placeholder="e.g. Hybrid, Electric"
+                        data-spec-choice-other
+                        @disabled($fuelPreset !== '__other__')
+                    />
                     @error('fuel')<div class="admin-field-error">{{ $message }}</div>@enderror
+                    @error('fuel_other')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
@@ -428,3 +463,25 @@
         @endif
     </div>
 </div>
+
+<script>
+    (() => {
+        document.querySelectorAll('[data-spec-choice]').forEach((block) => {
+            const select = block.querySelector('[data-spec-choice-select]');
+            const other = block.querySelector('[data-spec-choice-other]');
+            if (!select || !other) return;
+
+            const sync = () => {
+                const isOther = select.value === '__other__';
+                other.classList.toggle('hidden', !isOther);
+                other.disabled = !isOther;
+                if (isOther) {
+                    other.focus();
+                }
+            };
+
+            select.addEventListener('change', sync);
+            sync();
+        });
+    })();
+</script>

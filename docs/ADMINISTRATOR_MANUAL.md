@@ -250,7 +250,8 @@ When you open **Brands**, the system may create brand entries from brand names a
 - Legal / registered entity name
 - Public website URL
 - Primary location label (e.g. “Dar es Salaam · Tanzania”)
-- Instagram URL and handle (leave URL empty to hide Instagram links)
+- Public website URL, Instagram and Facebook URLs and labels (leave a social URL empty to hide that network)
+- Google Maps embed and directions URLs, optional About / Why video embed URLs (all edited in Settings—not `.env`)
 - Brand tagline, footer supporting text, hours summary
 
 These values appear in the footer, contact page, WhatsApp links, and related public areas.

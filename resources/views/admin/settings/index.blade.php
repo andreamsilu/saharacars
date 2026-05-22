@@ -48,7 +48,7 @@
                     <span class="material-symbols-outlined text-base">public</span>
                     Public site · legal identity · location
                 </h3>
-                <p class="text-xs text-on-surface-variant">These values populate the footer, legal ticker, titles, WhatsApp/email links, and the contact page. No code changes needed when you edit them.</p>
+                <p class="text-xs text-on-surface-variant">Website, social, and map URLs are configured here only—not in <code class="text-[11px]">.env</code>. Values populate the footer, contact page, and SEO.</p>
                 <div class="space-y-2 md:col-span-2">
                     <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="legal_entity_name">Legal / registered entity name</label>
                     <input id="legal_entity_name" name="legal_entity_name" type="text" value="{{ old('legal_entity_name', $settings['legal_entity_name'] ?? '') }}" maxlength="255" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
@@ -63,6 +63,7 @@
                         <input id="primary_location_label" name="primary_location_label" type="text" maxlength="255" value="{{ old('primary_location_label', $settings['primary_location_label'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" required />
                     </div>
                 </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Social media (footer &amp; contact page)</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="instagram_url">Instagram profile URL</label>
@@ -71,6 +72,33 @@
                     <div class="space-y-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="instagram_label">Instagram handle (display)</label>
                         <input id="instagram_label" name="instagram_label" type="text" maxlength="160" value="{{ old('instagram_label', $settings['instagram_label'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="e.g. @brandhandle" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="facebook_url">Facebook page URL</label>
+                        <input id="facebook_url" name="facebook_url" type="url" inputmode="url" value="{{ old('facebook_url', $settings['facebook_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="Leave empty to hide Facebook links" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="facebook_label">Facebook page name (display)</label>
+                        <input id="facebook_label" name="facebook_label" type="text" maxlength="160" value="{{ old('facebook_label', $settings['facebook_label'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface" placeholder="e.g. Sahara Autolink" />
+                    </div>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Contact map &amp; video embeds</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="contact_map_embed_url">Google Maps embed URL (iframe src)</label>
+                        <input id="contact_map_embed_url" name="contact_map_embed_url" type="url" inputmode="url" value="{{ old('contact_map_embed_url', $settings['contact_map_embed_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface text-sm" placeholder="https://www.google.com/maps/embed?..." />
+                    </div>
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="contact_map_directions_url">Google Maps directions link</label>
+                        <input id="contact_map_directions_url" name="contact_map_directions_url" type="url" inputmode="url" value="{{ old('contact_map_directions_url', $settings['contact_map_directions_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface text-sm" placeholder="https://www.google.com/maps/dir/?api=1&destination=..." />
+                    </div>
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="about_owner_video_embed_url">About page owner video embed URL</label>
+                        <input id="about_owner_video_embed_url" name="about_owner_video_embed_url" type="url" inputmode="url" value="{{ old('about_owner_video_embed_url', $settings['about_owner_video_embed_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface text-sm" placeholder="https://www.youtube.com/embed/... (optional)" />
+                    </div>
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="why_choose_us_owner_video_embed_url">Why choose us video embed URL</label>
+                        <input id="why_choose_us_owner_video_embed_url" name="why_choose_us_owner_video_embed_url" type="url" inputmode="url" value="{{ old('why_choose_us_owner_video_embed_url', $settings['why_choose_us_owner_video_embed_url'] ?? '') }}" class="w-full bg-white border border-slate-200/80 rounded-2xl p-3 text-on-surface text-sm" placeholder="Leave empty to reuse About video" />
                     </div>
                 </div>
             </div>

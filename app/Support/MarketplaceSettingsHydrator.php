@@ -94,6 +94,41 @@ final class MarketplaceSettingsHydrator
             config(['sahara.instagram_label' => trim($stored['instagram_label'])]);
         }
 
+        if (array_key_exists('facebook_url', $stored) && is_string($stored['facebook_url'])) {
+            $fu = trim($stored['facebook_url']);
+            if ($fu === '') {
+                config(['sahara.facebook_url' => '']);
+            } elseif (filter_var($fu, FILTER_VALIDATE_URL)) {
+                config(['sahara.facebook_url' => $fu]);
+            }
+        }
+
+        if (array_key_exists('facebook_label', $stored) && is_string($stored['facebook_label'])) {
+            config(['sahara.facebook_label' => trim($stored['facebook_label'])]);
+        }
+
+        foreach ([
+            'contact_map_embed_url' => 'sahara.contact_map_embed_url',
+            'contact_map_directions_url' => 'sahara.contact_map_directions_url',
+            'about_owner_video_embed_url' => 'sahara.about_owner_video_embed_url',
+            'why_choose_us_owner_video_embed_url' => 'sahara.why_choose_us_owner_video_embed_url',
+        ] as $storedKey => $configKey) {
+            if (! array_key_exists($storedKey, $stored) || ! is_string($stored[$storedKey])) {
+                continue;
+            }
+
+            $url = trim($stored[$storedKey]);
+            if ($url === '') {
+                config([$configKey => '']);
+
+                continue;
+            }
+
+            if (filter_var($url, FILTER_VALIDATE_URL)) {
+                config([$configKey => $url]);
+            }
+        }
+
         if (isset($stored['primary_location_label']) && is_string($stored['primary_location_label']) && trim($stored['primary_location_label']) !== '') {
             config(['sahara.primary_location_label' => trim($stored['primary_location_label'])]);
         }

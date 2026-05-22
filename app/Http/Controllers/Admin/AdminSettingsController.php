@@ -44,18 +44,10 @@ class AdminSettingsController extends Controller
     {
         $locale = (string) config('app.locale');
 
-        $defaults = [
-            'marketplace_name' => (string) config('marketplace.name'),
-            'support_email' => (string) config('sahara.support_email'),
-            'whatsapp_phone' => (string) config('sahara.whatsapp_phone'),
-            'tagline' => (string) config('marketplace.tagline'),
-            'legal_entity_name' => (string) config('sahara.legal_entity_name'),
-            'public_site_url' => (string) config('sahara.public_site_url'),
-            'instagram_url' => (string) config('sahara.instagram_url'),
-            'instagram_label' => (string) config('sahara.instagram_label'),
-            'primary_location_label' => (string) config('sahara.primary_location_label'),
-            'footer_intro_extra' => (string) config('sahara.footer_intro_extra'),
-            'footer_hours_summary' => (string) config('sahara.footer_hours_summary'),
+        /** @var array<string, mixed> $persistedDefaults */
+        $persistedDefaults = require config_path('marketplace_defaults.php');
+
+        $defaults = array_merge($persistedDefaults, [
             'home_shortcuts_title' => 'Start here',
             'home_shortcuts_subtitle' => 'Fast paths for high-intent buyers',
             'home_shortcuts_lines' => implode("\n", [
@@ -77,7 +69,7 @@ class AdminSettingsController extends Controller
             'theme_primary' => '#8A6528',
             'theme_secondary' => '#0B6B3A',
             'theme_primary_container' => '#5C4320',
-        ];
+        ]);
 
         $path = $this->storagePath();
         if (! File::exists($path)) {
@@ -95,8 +87,13 @@ class AdminSettingsController extends Controller
         }
 
         foreach (array_keys($defaults) as $key) {
-            if (isset($stored[$key]) && is_string($stored[$key])) {
-                $defaults[$key] = $stored[$key];
+            if (! array_key_exists($key, $stored)) {
+                continue;
+            }
+
+            $value = $stored[$key];
+            if (is_string($value) || is_numeric($value)) {
+                $defaults[$key] = (string) $value;
             }
         }
 

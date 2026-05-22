@@ -2,12 +2,14 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\MergesCarSpecChoices;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 
 class StoreCarRequest extends FormRequest
 {
+    use MergesCarSpecChoices;
     public function authorize(): bool
     {
         return true;
@@ -28,8 +30,12 @@ class StoreCarRequest extends FormRequest
             'year' => ['nullable', 'integer', 'between:1950,'.(int) date('Y') + 1],
             'location' => ['nullable', 'string', 'max:120'],
             'source_country' => ['nullable', 'string', 'max:80'],
-            'transmission' => ['nullable', Rule::in(['Automatic', 'Manual'])],
-            'fuel' => ['nullable', Rule::in(['Petrol', 'Diesel'])],
+            'transmission_preset' => ['nullable', 'string', 'max:60'],
+            'transmission_other' => ['nullable', 'string', 'max:60', 'required_if:transmission_preset,__other__'],
+            'transmission' => ['nullable', 'string', 'max:60'],
+            'fuel_preset' => ['nullable', 'string', 'max:60'],
+            'fuel_other' => ['nullable', 'string', 'max:60', 'required_if:fuel_preset,__other__'],
+            'fuel' => ['nullable', 'string', 'max:60'],
             'condition' => ['nullable', Rule::in(['brand_new', 'foreign_used', 'local_used'])],
             'import_status' => ['nullable', Rule::in(['in_tanzania', 'on_order', 'in_transit', 'ready_for_booking'])],
             'eta_date' => ['nullable', 'date'],

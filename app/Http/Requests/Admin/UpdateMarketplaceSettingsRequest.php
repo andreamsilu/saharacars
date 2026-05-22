@@ -20,6 +20,25 @@ class UpdateMarketplaceSettingsRequest extends FormRequest
         if ($this->has('instagram_label') && trim((string) $this->input('instagram_label')) === '') {
             $this->merge(['instagram_label' => null]);
         }
+
+        if ($this->has('facebook_url') && trim((string) $this->input('facebook_url')) === '') {
+            $this->merge(['facebook_url' => null]);
+        }
+
+        if ($this->has('facebook_label') && trim((string) $this->input('facebook_label')) === '') {
+            $this->merge(['facebook_label' => null]);
+        }
+
+        foreach ([
+            'contact_map_embed_url',
+            'contact_map_directions_url',
+            'about_owner_video_embed_url',
+            'why_choose_us_owner_video_embed_url',
+        ] as $urlKey) {
+            if ($this->has($urlKey) && trim((string) $this->input($urlKey)) === '') {
+                $this->merge([$urlKey => null]);
+            }
+        }
     }
 
     /**
@@ -36,6 +55,12 @@ class UpdateMarketplaceSettingsRequest extends FormRequest
             'public_site_url' => ['required', 'string', 'max:2048', 'url:http,https'],
             'instagram_url' => ['nullable', 'string', 'max:2048', 'url:http,https'],
             'instagram_label' => ['nullable', 'string', 'max:160'],
+            'facebook_url' => ['nullable', 'string', 'max:2048', 'url:http,https'],
+            'facebook_label' => ['nullable', 'string', 'max:160'],
+            'contact_map_embed_url' => ['nullable', 'string', 'max:2048', 'url:http,https'],
+            'contact_map_directions_url' => ['nullable', 'string', 'max:2048', 'url:http,https'],
+            'about_owner_video_embed_url' => ['nullable', 'string', 'max:2048', 'url:http,https'],
+            'why_choose_us_owner_video_embed_url' => ['nullable', 'string', 'max:2048', 'url:http,https'],
             'primary_location_label' => ['required', 'string', 'max:255'],
             'footer_intro_extra' => ['nullable', 'string', 'max:2000'],
             'footer_hours_summary' => ['required', 'string', 'max:255'],
@@ -67,6 +92,12 @@ class UpdateMarketplaceSettingsRequest extends FormRequest
             'public_site_url' => trim($validated['public_site_url']),
             'instagram_url' => trim((string) ($validated['instagram_url'] ?? '')),
             'instagram_label' => trim((string) ($validated['instagram_label'] ?? '')),
+            'facebook_url' => trim((string) ($validated['facebook_url'] ?? '')),
+            'facebook_label' => trim((string) ($validated['facebook_label'] ?? '')),
+            'contact_map_embed_url' => trim((string) ($validated['contact_map_embed_url'] ?? '')),
+            'contact_map_directions_url' => trim((string) ($validated['contact_map_directions_url'] ?? '')),
+            'about_owner_video_embed_url' => trim((string) ($validated['about_owner_video_embed_url'] ?? '')),
+            'why_choose_us_owner_video_embed_url' => trim((string) ($validated['why_choose_us_owner_video_embed_url'] ?? '')),
             'primary_location_label' => trim($validated['primary_location_label']),
             'footer_intro_extra' => trim((string) ($validated['footer_intro_extra'] ?? '')),
             'footer_hours_summary' => trim($validated['footer_hours_summary']),

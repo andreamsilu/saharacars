@@ -57,10 +57,14 @@ final class PublicSeoBuilder
         $phoneE164 = $phoneDigits !== '' ? '+'.$phoneDigits : null;
         $email = (string) config('sahara.support_email');
         $instagram = trim((string) config('sahara.instagram_url'));
+        $facebook = trim((string) config('sahara.facebook_url'));
         $logoUrl = asset('images/favicon-512.png');
         $searchUrl = route('cars.index', ['locale' => app()->getLocale()]).'?q={search_term_string}';
 
-        $sameAs = array_values(array_filter([$instagram !== '' ? $instagram : null]));
+        $sameAs = array_values(array_filter([
+            $instagram !== '' ? $instagram : null,
+            $facebook !== '' ? $facebook : null,
+        ]));
 
         $organization = [
             '@id' => $orgId,

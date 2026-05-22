@@ -1,5 +1,7 @@
 <?php
 
+$marketplaceDefaults = require __DIR__.'/marketplace_defaults.php';
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -27,15 +29,22 @@ return [
     | Public website and social (footer, contact page)
     |--------------------------------------------------------------------------
     */
-    'public_site_url' => env('SAHARA_PUBLIC_SITE_URL', 'https://www.saharaautolink.co.tz'),
+    'public_site_url' => $marketplaceDefaults['public_site_url'],
 
-    'instagram_url' => env('SAHARA_INSTAGRAM_URL', 'https://www.instagram.com/saharaautolinktz/'),
+    'instagram_url' => $marketplaceDefaults['instagram_url'],
 
-    /** Shown next to the Instagram icon (e.g. @handle from signage). */
-    'instagram_label' => env('SAHARA_INSTAGRAM_LABEL', '@saharaautolinktz'),
+    /** Shown next to the Instagram icon (e.g. @handle from signage). Admin → Settings. */
+    'instagram_label' => $marketplaceDefaults['instagram_label'],
 
     /** Visible link text when a profile URL exists but admin leaves the handle blank. */
-    'instagram_fallback_caption' => env('SAHARA_INSTAGRAM_FALLBACK_CAPTION', 'Instagram'),
+    'instagram_fallback_caption' => 'Instagram',
+
+    'facebook_url' => $marketplaceDefaults['facebook_url'],
+
+    /** Shown next to the Facebook icon (e.g. page name). Admin → Settings. */
+    'facebook_label' => $marketplaceDefaults['facebook_label'],
+
+    'facebook_fallback_caption' => 'Facebook',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,12 +68,9 @@ return [
     | Maps “Share → Embed a map” snippet. Directions URL should open Google Maps
     | navigation to the same pin (e.g. /dir/?api=1&destination=lat,lng).
     */
-    'contact_map_embed_url' => env('SAHARA_CONTACT_MAP_EMBED', 'https://www.google.com/maps?q=-6.773750,39.223731&hl=en&z=17&output=embed'),
+    'contact_map_embed_url' => $marketplaceDefaults['contact_map_embed_url'],
 
-    'contact_map_directions_url' => env(
-        'SAHARA_CONTACT_MAP_DIRECTIONS',
-        'https://www.google.com/maps/dir/?api=1&destination=-6.773750,39.223731'
-    ),
+    'contact_map_directions_url' => $marketplaceDefaults['contact_map_directions_url'],
 
     /** Optional plain-text landmarks (overrides lang defaults when non-empty). */
     'office_location_notes' => env('SAHARA_OFFICE_LOCATION_NOTES', ''),
@@ -84,7 +90,7 @@ return [
     | Use a full embed URL, e.g. https://www.youtube.com/embed/VIDEO_ID
     | or https://player.vimeo.com/video/VIDEO_ID — not a watch-page link.
     */
-    'about_owner_video_embed_url' => env('SAHARA_ABOUT_OWNER_VIDEO_EMBED', ''),
+    'about_owner_video_embed_url' => $marketplaceDefaults['about_owner_video_embed_url'],
 
     /*
     |--------------------------------------------------------------------------
@@ -93,8 +99,5 @@ return [
     | Same rules as about_owner_video_embed_url. Falls back to the About embed
     | if unset so one video can serve both pages when desired.
     */
-    'why_choose_us_owner_video_embed_url' => env(
-        'SAHARA_WHY_CHOOSE_US_VIDEO_EMBED',
-        env('SAHARA_ABOUT_OWNER_VIDEO_EMBED', '')
-    ),
+    'why_choose_us_owner_video_embed_url' => $marketplaceDefaults['why_choose_us_owner_video_embed_url'],
 ];
