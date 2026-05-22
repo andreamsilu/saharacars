@@ -3,28 +3,28 @@
     $car = $car ?? null;
 @endphp
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="admin-car-form grid grid-cols-1 lg:grid-cols-12 gap-6">
     <div class="lg:col-span-8 space-y-6">
-        <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="md:col-span-2">
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="title">Title</label>
-                    <input id="title" name="title" value="{{ old('title', $car->title ?? '') }}" required class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Toyota Land Cruiser 300" />
-                    @error('title')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+        <div class="admin-panel">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                <div class="admin-field md:col-span-2">
+                    <label class="admin-label" for="title">Title</label>
+                    <input id="title" name="title" value="{{ old('title', $car->title ?? '') }}" required class="admin-control" placeholder="Toyota Land Cruiser 300" />
+                    @error('title')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 @if ($car?->exists)
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="slug">Slug (optional)</label>
-                        <input id="slug" name="slug" value="{{ old('slug', $car->slug ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="toyota-land-cruiser-300" />
-                        <div class="mt-2 text-xs text-on-surface-variant">Leave blank to auto-generate from title.</div>
-                        @error('slug')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                        <label class="admin-label" for="slug">Slug (optional)</label>
+                        <input id="slug" name="slug" value="{{ old('slug', $car->slug ?? '') }}" class="admin-control" placeholder="toyota-land-cruiser-300" />
+                        <p class="admin-hint">Leave blank to auto-generate from title.</p>
+                        @error('slug')<div class="admin-field-error">{{ $message }}</div>@enderror
                     </div>
                 @endif
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="brand_id">Brand</label>
-                    <select id="brand_id" name="brand_id" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                    <label class="admin-label" for="brand_id">Brand</label>
+                    <select id="brand_id" name="brand_id" class="admin-control">
                         <option value="">Select brand</option>
                         @foreach (($brands ?? collect()) as $brandOption)
                             <option value="{{ $brandOption->id }}" {{ (string) old('brand_id', $car->brand_id ?? '') === (string) $brandOption->id ? 'selected' : '' }}>
@@ -32,170 +32,170 @@
                             </option>
                         @endforeach
                     </select>
-                    <p class="mt-2 text-xs text-on-surface-variant">Manage brands from Admin -> Brands.</p>
-                    @error('brand_id')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <p class="admin-hint">Manage brands from Admin -> Brands.</p>
+                    @error('brand_id')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="model">Model</label>
-                    <input id="model" name="model" value="{{ old('model', $car->model ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="DBA-KF5P" />
-                    @error('model')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="model">Model</label>
+                    <input id="model" name="model" value="{{ old('model', $car->model ?? '') }}" class="admin-control" placeholder="DBA-KF5P" />
+                    @error('model')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="body_color">Body color</label>
-                    <input id="body_color" name="body_color" value="{{ old('body_color', $car->body_color ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="BLUE(D)" />
-                    @error('body_color')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="body_color">Body color</label>
+                    <input id="body_color" name="body_color" value="{{ old('body_color', $car->body_color ?? '') }}" class="admin-control" placeholder="BLUE(D)" />
+                    @error('body_color')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="body_type">Body type</label>
-                    <input id="body_type" name="body_type" value="{{ old('body_type', $car->body_type ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="SUV" />
-                    @error('body_type')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="body_type">Body type</label>
+                    <input id="body_type" name="body_type" value="{{ old('body_type', $car->body_type ?? '') }}" class="admin-control" placeholder="SUV" />
+                    @error('body_type')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="doors">Doors</label>
-                    <input id="doors" name="doors" type="number" min="1" max="9" value="{{ old('doors', $car->doors ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="5" />
-                    @error('doors')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="doors">Doors</label>
+                    <input id="doors" name="doors" type="number" min="1" max="9" value="{{ old('doors', $car->doors ?? '') }}" class="admin-control" placeholder="5" />
+                    @error('doors')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="seats">Seats</label>
-                    <input id="seats" name="seats" type="number" min="1" max="20" value="{{ old('seats', $car->seats ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="5" />
-                    @error('seats')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="seats">Seats</label>
+                    <input id="seats" name="seats" type="number" min="1" max="20" value="{{ old('seats', $car->seats ?? '') }}" class="admin-control" placeholder="5" />
+                    @error('seats')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="year">Year</label>
-                    <input id="year" name="year" type="number" value="{{ old('year', $car->year ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="2023" />
-                    @error('year')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="year">Year</label>
+                    <input id="year" name="year" type="number" value="{{ old('year', $car->year ?? '') }}" class="admin-control" placeholder="2023" />
+                    @error('year')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="price_tzs">Price (TZS)</label>
-                    <input id="price_tzs" name="price_tzs" type="number" value="{{ old('price_tzs', $car->price_tzs ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="185000000" />
-                    @error('price_tzs')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="price_tzs">Price (TZS)</label>
+                    <input id="price_tzs" name="price_tzs" type="number" value="{{ old('price_tzs', $car->price_tzs ?? '') }}" class="admin-control" placeholder="185000000" />
+                    @error('price_tzs')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="landed_cost_tzs">Estimated landed cost (TZS)</label>
-                    <input id="landed_cost_tzs" name="landed_cost_tzs" type="number" value="{{ old('landed_cost_tzs', $car->landed_cost_tzs ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="220000000" />
-                    @error('landed_cost_tzs')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="landed_cost_tzs">Estimated landed cost (TZS)</label>
+                    <input id="landed_cost_tzs" name="landed_cost_tzs" type="number" value="{{ old('landed_cost_tzs', $car->landed_cost_tzs ?? '') }}" class="admin-control" placeholder="220000000" />
+                    @error('landed_cost_tzs')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="price_is_negotiable">Price policy</label>
-                    <select id="price_is_negotiable" name="price_is_negotiable" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                    <label class="admin-label" for="price_is_negotiable">Price policy</label>
+                    <select id="price_is_negotiable" name="price_is_negotiable" class="admin-control">
                         <option value="1" {{ (string) old('price_is_negotiable', ($car->price_is_negotiable ?? true) ? '1' : '0') === '1' ? 'selected' : '' }}>Negotiable</option>
                         <option value="0" {{ (string) old('price_is_negotiable', ($car->price_is_negotiable ?? true) ? '1' : '0') === '0' ? 'selected' : '' }}>Not Negotiable</option>
                     </select>
-                    @error('price_is_negotiable')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    @error('price_is_negotiable')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="location">Location</label>
-                    <input id="location" name="location" value="{{ old('location', $car->location ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Dar es Salaam" />
-                    @error('location')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="location">Location</label>
+                    <input id="location" name="location" value="{{ old('location', $car->location ?? '') }}" class="admin-control" placeholder="Dar es Salaam" />
+                    @error('location')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="source_country">Source country</label>
-                    <select id="source_country" name="source_country" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                    <label class="admin-label" for="source_country">Source country</label>
+                    <select id="source_country" name="source_country" class="admin-control">
                         <option value="">Select source country</option>
                         @foreach (['Japan', 'Germany', 'Thailand', 'United Kingdom', 'United Arab Emirates', 'South Korea', 'Tanzania'] as $sourceCountryOption)
                             <option value="{{ $sourceCountryOption }}" {{ old('source_country', $car->source_country ?? '') === $sourceCountryOption ? 'selected' : '' }}>{{ $sourceCountryOption }}</option>
                         @endforeach
                     </select>
-                    @error('source_country')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    @error('source_country')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="transmission">Transmission</label>
-                    <input id="transmission" name="transmission" value="{{ old('transmission', $car->transmission ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Automatic" />
-                    @error('transmission')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="transmission">Transmission</label>
+                    <input id="transmission" name="transmission" value="{{ old('transmission', $car->transmission ?? '') }}" class="admin-control" placeholder="Automatic" />
+                    @error('transmission')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="fuel">Fuel</label>
-                    <input id="fuel" name="fuel" value="{{ old('fuel', $car->fuel ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Diesel" />
-                    @error('fuel')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="fuel">Fuel</label>
+                    <input id="fuel" name="fuel" value="{{ old('fuel', $car->fuel ?? '') }}" class="admin-control" placeholder="Diesel" />
+                    @error('fuel')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="condition">Condition</label>
-                    <select id="condition" name="condition" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                    <label class="admin-label" for="condition">Condition</label>
+                    <select id="condition" name="condition" class="admin-control">
                         <option value="">Select condition</option>
                         <option value="brand_new" {{ old('condition', $car->condition ?? '') === 'brand_new' ? 'selected' : '' }}>Brand New</option>
                         <option value="foreign_used" {{ old('condition', $car->condition ?? '') === 'foreign_used' ? 'selected' : '' }}>Foreign Used</option>
                         <option value="local_used" {{ old('condition', $car->condition ?? '') === 'local_used' ? 'selected' : '' }}>Locally Used</option>
                     </select>
-                    @error('condition')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    @error('condition')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="import_status">Import status</label>
-                    <select id="import_status" name="import_status" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15">
+                    <label class="admin-label" for="import_status">Import status</label>
+                    <select id="import_status" name="import_status" class="admin-control">
                         <option value="">Select status</option>
                         <option value="in_tanzania" {{ old('import_status', $car->import_status ?? '') === 'in_tanzania' ? 'selected' : '' }}>In Tanzania</option>
                         <option value="on_order" {{ old('import_status', $car->import_status ?? '') === 'on_order' ? 'selected' : '' }}>On Order</option>
                         <option value="in_transit" {{ old('import_status', $car->import_status ?? '') === 'in_transit' ? 'selected' : '' }}>In Transit</option>
                         <option value="ready_for_booking" {{ old('import_status', $car->import_status ?? '') === 'ready_for_booking' ? 'selected' : '' }}>Ready for Booking</option>
                     </select>
-                    @error('import_status')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    @error('import_status')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="eta_date">Expected arrival date (ETA)</label>
-                    <input id="eta_date" name="eta_date" type="date" value="{{ old('eta_date', isset($car?->eta_date) ? optional($car->eta_date)->format('Y-m-d') : '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface focus:border-primary/40 focus:ring-2 focus:ring-primary/15" />
-                    @error('eta_date')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="eta_date">Expected arrival date (ETA)</label>
+                    <input id="eta_date" name="eta_date" type="date" value="{{ old('eta_date', isset($car?->eta_date) ? optional($car->eta_date)->format('Y-m-d') : '') }}" class="admin-control" />
+                    @error('eta_date')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="mileage_km">Mileage (KM)</label>
-                    <input id="mileage_km" name="mileage_km" type="number" value="{{ old('mileage_km', $car->mileage_km ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="12400" />
-                    @error('mileage_km')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="mileage_km">Mileage (KM)</label>
+                    <input id="mileage_km" name="mileage_km" type="number" value="{{ old('mileage_km', $car->mileage_km ?? '') }}" class="admin-control" placeholder="12400" />
+                    @error('mileage_km')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="engine">Engine</label>
-                    <input id="engine" name="engine" value="{{ old('engine', $car->engine ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="3.5L Diesel" />
-                    @error('engine')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="engine">Engine</label>
+                    <input id="engine" name="engine" value="{{ old('engine', $car->engine ?? '') }}" class="admin-control" placeholder="3.5L Diesel" />
+                    @error('engine')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="engine_capacity_cc">Engine Capacity (cc)</label>
-                    <input id="engine_capacity_cc" name="engine_capacity_cc" type="number" value="{{ old('engine_capacity_cc', $car->engine_capacity_cc ?? '') }}" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="3500" />
-                    <p class="mt-2 text-xs text-on-surface-variant">Used for accurate engine-capacity sorting on premium inventory.</p>
-                    @error('engine_capacity_cc')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                    <label class="admin-label" for="engine_capacity_cc">Engine Capacity (cc)</label>
+                    <input id="engine_capacity_cc" name="engine_capacity_cc" type="number" value="{{ old('engine_capacity_cc', $car->engine_capacity_cc ?? '') }}" class="admin-control" placeholder="3500" />
+                    <p class="admin-hint">Used for accurate engine-capacity sorting on premium inventory.</p>
+                    @error('engine_capacity_cc')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
             </div>
         </div>
 
-        <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6">
-            <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="description">Description</label>
-            <textarea id="description" name="description" rows="7" class="w-full rounded-2xl bg-surface-container-low border border-slate-200/80 text-on-surface placeholder:text-on-surface-variant/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/15" placeholder="Write a detailed description...">{{ old('description', $car->description ?? '') }}</textarea>
-            @error('description')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+        <div class="admin-panel">
+            <label class="admin-label" for="description">Description</label>
+            <textarea id="description" name="description" rows="7" class="admin-control" placeholder="Write a detailed description...">{{ old('description', $car->description ?? '') }}</textarea>
+            @error('description')<div class="admin-field-error">{{ $message }}</div>@enderror
         </div>
     </div>
 
     <div class="lg:col-span-4 space-y-6">
-        <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6 space-y-4">
-            <div class="flex items-center justify-between">
-                <label class="text-xs font-semibold text-on-surface-variant" for="is_published">Published</label>
-                <input id="is_published" name="is_published" type="checkbox" value="1" {{ old('is_published', ($car->is_published ?? true) ? 1 : 0) ? 'checked' : '' }} class="rounded border-slate-300 text-primary focus:ring-primary/30" />
+        <div class="admin-panel space-y-0">
+            <div class="admin-toggle-row">
+                <label for="is_published">Published</label>
+                <input id="is_published" name="is_published" type="checkbox" value="1" {{ old('is_published', ($car->is_published ?? true) ? 1 : 0) ? 'checked' : '' }} />
             </div>
-            <div class="flex items-center justify-between">
-                <label class="text-xs font-semibold text-on-surface-variant" for="is_featured">Featured</label>
-                <input id="is_featured" name="is_featured" type="checkbox" value="1" {{ old('is_featured', ($car->is_featured ?? false) ? 1 : 0) ? 'checked' : '' }} class="rounded border-slate-300 text-primary focus:ring-primary/30" />
+            <div class="admin-toggle-row">
+                <label for="is_featured">Featured</label>
+                <input id="is_featured" name="is_featured" type="checkbox" value="1" {{ old('is_featured', ($car->is_featured ?? false) ? 1 : 0) ? 'checked' : '' }} />
             </div>
         </div>
 
-        <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6 space-y-4">
+        <div class="admin-panel space-y-4">
             <div>
-                <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="hero_image">Hero image</label>
-                <input id="hero_image" name="hero_image" type="file" accept="image/*,.heic,.heif,.avif,.webp" class="block w-full text-xs text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-on-primary file:font-bold hover:file:opacity-95" />
-                @error('hero_image')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                <label class="admin-label" for="hero_image">Hero image</label>
+                <input id="hero_image" name="hero_image" type="file" accept="image/*,.heic,.heif,.avif,.webp" />
+                @error('hero_image')<div class="admin-field-error">{{ $message }}</div>@enderror
             </div>
 
             @if (!empty($car?->hero_image_path))
@@ -210,8 +210,8 @@
             @endif
         </div>
 
-        <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6 space-y-4">
-            <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-widest">View-specific images</div>
+        <div class="admin-panel space-y-4">
+            <p class="admin-section-kicker">View-specific images</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 @php
                     $viewImages = [
@@ -223,12 +223,12 @@
                 @endphp
 
                 @foreach ($viewImages as $slot)
-                    <div class="space-y-2 rounded-xl border border-slate-200/80 p-3">
+                    <div class="admin-upload-slot space-y-2">
                         <label class="block text-xs font-semibold text-on-surface-variant" for="{{ $slot['input'] }}">{{ $slot['label'] }}</label>
-                        <input id="{{ $slot['input'] }}" name="{{ $slot['input'] }}[]" type="file" accept="image/*,.heic,.heif,.avif,.webp" multiple class="block w-full text-xs text-on-surface-variant file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-primary file:text-on-primary file:font-bold hover:file:opacity-95" />
-                        <p class="text-xs text-on-surface-variant">You can add multiple {{ strtolower($slot['label']) }} images.</p>
-                        @error($slot['input'])<div class="text-xs text-error mt-1">{{ $message }}</div>@enderror
-                        @error($slot['input'] . '.*')<div class="text-xs text-error mt-1">{{ $message }}</div>@enderror
+                        <input id="{{ $slot['input'] }}" name="{{ $slot['input'] }}[]" type="file" accept="image/*,.heic,.heif,.avif,.webp" multiple />
+                        <p class="admin-hint">You can add multiple {{ strtolower($slot['label']) }} images.</p>
+                        @error($slot['input'])<div class="admin-field-error">{{ $message }}</div>@enderror
+                        @error($slot['input'] . '.*')<div class="admin-field-error">{{ $message }}</div>@enderror
 
                         @php
                             $existing = [];
@@ -254,13 +254,13 @@
             </div>
         </div>
 
-        <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6 space-y-4">
+        <div class="admin-panel space-y-4">
             <div>
-                <label class="block text-xs font-semibold text-on-surface-variant mb-2" for="gallery_images">Gallery images</label>
-                <input id="gallery_images" name="gallery_images[]" type="file" accept="image/*,.heic,.heif,.avif,.webp" multiple class="block w-full text-xs text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-on-primary file:font-bold hover:file:opacity-95" />
-                <p class="text-xs text-on-surface-variant mt-2">You can upload up to 12 images. Each image max 5MB.</p>
-                @error('gallery_images')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
-                @error('gallery_images.*')<div class="text-xs text-error mt-2">{{ $message }}</div>@enderror
+                <label class="admin-label" for="gallery_images">Gallery images</label>
+                <input id="gallery_images" name="gallery_images[]" type="file" accept="image/*,.heic,.heif,.avif,.webp" multiple />
+                <p class="admin-hint">You can upload up to 12 images. Each image max 5MB.</p>
+                @error('gallery_images')<div class="admin-field-error">{{ $message }}</div>@enderror
+                @error('gallery_images.*')<div class="admin-field-error">{{ $message }}</div>@enderror
             </div>
 
             @if (!empty($car?->gallery_image_paths) && is_array($car->gallery_image_paths))
@@ -300,9 +300,9 @@
             }
         @endphp
         @if (!empty($previewImages))
-            <div class="rounded-2xl ring-1 ring-outline-variant/20 bg-surface-container-lowest border border-outline-variant/15 p-6 space-y-4">
+            <div class="admin-panel space-y-4">
                 <div class="flex items-center justify-between">
-                    <div class="text-xs font-semibold text-on-surface-variant uppercase tracking-widest">Image browser</div>
+                    <p class="admin-section-kicker mb-0">Image browser</p>
                     <div class="text-xs text-on-surface-variant"><span id="admin-gallery-current">1</span> / <span id="admin-gallery-total">{{ count($previewImages) }}</span></div>
                 </div>
 

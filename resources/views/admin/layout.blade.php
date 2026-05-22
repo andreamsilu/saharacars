@@ -95,6 +95,141 @@
         .icon-warning { color: #a16207; }
         .icon-danger { color: #ba1a1a; }
         .icon-neutral { color: #475569; }
+
+        /* Car add/edit form — readable fields on light admin background */
+        .admin-car-form .admin-label {
+            display: block;
+            margin-bottom: 0.375rem;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #475569;
+        }
+        .admin-car-form .admin-hint {
+            margin-top: 0.375rem;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #64748b;
+        }
+        .admin-car-form .admin-control {
+            display: block;
+            width: 100%;
+            min-height: 2.75rem;
+            padding: 0.625rem 0.875rem;
+            font-size: 0.9375rem;
+            line-height: 1.4;
+            color: #0f172a;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .admin-car-form .admin-control::placeholder {
+            color: #94a3b8;
+            opacity: 1;
+        }
+        .admin-car-form .admin-control:hover {
+            border-color: #94a3b8;
+        }
+        .admin-car-form .admin-control:focus {
+            outline: none;
+            border-color: var(--theme-primary);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-primary) 22%, transparent);
+        }
+        .admin-car-form select.admin-control {
+            padding-right: 2.25rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.65rem center;
+            background-size: 1.125rem;
+        }
+        .admin-car-form textarea.admin-control {
+            min-height: 8rem;
+            resize: vertical;
+        }
+        .admin-car-form input[type="date"].admin-control {
+            min-height: 2.75rem;
+        }
+        .admin-car-form .admin-panel {
+            border-radius: 1rem;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+        }
+        @media (min-width: 768px) {
+            .admin-car-form .admin-panel {
+                padding: 1.5rem;
+            }
+        }
+        .admin-car-form .admin-panel .grid > div {
+            min-width: 0;
+        }
+        .admin-car-form .admin-field-error {
+            margin-top: 0.375rem;
+            font-size: 0.75rem;
+            color: #ba1a1a;
+        }
+        .admin-car-form .admin-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.625rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .admin-car-form .admin-toggle-row:last-child {
+            border-bottom: 0;
+        }
+        .admin-car-form .admin-toggle-row label {
+            margin-bottom: 0;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #334155;
+        }
+        .admin-car-form input[type="checkbox"] {
+            width: 1.125rem;
+            height: 1.125rem;
+            accent-color: var(--theme-primary);
+        }
+        .admin-car-form input[type="file"] {
+            width: 100%;
+            font-size: 0.8125rem;
+            color: #475569;
+        }
+        .admin-car-form input[type="file"]::file-selector-button {
+            margin-right: 0.75rem;
+            border: 0;
+            border-radius: 0.5rem;
+            background: var(--theme-primary);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .admin-car-form input[type="file"]::file-selector-button:hover {
+            filter: brightness(1.05);
+        }
+        .admin-car-form .admin-upload-slot {
+            border-radius: 0.75rem;
+            border: 1px dashed #cbd5e1;
+            background: #f8fafc;
+            padding: 0.875rem;
+        }
+        .admin-car-form .admin-section-kicker {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
     </style>
     @yield('styles')
 </head>

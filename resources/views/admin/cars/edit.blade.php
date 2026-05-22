@@ -78,7 +78,7 @@
         </div>
     </section>
 
-    <form method="POST" action="{{ route('admin.cars.update', $car) }}" enctype="multipart/form-data" class="space-y-6">
+    <form method="POST" action="{{ route('admin.cars.update', $car) }}" enctype="multipart/form-data" class="admin-car-form space-y-6">
         @csrf
         @method('PUT')
         @include('admin.cars._form', ['car' => $car])

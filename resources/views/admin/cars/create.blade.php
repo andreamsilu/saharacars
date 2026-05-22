@@ -15,11 +15,11 @@
         </a>
     </div>
 
-    <form method="POST" action="{{ route('admin.cars.store') }}" enctype="multipart/form-data" class="space-y-6">
+    <form method="POST" action="{{ route('admin.cars.store') }}" enctype="multipart/form-data" class="admin-car-form space-y-6">
         @include('admin.cars._form')
 
-        <div class="flex items-center justify-end gap-3">
-            <button type="submit" class="rounded-2xl bg-primary text-on-primary font-bold px-4 py-3.5 hover:opacity-95 transition inline-flex items-center justify-center border border-primary/20" title="Create listing" aria-label="Create listing">
+        <div class="flex items-center justify-end gap-3 pt-2">
+            <button type="submit" class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-on-primary shadow-sm hover:opacity-95 transition border border-primary/20" title="Create listing" aria-label="Create listing">
                 <span class="material-symbols-outlined text-[20px]">check</span>
                 <span class="sr-only">Create</span>
             </button>
