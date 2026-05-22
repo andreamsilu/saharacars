@@ -73,7 +73,7 @@ return [
         'new_today' => 'Just landed',
         'latest_listings' => 'Latest stock',
         'fresh_stock' => 'New today',
-        'recent_arrivals' => 'Recently added',
+        'recent_arrivals' => 'Latest listings',
         'added_today_suffix' => ' new today',
         'view_all_newest' => 'See all newest',
         'hero_search_aria' => 'Search cars',

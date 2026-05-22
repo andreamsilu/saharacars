@@ -73,7 +73,7 @@ return [
         'new_today' => 'Yamefika hivi karibuni',
         'latest_listings' => 'Hesabu ya karibuni',
         'fresh_stock' => 'Mpya leo',
-        'recent_arrivals' => 'Yameongezwa hivi karibuni',
+        'recent_arrivals' => 'Orodha mpya zaidi',
         'added_today_suffix' => ' mapya leo',
         'view_all_newest' => 'Tazama yote mapya',
         'hero_search_aria' => 'Tafuta magari',

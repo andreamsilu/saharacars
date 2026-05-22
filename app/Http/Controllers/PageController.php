@@ -78,18 +78,28 @@ class PageController extends Controller
             ->orderBy('transmission')
             ->pluck('transmission');
 
+        // Subqueries (not a join) so each car appears once even if car_search_hits has duplicate rows.
         $featuredCars = Car::query()
             ->where('is_published', true)
-            ->leftJoin('car_search_hits', 'car_search_hits.car_id', '=', 'cars.id')
             ->select('cars.*')
-            ->selectRaw('COALESCE(car_search_hits.hits_count, 0) as search_hits_count')
-            ->selectRaw('car_search_hits.last_hit_at')
+            ->selectSub(function ($query): void {
+                $query->from('car_search_hits')
+                    ->selectRaw('COALESCE(MAX(hits_count), 0)')
+                    ->whereColumn('car_search_hits.car_id', 'cars.id');
+            }, 'search_hits_count')
+            ->selectSub(function ($query): void {
+                $query->from('car_search_hits')
+                    ->selectRaw('MAX(last_hit_at)')
+                    ->whereColumn('car_search_hits.car_id', 'cars.id');
+            }, 'search_hit_last_at')
             ->orderByDesc('search_hits_count')
-            ->orderByDesc('last_hit_at')
+            ->orderByDesc('search_hit_last_at')
             ->orderByDesc('is_featured')
             ->latest('cars.created_at')
             ->limit(5)
-            ->get();
+            ->get()
+            ->unique('id')
+            ->values();
 
         $publishedCarsQuery = Car::query()->where('is_published', true);
         $totalPublishedCars = (clone $publishedCarsQuery)->count();
@@ -101,29 +111,11 @@ class PageController extends Controller
             ->whereIn('import_status', ['in_tanzania', 'ready_for_booking'])
             ->count();
 
-        $todayStart = Carbon::today();
-        $todayEnd = Carbon::tomorrow();
-        $carsNewTodayCount = (clone $publishedCarsQuery)
-            ->where('created_at', '>=', $todayStart)
-            ->where('created_at', '<', $todayEnd)
-            ->count();
-
-        $newTodayListings = Car::query()
+        $latestListings = Car::query()
             ->where('is_published', true)
-            ->where('created_at', '>=', $todayStart)
-            ->where('created_at', '<', $todayEnd)
             ->latest()
             ->limit(10)
             ->get();
-
-        $homeNewListingsIsRecentFallback = $newTodayListings->isEmpty();
-        if ($homeNewListingsIsRecentFallback) {
-            $newTodayListings = Car::query()
-                ->where('is_published', true)
-                ->latest()
-                ->limit(10)
-                ->get();
-        }
 
         $defaultShortcutChips = [
             ['label' => __('public.catalog.condition.foreign_used'), 'url' => route('cars.index', ['condition' => 'foreign_used'])],
@@ -176,9 +168,7 @@ class PageController extends Controller
             'carsAddedThisWeek',
             'darReadyCars',
             'homeQuickFilterChips',
-            'carsNewTodayCount',
-            'newTodayListings',
-            'homeNewListingsIsRecentFallback',
+            'latestListings',
             'homeAnnouncements'
         ));
     }
