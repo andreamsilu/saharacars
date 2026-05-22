@@ -162,20 +162,18 @@
                     <button
                         id="theme-reset-defaults"
                         type="button"
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-outline-variant/40 text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high smooth bg-white"
-                        title="Reset theme defaults"
-                        aria-label="Reset theme defaults"
+                        class="inline-flex items-center justify-center gap-1.5 min-h-10 rounded-xl border border-outline-variant/40 px-3 text-on-surface-variant text-xs font-semibold hover:bg-surface-container-high smooth bg-white"
                     >
-                        <span class="material-symbols-outlined text-base">restart_alt</span>
-                        <span class="sr-only">Reset to Defaults</span>
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">restart_alt</span>
+                        <span>Reset defaults</span>
                     </button>
                 </div>
             </div>
 
             <div class="flex justify-end pt-2">
-                <button type="submit" class="bg-primary text-on-primary px-4 py-3.5 rounded-full font-bold text-sm hover:opacity-95 transition inline-flex items-center justify-center border border-primary/20" title="Save settings" aria-label="Save settings">
-                    <span class="material-symbols-outlined text-base">save</span>
-                    <span class="sr-only">Save Changes</span>
+                <button type="submit" class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-on-primary shadow-sm hover:opacity-95 transition border border-primary/20">
+                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">save</span>
+                    <span>Save changes</span>
                 </button>
             </div>
         </form>

@@ -22,7 +22,10 @@
                 </div>
             @endif
             <div class="flex flex-wrap gap-3">
-                <button type="submit" class="inline-flex items-center justify-center min-h-[44px] rounded-full bg-primary text-on-primary font-bold text-sm px-6">Update</button>
+                <button type="submit" class="inline-flex items-center justify-center gap-2 min-h-[44px] rounded-full bg-primary text-on-primary font-bold text-sm px-6">
+                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">save</span>
+                    <span>Save changes</span>
+                </button>
                 <a href="{{ route('admin.announcements.index') }}" class="inline-flex items-center justify-center min-h-[44px] rounded-full border border-outline-variant/40 font-bold text-sm px-6">Back</a>
             </div>
         </form>

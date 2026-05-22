@@ -9,14 +9,14 @@
             <h1 class="text-4xl font-black tracking-tight text-primary font-headline">View car</h1>
             <p class="text-sm text-on-surface-variant mt-2">{{ $car->title }}</p>
         </div>
-        <div class="flex items-center gap-2">
-            <a href="{{ route('admin.cars.index') }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container-high border border-slate-200/80 text-primary" title="Back to inventory" aria-label="Back to inventory">
-                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-                <span class="sr-only">Back</span>
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ route('admin.cars.index') }}" class="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-slate-200/80 bg-surface-container-low px-4 py-2 text-sm font-semibold text-primary hover:bg-surface-container-high">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>
+                <span>Back</span>
             </a>
-            <a href="{{ route('admin.cars.edit', $car) }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-on-primary border border-primary/20 transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-on-primary" title="Edit listing" aria-label="Edit listing">
-                <span class="material-symbols-outlined text-[18px]">edit</span>
-                <span class="sr-only">Edit</span>
+            <a href="{{ route('admin.cars.edit', $car) }}" class="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-primary/20 bg-primary px-4 py-2 text-sm font-bold text-on-primary transition-[filter] hover:brightness-110 [&_.material-symbols-outlined]:text-on-primary">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">edit</span>
+                <span>Edit listing</span>
             </a>
         </div>
     </div>

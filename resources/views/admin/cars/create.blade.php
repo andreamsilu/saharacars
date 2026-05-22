@@ -9,9 +9,9 @@
             <h1 class="text-4xl font-black tracking-tight">Add car</h1>
             <p class="text-sm text-on-surface-variant mt-2">Create a new listing.</p>
         </div>
-        <a href="{{ route('admin.cars.index') }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container-high border border-slate-200/80 text-primary" title="Back to inventory" aria-label="Back to inventory">
-            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-            <span class="sr-only">Back</span>
+        <a href="{{ route('admin.cars.index') }}" class="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-slate-200/80 bg-white px-4 py-2 text-sm font-semibold text-primary hover:bg-slate-50" title="Back to inventory">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>
+            <span>Back</span>
         </a>
     </div>
 
@@ -19,9 +19,9 @@
         @include('admin.cars._form')
 
         <div class="flex items-center justify-end gap-3 pt-2">
-            <button type="submit" class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-on-primary shadow-sm hover:opacity-95 transition border border-primary/20" title="Create listing" aria-label="Create listing">
-                <span class="material-symbols-outlined text-[20px]">check</span>
-                <span class="sr-only">Create</span>
+            <button type="submit" class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-on-primary shadow-sm hover:opacity-95 transition border border-primary/20">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">add_circle</span>
+                <span>Create listing</span>
             </button>
         </div>
     </form>

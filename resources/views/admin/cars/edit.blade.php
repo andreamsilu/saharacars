@@ -9,9 +9,9 @@
             <h1 class="text-4xl font-black tracking-tight text-primary font-headline">Edit car</h1>
             <p class="text-sm text-on-surface-variant mt-2">{{ $car->title }}</p>
         </div>
-        <a href="{{ route('admin.cars.index') }}" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container-high border border-slate-200/80 text-primary" title="Back to inventory" aria-label="Back to inventory">
-            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-            <span class="sr-only">Back</span>
+        <a href="{{ route('admin.cars.index') }}" class="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-slate-200/80 bg-white px-4 py-2 text-sm font-semibold text-primary hover:bg-slate-50" title="Back to inventory">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_back</span>
+            <span>Back</span>
         </a>
     </div>
 
@@ -78,32 +78,26 @@
         </div>
     </section>
 
-    <form method="POST" action="{{ route('admin.cars.update', $car) }}" enctype="multipart/form-data" class="admin-car-form space-y-6">
+    <form id="car-edit-form" method="POST" action="{{ route('admin.cars.update', $car) }}" enctype="multipart/form-data" class="admin-car-form space-y-6">
         @csrf
         @method('PUT')
         @include('admin.cars._form', ['car' => $car])
-
-        <div class="flex items-center justify-between gap-3">
-            <button
-                type="submit"
-                name="__action"
-                value="delete"
-                formaction="{{ route('admin.cars.destroy', $car) }}"
-                formmethod="POST"
-                onclick="return confirm('Delete this car?');"
-                class="inline-flex items-center justify-center rounded-2xl bg-red-50 hover:bg-red-100 border border-red-200 text-red-800 px-3 py-3"
-                title="Delete listing"
-                aria-label="Delete listing"
-            >
-                <span class="material-symbols-outlined text-[18px]">delete</span>
-                <span class="sr-only">Delete</span>
-            </button>
-
-            <button type="submit" class="rounded-2xl bg-primary text-on-primary font-bold px-4 py-3.5 hover:opacity-95 transition inline-flex items-center justify-center border border-primary/20" title="Save changes" aria-label="Save changes">
-                <span class="material-symbols-outlined text-[20px]">save</span>
-                <span class="sr-only">Save changes</span>
-            </button>
-        </div>
     </form>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <form method="POST" action="{{ route('admin.cars.destroy', $car) }}" class="inline" onsubmit="return confirm('Delete this car?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-800 hover:bg-red-100">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">delete</span>
+                <span>Delete listing</span>
+            </button>
+        </form>
+
+        <button type="submit" form="car-edit-form" class="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-on-primary shadow-sm hover:opacity-95 transition border border-primary/20">
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true">save</span>
+            <span>Save changes</span>
+        </button>
+    </div>
 @endsection
 

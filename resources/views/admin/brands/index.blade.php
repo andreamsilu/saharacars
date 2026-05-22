@@ -33,7 +33,10 @@
                     <label for="brand-featured" class="text-xs font-semibold text-on-surface-variant">Show</label>
                 </div>
                 <div class="md:col-span-1">
-                    <button type="submit" class="w-full min-h-[44px] rounded-xl bg-primary text-on-primary font-bold text-sm hover:opacity-95 transition">Add</button>
+                    <button type="submit" class="w-full min-h-[44px] rounded-xl bg-primary text-on-primary font-bold text-sm hover:opacity-95 transition inline-flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">add</span>
+                        <span>Add brand</span>
+                    </button>
                 </div>
             </form>
 
@@ -76,16 +79,18 @@
                                                     Show on Home
                                                 </label>
                                                 <input name="sort_order" type="number" min="0" max="9999" value="{{ $brand->sort_order }}" class="w-20 bg-surface-container-low border border-slate-200/80 rounded-xl p-2 text-on-surface" />
-                                                <button type="submit" class="inline-flex items-center justify-center w-9 h-9 rounded-xl border border-outline-variant/40 text-primary hover:bg-surface-container-high" title="Save brand" aria-label="Save brand">
-                                                    <span class="material-symbols-outlined text-base">save</span>
+                                                <button type="submit" class="inline-flex items-center justify-center gap-1.5 min-h-9 rounded-xl border border-outline-variant/40 px-3 text-primary text-xs font-bold hover:bg-surface-container-high">
+                                                    <span class="material-symbols-outlined text-base" aria-hidden="true">save</span>
+                                                    <span>Save</span>
                                                 </button>
                                             </div>
                                         </form>
                                         <form method="POST" action="{{ route('admin.brands.destroy', $brand) }}" onsubmit="return confirm('Delete this brand? Linked cars will remain but without brand link.')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="inline-flex items-center justify-center w-9 h-9 rounded-xl border border-outline-variant/40 text-error hover:bg-error-container/30" title="Delete brand" aria-label="Delete brand">
-                                                <span class="material-symbols-outlined text-base">delete</span>
+                                            <button type="submit" class="inline-flex items-center justify-center gap-1.5 min-h-9 rounded-xl border border-outline-variant/40 px-3 text-error text-xs font-bold hover:bg-error-container/30">
+                                                <span class="material-symbols-outlined text-base" aria-hidden="true">delete</span>
+                                                <span>Delete</span>
                                             </button>
                                         </form>
                                         <a href="{{ route('cars.index', ['brand' => $brand->name]) }}" class="text-primary font-semibold underline underline-offset-2 whitespace-nowrap" target="_blank" rel="noopener noreferrer">
