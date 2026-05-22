@@ -112,13 +112,21 @@
 
                 <div>
                     <label class="admin-label" for="transmission">Transmission</label>
-                    <input id="transmission" name="transmission" value="{{ old('transmission', $car->transmission ?? '') }}" class="admin-control" placeholder="Automatic" />
+                    <select id="transmission" name="transmission" class="admin-control">
+                        <option value="">Select transmission</option>
+                        <option value="Automatic" {{ old('transmission', $car->transmission ?? '') === 'Automatic' ? 'selected' : '' }}>Automatic</option>
+                        <option value="Manual" {{ old('transmission', $car->transmission ?? '') === 'Manual' ? 'selected' : '' }}>Manual</option>
+                    </select>
                     @error('transmission')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
                 <div>
                     <label class="admin-label" for="fuel">Fuel</label>
-                    <input id="fuel" name="fuel" value="{{ old('fuel', $car->fuel ?? '') }}" class="admin-control" placeholder="Diesel" />
+                    <select id="fuel" name="fuel" class="admin-control">
+                        <option value="">Select fuel type</option>
+                        <option value="Petrol" {{ old('fuel', $car->fuel ?? '') === 'Petrol' ? 'selected' : '' }}>Petrol</option>
+                        <option value="Diesel" {{ old('fuel', $car->fuel ?? '') === 'Diesel' ? 'selected' : '' }}>Diesel</option>
+                    </select>
                     @error('fuel')<div class="admin-field-error">{{ $message }}</div>@enderror
                 </div>
 
