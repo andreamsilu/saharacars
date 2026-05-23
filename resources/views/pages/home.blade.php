@@ -159,7 +159,7 @@
 {{-- Hero: muted background video + search --}}
 @php
     $heroPosterUrl = asset('images/sahara-front-1080.jpg');
-    $heroVideoUrl = asset('videos/hero-bg.mp4');
+    $heroVideoUrl = asset('videos/video3.mp4');
 @endphp
 <section class="relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
