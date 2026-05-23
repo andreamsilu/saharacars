@@ -108,9 +108,30 @@
         transition: background-color 9999s ease-out 0s;
         box-shadow: 0 0 0 1000px #ffffff inset;
       }
-      .home-hero-bg-video {
+      .home-hero-section {
+        isolation: isolate;
+      }
+      .home-hero-bg-layer {
+        overflow: hidden;
+      }
+      .home-hero-bg-video,
+      .home-hero-bg-fallback img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        max-width: none;
+        transform: translate(-50%, -50%);
         object-fit: cover;
         object-position: center;
+      }
+      @media (max-width: 639px) {
+        .home-hero-section {
+          min-height: min(88svh, 920px);
+        }
       }
       @media (prefers-reduced-motion: reduce) {
         .home-hero-bg-video {
@@ -120,6 +141,11 @@
       @media (prefers-reduced-motion: no-preference) {
         .home-hero-bg-fallback {
           display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .home-hero-bg-fallback {
+          display: block;
         }
       }
     </style>
@@ -161,8 +187,8 @@
     $heroPosterUrl = asset('images/sahara-front-1080.jpg');
     $heroVideoUrl = asset('videos/video3.mp4');
 @endphp
-<section class="relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+<section class="home-hero-section relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
+    <div class="home-hero-bg-layer absolute inset-0 pointer-events-none" aria-hidden="true">
         <picture class="home-hero-bg-fallback absolute inset-0">
             <source
                 type="image/webp"
@@ -172,7 +198,7 @@
             <img
                 src="{{ $heroPosterUrl }}"
                 alt=""
-                class="w-full h-full object-cover object-center opacity-70"
+                class="opacity-70"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
@@ -182,14 +208,15 @@
         </picture>
         <video
             id="home-hero-bg-video"
-            class="home-hero-bg-video absolute inset-0 w-full h-full opacity-70"
+            class="home-hero-bg-video opacity-70"
             autoplay
             muted
             loop
             playsinline
+            webkit-playsinline
             disablePictureInPicture
             controlslist="nodownload nofullscreen noremoteplayback"
-            preload="metadata"
+            preload="auto"
             poster="{{ $heroPosterUrl }}"
             tabindex="-1"
         >
@@ -535,9 +562,23 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
         heroVideo.defaultMuted = true;
         heroVideo.volume = 0;
         heroVideo.setAttribute('muted', '');
-        const playHero = () => heroVideo.play().catch(() => {});
+        heroVideo.setAttribute('playsinline', '');
+        heroVideo.setAttribute('webkit-playsinline', '');
+
+        const playHero = () => {
+            if (heroVideo.paused) {
+                heroVideo.play().catch(() => {});
+            }
+        };
+
         playHero();
         heroVideo.addEventListener('loadeddata', playHero, { once: true });
+        heroVideo.addEventListener('canplay', playHero, { once: true });
+        window.addEventListener('pageshow', playHero);
+        window.addEventListener('orientationchange', () => window.setTimeout(playHero, 250));
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) playHero();
+        });
     }
 
     const saveSearchBtn = document.getElementById('save-search-wa');
