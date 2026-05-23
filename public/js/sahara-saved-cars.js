@@ -285,10 +285,16 @@
         syncToggleButtons();
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
+    function initSavedCars() {
         syncToggleButtons();
         renderSavedList();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSavedCars);
+    } else {
+        initSavedCars();
+    }
 
     document.addEventListener('sahara-saved-changed', function () {
         syncToggleButtons();

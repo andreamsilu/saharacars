@@ -35,7 +35,7 @@
         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $car->title }}" src="{{ $img }}"/>
         <button
             type="button"
-            class="absolute top-2 right-2 z-20 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-primary shadow border border-outline-variant/30 hover:bg-white"
+            class="absolute top-2 right-2 z-20 pointer-events-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-primary shadow border border-outline-variant/30 hover:bg-white"
             data-saved-car-toggle
             data-car-id="{{ $car->id }}"
             data-slug="{{ $car->slug }}"
@@ -75,7 +75,7 @@
         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="{{ $car->title }}" src="{{ $img }}"/>
         <button
             type="button"
-            class="absolute top-4 right-4 z-20 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            class="absolute top-4 right-4 z-20 pointer-events-auto inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             data-saved-car-toggle
             data-car-id="{{ $car->id }}"
             data-slug="{{ $car->slug }}"
