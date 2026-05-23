@@ -93,15 +93,34 @@
       }
       #home-hero-search-form input,
       #home-hero-search-form select {
-        color-scheme: dark;
+        color-scheme: light;
+        font-weight: 700;
+      }
+      #home-hero-search-form label {
+        font-weight: 800;
+        letter-spacing: 0.04em;
       }
       #home-hero-search-form input:-webkit-autofill,
       #home-hero-search-form input:-webkit-autofill:hover,
       #home-hero-search-form input:-webkit-autofill:focus {
-        -webkit-text-fill-color: #ffffff;
-        caret-color: #ffffff;
+        -webkit-text-fill-color: #0f172a;
+        caret-color: #0f172a;
         transition: background-color 9999s ease-out 0s;
-        box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.1) inset;
+        box-shadow: 0 0 0 1000px #ffffff inset;
+      }
+      .home-hero-bg-video {
+        object-fit: cover;
+        object-position: center;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .home-hero-bg-video {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .home-hero-bg-fallback {
+          display: none;
+        }
       }
     </style>
 
@@ -137,22 +156,23 @@
     </div>
 </section>
 @endif
-{{-- Search-first: compact strip (no full-bleed video), inventory hook + form --}}
+{{-- Hero: muted background video + search --}}
 @php
-    $heroInventoryCount = (int) ($totalPublishedCars ?? 0);
+    $heroPosterUrl = asset('images/sahara-front-1080.jpg');
+    $heroVideoUrl = asset('videos/hero-bg.mp4');
 @endphp
 <section class="relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <picture>
+        <picture class="home-hero-bg-fallback absolute inset-0">
             <source
                 type="image/webp"
                 srcset="{{ asset('images/sahara-front-640.webp') }} 640w, {{ asset('images/sahara-front-1080.webp') }} 1080w"
                 sizes="100vw"
             />
             <img
-                src="{{ asset('images/sahara-front-1080.jpg') }}"
+                src="{{ $heroPosterUrl }}"
                 alt=""
-                class="w-full h-full object-cover object-center opacity-50"
+                class="w-full h-full object-cover object-center opacity-70"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
@@ -160,7 +180,22 @@
                 height="810"
             />
         </picture>
-        <div class="absolute inset-0 bg-slate-950/50"></div>
+        <video
+            id="home-hero-bg-video"
+            class="home-hero-bg-video absolute inset-0 w-full h-full opacity-70"
+            autoplay
+            muted
+            loop
+            playsinline
+            disablePictureInPicture
+            controlslist="nodownload nofullscreen noremoteplayback"
+            preload="metadata"
+            poster="{{ $heroPosterUrl }}"
+            tabindex="-1"
+        >
+            <source src="{{ $heroVideoUrl }}" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-slate-950/25"></div>
     </div>
     <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
         <div class="max-w-3xl mx-auto mb-4 sm:mb-5 text-white">
@@ -175,25 +210,16 @@
                 <li class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">{{ __('public.home.service_import_title') }}</li>
             </ul>
         </div>
-        <form action="{{ route('cars.index') }}" method="GET" class="sahara-live-panel home-hero-search mt-1 mx-auto w-full rounded-2xl border border-white/20 bg-white/10 p-4 sm:p-5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-md text-left text-white [color-scheme:dark]" id="home-hero-search-form">
-            @if ($heroInventoryCount > 0)
-                <p class="mb-3 text-sm sm:text-base text-white/90">
-                    <span class="font-headline font-extrabold text-white tabular-nums text-lg sm:text-xl text-[clamp(1.25rem,2.2vw,1.75rem)]">{{ number_format($heroInventoryCount) }}</span>
-                    <span class="text-white/85"> {{ __('public.home.cars_in_stock') }}</span>
-                </p>
-            @else
-                <p class="text-sm text-white/85 mb-3">{{ __('public.home.no_stock_message') }}</p>
-            @endif
-            {{-- Mobile: column; sm–lg: 2×2; lg+: 12-col row uses full 7xl width --}}
-            <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:items-end sm:gap-3 lg:grid-cols-12 lg:gap-4">
+        <form action="{{ route('cars.index') }}" method="GET" class="home-hero-search mt-2 mx-auto w-full max-w-5xl text-left" id="home-hero-search-form">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:items-end sm:gap-4 lg:grid-cols-12 lg:gap-4">
                 <div class="min-w-0 sm:col-span-1 lg:col-span-5">
-                    <label for="hero-q" class="block font-label text-editorial-kicker text-white/80 mb-1">{{ __('public.home.label_keyword') }}</label>
-                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[44px] rounded-xl border border-white/25 bg-white/10 px-3 py-2.5 text-sm text-white placeholder:text-white/45 ghost-border" />
+                    <label for="hero-q" class="block font-headline text-xs font-extrabold uppercase tracking-widest text-white mb-1.5 drop-shadow-sm">{{ __('public.home.label_keyword') }}</label>
+                    <input id="hero-q" name="q" type="search" placeholder="{{ __('public.home.placeholder_keyword') }}" class="w-full min-h-[48px] rounded-xl border-0 bg-white px-4 py-3 text-base font-bold text-slate-900 placeholder:text-slate-500 shadow-lg" />
                 </div>
-                <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[44px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-bold px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-sm inline-flex items-center justify-center">{{ __('public.common.search') }}</button>
+                <button type="submit" class="sahara-live-cta sahara-pulse-subtle w-full min-h-[48px] sm:col-span-1 sm:w-full rounded-xl cta-gradient text-white font-extrabold text-base px-6 sm:px-4 lg:px-5 lg:col-span-2 focus-ring-on-dark shadow-lg inline-flex items-center justify-center">{{ __('public.common.search') }}</button>
                 <div class="sm:col-span-1 lg:col-span-3">
-                    <label for="hero-brand" class="block font-label text-editorial-kicker text-white/80 mb-1">{{ __('public.home.label_brand') }}</label>
-                    <select id="hero-brand" name="brand" class="w-full min-h-[44px] rounded-xl border border-white/25 bg-white/10 px-3 py-2.5 text-sm text-white ghost-border [&_option]:bg-slate-900 [&_option]:text-white">
+                    <label for="hero-brand" class="block font-headline text-xs font-extrabold uppercase tracking-widest text-white mb-1.5 drop-shadow-sm">{{ __('public.home.label_brand') }}</label>
+                    <select id="hero-brand" name="brand" class="w-full min-h-[48px] rounded-xl border-0 bg-white px-4 py-3 text-base font-bold text-slate-900 shadow-lg">
                         <option value="">{{ __('public.home.any_brand') }}</option>
                         @foreach ($brandOptions as $brandOption)
                             <option value="{{ $brandOption }}">{{ $brandOption }}</option>
@@ -201,13 +227,13 @@
                     </select>
                 </div>
                 <div class="sm:col-span-1 lg:col-span-2">
-                    <label for="hero-price" class="block font-label text-editorial-kicker text-white/80 mb-1">{{ __('public.home.label_price_min') }}</label>
-                    <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="{{ __('public.common.optional') }}" class="w-full min-h-[44px] rounded-xl border border-white/25 bg-white/10 px-3 py-2.5 text-sm text-white placeholder:text-white/45 ghost-border" />
+                    <label for="hero-price" class="block font-headline text-xs font-extrabold uppercase tracking-widest text-white mb-1.5 drop-shadow-sm">{{ __('public.home.label_price_min') }}</label>
+                    <input id="hero-price" name="price_min" type="number" inputmode="numeric" placeholder="{{ __('public.common.optional') }}" class="w-full min-h-[48px] rounded-xl border-0 bg-white px-4 py-3 text-base font-bold text-slate-900 placeholder:text-slate-500 shadow-lg" />
                 </div>
             </div>
-            <div class="pt-2.5 mt-1 border-t border-white/15 text-center">
-                <a href="{{ route('cars.index') }}" class="inline-flex items-center gap-1.5 rounded-lg border border-white/35 bg-white/10 px-3 py-2 text-sm font-bold text-white hover:bg-white/15 transition-colors"><span class="material-symbols-outlined text-[16px] text-white" aria-hidden="true">tune</span> {{ __('public.home.all_filters_link') }}</a>
-            </div>
+            <p class="mt-3 text-center">
+                <a href="{{ route('cars.index') }}" class="inline-flex items-center gap-1.5 text-sm font-extrabold uppercase tracking-wide text-white drop-shadow-sm hover:text-white/90 transition-colors"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">tune</span> {{ __('public.home.all_filters_link') }}</a>
+            </p>
         </form>
         @if (count($homeQuickFilterChips ?? []) > 0)
             <div class="flex flex-wrap justify-center gap-2 mt-4" role="list" aria-label="{{ __('public.home.quick_filters_aria') }}">
@@ -503,6 +529,17 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
 <x-footer />
 <script>
 (() => {
+    const heroVideo = document.getElementById('home-hero-bg-video');
+    if (heroVideo) {
+        heroVideo.muted = true;
+        heroVideo.defaultMuted = true;
+        heroVideo.volume = 0;
+        heroVideo.setAttribute('muted', '');
+        const playHero = () => heroVideo.play().catch(() => {});
+        playHero();
+        heroVideo.addEventListener('loadeddata', playHero, { once: true });
+    }
+
     const saveSearchBtn = document.getElementById('save-search-wa');
     const homeSearchForm = document.getElementById('home-hero-search-form');
     if (saveSearchBtn && homeSearchForm) {
