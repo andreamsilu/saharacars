@@ -110,27 +110,93 @@
       }
       .home-hero-section {
         isolation: isolate;
+        position: relative;
+        background-color: #020617;
+        min-height: clamp(22rem, 52vh, 40rem);
       }
       .home-hero-bg-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .home-hero-media {
+        position: absolute;
+        inset: 0;
         overflow: hidden;
       }
-      .home-hero-bg-video,
+      .home-hero-bg-fallback {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
       .home-hero-bg-fallback img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        -webkit-object-fit: cover;
+      }
+      .home-hero-bg-video {
         position: absolute;
         top: 50%;
         left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
         max-width: none;
+        max-height: none;
         transform: translate(-50%, -50%);
         object-fit: cover;
-        object-position: center;
+        object-position: center center;
+        -webkit-object-fit: cover;
       }
-      @media (max-width: 639px) {
+      .home-hero-inner {
+        position: relative;
+        z-index: 10;
+      }
+      /* Mobile: fixed-height video strip + content below (fills width, no desktop letterboxing) */
+      @media (max-width: 767px) {
         .home-hero-section {
-          min-height: min(88svh, 920px);
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+          overflow: hidden;
+        }
+        .home-hero-bg-layer {
+          position: relative;
+          inset: auto;
+          flex: 0 0 auto;
+          width: 100%;
+          height: clamp(11rem, 38dvh, 22rem);
+          min-height: 11rem;
+          max-height: 22rem;
+        }
+        .home-hero-media {
+          position: absolute;
+          inset: 0;
+        }
+        .home-hero-bg-fallback img {
+          object-position: center 40%;
+        }
+        .home-hero-inner {
+          flex: 1 1 auto;
+          width: 100%;
+        }
+      }
+      @media (max-width: 767px) and (orientation: landscape) {
+        .home-hero-bg-layer {
+          height: clamp(9rem, 52dvh, 14rem);
+          max-height: 14rem;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .home-hero-bg-fallback img,
+        .home-hero-bg-video {
+          object-position: center 38%;
         }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -188,43 +254,45 @@
     $heroVideoUrl = asset('videos/video3.mp4');
 @endphp
 <section class="home-hero-section relative bg-slate-950 border-b border-white/10 overflow-hidden" aria-label="{{ __('public.home.hero_search_aria') }}">
-    <div class="home-hero-bg-layer absolute inset-0 pointer-events-none" aria-hidden="true">
-        <picture class="home-hero-bg-fallback absolute inset-0">
-            <source
-                type="image/webp"
-                srcset="{{ asset('images/sahara-front-640.webp') }} 640w, {{ asset('images/sahara-front-1080.webp') }} 1080w"
-                sizes="100vw"
-            />
-            <img
-                src="{{ $heroPosterUrl }}"
-                alt=""
-                class="opacity-70"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                width="1080"
-                height="810"
-            />
-        </picture>
-        <video
-            id="home-hero-bg-video"
-            class="home-hero-bg-video opacity-70"
-            autoplay
-            muted
-            loop
-            playsinline
-            webkit-playsinline
-            disablePictureInPicture
-            controlslist="nodownload nofullscreen noremoteplayback"
-            preload="auto"
-            poster="{{ $heroPosterUrl }}"
-            tabindex="-1"
-        >
-            <source src="{{ $heroVideoUrl }}" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-slate-950/25"></div>
+    <div class="home-hero-bg-layer" aria-hidden="true">
+        <div class="home-hero-media" id="home-hero-media">
+            <picture class="home-hero-bg-fallback">
+                <source
+                    type="image/webp"
+                    srcset="{{ asset('images/sahara-front-640.webp') }} 640w, {{ asset('images/sahara-front-1080.webp') }} 1080w"
+                    sizes="100vw"
+                />
+                <img
+                    src="{{ $heroPosterUrl }}"
+                    alt=""
+                    class="opacity-70"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    width="1080"
+                    height="810"
+                />
+            </picture>
+            <video
+                id="home-hero-bg-video"
+                class="home-hero-bg-video opacity-70"
+                autoplay
+                muted
+                loop
+                playsinline
+                webkit-playsinline
+                disablePictureInPicture
+                controlslist="nodownload nofullscreen noremoteplayback"
+                preload="auto"
+                poster="{{ $heroPosterUrl }}"
+                tabindex="-1"
+            >
+                <source src="{{ $heroVideoUrl }}" type="video/mp4">
+            </video>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/10 via-slate-950/20 to-slate-950/85 md:from-slate-950/25 md:via-slate-950/25 md:to-slate-950/25"></div>
     </div>
-    <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
+    <div class="home-hero-inner max-w-7xl mx-auto w-full px-4 sm:px-6 pt-6 sm:pt-10 md:pt-12 pb-4 sm:pb-5 text-center text-white">
         <div class="max-w-3xl mx-auto mb-4 sm:mb-5 text-white">
             <p class="text-sm text-white/80">{{ config('sahara.legal_entity_name') }}</p>
             <h1 class="mt-2 font-headline text-editorial-hero font-black uppercase tracking-wide text-white">
@@ -564,6 +632,41 @@ aria-label="{{ __('public.home.brand_aria', ['brand' => $brand['name']]) }}"
         heroVideo.setAttribute('muted', '');
         heroVideo.setAttribute('playsinline', '');
         heroVideo.setAttribute('webkit-playsinline', '');
+
+        const heroMedia = document.getElementById('home-hero-media');
+        const fitHeroVideoCover = () => {
+            if (!heroMedia) return;
+            const cw = heroMedia.clientWidth;
+            const ch = heroMedia.clientHeight;
+            if (cw < 1 || ch < 1) return;
+
+            const vw = heroVideo.videoWidth || 16;
+            const vh = heroVideo.videoHeight || 9;
+            const scale = Math.max(cw / vw, ch / vh);
+            const w = Math.ceil(vw * scale);
+            const h = Math.ceil(vh * scale);
+
+            heroVideo.style.width = w + 'px';
+            heroVideo.style.height = h + 'px';
+            heroVideo.style.maxWidth = 'none';
+            heroVideo.style.maxHeight = 'none';
+            heroVideo.style.left = '50%';
+            heroVideo.style.top = '50%';
+            heroVideo.style.transform = 'translate(-50%, -50%)';
+
+            const mobile = window.matchMedia('(max-width: 767px)').matches;
+            const portrait = window.matchMedia('(orientation: portrait)').matches;
+            heroVideo.style.objectPosition = mobile && portrait ? 'center 40%' : 'center center';
+        };
+
+        fitHeroVideoCover();
+        heroVideo.addEventListener('loadedmetadata', fitHeroVideoCover);
+        window.addEventListener('resize', fitHeroVideoCover, { passive: true });
+        window.addEventListener('orientationchange', () => window.setTimeout(fitHeroVideoCover, 250));
+        if (typeof ResizeObserver !== 'undefined' && heroMedia) {
+            const ro = new ResizeObserver(() => fitHeroVideoCover());
+            ro.observe(heroMedia);
+        }
 
         const playHero = () => {
             if (heroVideo.paused) {
