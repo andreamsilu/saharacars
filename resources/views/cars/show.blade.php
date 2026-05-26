@@ -340,7 +340,7 @@
 </div>
 <button
     type="button"
-    class="bg-surface-container-high p-2 min-h-[44px] min-w-[44px] rounded-full hover:bg-error-container/30 hover:text-error transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+    class="bg-surface-container-high p-2 min-h-[44px] min-w-[44px] rounded-full hover:bg-error-container/30 hover:text-error transition-colors focus-visible:ring-2 focus-visible:ring-primary touch-manipulation shrink-0"
     data-saved-car-toggle
     data-car-id="{{ $car->id }}"
     data-slug="{{ $car->slug }}"
@@ -348,7 +348,7 @@
     aria-pressed="false"
     aria-label="{{ __('public.car_show.save_aria', ['title' => $car->title]) }}"
 >
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
 </button>
 </div>
 <div class="flex items-center gap-3 py-4 my-6 bg-surface-container-low rounded-xl px-4">

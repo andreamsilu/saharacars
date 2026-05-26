@@ -126,7 +126,7 @@
 <x-engagement-cta />
 <x-page-load-progress />
 <x-scroll-to-top />
-<script src="{{ asset('js/sahara-saved-cars.min.js') }}" defer></script>
+<script src="{{ asset('js/sahara-saved-cars.min.js') }}"></script>
 <script>
         (function () {
             var scripts = [

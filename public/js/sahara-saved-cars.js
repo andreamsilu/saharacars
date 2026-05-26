@@ -134,20 +134,25 @@
         });
     }
 
+    var SAVED_HEART_COLOR = '#ba1a1a';
+
+    function applyToggleButtonState(btn, filled) {
+        btn.setAttribute('aria-pressed', filled ? 'true' : 'false');
+        var icon = btn.querySelector('.material-symbols-outlined');
+        if (!icon) return;
+        icon.style.fontVariationSettings = filled ? "'FILL' 1" : "'FILL' 0";
+        icon.style.color = filled ? SAVED_HEART_COLOR : '';
+        icon.classList.toggle('text-error', filled);
+        icon.classList.toggle('text-primary', !filled);
+    }
+
     function syncToggleButtons() {
         document.querySelectorAll('[data-saved-car-toggle]').forEach(function (btn) {
             var idAttr = btn.getAttribute('data-car-id');
             var slugAttr = btn.getAttribute('data-slug');
             var nid = normalizeId(idAttr);
             if (nid === null && !slugAttr) return;
-            var filled = isSaved(nid, slugAttr || undefined);
-            btn.setAttribute('aria-pressed', filled ? 'true' : 'false');
-            var icon = btn.querySelector('.material-symbols-outlined');
-            if (icon) {
-                icon.style.fontVariationSettings = filled ? "'FILL' 1" : "'FILL' 0";
-                icon.classList.toggle('text-error', filled);
-                icon.classList.toggle('text-primary', !filled);
-            }
+            applyToggleButtonState(btn, isSaved(nid, slugAttr || undefined));
         });
     }
 
@@ -262,10 +267,11 @@
             .join('');
     }
 
-    document.addEventListener('click', function (e) {
+    function handleSavedInteraction(e) {
         var removeBtn = e.target.closest('[data-saved-remove]');
         if (removeBtn) {
             e.preventDefault();
+            e.stopPropagation();
             var rid = normalizeId(removeBtn.getAttribute('data-car-id'));
             var rSlug = removeBtn.getAttribute('data-slug') || '';
             var rTitle = removeBtn.getAttribute('data-title') || '';
@@ -281,9 +287,13 @@
         var title = btn.getAttribute('data-title');
         if (nid === null && !slug) return;
         e.preventDefault();
-        toggle(nid, slug, title || slug);
+        e.stopPropagation();
+        var added = toggle(nid, slug, title || slug);
+        applyToggleButtonState(btn, added);
         syncToggleButtons();
-    });
+    }
+
+    document.addEventListener('click', handleSavedInteraction);
 
     function initSavedCars() {
         syncToggleButtons();

@@ -26,66 +26,62 @@
 
 @if ($compact)
 <div class="sahara-card-motion group bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 relative flex flex-col max-w-full">
+    <button
+        type="button"
+        class="absolute top-2 right-2 z-30 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-primary shadow border border-outline-variant/30 hover:bg-white touch-manipulation"
+        data-saved-car-toggle
+        data-car-id="{{ $car->id }}"
+        data-slug="{{ $car->slug }}"
+        data-title="{{ $car->title }}"
+        aria-pressed="false"
+        aria-label="{{ __('public.car_card.aria_save', ['title' => $car->title]) }}"
+    >
+        <span class="material-symbols-outlined text-lg text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
+    </button>
     <a
         href="{{ $car->publicShowUrl() }}"
-        class="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
+        class="flex flex-col flex-1 min-w-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
         aria-label="{{ __('public.car_card.aria_open', ['title' => $car->title]) }}"
-    ></a>
-    <div class="relative aspect-[4/3] max-h-[120px] sm:max-h-[130px] w-full overflow-hidden bg-surface-container-high">
-        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $car->title }}" src="{{ $img }}"/>
-        <button
-            type="button"
-            class="absolute top-2 right-2 z-20 pointer-events-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-primary shadow border border-outline-variant/30 hover:bg-white"
-            data-saved-car-toggle
-            data-car-id="{{ $car->id }}"
-            data-slug="{{ $car->slug }}"
-            data-title="{{ $car->title }}"
-            aria-pressed="false"
-            aria-label="{{ __('public.car_card.aria_save', ['title' => $car->title]) }}"
-        >
-            <span class="material-symbols-outlined text-lg text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
-        </button>
-        @if ($car->source_country)
-            <span class="absolute top-1.5 left-1.5 z-[5] max-w-[70%] truncate bg-primary/90 text-white px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide">{{ $car->source_country }}</span>
-        @endif
-    </div>
-    <div class="p-2.5 sm:p-3 text-left flex-1 flex flex-col relative z-20 min-h-0">
-        @if ($brandLine !== '' && $modelLine !== '')
-            <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-1">{{ $brandLine }}</p>
-            <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-1 -mt-px">{{ $modelLine }}</p>
-        @elseif ($brandLine !== '')
-            <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-2">{{ $brandLine }}</p>
-        @else
-            <h3 class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-snug uppercase line-clamp-2 min-h-[1.9rem]">{{ $car->title }}</h3>
-        @endif
-        <p class="text-[9px] text-on-surface-variant mt-1.5">{{ __('public.car_card.price') }}</p>
-        <p class="text-sm font-extrabold text-emerald-700 tabular-nums leading-tight">
-            {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : __('public.car_card.contact') }}
-        </p>
-    </div>
+    >
+        <div class="relative aspect-[4/3] max-h-[120px] sm:max-h-[130px] w-full overflow-hidden bg-surface-container-high">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $car->title }}" src="{{ $img }}"/>
+            @if ($car->source_country)
+                <span class="absolute top-1.5 left-1.5 z-[5] max-w-[70%] truncate bg-primary/90 text-white px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide">{{ $car->source_country }}</span>
+            @endif
+        </div>
+        <div class="p-2.5 sm:p-3 text-left flex-1 flex flex-col min-h-0">
+            @if ($brandLine !== '' && $modelLine !== '')
+                <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-1">{{ $brandLine }}</p>
+                <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-1 -mt-px">{{ $modelLine }}</p>
+            @elseif ($brandLine !== '')
+                <p class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-tight uppercase tracking-tight line-clamp-2">{{ $brandLine }}</p>
+            @else
+                <h3 class="text-[10px] sm:text-[11px] font-extrabold text-primary leading-snug uppercase line-clamp-2 min-h-[1.9rem]">{{ $car->title }}</h3>
+            @endif
+            <p class="text-[9px] text-on-surface-variant mt-1.5">{{ __('public.car_card.price') }}</p>
+            <p class="text-sm font-extrabold text-emerald-700 tabular-nums leading-tight">
+                {{ $car->price_tzs ? ('TZS ' . number_format($car->price_tzs)) : __('public.car_card.contact') }}
+            </p>
+        </div>
+    </a>
 </div>
 @else
 <div class="sahara-card-motion group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 relative flex flex-col">
-    <a
-        href="{{ $car->publicShowUrl() }}"
-        class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-        aria-label="{{ __('public.car_card.aria_open', ['title' => $car->title]) }}"
-    ></a>
+    <button
+        type="button"
+        class="absolute top-4 right-4 z-30 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 touch-manipulation"
+        data-saved-car-toggle
+        data-car-id="{{ $car->id }}"
+        data-slug="{{ $car->slug }}"
+        data-title="{{ $car->title }}"
+        aria-pressed="false"
+        aria-label="{{ __('public.car_card.aria_save', ['title' => $car->title]) }}"
+    >
+        <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
+    </button>
     <div class="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="{{ $car->title }}" src="{{ $img }}"/>
-        <button
-            type="button"
-            class="absolute top-4 right-4 z-20 pointer-events-auto inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full bg-white/95 text-primary shadow-md border border-outline-variant/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            data-saved-car-toggle
-            data-car-id="{{ $car->id }}"
-            data-slug="{{ $car->slug }}"
-            data-title="{{ $car->title }}"
-            aria-pressed="false"
-            aria-label="{{ __('public.car_card.aria_save', ['title' => $car->title]) }}"
-        >
-            <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 0;" aria-hidden="true">favorite</span>
-        </button>
-        <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-1.5 sm:gap-2 max-w-[calc(100%-5.5rem)]">
+        <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-1.5 sm:gap-2 max-w-[calc(100%-5.5rem)] pointer-events-none">
             @if ($car->is_featured)
                 <span class="bg-secondary-container text-on-secondary-container px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider font-label flex items-center shadow-sm">
                     <span class="material-symbols-outlined text-[14px] mr-1" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">local_fire_department</span> {{ __('public.car_card.featured') }}
@@ -102,7 +98,7 @@
         </div>
     </div>
 
-    <div class="p-5 sm:p-6 flex-1 flex flex-col relative z-20">
+    <div class="p-5 sm:p-6 flex-1 flex flex-col">
         <div class="mb-4">
             <h3 class="font-headline font-bold text-lg sm:text-xl text-primary leading-snug tracking-tight line-clamp-2 min-h-[2.8rem] sm:min-h-[3.1rem]">
                 {{ $car->title }}
@@ -162,7 +158,7 @@
         </div>
 
         <div class="mt-auto">
-            <a class="relative z-20 w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-bold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ $car->publicShowUrl() }}">
+            <a class="w-full bg-primary text-on-primary py-3.5 min-h-[48px] rounded-full font-label font-bold text-sm uppercase tracking-wide transition-[filter,transform] hover:brightness-110 active:scale-[0.98] text-center inline-flex items-center justify-center focus-ring-on-dark" href="{{ $car->publicShowUrl() }}">
                 {{ __('public.car_card.view_details') }}
             </a>
         </div>
